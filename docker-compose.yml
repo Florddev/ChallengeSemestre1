@@ -1,0 +1,23 @@
+version: '1'
+services:
+  web:
+    build: site
+    ports :
+      - "80:80"
+    volumes:
+      - ./www:/var/www/html/
+      - ./server/000-default.conf:/etc/apache2/sites-available/000-default.conf
+      - ./server/apache2.conf:/etc/apache2/apache2.conf
+      - ./server/php.ini:/usr/local/etc/php/php.ini
+    depends_on: 
+      - db
+  db:
+    image: postgres:16-alpine
+    restart: always
+    environment:
+      - POSTGRES_DBNAME=blog
+      - POSTGRES_PASSWORD=password
+    ports :
+      - "5432:5432"
+    volumes:
+      - ./front_office.sql:/front_office.sql
