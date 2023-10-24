@@ -21,3 +21,4 @@ services:
       - "5432:5432"
     volumes:
       - ./front_office.sql:/front_office.sql
+      #test
