@@ -22,9 +22,9 @@ Vous pouvez ensuite vous connecter à la BDD avec la commande
 ```
 psql -U postgres
 ``` 
-Une fois connecté, exécutez le script SQL pour ajouter toutes les tables de l'application Web avec
+Une fois connecté, exécutez le script SQL pour ajouter toutes les tables de l'application Web à la BDD avec
 ```
-\i front_office.sql
+\i script.sql
 ```
 ### Infos utiles:
 - Le `\connect` permet de switch une base de donnée à une autre.
