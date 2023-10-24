@@ -1,5 +1,38 @@
 -- Supprimer les tables avec CASCADE
-DROP TABLE IF EXISTS user, role, article, category, comment, like_users_articles, pages, settings CASCADE;
+DROP TABLE IF EXISTS "user" CASCADE;
+DROP TABLE IF EXISTS "role" CASCADE;
+DROP TABLE IF EXISTS "article" CASCADE;
+DROP TABLE IF EXISTS "category" CASCADE;
+DROP TABLE IF EXISTS "comment" CASCADE;
+DROP TABLE IF EXISTS "like_users_articles" CASCADE;
+DROP TABLE IF EXISTS "pages" CASCADE;
+DROP TABLE IF EXISTS "settings" CASCADE;
+
+-- Créer la table "role"
+CREATE TABLE "role" (
+    "id_role" SERIAL PRIMARY KEY,
+    "label" VARCHAR(50) NOT NULL,
+    "priority" INT DEFAULT 0
+);
+
+-- Créer la table "category"
+CREATE TABLE "category" (
+    "id_category" SERIAL PRIMARY KEY,
+    "label" VARCHAR(50)
+);
+
+-- Créer la table "like_users_articles"
+CREATE TABLE "like_users_articles" (
+    "id_article" INT NOT NULL,
+    "id_user" INT NOT NULL,
+    PRIMARY KEY ("id_article", "id_user")
+);
+
+-- Créer la table "settings"
+CREATE TABLE "settings" (
+    "key" VARCHAR(50) PRIMARY KEY,
+    "value" TEXT NOT NULL
+);
 
 -- Créer la table "user"
 CREATE TABLE "user" (
@@ -13,13 +46,6 @@ CREATE TABLE "user" (
     "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP NULL,
     FOREIGN KEY ("id_role") REFERENCES "role"("id_role")
-);
-
--- Créer la table "role"
-CREATE TABLE "role" (
-    "id_role" SERIAL PRIMARY KEY,
-    "label" VARCHAR(50) NOT NULL,
-    "priority" INT DEFAULT 0
 );
 
 -- Créer la table "article"
@@ -37,19 +63,6 @@ CREATE TABLE "article" (
     FOREIGN KEY ("id_category") REFERENCES "category"("id_category"),
     FOREIGN KEY ("id_creator") REFERENCES "user"("id_user"),
     FOREIGN KEY ("id_updator") REFERENCES "user"("id_user")
-);
-
--- Créer la table "like_users_articles"
-CREATE TABLE "like_users_articles" (
-    "id_article" INT NOT NULL,
-    "id_user" INT NOT NULL,
-    PRIMARY KEY ("id_article", "id_user")
-);
-
--- Créer la table "category"
-CREATE TABLE "category" (
-    "id_category" SERIAL PRIMARY KEY,
-    "label" VARCHAR(50)
 );
 
 -- Créer la table "comment"
@@ -82,12 +95,6 @@ CREATE TABLE "pages" (
     "id_updator" INT NULL,
     FOREIGN KEY ("id_creator") REFERENCES "user"("id_user"),
     FOREIGN KEY ("id_updator") REFERENCES "user"("id_user")
-);
-
--- Créer la table "settings"
-CREATE TABLE "settings" (
-    "key" PRIMARY KEY,
-    "value" TEXT NOT NULL
 );
 
 -- Insérer des données dans la table "role"
