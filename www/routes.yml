@@ -1,0 +1,28 @@
+/:
+  controller: Main
+  action: home
+
+/login:
+  controller: Security
+  action: login
+
+/logout:
+  controller: Security
+  action: logout
+
+/register:
+  controller: Security
+  action: register
+
+/dashboard:
+  controller: Admin
+  action: dashboard
+  security: true
+  roles: 
+    - admin
+    - author
+    - user
+
+/dashboard/users:
+   controller: Dashboard\User
+   action: listUsers
