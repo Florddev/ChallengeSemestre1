@@ -1,46 +1,58 @@
 # ChallengeSemestre1 - Groupe 8
+
 Repository du challenge semestriel du groupe N°8
 
-## Mise en place du workspace avec docker :
-Executer le `docker-compose.yml` pour installer tout l'espace de travail grâce à la commande
-```
-docker compose up -d
-``` 
+## Initialisation :
 
-### Serveur Web:
-Le serveur web se situe sur le port `80`. L'adresse du serveur web est alors :
+### Docker:
+
+Pour initialiser le projet, vous devez exécuter la commande `docker compose up -d` pour lancer le docker compose. Une fois que le serveur web est en cours d'exécution, vous pouvez accéder à l'adresse suivante :
+
 ```
-http://localhost
+localhost:8080
 ```
 
-### Serveur BDD:
-Le serveur BDD est un serveur postgreSQL qui est situé sur le port `5432`. Pour ouvrir la session du serveur postgres, utiliser:
-```
-docker compose exec db bash
-``` 
-Vous pouvez ensuite vous connecter à la BDD avec la commande
-```
-psql -U postgres
-``` 
-Une fois connecté, exécutez le script SQL pour ajouter toutes les tables de l'application Web à la BDD avec
-```
-\i script.sql
-```
-### Infos utiles:
-- Le `\connect` permet de switch une base de donnée à une autre.
-- La commande `\dt` permet de voir la liste de toutes les tables de la BDD.
-- Et `\d nom_de_la_table` permet de voir la liste de colonnes de la table ciblé.
+### PostgreSQL :
 
+Pour travailler avec la base de données PostgreSQL, vous devez suivre les étapes suivantes :
 
-## Informations sur le projet
-### Thème:
-Le projet aura pour but de créer un template de Blog réutilisable et configurable a souhait.
+1. Ouvrez une session Postgres en utilisant la commande `docker compose exec db bash` pour ouvrir le bash.
+2. Connectez-vous à l'instance de PostgreSQL en utilisant la commande `psql -U postgres`.
+3. Exécutez le fichier SQL complet en utilisant la commande `\i front_office.sql`.
 
-### Palette de couleur utilisé: 
-Lien `https://coolors.co/192440-063454-009ef7-f5f8fa-ffffff`
+Voici quelques informations utiles pour travailler avec PostgreSQL :
 
-![image](https://github.com/Florddev/ChallengeSemestre1/assets/107536197/4a727b5e-1285-435b-8dd5-a519aec6e0f0)
+- Utilisez la commande `\connect` pour changer de base de données.
+- Utilisez la commande `\dt` pour afficher la liste de toutes les tables de la base de données.
+- Utilisez la commande `\d nom_de_la_table` pour afficher la liste des colonnes de la table ciblée.
 
-### Model conceptuel de données:
-![scriptDiagram](https://github.com/Florddev/ChallengeSemestre1/assets/107536197/f86189ab-b513-4cdc-87f4-e254bed400c7)
+# GitHub:
 
+Le code source du projet est disponible sur GitHub à l'adresse suivante : https://github.com/Florddev/ChallengeSemestre1
+
+# Thème:
+
+Le projet a pour objectif de créer un template de Blog réutilisable. Vous pouvez contribuer au projet en proposant des améliorations, des fonctionnalités ou en signalant des problèmes sur GitHub.
+
+# Figma:
+
+Pour visualiser le design du projet, vous pouvez accéder au lien Figma suivant : https://www.figma.com/file/TWv480eH55eiJMJbC41IIV/Untitled?type=design&node-id=0%3A1&mode=design&t=od5gfMRphHzuv8Om-1
+
+## Palette de couleurs:
+
+Voici la palette de couleurs utilisée dans le projet :
+
+- `#12192c`
+- `#192440`
+- `#063454`
+- `#009ef7`
+- `#f5f8fa`
+- `#ffffff`
+
+Vous pouvez trouver plus d'informations sur la palette de couleurs [ici](https://coolors.co/12192c-192440-063454-009ef7-f5f8fa-ffffff).
+
+## Modèle conceptuel de données:
+
+Le modèle conceptuel de données du projet est disponible sur GitHub à l'adresse suivante : [https://github.com/Florddev/ChallengeSemestre1/assets/107536197/6fce4a50-bb6a-44d5-b34d-369b965cd4a5](https://user-images.githubusercontent.com/107536197/277777129-f86189ab-b513-4cdc-87f4-e254bed400c7.png)
+
+!https://user-images.githubusercontent.com/107536197/277777129-f86189ab-b513-4cdc-87f4-e254bed400c7.png
