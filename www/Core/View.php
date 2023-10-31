@@ -7,7 +7,7 @@ class View
     private String $templateName;
     private String $viewName;
 
-    public function __construct(string $viewName, string $templateName = "back")
+    public function __construct(string $viewName, string $templateName)
     {
         $this->setViewName($viewName);
         $this->setTemplateName($templateName);
@@ -18,7 +18,12 @@ class View
      */
     public function setTemplateName(string $templateName): void
     {
-        if(!file_exists("Views/Template/".$templateName.".tpl.php"))
+        if(empty($templateName))
+        {
+            $this->templateName = $templateName;
+            return;
+        }
+        elseif(!file_exists("Views/Template/".$templateName.".tpl.php"))
         {
             die("Le template Views/Template/".$templateName.".tpl.php n'existe pas");
         }
@@ -37,17 +42,10 @@ class View
         $this->viewName = "Views/".$viewName.".view.php";
     }
 
-    /*
-    public function render($complete = true)
-    {
-        if($complete) include $this->templateName;
-        else include $this->viewName;
-    }
-    */
-
     public function __destruct()
     {
-        include $this->templateName;
+        if(empty($this->templateName)) include $this->viewName;
+        else include $this->templateName;
     }
 
 }

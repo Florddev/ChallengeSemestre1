@@ -1,28 +1,29 @@
 /:
-  controller: Main
+  controller: FrontOffice/Main
   action: home
+  template: front
 
 /login:
-  controller: Security
+  controller: FrontOffice/Security
   action: login
+  restricted: false
 
 /logout:
-  controller: Security
+  controller: FrontOffice/Security
   action: logout
+  restricted: false
 
 /register:
-  controller: Security
+  controller: FrontOffice/Security
   action: register
+  restricted: false
 
-/dashboard:
-  controller: Admin
-  action: dashboard
-  security: true
-  roles: 
+/dashboard/users:
+  controller: BackOffice/Users
+  action: listUsers
+  template: back
+  restricted: true
+  roles:
     - admin
     - author
     - user
-
-/dashboard/users:
-   controller: Dashboard\User
-   action: listUsers
