@@ -7,6 +7,6 @@ class Main
 {
     public function home($route): void
     {
-        $myView = new View("FrontOffice/Main/home", $route["template"]);
+        new View("FrontOffice/Main/home", $route["template"]);
     }
 }
