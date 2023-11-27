@@ -17,7 +17,7 @@ CREATE TABLE "role" (
 
 -- Créer la table "category"
 CREATE TABLE "category" (
-    "id_category" SERIAL PRIMARY KEY,
+    "id" SERIAL PRIMARY KEY,
     "label" VARCHAR(50)
 );
 

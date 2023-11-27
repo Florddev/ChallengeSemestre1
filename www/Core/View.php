@@ -42,10 +42,18 @@ class View
         $this->viewName = "Views/".$viewName.".view.php";
     }
 
+    public function partial(String $partielView)
+    {
+        if(!file_exists("Views/Partial/".$partielView.".partialView.php"))
+        {
+            die("Le vue partiel 'Views/Partial/".$partielView.".partialView.php' n'existe pas");
+        }
+        include "Views/Partial/".$partielView.".partialView.php";
+    }
+
     public function __destruct()
     {
         if(empty($this->templateName)) include $this->viewName;
         else include $this->templateName;
     }
-
 }

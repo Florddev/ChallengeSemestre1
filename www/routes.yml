@@ -19,7 +19,7 @@
   restricted: false
 
 /dashboard/users:
-  controller: BackOffice/Users
+  controller: BackOffice/User
   action: listUsers
   template: back
   restricted: true

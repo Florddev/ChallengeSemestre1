@@ -4,10 +4,10 @@ namespace App\Controllers\BackOffice;
 
 use App\Core\View;
 
-class Users
+class User
 {
     public function listUsers($data): void
     {
-        $myView = new View("BackOffice/Users/usersList", $data["template"]);
+        $myView = new View("BackOffice/User/usersList", $data["template"]);
     }
 }
