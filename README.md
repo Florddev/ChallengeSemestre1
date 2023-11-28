@@ -25,13 +25,15 @@ Comme pour le serveur web, le serveur BDD sera lancé automatiquement après l'e
 
 1. Ouvrez une session Postgres en utilisant la commande `docker compose exec db bash` pour ouvrir le bash.
 2. Connectez-vous à l'instance de PostgreSQL en utilisant la commande `psql -U postgres`.
-3. Exécutez le fichier SQL complet en utilisant la commande `\i script.sql`.
+3. Une fois connecté, changer de base de donnée pour vous rendre sur la base `blog` en faisant la commande `\c blog` 
+3. Exécutez ensuite le fichier SQL complet en utilisant la commande `\i script.sql`.
 
 Voici quelques informations utiles pour travailler avec PostgreSQL :
 
-- Utilisez la commande `\connect` pour changer de base de données.
 - Utilisez la commande `\dt` pour afficher la liste de toutes les tables de la base de données.
 - Utilisez la commande `\d nom_de_la_table` pour afficher la liste des colonnes de la table ciblée.
+- Utilisez la commande `\c` ou `\connect` pour changer de base de données.
+- Utilisez la commande `\l` pour afficher la liste des base de données
 
 ## Information sur le projet:
 
@@ -39,12 +41,7 @@ Voici quelques informations utiles pour travailler avec PostgreSQL :
 Pour visualiser le design du projet, vous pouvez accéder au lien Figma juste [ici](https://www.figma.com/file/TWv480eH55eiJMJbC41IIV/Untitled?type=design&node-id=0%3A1&mode=design&t=od5gfMRphHzuv8Om-1) !
 Voici la palette de couleurs utilisée dans le projet :
 
-- `#12192c`
-- `#192440`
-- `#063454`
-- `#009ef7`
-- `#f5f8fa`
-- `#ffffff`
+- `#12192c` | `#192440` | `#063454` | `#009ef7` | `#f5f8fa` | `#ffffff`
 
 Vous pouvez trouver plus d'informations sur la palette de couleurs [ici](https://coolors.co/12192c-192440-063454-009ef7-f5f8fa-ffffff).
 

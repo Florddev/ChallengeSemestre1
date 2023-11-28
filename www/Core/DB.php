@@ -5,17 +5,13 @@ class DB
 {
     private ?object $pdo = null;
     private string $table;
-    private const dbPrefix = "esgi_";
+    private const dbPrefix = "";
 
     public function __construct()
     {
         //connexion à la bdd via pdo
         try{
-            // Fonctionne avec mysql:
-            $this->pdo = new \PDO("mysql:host=mariadb;dbname=esgi;charset=utf8", "esgi", "esgipwd");
-
-            // Ne fonctionne pas avec postgres:
-            //$this->pdo = new \PDO("pgsql:host=db;dbname=blog;port=5432", "postgres", "password");
+            $this->pdo = new \PDO("pgsql:host=db;dbname=blog;port=5432", "postgres", "password");
         }catch (\PDOException $e) {
             echo "Erreur SQL : ".$e->getMessage();
         }
@@ -36,17 +32,15 @@ class DB
         $data = $this->getDataObject();
 
         if( empty($this->getId())){
-            $sql = "INSERT INTO " . $this->table . "(" . implode(",", array_keys($data)) . ") 
-            VALUES (:" . implode(",:", array_keys($data)) . ")";
+            $sql = 'INSERT INTO public.' . strtolower($this->table) . ' (' . implode(',', array_keys($data)) . ') VALUES (:' . implode(',:', array_keys($data)) . ');';
         }else{
             $sql = "UPDATE " . $this->table . " SET ";
             foreach ($data as $column => $value){
                 $sql.= $column. "=:".$column. ",";
             }
             $sql = substr($sql, 0, -1);
-            $sql.= " WHERE id = ".$this->getId();
+            $sql.= " WHERE id = ".$this->getId().";";
         }
-
 
         $queryPrepared = $this->pdo->prepare($sql);
         $queryPrepared->execute($data);
@@ -67,7 +61,8 @@ class DB
         foreach ($data as $column=>$value){
             $sql .= " ".$column."=:".$column. " AND";
         }
-        $sql = substr($sql, 0, -3);
+        $sql = substr($sql, 0, -3).";";
+
         $queryPrepared = $this->pdo->prepare($sql);
         $queryPrepared->execute($data);
         if($return == "object"){
