@@ -17,5 +17,4 @@ class Main
 
         new View("FrontOffice/Main/home", $route["template"]);
     }
-
 }
