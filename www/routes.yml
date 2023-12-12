@@ -34,5 +34,6 @@
   restricted: true
   roles:
     - admin
+    - modo
     - author
     - user
