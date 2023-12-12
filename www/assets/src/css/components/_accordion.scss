@@ -1,0 +1,77 @@
+.accordion {
+    --bg-1: var(--white);
+    --bg-2: var(--light);
+    --text-1: var(--secondary);
+    --text-2: var(--primary);
+
+    &.dark {
+        --bg-2: var(--primary);
+        --bg-1: var(--secondary);
+        --text-1: var(--lighter);
+        --text-2: var(--lighter-darker);
+    }
+
+    transform: translateZ(0);
+    background: var(--bg-1);
+
+    >.accordion-toggle {
+        position: absolute;
+        opacity: 0;
+        display: none;
+    }
+
+    >label {
+        position: relative;
+        display: block;
+        height: rem(50);
+        line-height: rem(50);
+        padding: 0 rem(20);
+        font-size: rem(16);
+        font-weight: 700;
+        color: var(--text-1);
+        background: var(--bg-1);
+        cursor: pointer;
+
+        & i {
+            margin-right: rem(10);
+            transition: var(--transition-duration);
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: rem(20);
+            transform: rotate(90deg);
+            transition: .3s transform;
+        }
+    }
+
+    >section {
+        max-height: 0;
+        transition: .3s all;
+        overflow-y: auto;
+        border-bottom: rem(1) solid var(--bg-2);
+        margin: 0;
+
+        // p {
+        //     margin: rem(15) 0;
+        //     padding: 0 rem(20);
+        //     font-size: rem(16);
+        //     line-height: 1.5;
+        //     color: var(--text-2);
+        // }
+    }
+
+    >.accordion-toggle:checked~label i {
+        transform: rotate(45deg);
+    }
+
+    >.accordion-toggle:checked~label:after {
+        transform: rotate(0deg);
+    }
+
+    >.accordion-toggle:checked~section {
+        max-height: 100vh;
+    }
+}

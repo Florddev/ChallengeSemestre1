@@ -1,0 +1,68 @@
+// Couleurs
+$white: #FFF;
+$black: #000;
+$grey: #6C7570;
+$blue: #0D6EFD;
+$red: #dc3545;
+
+
+$dark: #151521;
+$primary: #1c1c2b;
+$secondary: #26263a;
+$tercery: #7239EA;
+$light: #EFEFEF;
+$lighter: #d6d6e6;
+$warning: #FFC700;
+$info: #39C0ED;
+$danger: #F1416C;
+$success: #50CD89;
+
+
+// Variables CSS
+:root {
+    // Couleurs
+    --white: #{$white};
+    --black: #{$black};
+    --grey: #{$grey};
+    --blue: #{$blue};
+    --red: #{$red};
+    --blue-darker: #{darken($blue, 10%)};
+    --grey-darker: #{darken($grey, 10%)};
+    --red-darker: #{darken($red, 10%)};
+
+
+    --dark: #{$dark};
+
+    --primary: #{$primary};
+    --primary-darker: #{darken($primary, 10%)};
+
+    --secondary: #{$secondary};
+    --secondary-darker: #{darken($secondary, 10%)};
+
+    --tercery: #{$tercery};
+    --tercery-darker: #{darken($tercery, 10%)};
+
+    --light: #{$light};
+    --light-darker: #{darken($light, 10%)};
+
+    --lighter: #{$lighter};
+    --lighter-darker: #{darken($lighter, 10%)};
+
+    --warning: #{$warning};
+    --info: #{$info};
+    --danger: #{$danger};
+    --success: #{$success};
+    --warning-darker: #{darken($warning, 10%)};
+    --info-darker: #{darken($info, 10%)};
+    --danger-darker: #{darken($danger, 10%)};
+    --success-darker: #{darken($success, 10%)};
+
+    // Typos
+    --main-font1: #{$font2};
+
+    // Border radius
+    --main-radius: #{rem(6)};
+
+    // Transitions
+    --transition-duration: 0.3s;
+}

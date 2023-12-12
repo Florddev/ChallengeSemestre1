@@ -18,4 +18,8 @@ class Main
         new View("FrontOffice/Main/home", $route["template"]);
     }
 
+    public function designGuide($route): void
+    {
+        new View("FrontOffice/Main/design-guide", $route["template"]);
+    }
 }

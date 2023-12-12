@@ -1,0 +1,114 @@
+// $grid-columns: 12;
+
+// .grid {
+//     @for $i from 1 through $grid-columns {
+//         .grid-#{$i} {
+//             // width: percentage($i / $grid-columns);
+//         }
+//     }
+
+//     &-container {
+//         width: 100%;
+//         margin-right: auto;
+//         margin-left: auto;
+//         overflow: hidden;
+//     }
+
+//     &-row {
+//         width: 100%;
+//         margin-left: -1rem;
+//         margin-right: -1rem;
+//         clear: both;
+//     }
+// }
+
+// Mixin itself
+@mixin clearfix() {
+    &::after {
+        display: block;
+        content: "";
+        clear: both;
+    }
+}
+
+// Usage as a mixin
+.element {
+    @include clearfix;
+}
+
+// Variables
+$col-gutter: 40px;
+$col-total: 12;
+
+// Mixin pour les colonnes
+@mixin column($span, $offset: 0) {
+    width: percentage($span / $col-total);
+    margin-left: percentage($offset / $col-total);
+    float: left;
+    box-sizing: border-box;
+    padding: rem(10);
+    // border: 5px solid green;
+}
+
+// Classe pour le conteneur de colonnes
+.row {
+    @include clearfix;
+    width: 100%;
+    // max-width: 1200px; // Ajustez selon vos besoins
+    margin: 0 auto;
+    padding: rem(10);
+    height: auto; // Boucle pour générer les classes de colonnes
+
+    @for $i from 1 through $col-total {
+
+        .col-#{$i},
+        .col-sm-#{$i},
+        .col-md-#{$i},
+        .col-lg-#{$i},
+        .col-xl-#{$i} {
+            @include column($i);
+
+            &.full-width {
+                width: 100% !important;
+                margin-left: 0 !important;
+            }
+        }
+
+
+        // Ajouter des classes d'offset
+        @for $offset from 1 through $col-total {
+            .col-#{$i}.offset-#{$offset} {
+                @include column($i, $offset);
+            }
+        }
+
+        // Media queries pour des tailles d'écran spécifiques
+        @media screen and (max-width: 576px) {
+            .col-sm-#{$i} {
+                width: 100%;
+                margin-left: 0;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .col-md-#{$i} {
+                width: 100%;
+                margin-left: 0;
+            }
+        }
+
+        @media screen and (max-width: 992px) {
+            .col-lg-#{$i} {
+                width: 100%;
+                margin-left: 0;
+            }
+        }
+
+        @media screen and (max-width: 1200px) {
+            .col-xl-#{$i} {
+                width: 100%;
+                margin-left: 0;
+            }
+        }
+    }
+}

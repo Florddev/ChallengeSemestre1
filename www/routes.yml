@@ -3,6 +3,11 @@
   action: home
   template: front
 
+/guide:
+  controller: FrontOffice/Main
+  action: designGuide
+  template: front
+
 /login:
   controller: FrontOffice/Security
   action: login
@@ -17,6 +22,10 @@
   controller: FrontOffice/Security
   action: register
   restricted: false
+
+/dashboard/builder:
+  controller: BackOffice/Editor
+  action: pageBuilder
 
 /dashboard/users:
   controller: BackOffice/User

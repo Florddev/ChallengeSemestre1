@@ -1,0 +1,9 @@
+@function rem($pxValue) {
+    @return calc($pxValue / 16) * 1rem;
+}
+
+
+@function convertir-en-pixel($valeur-en-vh) {
+    $viewport-height: 100vh; // Utilisez 100vh comme point de référence
+    @return calc(#{$valeur-en-vh} * #{$viewport-height} / 100);
+}

@@ -1,0 +1,57 @@
+.card {
+    display: inline-block;
+    width: 100%; // A retirer
+    padding: rem(200) rem(20) rem(20);
+    border-radius: var(--main-radius);
+    border: solid thin lighten($color: #000000, $amount: 90%);
+    position: relative;
+    overflow: hidden;
+    background-color: var(--white);
+
+    img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: rem(200);
+        object-fit: cover;
+        object-position: center;
+    }
+
+    h1 {
+        font-weight: 600;
+        font-size: rem(20);
+        line-height: 1;
+        margin: rem(20) 0 rem(10);
+        color: var(--dark);
+    }
+
+    p {
+        font-size: rem(16);
+        line-height: 1.5;
+        font-weight: 400;
+        margin: rem(10) 0;
+        color: var(--dark);
+    }
+
+    &-full {
+        img {
+            height: 100%;
+        }
+
+        *:not(img) {
+            position: relative;
+            z-index: 1;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, $white 0%, transparentize($white, 1) 100%);
+        }
+    }
+}

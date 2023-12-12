@@ -1,0 +1,39 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--main-font1);
+}
+
+input,
+button {
+    border: none;
+    outline: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+.fsize {
+    @for $i from 1 through 10 {
+        &-#{$i} {
+            font-size: #{$i}rem;
+        }
+    }
+}
+
+.container {
+    max-width: rem(1120);
+    margin: 0 auto;
+    padding: rem(15);
+}
+
+@media screen and (min-width: 1150px) {
+    .container {
+        margin-inline: auto;
+    }
+}
