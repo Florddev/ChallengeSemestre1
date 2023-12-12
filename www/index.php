@@ -58,7 +58,7 @@ if(!empty($listOfRoutes[$uri])){
                                 // TODO: Vérifier que l'utilisateur à bien le/les role(s) nécessaire(s) pour accéder à la page
                                 die("Vous n'avez pas les droits pour accéder à cette page");
                             } else {
-                                header("Location: /login");
+                                header("Location: /login"); // TODO: A modifier
                             }
                         }
 
