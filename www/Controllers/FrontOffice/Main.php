@@ -20,6 +20,14 @@ class Main
         $page->save();
         */
 
+        $myCategory = Category::populate(1);
+
+        echo "<pre>";
+        print_r($myCategory);
+        print_r($myCategory);
+        print_r($myCategory);
+        echo "</pre>";
+
         new View("FrontOffice/Main/home", $route["template"]);
     }
 
