@@ -13,6 +13,8 @@ class Main
 
         echo "<pre>";
         print_r($myCategory);
+        print_r($myCategory);
+        print_r($myCategory);
         echo "</pre>";
 
         new View("FrontOffice/Main/home", $route["template"]);
