@@ -74,3 +74,4 @@ if(!empty($listOfRoutes[$uri])){
     $customError = new Error();
     $customError->page404();
 }
+//
