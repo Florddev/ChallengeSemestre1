@@ -23,6 +23,10 @@
   action: register
   restricted: false
 
+/dashboard:
+  controller: BackOffice/Dashboard
+  action: pageDashboard
+
 /dashboard/builder:
   controller: BackOffice/Editor
   action: pageBuilder
