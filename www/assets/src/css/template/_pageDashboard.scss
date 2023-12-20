@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+// Variables pour les tailles (ajustez selon vos besoins)
+$breakpoint-sidebar: 1200px;
+$sidebar-width: 292px; // Largeur fixe de la sidebar sur les grands écrans
+
+// Styles de base
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+// Structure de base avec Grid
+.dashboard-grid {
+  background-color: rgb(244 247 254/1);
+  display: grid;
+  grid-template-columns: $sidebar-width auto;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main"
+    "sidebar footer";
+  height: 100vh;
+  
+  @media (max-width: $breakpoint-sidebar) {
+    // Sur mobile, la sidebar passe en haut ou est cachée
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "main"
+      "footer";
+  }
+}
+
+.sidebar {
+  grid-area: sidebar;
+  height: 100vh;
+  background-color: #ffffff;
+  // Styles pour la sidebar
+  display: flex;
+  flex-direction: column;
+
+  .header-sidebar {
+    width: 100%;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 3px solid rgb(244 247 254/1);
+
+    h2 {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        font-size: 26px;
+
+        span {
+            font-weight: 500;
+        }
+    }
+  }
+
+  .nav-sidebar {
+    padding: 2rem 0 2rem 2rem;
+
+    li {
+        margin-bottom: 0.5rem;
+        color: rgb(163 174 208/1);
+        font-weight: 500;
+        padding: 0.5rem 0;
+        i{
+            margin-right: 1rem;
+        }
+    }
+
+    .actived {
+        border-right: 3px purple solid;
+        color: black;
+        i {
+            color: purple;
+        }
+    }
+  }
+}
+
+.dashboard-header {
+  grid-area: header;
+  // Styles pour le header
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 2rem 0 2rem;
+
+  .dashboard-header-left {
+    p {
+        color: rgb(27 37 75/1);
+        font-weight: 400;
+        font-size: .875rem;
+        line-height: 1.25rem;
+    }
+    h1 {
+        font-weight: 700;
+        font-size: 33px;
+        color: rgb(27 37 75/1);
+    }
+  }
+
+  .dashboard-header-right {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 10px;
+    color: #b0b3bb;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    .search-bar {
+        background: #f4f7fe;
+        border-radius: 20px;
+        padding: 0.2rem 0.5rem;
+        display: flex;
+        align-items: center;
+        margin-right: 0.3rem;
+        input {
+            border: none;
+            outline: none;
+            padding: 0.5rem;
+            background: #f4f7fe;  
+        }
+    }
+
+    i {
+        margin: 0 0.3rem;
+    }
+
+    .user-icon {
+        border-radius: 50%;
+        width: 32px;
+        margin-left: 0.3rem;
+    }
+  }
+}
+
+.dashboard-container {
+  grid-area: main;
+  // Styles pour le contenu principal
+  padding: 2rem;
+    .info-cards {
+        display: flex;
+        gap: 2rem;
+        .info-card {
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+        }
+    }
+    .graph-container {
+        display: flex;
+        gap: 2rem;
+        margin-top: 2rem;
+        .graph {
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+        }
+    }
+}
+
+.dashboard-footer {
+  grid-area: footer;
+  display: flex;
+  padding: 2rem;
+  // Styles pour le footer
+  p {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: rgb(163 174 208/1);
+  }
+}
+
+// Styles additionnels pour la responsivité
+@media (max-width: $breakpoint-sidebar) {
+  .sidebar {
+    display: none;
+    // Vous pouvez décider de masquer la sidebar ou de la rendre plus petite sur mobile
+    width: 100%;
+    position: fixed;
+    z-index: 1; // Assure que la sidebar passe au-dessus du contenu
+    left: 0;
+    top: 0;
+  }
+
+  .dashboard-header, .dashboard-container, .dashboard-footer {
+    margin-left: 0; // Assurez-vous que le contenu prend toute la largeur sur mobile
+  }
+}

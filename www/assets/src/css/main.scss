@@ -2,6 +2,8 @@
 @import "partials/fonts";
 @import "partials/variables";
 @import "partials/globals";
+@import "partials/reset";
+
 
 @import "components/button";
 @import "components/banner";
@@ -12,3 +14,4 @@
 @import "components/navbar";
 
 @import "template/pageBuilder";
+@import "template/pageDashboard";
