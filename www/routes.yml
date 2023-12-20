@@ -26,6 +26,7 @@
 /dashboard:
   controller: BackOffice/Dashboard
   action: pageDashboard
+  restricted: false
 
 /dashboard/builder:
   controller: BackOffice/Editor
