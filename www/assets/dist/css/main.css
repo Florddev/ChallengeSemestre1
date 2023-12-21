@@ -2714,6 +2714,28 @@ body {
   align-items: center;
   flex: 1;
 }
+.dashboard-container .container-data {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+}
+.dashboard-container .container-data .datas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+}
+.dashboard-container .check-data,
+.dashboard-container .daily-traffic,
+.dashboard-container .pie-chart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
 .dashboard-footer {
   grid-area: footer;

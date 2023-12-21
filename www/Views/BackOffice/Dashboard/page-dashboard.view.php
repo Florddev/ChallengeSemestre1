@@ -60,32 +60,54 @@
     <main class="dashboard-container">
         <div class="info-cards">
                     <div class="info-card">
-                        <p>item</p>
+                        <p>item 1</p>
                     </div>
                     <div class="info-card">
-                        <p>item</p>
+                        <p>item 2</p>
                     </div>
                     <div class="info-card">
-                        <p>item</p>
+                        <p>item 3</p>
                     </div>
                     <div class="info-card">
-                        <p>item</p>
+                        <p>item 4</p>
                     </div>
                     <div class="info-card">
-                        <p>item</p>
+                        <p>item 5</p>
                     </div>
                     <div class="info-card">
-                        <p>item</p>
+                        <p>item 6</p>
                     </div>
                 </div>
         <div class="graph-container">
             <div class="graph">
-                <p>panel 1</p>
+                <p>graph 1</p>
             </div>
             <div class="graph">
-                <p>panel 2</p>
+                <p>graph 2</p>
             </div>
         </div>
+        <div class="container-data">
+            <div class="check-data">
+                <!-- Contenu de la table de vérification -->
+                <h2>data 1</h2>
+                <!-- Remplir avec des données de table -->
+            </div>
+  
+            <div class="datas">
+                <div class="daily-traffic">
+                    <!-- Contenu pour le trafic quotidien -->
+                    <h2>data 2</h2>
+                    <!-- Graphique ou autres éléments visuels -->
+                </div>
+      
+                <div class="pie-chart">
+                    <!-- Contenu pour le diagramme circulaire -->
+                    <h2>data 3</h2>
+                    <!-- Graphique circulaire -->
+                </div>
+            </div>
+        </div>
+
     </main>
 
     <footer class="dashboard-footer">

@@ -176,6 +176,32 @@ body {
             flex: 1;
         }
     }
+    .container-data {
+      margin-top: 2rem;
+      display: grid;
+      grid-template-columns: repeat(2,minmax(0,1fr));
+      gap: 2rem;
+
+      .datas {
+        display: grid;
+        grid-template-columns: repeat(2,minmax(0,1fr));
+        gap: 2rem;
+      }
+    }
+    
+    // Styles pour les éléments
+    .check-data,
+    .daily-traffic,
+    .pie-chart {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      // Ajouter des styles supplémentaires pour la table de vérification
+    }  
 }
 
 .dashboard-footer {
