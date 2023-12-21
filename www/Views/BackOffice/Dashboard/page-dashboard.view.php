@@ -60,22 +60,22 @@
     <main class="dashboard-container">
         <div class="info-cards">
                     <div class="info-card">
-                        <p>item 1</p>
+                        <i class="ri-bar-chart-2-fill"></i>
                     </div>
                     <div class="info-card">
-                        <p>item 2</p>
+                        <i class="ri-user-3-fill"></i>
                     </div>
                     <div class="info-card">
-                        <p>item 3</p>
+                        <i class="ri-file-copy-2-fill"></i>
                     </div>
                     <div class="info-card">
-                        <p>item 4</p>
+                        <i class="ri-line-chart-fill"></i>
                     </div>
                     <div class="info-card">
-                        <p>item 5</p>
+                        <i class="ri-wechat-line"></i>
                     </div>
                     <div class="info-card">
-                        <p>item 6</p>
+                        <i class="ri-speak-fill"></i>
                     </div>
                 </div>
 
@@ -84,23 +84,23 @@
                 <img class="user-icon" src="../assets/images/graph.png" alt="graph" />
             </div>
             <div class="graph">
-                <img class="user-icon" src="../assets/images/graph.png" alt="graph" />
+                <img class="user-icon" src="../assets/images/graph3.png" alt="graph2" />
             </div>
         </div>
 
         <div class="container-data">
             <div class="check-data">
-                <h2>data 1</h2>
+                <img class="user-icon" src="../assets/images/table.png" alt="graph" />
             </div>
   
             <div class="datas">
+                <div class="data-cam">
+                    <img class="user-icon" src="../assets/images/cam.png" alt="graph" />
+                </div>
                 <div class="daily-traffic">
-                    <h2>data 2</h2>
+                <img class="user-icon" src="../assets/images/calendrier.png" alt="graph" />
                 </div>
       
-                <div class="pie-chart">
-                    <h2>data 3</h2>
-                </div>
             </div>
         </div>
 
@@ -111,7 +111,7 @@
                     <h2>data 4</h2>
                 </div>
       
-                <div class="pie-chart">
+                <div class="data-cam">
                     <h2>data 5</h2>
                 </div>
             </div>

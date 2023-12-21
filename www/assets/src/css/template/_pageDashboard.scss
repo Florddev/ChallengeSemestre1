@@ -154,11 +154,18 @@ body {
             background-color: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
-            padding: 20px;
+            padding: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
             flex: 1;
+            i {
+              font-size: 20px;
+              color: rgb(66 42 251/1);
+              background-color: rgb(244 247 254/1);
+              border-radius: 50%;
+              padding: 1rem;
+            }
         }
     }
     .graph-container {
@@ -192,7 +199,7 @@ body {
     // Styles pour les éléments
     .check-data,
     .daily-traffic,
-    .pie-chart {
+    .data-cam {
       display: flex;
       justify-content: center;
       align-items: center;

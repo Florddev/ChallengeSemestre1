@@ -2693,11 +2693,18 @@ body {
   background-color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  padding: 20px;
+  padding: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex: 1;
+}
+.dashboard-container .info-cards .info-card i {
+  font-size: 20px;
+  color: rgb(66, 42, 251);
+  background-color: rgb(244, 247, 254);
+  border-radius: 50%;
+  padding: 1rem;
 }
 .dashboard-container .graph-container {
   display: flex;
@@ -2727,7 +2734,7 @@ body {
 }
 .dashboard-container .check-data,
 .dashboard-container .daily-traffic,
-.dashboard-container .pie-chart {
+.dashboard-container .data-cam {
   display: flex;
   justify-content: center;
   align-items: center;
