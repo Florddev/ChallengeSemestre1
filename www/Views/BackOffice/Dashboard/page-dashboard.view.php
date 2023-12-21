@@ -78,34 +78,48 @@
                         <p>item 6</p>
                     </div>
                 </div>
+
         <div class="graph-container">
             <div class="graph">
-                <p>graph 1</p>
+                <img class="user-icon" src="../assets/images/graph.png" alt="graph" />
             </div>
             <div class="graph">
-                <p>graph 2</p>
+                <img class="user-icon" src="../assets/images/graph.png" alt="graph" />
             </div>
         </div>
+
         <div class="container-data">
             <div class="check-data">
-                <!-- Contenu de la table de vérification -->
                 <h2>data 1</h2>
-                <!-- Remplir avec des données de table -->
             </div>
   
             <div class="datas">
                 <div class="daily-traffic">
-                    <!-- Contenu pour le trafic quotidien -->
                     <h2>data 2</h2>
-                    <!-- Graphique ou autres éléments visuels -->
                 </div>
       
                 <div class="pie-chart">
-                    <!-- Contenu pour le diagramme circulaire -->
                     <h2>data 3</h2>
-                    <!-- Graphique circulaire -->
                 </div>
             </div>
+        </div>
+
+        <div class="container-data">
+
+            <div class="datas">
+                <div class="daily-traffic">
+                    <h2>data 4</h2>
+                </div>
+      
+                <div class="pie-chart">
+                    <h2>data 5</h2>
+                </div>
+            </div>
+
+            <div class="check-data">
+                <h2>data 6</h2>
+            </div>
+  
         </div>
 
     </main>
