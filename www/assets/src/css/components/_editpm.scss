@@ -1,0 +1,164 @@
+.edit-mp {
+    width: 100%;
+    /* A adapter si besoin */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid $grey-lighter;
+    border-radius: 6px;
+}
+
+.edit-mp input {
+    width: 100%;
+    max-width: 50px;
+    text-align: center;
+    background-color: transparent;
+    border: 0;
+    outline: none;
+}
+
+.edit-mp .edit-mp-mtop,
+.edit-mp .edit-mp-mbot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+}
+
+/*.edit-mp .edit-mp-mtop{
+    align-items: start;
+}
+.edit-mp .edit-mp-mbot {
+    align-items: end;
+}*/
+
+.edit-mp .edit-mp-mid {
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-mp .edit-mp-mright,
+.edit-mp .edit-mp-mleft {
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+}
+
+.edit-mp-p {
+    position: relative;
+    padding: 10px 5px;
+    display: flex;
+    border-radius: 6px;
+    justify-content: space-around;
+    border: 2px solid var(--tercery);
+}
+
+.edit-mp-p::before,
+.edit-mp::before {
+    color: $grey;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.edit-mp::before {
+    content: 'Margin';
+}
+
+.edit-mp-p::before {
+    content: 'Padding';
+}
+
+.edit-mp-pleft,
+.edit-mp-pright {
+    display: flex;
+    align-items: center;
+}
+
+.edit-mp-pmid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-mp-center {
+    display: flex;
+    padding: 5px 20px;
+    justify-content: center;
+    align-items: center;
+    background-color: $grey-lighter;
+    border-radius: 6px;
+    margin: 5px 0;
+    cursor: pointer;
+
+    & i {
+        font-size: rem(24);
+        transform: rotate(45deg);
+    }
+}
+
+.edit-mp-mleft:before,
+.edit-mp-mtop:before,
+.edit-mp-mright:before,
+.edit-mp-mbot:before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    background-color: $grey-lighter;
+}
+
+.edit-mp-mleft:before {
+    right: 100%;
+    transform: translateX(3px);
+}
+
+.edit-mp-mtop:before {
+    bottom: 100%;
+    transform: translateY(3px);
+}
+
+.edit-mp-mright:before {
+    left: 100%;
+    transform: translateX(-3px);
+}
+
+.edit-mp-mbot:before {
+    top: 100%;
+    transform: translateY(-3px);
+}
+
+.edit-mp-pmid:before,
+.edit-mp-pleft:before,
+.edit-mp-pright:before,
+.edit-mp-pmid:after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    background-color: var(--tercery);
+}
+
+.edit-mp-pmid:before {
+    bottom: 100%;
+    transform: translateY(3px);
+}
+
+.edit-mp-pmid:after {
+    top: 100%;
+    transform: translateY(-3px);
+}
+
+.edit-mp-pleft:before {
+    right: 100%;
+    transform: translateX(3px);
+}
+
+.edit-mp-pright:before {
+    left: 100%;
+    transform: translateX(-3px);
+}

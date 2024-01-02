@@ -9,6 +9,6 @@ class Editor
 
     public function pageBuilder($route): void
     {
-        new View("BackOffice/Editor/page-builder", $route["template"]);
+        new View("BackOffice/Editor/page-builderV2", $route["template"]);
     }
 }
