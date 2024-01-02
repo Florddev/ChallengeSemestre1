@@ -4,27 +4,18 @@ use App\Core\DB;
 
 class User extends DB
 {
+
     private ?int $id = null;
-    protected string $firstname;
-    protected string $lastname;
+
+    protected string $login;
     protected string $email;
-    protected string $pwd;
+    protected string $password;
+    protected bool $validate;
+    protected string $role;
     protected int $status;
-    protected int $isDeleted;
-
-
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    public function __toString()
-    {
-        return $this->getFirstname()." ".$this->getLastname();
-    }
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getId(): ?int
     {
@@ -32,9 +23,9 @@ class User extends DB
     }
 
     /**
-     * @param int $id
+     * @param int|null $id
      */
-    public function setId(int $id): void
+    public function setId(?int $id): void
     {
         $this->id = $id;
     }
@@ -42,35 +33,17 @@ class User extends DB
     /**
      * @return string
      */
-    public function getFirstname(): string
+    public function getLogin(): string
     {
-        return $this->firstname;
+        return $this->login;
     }
 
     /**
-     * @param string $firstname
+     * @param string $login
      */
-    public function setFirstname(string $firstname): void
+    public function setLogin(string $login): void
     {
-        $firstname = ucwords(strtolower(trim($firstname)));
-        $this->firstname = $firstname;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLastname(): string
-    {
-        return $this->lastname;
-    }
-
-    /**
-     * @param string $lastname
-     */
-    public function setLastname(string $lastname): void
-    {
-        $lastname = strtoupper(trim($lastname));
-        $this->lastname = $lastname;
+        $this->login = $login;
     }
 
     /**
@@ -86,25 +59,56 @@ class User extends DB
      */
     public function setEmail(string $email): void
     {
-        $email = strtolower(trim($email));
         $this->email = $email;
     }
 
     /**
      * @return string
      */
-    public function getPwd(): string
+    public function getPassword(): string
     {
-        return $this->pwd;
+        return $this->password;
     }
 
     /**
-     * @param string $pwd
+     * @param string $password
      */
-    public function setPwd(string $pwd): void
+    public function setPassword(string $password): void
     {
-        $pwd = password_hash($pwd, PASSWORD_DEFAULT);
-        $this->pwd = $pwd;
+        $password = password_hash($password, PASSWORD_DEFAULT);
+        $this->password = $password;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isValidate(): bool
+    {
+        return $this->validate;
+    }
+
+    /**
+     * @param bool $validate
+     */
+    public function setValidate(bool $validate): void
+    {
+        $this->validate = $validate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRole(): string
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param string $role
+     */
+    public function setRole(string $role): void
+    {
+        $this->role = $role;
     }
 
     /**
@@ -122,22 +126,4 @@ class User extends DB
     {
         $this->status = $status;
     }
-
-    /**
-     * @return bool
-     */
-    public function isDeleted(): bool
-    {
-        return $this->isDeleted;
-    }
-
-    /**
-     * @param bool $isDeleted
-     */
-    public function setIsDeleted(bool $isDeleted): void
-    {
-        $this->isDeleted = $isDeleted;
-    }
-
-
 }
