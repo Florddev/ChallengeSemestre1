@@ -2,6 +2,7 @@
 
 namespace App;
 use App\Controllers\Error;
+use App\Models\Pages;
 
 spl_autoload_register("App\myAutoloader");
 
@@ -70,7 +71,11 @@ if(!empty($listOfRoutes[$uri])){
         } else die("La route ne contient pas d'action");
     } else die("La route ne contient pas de controller");
 } else {
-    require "Controllers/Error.php";
-    $customError = new Error();
-    $customError->page404();
+    if($page = Pages::getBy(["url"=>$uri])){
+        echo $page->getContent();
+    } else {
+        require "Controllers/Error.php";
+        $customError = new Error();
+        $customError->page404();
+    }
 }
