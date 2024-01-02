@@ -40,7 +40,7 @@ let initAccordions = (element) => {
     toggle(accordionInput);
 
     // Ajouter un evenement pour que lorsqu'un accordion est cliqué, activer au non celon son état
-    element.addEventListener("click", function () {
+    accordionInput.addEventListener("change", function () {
         // Si l'accordion est de type 'radio' alors mettre à jours tout les autres accordions de la même famille grâce à l'attribut 'name'
         if (accordionInput.getAttribute("type") == "radio") {
             let inputList = document.querySelectorAll(`input[name='${accordionInput.getAttribute("name")}']`)

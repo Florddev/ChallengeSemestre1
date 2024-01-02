@@ -78,7 +78,7 @@ function handleElementClick(event) {
     _(".action-popup").forEach(p => p.remove());
     elem.classList.add("selected-item");
 
-    addPopup(elem);
+    if(_(elem).attr("editable-popup") !== "false") addPopup(elem);
 }
 
 // Initialisation de la fonctionnalité de tri
@@ -439,6 +439,8 @@ function displayEditorAreaFor(elem) {
                     <div class="edit-form-inputs">
                         <input type="text" edit-mp-input="width" placeholder="Auto" />
                         <select class="edit-unit">
+                            <option value="Auto" hidden>-</option>
+                            <option value="none" hidden>-</option>
                             <option value="" selected>-</option>
                             <option value="px">px</option>
                             <option value="%">%</option>
@@ -452,6 +454,8 @@ function displayEditorAreaFor(elem) {
                     <div class="edit-form-inputs">
                         <input type="text" edit-mp-input="height" placeholder="Auto" />
                         <select class="edit-unit">
+                            <option value="Auto" hidden>-</option>
+                            <option value="none" hidden>-</option>
                             <option value="" selected>-</option>
                             <option value="px">px</option>
                             <option value="%">%</option>
@@ -465,9 +469,12 @@ function displayEditorAreaFor(elem) {
                 <div class="edit-form fluid">
                     <label>Min W</label>
                     <div class="edit-form-inputs">
-                        <input type="text" edit-mp-input="min-width" placeholder="0" />
+                        <input type="text" edit-mp-input="min-width" placeholder="Auto" />
                         <select class="edit-unit">
-                            <option value="px" selected>px</option>
+                            <option value="Auto" hidden>-</option>
+                            <option value="none" hidden>-</option>
+                            <option value="" selected>-</option>
+                            <option value="px">px</option>
                             <option value="%">%</option>
                             <option value="em">em</option>
                             <option value="rem">rem</option>
@@ -477,9 +484,12 @@ function displayEditorAreaFor(elem) {
                 <div class="edit-form fluid">
                     <label>Min H</label>
                     <div class="edit-form-inputs">
-                        <input type="text" edit-mp-input="min-height" placeholder="0" />
+                        <input type="text" edit-mp-input="min-height" placeholder="Auto" />
                         <select class="edit-unit">
-                            <option value="px" selected>px</option>
+                            <option value="Auto" hidden>-</option>
+                            <option value="none" hidden>-</option>
+                            <option value="" selected>-</option>
+                            <option value="px">px</option>
                             <option value="%">%</option>
                             <option value="em">em</option>
                             <option value="rem">rem</option>
@@ -493,6 +503,8 @@ function displayEditorAreaFor(elem) {
                     <div class="edit-form-inputs">
                         <input type="text" edit-mp-input="max-width" placeholder="None" />
                         <select class="edit-unit">
+                            <option value="Auto" hidden>-</option>
+                            <option value="none" hidden>-</option>
                             <option value="" selected>-</option>
                             <option value="px">px</option>
                             <option value="%">%</option>
@@ -506,6 +518,8 @@ function displayEditorAreaFor(elem) {
                     <div class="edit-form-inputs">
                         <input type="text" edit-mp-input="max-height" placeholder="None" />
                         <select class="edit-unit">
+                            <option value="Auto" hidden>-</option>
+                            <option value="none" hidden>-</option>
                             <option value="" selected>-</option>
                             <option value="px">px</option>
                             <option value="%">%</option>
@@ -557,22 +571,36 @@ function displayEditorAreaFor(elem) {
 
         var style = _(input).attr("edit-mp-input");
 
-        const currentValue = elem.style[style] != "" ? elem.style[style] : elemStyle[style];
+        const currentValue = (elem.style[style] !== "" ? elem.style[style] : elemStyle[style]).replace("auto", "Auto");
         const numericValue = parseFloat(currentValue);
         const roundedValue = Math.round(numericValue);
-        const unit = currentValue.replace(numericValue, "");
+        let unit = currentValue.replace(numericValue, "");
+
         const roundedStyle = roundedValue + unit;
 
         input.classList.add("draggable-input");
-        input.setAttribute("value", roundedStyle);
+        input.setAttribute("value", isNaN(roundedValue) ? currentValue : roundedValue);
         input.style.display = 'inline';
         input.style.width = "100%";
 
         setInputDraggable(input);
 
-        input.addEventListener("input", () => {
-            elem.style[style] = input.value;
-        });
+        let select = input.nextSibling.nextSibling;
+        let hasSelect = select !== null && select !== undefined;
+        if(hasSelect) select.value = unit;
+
+        let inputEvent = () => {
+            if(hasSelect && select.classList.contains('edit-unit')) {
+                unit = select.value;
+            }
+
+            let val = parseInt(input.value);
+            val = (isNaN(val) ? input.value : input.value + unit)
+            elem.style[style] = val;
+        }
+
+        input.addEventListener("input", inputEvent);
+        if(hasSelect) select.addEventListener("change", inputEvent);
     });
 
     // TODO: Ajouter editMP dans la toolbar
@@ -675,6 +703,13 @@ function initializeEditor() {
             }
         }
     };
+
+    _("page-builder-main-editor").click((e) => {
+        _(".selected-item").forEach((e) => {
+            _(e).removeClass("selected-item");
+        })
+        _(".action-popup")[0].remove();
+    })
 }
 
 // Initialisation de l'éditeur lors du chargement de la page

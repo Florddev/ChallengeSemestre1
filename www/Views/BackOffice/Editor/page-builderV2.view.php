@@ -219,7 +219,7 @@
                             </div>
                         </div>
 
-                        <div class="main sortable-container editable"></div>
+                        <div class="main sortable-container editable" editable-popup="false"></div>
 
                     </div>
 
@@ -233,7 +233,11 @@
                     </div>
                     <div class="btn-multiple-child">
                         <input type="radio" name="toolbar" id="toolbar-2">
-                        <label for="toolbar-2">Paramètres</label>
+                        <label for="toolbar-2">Param</label>
+                    </div>
+                    <div class="btn-multiple-child">
+                        <input type="radio" name="toolbar" id="toolbar-3">
+                        <label for="toolbar-3">Anim</label>
                     </div>
                     <!--
                     <div class="btn-multiple-child">
@@ -256,7 +260,7 @@
                             <input id="align-horizontal-mid" type="radio" name="align-horizontal" value="hidden" />
                             <label for="align-horizontal-mid">
                                 <i data-plugin="svg"
-                                    data-svg-src="/assets/images/svg/flex-align/align-vertical-center-line.svg"></i>
+                                    data-svg-src="/assets/images/svg/flex-align/align-horizontal-center-line.svg"></i>
                             </label>
                         </li>
                         <li class="edit-form-toggler">
@@ -275,7 +279,7 @@
                             <input id="align-vertical-mid" type="radio" name="align-vertical" value="auto" />
                             <label for="align-vertical-mid">
                                 <i data-plugin="svg"
-                                    data-svg-src="/assets/images/svg/flex-align/align-horizontal-center-line.svg"></i>
+                                    data-svg-src="/assets/images/svg/flex-align/align-vertical-center-line.svg"></i>
                             </label>
                         </li>
                         <li class="edit-form-toggler">
