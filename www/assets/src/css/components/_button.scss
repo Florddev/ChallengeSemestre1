@@ -145,4 +145,43 @@ $overlayRight: 4;
         line-height: rem(16);
         padding: rem(8) rem(12);
     }
+
+
+    &-multiple {
+        background-color: $light1;
+        width: 100%;
+        padding: 6px;
+        display: flex;
+        gap: 5px;
+        border-radius: 6px;
+
+        &-child {
+            border: 0;
+            background-color: transparent;
+            width: 100%;
+
+            & input {
+                display: none;
+
+                &:checked~label {
+                    font-weight: 700;
+                    background-color: $white;
+                    color: $text-black;
+                }
+            }
+
+            & label {
+                margin: 0;
+                display: block;
+                padding: rem(5) rem(20);
+                border-radius: var(--main-radius);
+                transition: all .2s;
+                text-align: center;
+                font-size: rem(16);
+                font-weight: 500;
+                color: $grey;
+                cursor: pointer;
+            }
+        }
+    }
 }

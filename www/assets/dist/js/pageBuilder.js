@@ -1,12 +1,57 @@
-// Fonction utilitaire pour la sélection d'éléments
-function _(selector) {
-    return selector.startsWith('#') ? document.querySelector(selector) : document.querySelectorAll(selector);
+let undoStack = [];
+let redoStack = [];
+
+// Fonction pour sauvegarder l'état actuel dans la pile undo
+function saveState() {
+    const currentState = _(".editor-content")[0].innerHTML;
+    undoStack.push(currentState);
+
+    // Réinitialise la pile redo lorsqu'un nouvel état est enregistré
+    redoStack = [];
 }
+// Fonction pour annuler l'action
+function undo() {
+    if (undoStack.length > 1) {
+        const currentState = undoStack.pop();
+        redoStack.push(currentState);
+        const previousState = undoStack[undoStack.length - 1];
+        _(".editor-content")[0].innerHTML = previousState;
+    }
+    initializeEditor();
+}
+
+// Fonction pour rétablir l'action
+function redo() {
+    if (redoStack.length > 0) {
+        const nextState = redoStack.pop();
+        undoStack.push(nextState);
+        _(".editor-content")[0].innerHTML = nextState;
+    }
+    initializeEditor();
+}
+// Gestionnaire d'événement pour les touches
+document.addEventListener('keydown', function (event) {
+    if (event.ctrlKey && event.key === 'z') {
+        undo();
+    } else if (event.ctrlKey && event.key === 'y') {
+        redo();
+    }
+});
+
+
 
 // Fonction pour rendre un élément éditable
 function makeElementeditable(elem) {
     if (elem.classList.contains("editable")) {
         elem.addEventListener('click', handleElementClick);
+    }
+    if (elem.classList.contains("editable-text")) {
+        _(elem).dblclick((e) => {
+            if (_(e.target).attr("contenteditable") !== "true") {
+                saveState();
+                _(e.target).attr("contenteditable", "true");
+            }
+        });
     }
 }
 
@@ -15,8 +60,10 @@ function handleElementClick(event) {
     console.log("test");
 
     event.stopPropagation();
-    _("[rel='props']")[0].click();
-    document.getElementById("props-general-accordion").setAttribute("checked", true);
+
+    // TODO: Retiré pour la nouvelle version
+    // _("[rel='props']")[0].click();
+    // document.getElementById("props-general-accordion").setAttribute("checked", true);
 
     _("#props-general").innerHTML = "";
     const elem = event.currentTarget;
@@ -129,8 +176,10 @@ function initEditorActions() {
     });
 }
 
+
 // Gestionnaire de l'action d'édition
 function handleEditAction(elem) {
+    saveState();
     elem.classList.toggle("active");
     _(".editor-container .editable-text").forEach(e => {
         const editable = e.getAttribute("contenteditable");
@@ -173,7 +222,6 @@ function selectParentWithClass(element, className) {
         parent = parent.parentElement;
     }
 
-    console.log(parent);
     if (parent && parent.classList.contains(className)) {
         handleElementClick({ currentTarget: parent, stopPropagation: () => { } });
     }
@@ -188,6 +236,7 @@ function initPopupActions(targetElement) {
     popupLiUp.addEventListener('click', (event) => {
         event.stopPropagation(); // Empêcher la propagation du clic à l'élément parent
         selectParentWithClass(targetElement, 'editable');
+        saveState();
     });
 
     const popupLiCopy = document.createElement('li');
@@ -213,11 +262,13 @@ function duplicateElement(targetElement) {
 
     clonedElement.querySelectorAll('.editable').forEach(makeElementeditable);
     clonedElement.querySelectorAll('.sortable-element').forEach(setSortableToElement);
+    saveState();
 }
 
 // Fonction pour supprimer un élément
 function removeElement(targetElement) {
     targetElement.remove();
+    saveState();
 }
 
 // Fonction pour ajouter un popup à un élément
@@ -285,6 +336,8 @@ function handleSortableAdd(evt) {
 
     evt.item.querySelectorAll(".editable").forEach(makeElementeditable);
     evt.item.querySelectorAll('.sortable-element').forEach(setSortableToElement);
+    //evt.item.outerHTML = "Rien";
+    saveState();
 }
 
 // Initialisation de la fonctionnalité de tri pour le conteneur sortable
@@ -299,9 +352,13 @@ function displayEditorAreaFor(elem) {
     const elemToAppend = [];
 
     const elemStyle = getComputedStyle(elem);
+
+    /*
     const toEdit = [
         { attr: "width", name: "Width" },
         { attr: "height", name: "Height" },
+
+
         { attr: "marginLeft", name: "Margin Left" },
         { attr: "marginRight", name: "Margin Right" },
         { attr: "marginTop", name: "Margin Top" },
@@ -310,6 +367,7 @@ function displayEditorAreaFor(elem) {
         { attr: "paddingRight", name: "Padding Right" },
         { attr: "paddingTop", name: "Padding Top" },
         { attr: "paddingBottom", name: "Padding Bottom" },
+
     ];
 
     toEdit.forEach(edt => {
@@ -339,6 +397,187 @@ function displayEditorAreaFor(elem) {
         container.classList.add("tools-container");
         elemToAppend.push(container);
     });
+    */
+
+    var styleDimen = document.createElement("div");
+    styleDimen.innerHTML = `
+            <div class="edit-mp">
+                <div class="edit-mp-mtop">
+                    <input type="text" edit-mp-input="margin-top" value="Auto" />
+                </div>
+                <div class="edit-mp-mid">
+                    <div class="edit-mp-mleft">
+                        <input type="text" edit-mp-input="margin-left" value="Auto" />
+                    </div>
+                    <div class="edit-mp-p">
+                        <div class="edit-mp-pleft">
+                            <input type="text" edit-mp-input="padding-left" value="0" />
+                        </div>
+                        <div class="edit-mp-pmid">
+                            <input type="text" edit-mp-input="padding-top" value="0" />
+                            <div class="edit-mp-center">
+                                <i class="ri-link"></i>
+                            </div>
+                            <input type="text" edit-mp-input="padding-bottom" value="0" />
+                        </div>
+                        <div class="edit-mp-pright">
+                            <input type="text" edit-mp-input="padding-right" value="0" />
+                        </div>
+                    </div>
+                    <div class="edit-mp-mright">
+                        <input type="text" edit-mp-input="margin-right" value="Auto" />
+                    </div>
+                </div>
+                <div class="edit-mp-mbot">
+                    <input type="text" edit-mp-input="margin-bottom" value="Auto" />
+                </div>
+            </div>
+            <br>
+            <div class="edit-form-control">
+                <div class="edit-form fluid">
+                    <label>Width</label>
+                    <div class="edit-form-inputs">
+                        <input type="text" edit-mp-input="width" placeholder="Auto" />
+                        <select class="edit-unit">
+                            <option value="" selected>-</option>
+                            <option value="px">px</option>
+                            <option value="%">%</option>
+                            <option value="em">em</option>
+                            <option value="rem">rem</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="edit-form fluid">
+                    <label>Height</label>
+                    <div class="edit-form-inputs">
+                        <input type="text" edit-mp-input="height" placeholder="Auto" />
+                        <select class="edit-unit">
+                            <option value="" selected>-</option>
+                            <option value="px">px</option>
+                            <option value="%">%</option>
+                            <option value="em">em</option>
+                            <option value="rem">rem</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="edit-form-control">
+                <div class="edit-form fluid">
+                    <label>Min W</label>
+                    <div class="edit-form-inputs">
+                        <input type="text" edit-mp-input="min-width" placeholder="0" />
+                        <select class="edit-unit">
+                            <option value="px" selected>px</option>
+                            <option value="%">%</option>
+                            <option value="em">em</option>
+                            <option value="rem">rem</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="edit-form fluid">
+                    <label>Min H</label>
+                    <div class="edit-form-inputs">
+                        <input type="text" edit-mp-input="min-height" placeholder="0" />
+                        <select class="edit-unit">
+                            <option value="px" selected>px</option>
+                            <option value="%">%</option>
+                            <option value="em">em</option>
+                            <option value="rem">rem</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="edit-form-control">
+                <div class="edit-form fluid">
+                    <label>Max W</label>
+                    <div class="edit-form-inputs">
+                        <input type="text" edit-mp-input="max-width" placeholder="None" />
+                        <select class="edit-unit">
+                            <option value="" selected>-</option>
+                            <option value="px">px</option>
+                            <option value="%">%</option>
+                            <option value="em">em</option>
+                            <option value="rem">rem</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="edit-form fluid">
+                    <label>Max H</label>
+                    <div class="edit-form-inputs">
+                        <input type="text" edit-mp-input="max-height" placeholder="None" />
+                        <select class="edit-unit">
+                            <option value="" selected>-</option>
+                            <option value="px">px</option>
+                            <option value="%">%</option>
+                            <option value="em">em</option>
+                            <option value="rem">rem</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="edit-form-control">
+                <div class="edit-form fluid">
+                    <label>Ratio</label>
+                    <div class="edit-form-inputs">
+                        <input type="number" min="0" placeholder="Auto" />
+                    </div>
+                </div>
+                <div class="edit-form fluid">
+                    /
+                    <div class="edit-form-inputs">
+                        <input type="number" min="0" placeholder="Auto" />
+                    </div>
+                </div>
+            </div>
+            <div class="edit-form fluid">
+                <label>Overflow</label>
+                <ul class="edit-form-inputs">
+                    <li class="edit-form-toggler">
+                        <input id="overflow-visible" type="radio" name="overflow" value="visible" checked />
+                        <label for="overflow-visible"><i class="ri-eye-fill"></i></label>
+                    </li>
+                    <li class="edit-form-toggler">
+                        <input id="overflow-hidden" type="radio" name="overflow" value="hidden" />
+                        <label for="overflow-hidden"><i class="ri-eye-off-line"></i></label>
+                    </li>
+                    <li class="edit-form-toggler">
+                        <input id="overflow-scroll" type="radio" name="overflow" value="scroll" />
+                        <label for="overflow-scroll"><i class="ri-line-height"></i></label>
+                    </li>
+                    <li class="edit-form-toggler">
+                        <input id="overflow-auto" type="radio" name="overflow" value="auto" />
+                        <label for="overflow-auto">Auto</label>
+                    </li>
+                </ul>
+            </div>`;
+
+    styleDimen.querySelectorAll("input[edit-mp-input]").forEach((input) => {
+        // TODO: Attribuer à l'input la valeur actuel de l'element grâce à l'attribut "edit-mp-input" pour savoir quelle style appliquer (Ex: edit-mp-input="margin-top")
+
+        var style = _(input).attr("edit-mp-input");
+
+        const currentValue = elem.style[style] != "" ? elem.style[style] : elemStyle[style];
+        const numericValue = parseFloat(currentValue);
+        const roundedValue = Math.round(numericValue);
+        const unit = currentValue.replace(numericValue, "");
+        const roundedStyle = roundedValue + unit;
+
+        input.classList.add("draggable-input");
+        input.setAttribute("value", roundedStyle);
+        input.style.display = 'inline';
+        input.style.width = "100%";
+
+        setInputDraggable(input);
+
+        input.addEventListener("input", () => {
+            elem.style[style] = input.value;
+        });
+    });
+
+    // TODO: Ajouter editMP dans la toolbar
+    editorArea.append(styleDimen);
+
 
     elemToAppend.forEach(e => editorArea.append(e));
 }
@@ -346,6 +585,7 @@ function displayEditorAreaFor(elem) {
 // Fonction pour rendre un champ d'entrée draggable
 function setInputDraggable(input) {
     input.addEventListener("mousedown", (event) => {
+        saveState();
         event.preventDefault();
         const startX = event.clientX;
         const startValue = parseFloat(input.value);
@@ -361,6 +601,7 @@ function setInputDraggable(input) {
         function handleDragEnd() {
             document.removeEventListener("mousemove", handleDragMove);
             document.removeEventListener("mouseup", handleDragEnd);
+            saveState();
         }
 
         document.addEventListener("mousemove", handleDragMove);
@@ -412,9 +653,9 @@ function initializeEditor() {
     initSortableElements();
     updateColumnStyle();
 
-    const navbar = document.querySelector(".navbar");
-    navbar.querySelectorAll(".editable").forEach(makeElementeditable);
-    navbar.querySelectorAll('.sortable-element').forEach(setNavbarSortableElement);
+    //const navbar = document.querySelector(".navbar");
+    _(".editor-content .editable").forEach(makeElementeditable);
+    _('.editor-content.sortable-element').forEach(setNavbarSortableElement);
 
     _("ul.editor-mode li").forEach(modeItem => {
         modeItem.addEventListener("click", () => handleDisplayModeClick(modeItem));
@@ -422,6 +663,18 @@ function initializeEditor() {
 
     initEditorActions();
     initSortableContainer();
+
+    document.body.onclick = (e) => {
+        if (_(e.target).attr("contenteditable") !== "true") {
+            let ce = _(".editable-text[contenteditable='true']");
+            if (ce.length > 0) {
+                ce.forEach((elem) => {
+                    _(elem).attr("contenteditable", "false");
+                    saveState();
+                });
+            }
+        }
+    };
 }
 
 // Initialisation de l'éditeur lors du chargement de la page

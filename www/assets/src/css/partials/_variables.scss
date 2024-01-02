@@ -58,7 +58,7 @@ $success: #50CD89;
     --success-darker: #{darken($success, 10%)};
 
     // Typos
-    --main-font1: #{$font2};
+    --main-font1: #{$font3};
 
     // Border radius
     --main-radius: #{rem(6)};
@@ -66,3 +66,14 @@ $success: #50CD89;
     // Transitions
     --transition-duration: 0.3s;
 }
+
+
+
+
+$text-black: #1b254b;
+
+$white: #fff;
+$light1: #f5f8fe;
+
+$grey: #a3aed0;
+$grey-lighter: #eaebee;
