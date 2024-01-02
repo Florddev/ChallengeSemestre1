@@ -22,7 +22,7 @@ function myAutoloader(String $class): void
 // Exemple on doit avoir "/", "/login", "/logout", ...
 $uri = strtolower($_SERVER["REQUEST_URI"]); // Variable supper global
 $uri = strtok($uri, "?");
-$uri = strlen($uri) > 1 ? rtrim($uri) : $uri; // nettoyer correctement l'uri des / a la fin de la ligne
+$uri = strlen($uri) > 1 ? rtrim($uri, "/") : $uri; // nettoyer correctement l'uri des / a la fin de la ligne
 
 // Récupérer le contenu du fichier routes.yaml
 if (!file_exists("routes.yml")) {
