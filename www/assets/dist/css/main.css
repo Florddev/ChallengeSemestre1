@@ -90,7 +90,7 @@ img {
 .container {
   max-width: 70rem;
   margin: 0 auto;
-  padding: 0.9375rem;
+  padding: 0.9375rem 1.875rem;
 }
 
 @media screen and (min-width: 1150px) {
@@ -230,7 +230,7 @@ img {
 .btn-multiple-child label {
   margin: 0;
   display: block;
-  padding: 0.3125rem 1.25rem;
+  padding: 0.5rem 1.25rem;
   border-radius: var(--main-radius);
   transition: all 0.2s;
   text-align: center;
