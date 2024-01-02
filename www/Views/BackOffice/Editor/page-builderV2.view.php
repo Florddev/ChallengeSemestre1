@@ -308,7 +308,11 @@
                     </div>
                     <div class="btn-multiple-child">
                         <input type="radio" name="toolbar" id="toolbar-2">
-                        <label for="toolbar-2">Paramètres</label>
+                        <label for="toolbar-2">Param</label>
+                    </div>
+                    <div class="btn-multiple-child">
+                        <input type="radio" name="toolbar" id="toolbar-3">
+                        <label for="toolbar-3">Anim</label>
                     </div>
                     <!--
                     <div class="btn-multiple-child">

@@ -36,6 +36,8 @@ function setInputDraggable(element) {
             y: e.pageY,
         };
 
+        inputElement.value = isNaN(inputElement.value) ? 0 : inputElement.value;
+
         initialValue = inputElement.value;
         const valueNum = parseFloat(initialValue);
         // check if value contains units and save it.
@@ -72,10 +74,7 @@ document.addEventListener('mousemove', function (e) {
         case 2:
             e.preventDefault();
 
-            let step = _(inputElement).attr("step") !== null ? _(inputElement).attr("step") : 1;
-
-            if(isNaN(initialValue) || initialValue === '') initialValue = 0;
-            inputElement.value = ((initialValue + (initialPosition.y - e.pageY) * (initialShiftKey ? shiftKeyMultiple : 1) + initialUnit)*(!isNaN(step) ? parseFloat(step) : 1)).toFixed(step !== 1 ? 2 : 0);
+            inputElement.value = initialValue + (initialPosition.y - e.pageY) * (initialShiftKey ? shiftKeyMultiple : 1) + initialUnit;
 
             // Déclencher les événements 'input' et 'change'
             const inputEvent = new Event('input', { bubbles: true });
