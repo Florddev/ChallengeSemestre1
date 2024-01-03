@@ -36,9 +36,7 @@ function setInputDraggable(element) {
             y: e.pageY,
         };
 
-        inputElement.value = isNaN(inputElement.value) ? 0 : inputElement.value;
-
-        initialValue = inputElement.value;
+        initialValue = isNaN(inputElement.value) ? 0 : inputElement.value;
         const valueNum = parseFloat(initialValue);
         // check if value contains units and save it.
         if (initialValue !== `${valueNum}`) {

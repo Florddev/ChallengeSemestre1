@@ -47,11 +47,20 @@
             </section>
         </header>
         <main class="page-builder-main">
-            <section class="page-builder-main-components">
+            <div class="main-components-toggler left">
+                <input type="checkbox" id="left-toggler" onchange="closeShutters(this, 'componentsShutter')">
+                <label for="left-toggler"><i class="ri-arrow-left-line"></i></label>
+            </div>
+            <div class="main-components-toggler right">
+                <input type="checkbox" id="right-toggler" onchange="closeShutters(this, 'editorShutter')">
+                <label for="right-toggler"><i class="ri-arrow-right-line"></i></label>
+            </div>
+
+            <section class="page-builder-main-components" id="componentsShutter">
                 <div class="btn-multiple">
                     <div class="btn-multiple-child">
                         <input type="radio" name="choose-something" id="choose-something-1" checked>
-                        <label for="choose-something-1">Mise en page</label>
+                        <label for="choose-something-1">Layouts</label>
                     </div>
                     <div class="btn-multiple-child">
                         <input type="radio" name="choose-something" id="choose-something-2">
@@ -154,7 +163,6 @@
                     </div>
                 </div>
                 <hr>
-
             </section>
             <section class="page-builder-main-editor">
                 <div class="editor-container" editor-mode="pc">
@@ -225,7 +233,7 @@
 
                 </div>
             </section>
-            <section class="page-builder-main-tools">
+            <section class="page-builder-main-tools" id="editorShutter">
                 <div class="btn-multiple">
                     <div class="btn-multiple-child">
                         <input type="radio" name="toolbar" id="toolbar-1" checked>
@@ -233,11 +241,7 @@
                     </div>
                     <div class="btn-multiple-child">
                         <input type="radio" name="toolbar" id="toolbar-2">
-                        <label for="toolbar-2">Param</label>
-                    </div>
-                    <div class="btn-multiple-child">
-                        <input type="radio" name="toolbar" id="toolbar-3">
-                        <label for="toolbar-3">Anim</label>
+                        <label for="toolbar-2">Paramètres</label>
                     </div>
                     <!--
                     <div class="btn-multiple-child">
