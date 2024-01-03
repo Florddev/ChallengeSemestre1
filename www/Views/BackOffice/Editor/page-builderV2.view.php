@@ -59,11 +59,11 @@
             <section class="page-builder-main-components" id="componentsShutter">
                 <div class="btn-multiple">
                     <div class="btn-multiple-child">
-                        <input type="radio" name="choose-something" id="choose-something-1" data-tabnav-target="tabnav-test" checked>
+                        <input type="radio" name="choose-something" id="choose-something-1" checked>
                         <label for="choose-something-1">Layouts</label>
                     </div>
                     <div class="btn-multiple-child">
-                        <input type="radio" name="choose-something" id="choose-something-2" data-tabnav-target="tabnav-test2">
+                        <input type="radio" name="choose-something" id="choose-something-2">
                         <label for="choose-something-2">Elements</label>
                     </div>
                 </div>
@@ -75,229 +75,162 @@
                     </div>
                 </div>
                 <hr>
-                <div data-plugin="tabnav" id="tabnav-test">
-                    <div class="accordion">
-                        <input type="checkbox" />
-                        <label class="accordion-label">
-                            <span>Navigation</span>
-                            <i class="ri-arrow-down-s-line"></i>
-                        </label>
-                        <div class="accordion-panel">
-                            <div class="components-preview sortable-models">
-                                <div class="components" data-partial-src="/Views/Partial/Editor/components/navbar1.html">
-                                    <label>Navbar</label>
-                                    <div class="components-view">
-                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Navbar1.svg"></i>
-                                    </div>
+                <div class="accordion">
+                    <input type="checkbox" />
+                    <label class="accordion-label">
+                        <span>Navigation</span>
+                        <i class="ri-arrow-down-s-line"></i>
+                    </label>
+                    <div class="accordion-panel">
+                        <div class="components-preview">
+                            <div class="components">
+                                <label>Navbar</label>
+                                <div class="components-view">
+                                    <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Navbar1.svg"></i>
                                 </div>
-                                <!--
-                                <div class="components">
-                                    <label>Navbar centré</label>
-                                    <div class="components-view">
-                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Navbar2.svg"></i>
-                                    </div>
-                                </div>
-                                <div class="components" data-partial-src="/Views/Partial/Editor/components/navbar1.html">
-                                    <label>Navbar replié</label>
-                                    <div class="components-view">
-                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Navbar3.svg"></i>
-                                    </div>
-                                </div>
-                                -->
                             </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="accordion">
-                        <input type="checkbox" />
-                        <label class="accordion-label">
-                            <span>Header</span>
-                            <i class="ri-arrow-down-s-line"></i>
-                        </label>
-                        <div class="accordion-panel">
-                            <div class="components-preview sortable-models">
-                                <div class="components">
-                                    <label>Header 1</label>
-                                    <div class="components-view">
-                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Header1.svg"></i>
-                                    </div>
+                            <div class="components">
+                                <label>Navbar centré</label>
+                                <div class="components-view">
+                                    <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Navbar2.svg"></i>
                                 </div>
-                                <div class="components" data-partial-src="/Views/Partial/Editor/Components/header2.html">
-                                    <label>Header 2</label>
-                                    <div class="components-view">
-                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Header2.svg"></i>
-                                    </div>
+                            </div>
+                            <div class="components">
+                                <label>Navbar replié</label>
+                                <div class="components-view">
+                                    <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Navbar3.svg"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <hr>
-                    <div class="accordion">
-                        <input type="checkbox" />
-                        <label class="accordion-label">
-                            <span>Articles</span>
-                            <i class="ri-arrow-down-s-line"></i>
-                        </label>
-                        <div class="accordion-panel">
-                            <div class="components-preview sortable-models">
-                                <div class="components" data-partial-src="{{origin}}/dashboard/builder/last-articles">
-                                    <label>Derniers articles</label>
-                                    <div class="components-view">
-                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Frame2.svg"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
                 </div>
-                <div data-plugin="tabnav" id="tabnav-test2">
-                    <div class="accordion">
-                        <input type="checkbox" />
-                        <label class="accordion-label">
-                            <span>Basics</span>
-                            <i class="ri-arrow-down-s-line"></i>
-                        </label>
-                        <div class="accordion-panel">
-                            <div class="components-preview sortable-models">
-                                <div class="components" data-partial-src="/Views/Partial/Editor/Components/text.html">
-                                    <label>Text</label>
-                                    <div class="components-view">
-                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/text.svg"></i>
-                                    </div>
+                <hr>
+                <div class="accordion">
+                    <input type="checkbox" />
+                    <label class="accordion-label">
+                        <span>Header</span>
+                        <i class="ri-arrow-down-s-line"></i>
+                    </label>
+                    <div class="accordion-panel">
+                        <div class="components-preview">
+                            <div class="components">
+                                <label>Header 1</label>
+                                <div class="components-view">
+                                    <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Header1.svg"></i>
                                 </div>
-                                <div class="components" data-partial-src="/Views/Partial/Editor/Components/image.html">
-                                    <label>Image</label>
-                                    <div class="components-view">
-                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/image.svg"></i>
-                                    </div>
+                            </div>
+                            <div class="components">
+                                <label>Header 2</label>
+                                <div class="components-view">
+                                    <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Header2.svg"></i>
                                 </div>
-                                <div class="components">
-                                    <label>Lien</label>
-                                    <div class="components-view">
-                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/link.svg"></i>
-                                    </div>
-                                </div>
-                                <div class="components">
-                                    <label>Map</label>
-                                    <div class="components-view">
-                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/map.svg"></i>
-                                    </div>
-                                </div>
-                                <div class="components">
-                                    <label>Video</label>
-                                    <div class="components-view">
-                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/video.svg"></i>
-                                    </div>
+                            </div>
+                            <div class="components">
+                                <label>Header 2</label>
+                                <div class="components-view">
+                                    <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Frame2.svg"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <hr>
-                    <div class="accordion">
-                        <input type="checkbox" />
-                        <label class="accordion-label">
-                            <span>Grids</span>
-                            <i class="ri-arrow-down-s-line"></i>
-                        </label>
-                        <div class="accordion-panel">
-                            <div class="components-preview sortable-models">
-                                <div class="components" data-partial-src="/Views/Partial/Editor/components/container.html">
-                                    <label>Container</label>
-                                    <div class="components-view">
-                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/container.svg"></i>
-                                    </div>
-                                </div>
-                                <div class="components" data-partial-src="/Views/Partial/Editor/components/col2.html">
-                                    <label>2 Colonnes</label>
-                                    <div class="components-view">
-                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/col2.svg"></i>
-                                    </div>
-                                </div>
-                                <div class="components" data-partial-src="/Views/Partial/Editor/components/col3.html">
-                                    <label>3 Colonnes</label>
-                                    <div class="components-view">
-                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/col3.svg"></i>
-                                    </div>
-                                </div>
-                                <div class="components" data-partial-src="/Views/Partial/Editor/components/col2_1-3.html">
-                                    <label>2 Colonnes 1/3</label>
-                                    <div class="components-view">
-                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/col2_1-3.svg"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
                 </div>
+                <hr>
+                <div class="accordion">
+                    <input type="checkbox" />
+                    <label class="accordion-label">
+                        <span>Cards</span>
+                        <i class="ri-arrow-down-s-line"></i>
+                    </label>
+                    <div class="accordion-panel">
+                        <div class="components-preview">
+                            <div class="components">
+                                <label>Header 1</label>
+                                <div class="components-view">
+                                    <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/card1.svg"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <section class="sortable-models" style="padding: 0 30px;">
+                            <h1 class="hoverable editable editable-text">Titre</h1>
+                            <hr>
+                            <p class="hoverable editable editable-text"> Lorem ipsum dolor sit amet consectetur adipisicing
+                                elit. Quo
+                                adipisci modi
+                                voluptatem, officia inventore ea voluptas expedita veniam facilis excepturi aut
+                                perspiciatis, magnam
+                                quis eum quae voluptatum aspernatur dolor nisi?</p>
+                        </section>
+                    </div>
+                </div>
+                <hr>
             </section>
             <section class="page-builder-main-editor">
                 <div class="editor-container" editor-mode="pc">
                     <div class="editor-content">
-                        <!--
-                        <div class="navbar" nav-is-fixed="true">
-                            <nav class="nav container">
-                                <a class="nav__logo" href="#">Wisp' Blog</a>
-                                <div class="nav__menu" data-modal="search">
-                                    <ul class="nav__list sortable-element">
-                                        <li class="nav__item editable"><a class="nav__link" href="#">Accueil</a></li>
-                                        <li class="nav__item editable"><a class="nav__link" href="#">A&nbsp;propos</a>
-                                        </li>
-                                        <li class="nav__item editable"><a class="nav__link" href="#">Blog</a></li>
-                                        <li class="nav__item editable"><a class="nav__link" href="#">Contact</a>
-                                        </li>
-                                    </ul>
-                                    <div class="nav__close" data-modal-toggle="nav-menu">
-                                        <i class="ri-close-line"></i>
-                                    </div>
-                                </div>
-                                <div class="nav__actions">
-                                    <i class="ri-search-line nav__search" data-modal-trigger="search"></i>
-                                    <i class="ri-user-line nav__login" data-modal-trigger="login"></i>
-                                    <div class="nav__toggle" data-modal-toggle="nav-menu">
-                                        <i class="ri-menu-line"></i>
-                                    </div>
-                                </div>
-                            </nav>
-                            <div class="search" data-modal="search">
-                                <form class="search__form" action="">
-                                    <i class="ri-search-line search__icon"></i>
-                                    <input class="search__input" type="search" placeholder="Que recherchez vous ?">
-                                </form>
-                                <i class="ri-close-line search__close" data-modal-toggle="search"></i>
-                            </div>
-                            <div class="login" data-modal="login">
-                                <form class="login__form" action="">
-                                    <h2 class="login__title">Connexion</h2>
-                                    <div class="login__group">
-                                        <div class="login__item">
-                                            <label class="login__label" for="email">Email</label>
-                                            <input class="login__input" type="email" placeholder="Entrez votre email"
-                                                   id="email">
-                                        </div>
-                                        <div class="login__item">
-                                            <label class="login__label" for="password">Password</label>
-                                            <input class="login__input" type="password"
-                                                   placeholder="Entrez votre mot de passe" id="password">
+                        <div class="header">
+                            <div class="navbar" nav-is-fixed="true">
+                                <nav class="nav container">
+                                    <a class="nav__logo" href="#">Wisp' Blog</a>
+                                    <div class="nav__menu" data-modal="search">
+                                        <ul class="nav__list sortable-element">
+                                            <li class="nav__item editable"><a class="nav__link" href="#">Accueil</a></li>
+                                            <li class="nav__item editable"><a class="nav__link" href="#">A&nbsp;propos</a>
+                                            </li>
+                                            <li class="nav__item editable"><a class="nav__link" href="#">Blog</a></li>
+                                            <li class="nav__item editable"><a class="nav__link" href="#">Contact</a>
+                                            </li>
+                                        </ul>
+                                        <div class="nav__close" data-modal-toggle="nav-menu">
+                                            <i class="ri-close-line"></i>
                                         </div>
                                     </div>
-                                    <div class="login__register">
-                                        <p class="login__signup">
-                                            Avez-vous un compte ? <a href="#">S'enregistrer</a>
-                                        </p>
-                                        <a class="login__forgot" href="#">Mot de passe oublié</a>
-                                        <button class="btn btn-primary btn-lg" type="button">Se connecter</button>
+                                    <div class="nav__actions">
+                                        <i class="ri-search-line nav__search" data-modal-trigger="search"></i>
+                                        <i class="ri-user-line nav__login" data-modal-trigger="login"></i>
+                                        <div class="nav__toggle" data-modal-toggle="nav-menu">
+                                            <i class="ri-menu-line"></i>
+                                        </div>
                                     </div>
-                                </form>
-                                <i class="ri-close-line login__close" data-modal-toggle="login"></i>
+                                </nav>
+                                <div class="search" data-modal="search">
+                                    <form class="search__form" action="">
+                                        <i class="ri-search-line search__icon"></i>
+                                        <input class="search__input" type="search" placeholder="Que recherchez vous ?">
+                                    </form>
+                                    <i class="ri-close-line search__close" data-modal-toggle="search"></i>
+                                </div>
+                                <div class="login" data-modal="login">
+                                    <form class="login__form" action="">
+                                        <h2 class="login__title">Connexion</h2>
+                                        <div class="login__group">
+                                            <div class="login__item">
+                                                <label class="login__label" for="email">Email</label>
+                                                <input class="login__input" type="email" placeholder="Entrez votre email"
+                                                       id="email">
+                                            </div>
+                                            <div class="login__item">
+                                                <label class="login__label" for="password">Password</label>
+                                                <input class="login__input" type="password"
+                                                       placeholder="Entrez votre mot de passe" id="password">
+                                            </div>
+                                        </div>
+                                        <div class="login__register">
+                                            <p class="login__signup">
+                                                Avez-vous un compte ? <a href="#">S'enregistrer</a>
+                                            </p>
+                                            <a class="login__forgot" href="#">Mot de passe oublié</a>
+                                            <button class="btn btn-primary btn-lg" type="button">Se connecter</button>
+                                        </div>
+                                    </form>
+                                    <i class="ri-close-line login__close" data-modal-toggle="login"></i>
+                                </div>
                             </div>
                         </div>
-                        -->
 
                         <div class="main sortable-container editable" editable-popup="false"></div>
 
                     </div>
+
                 </div>
             </section>
             <section class="page-builder-main-tools" id="editorShutter">
@@ -308,11 +241,7 @@
                     </div>
                     <div class="btn-multiple-child">
                         <input type="radio" name="toolbar" id="toolbar-2">
-                        <label for="toolbar-2">Param</label>
-                    </div>
-                    <div class="btn-multiple-child">
-                        <input type="radio" name="toolbar" id="toolbar-3">
-                        <label for="toolbar-3">Anim</label>
+                        <label for="toolbar-2">Paramètres</label>
                     </div>
                     <!--
                     <div class="btn-multiple-child">
@@ -368,39 +297,333 @@
                 <hr>
 
 
-                <div class="accordion editor-accordion">
-                    <input type="checkbox"/>
+                <div class="accordion">
+                    <input type="checkbox" checked/>
+                    <label class="accordion-label">
+                        <span>Tests</span>
+                        <i class="ri-arrow-down-s-line"></i>
+                    </label>
+                    <div class="accordion-panel" id="props-general">
+
+                    </div>
+                </div>
+
+                <hr>
+                <div class="accordion">
+                    <input type="checkbox" />
                     <label class="accordion-label">
                         <span>Dimension</span>
                         <i class="ri-arrow-down-s-line"></i>
                     </label>
-                    <div class="accordion-panel"
-                         id="editStyle-dimensions"
-                         data-plugin="partial"
-                         data-partial-src="/Views/Partial/Editor/editorTools-dimensions.html">
+                    <div class="accordion-panel">
+                        <div class="edit-mp">
+                            <div class="edit-mp-mtop">
+                                <input type="text" edit-mp-input="margin-top" value="Auto" />
+                            </div>
+                            <div class="edit-mp-mid">
+                                <div class="edit-mp-mleft">
+                                    <input type="text" edit-mp-input="margin-left" value="Auto" />
+                                </div>
+                                <div class="edit-mp-p">
+                                    <div class="edit-mp-pleft">
+                                        <input type="text" edit-mp-input="padding-left" value="0" />
+                                    </div>
+                                    <div class="edit-mp-pmid">
+                                        <input type="text" edit-mp-input="padding-top" value="0" />
+                                        <div class="edit-mp-center">
+                                            <i class="ri-link"></i>
+                                        </div>
+                                        <input type="text" edit-mp-input="padding-bottom" value="0" />
+                                    </div>
+                                    <div class="edit-mp-pright">
+                                        <input type="text" edit-mp-input="padding-right" value="0" />
+                                    </div>
+                                </div>
+                                <div class="edit-mp-mright">
+                                    <input type="text" edit-mp-input="margin-right" value="Auto" />
+                                </div>
+                            </div>
+                            <div class="edit-mp-mbot">
+                                <input type="text" edit-mp-input="margin-bottom" value="Auto" />
+                            </div>
+                        </div>
+                        <br>
+                        <div class="edit-form-control">
+                            <div class="edit-form fluid">
+                                <label>Width</label>
+                                <div class="edit-form-inputs">
+                                    <input type="text" placeholder="Auto" />
+                                    <select class="edit-unit">
+                                        <option value="" selected>-</option>
+                                        <option value="px">px</option>
+                                        <option value="%">%</option>
+                                        <option value="em">em</option>
+                                        <option value="rem">rem</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="edit-form fluid">
+                                <label>Height</label>
+                                <div class="edit-form-inputs">
+                                    <input type="text" placeholder="Auto" />
+                                    <select class="edit-unit">
+                                        <option value="" selected>-</option>
+                                        <option value="px">px</option>
+                                        <option value="%">%</option>
+                                        <option value="em">em</option>
+                                        <option value="rem">rem</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edit-form-control">
+                            <div class="edit-form fluid">
+                                <label>Min W</label>
+                                <div class="edit-form-inputs">
+                                    <input type="text" placeholder="0" />
+                                    <select class="edit-unit">
+                                        <option value="px" selected>px</option>
+                                        <option value="%">%</option>
+                                        <option value="em">em</option>
+                                        <option value="rem">rem</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="edit-form fluid">
+                                <label>Min H</label>
+                                <div class="edit-form-inputs">
+                                    <input type="text" placeholder="0" />
+                                    <select class="edit-unit">
+                                        <option value="px" selected>px</option>
+                                        <option value="%">%</option>
+                                        <option value="em">em</option>
+                                        <option value="rem">rem</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edit-form-control">
+                            <div class="edit-form fluid">
+                                <label>Max W</label>
+                                <div class="edit-form-inputs">
+                                    <input type="text" placeholder="None" />
+                                    <select class="edit-unit">
+                                        <option value="" selected>-</option>
+                                        <option value="px">px</option>
+                                        <option value="%">%</option>
+                                        <option value="em">em</option>
+                                        <option value="rem">rem</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="edit-form fluid">
+                                <label>Max H</label>
+                                <div class="edit-form-inputs">
+                                    <input type="text" placeholder="None" />
+                                    <select class="edit-unit">
+                                        <option value="" selected>-</option>
+                                        <option value="px">px</option>
+                                        <option value="%">%</option>
+                                        <option value="em">em</option>
+                                        <option value="rem">rem</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="edit-form-control">
+                            <div class="edit-form fluid">
+                                <label>Ratio</label>
+                                <div class="edit-form-inputs">
+                                    <input type="number" min="0" placeholder="Auto" />
+                                </div>
+                            </div>
+                            <div class="edit-form fluid">
+                                /
+                                <div class="edit-form-inputs">
+                                    <input type="number" min="0" placeholder="Auto" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edit-form fluid">
+                            <label>Overflow</label>
+                            <ul class="edit-form-inputs">
+                                <li class="edit-form-toggler">
+                                    <input id="overflow-visible" type="radio" name="overflow" value="visible" checked />
+                                    <label for="overflow-visible"><i class="ri-eye-fill"></i></label>
+                                </li>
+                                <li class="edit-form-toggler">
+                                    <input id="overflow-hidden" type="radio" name="overflow" value="hidden" />
+                                    <label for="overflow-hidden"><i class="ri-eye-off-line"></i></label>
+                                </li>
+                                <li class="edit-form-toggler">
+                                    <input id="overflow-scroll" type="radio" name="overflow" value="scroll" />
+                                    <label for="overflow-scroll"><i class="ri-line-height"></i></label>
+                                </li>
+                                <li class="edit-form-toggler">
+                                    <input id="overflow-auto" type="radio" name="overflow" value="auto" />
+                                    <label for="overflow-auto">Auto</label>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <hr>
                 </div>
-                <div class="accordion editor-accordion">
+                <hr>
+                <div class="accordion">
                     <input type="checkbox" />
                     <label class="accordion-label">
                         <span>Typography</span>
                         <i class="ri-arrow-down-s-line"></i>
                     </label>
-                    <div class="accordion-panel"
-                         id="editStyle-typo"
-                         data-plugin="partial"
-                         data-partial-src="/Views/Partial/Editor/editorTools-typo.html">
+                    <div class="accordion-panel">
+                        <div class="edit-form-control">
+                            <div class="edit-form w-100">
+                                <label>Font family</label>
+                                <div class="edit-form-inputs">
+                                    <select>
+                                        <option value="Arial" selected>Arial</option>
+                                        <option value="Helvetica">Helvetica</option>
+                                        <option value="Georgia">Georgia</option>
+                                        <option value="Times New Roman">Times New Roman</option>
+                                        <option value="Courier New">Courier New</option>
+                                        <option value="Verdana">Verdana</option>
+                                        <option value="Trebuchet MS">Trebuchet MS</option>
+                                        <option value="Impact">Impact</option>
+                                        <option value="Comic Sans MS">Comic Sans MS</option>
+                                        <option value="Arial, sans-serif">Arial, sans-serif</option>
+                                        <option value="Helvetica, sans-serif">Helvetica, sans-serif</option>
+                                        <option value="Georgia, serif">Georgia, serif</option>
+                                        <option value="Times New Roman, serif">Times New Roman, serif</option>
+                                        <option value="Courier New, monospace">Courier New, monospace</option>
+                                        <option value="Verdana, sans-serif">Verdana, sans-serif</option>
+                                        <option value="Trebuchet MS, sans-serif">Trebuchet MS, sans-serif</option>
+                                        <option value="Impact, sans-serif">Impact, sans-serif</option>
+                                        <option value="Comic Sans MS, cursive">Comic Sans MS, cursive</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="edit-form-control">
+                            <div class="edit-form w-50">
+                                <label>Font size</label>
+                                <div class="edit-form-inputs">
+                                    <input type="number" value="45" />
+                                    <select class="edit-unit">
+                                        <option value="px" selected>px</option>
+                                        <option value="%">%</option>
+                                        <option value="em">em</option>
+                                        <option value="rem">rem</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="edit-form w-50">
+                                <label>Font weight</label>
+                                <div class="edit-form-inputs">
+                                    <select>
+                                        <option value="100">Thin</option>
+                                        <option value="200">Extra-Light</option>
+                                        <option value="300">Light</option>
+                                        <option value="400" selected>Normal</option>
+                                        <option value="500">Medium</option>
+                                        <option value="600">Semi-Bold</option>
+                                        <option value="700">Bold</option>
+                                        <option value="800">Extra-Bold</option>
+                                        <option value="900">Ultra-Bold</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edit-form-control">
+                            <div class="edit-form">
+                                <label>Letter spacing</label>
+                                <div class="edit-form-inputs">
+                                    <input type="number" value="16" />
+                                    <select class="edit-unit">
+                                        <option value="px" selected>px</option>
+                                        <option value="%">%</option>
+                                        <option value="em">em</option>
+                                        <option value="rem">rem</option>
+                                        <option value="vh">vh</option>
+                                        <option value="vw">vw</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="edit-form">
+                                <label>Line height</label>
+                                <div class="edit-form-inputs">
+                                    <input type="number" value="16" />
+                                    <select class="edit-unit">
+                                        <option value="px" selected>px</option>
+                                        <option value="%">%</option>
+                                        <option value="em">em</option>
+                                        <option value="rem">rem</option>
+                                        <option value="vh">vh</option>
+                                        <option value="vw">vw</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="edit-form">
+                            <label>Couleur</label>
+                            <div class="edit-form-inputs">
+                                <input type="color" value="#FFFFFF" />
+                                <input type="text" value="#FFFFFF" />
+                            </div>
+                        </div>
+                        <br>
+                        <div class="edit-form">
+                            <label>Align</label>
+                            <ul class="edit-form-inputs">
+                                <li class="edit-form-toggler">
+                                    <input id="text-align-left" type="radio" name="text-align" value="visible"
+                                        checked />
+                                    <label for="text-align-left"><i class="ri-align-left"></i></label>
+                                </li>
+                                <li class="edit-form-toggler">
+                                    <input id="text-align-center" type="radio" name="text-align" value="hidden" />
+                                    <label for="text-align-center"><i class="ri-align-center"></i></label>
+                                </li>
+                                <li class="edit-form-toggler">
+                                    <input id="text-align-right" type="radio" name="text-align" value="scroll" />
+                                    <label for="text-align-right"><i class="ri-align-right"></i></label>
+                                </li>
+                                <li class="edit-form-toggler">
+                                    <input id="text-align-justify" type="radio" name="text-align" value="auto" />
+                                    <label for="text-align-justify"><i class="ri-align-justify"></i></label>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="edit-form">
+                            <label>Decoration</label>
+                            <ul class="edit-form-inputs">
+                                <li class="edit-form-toggler">
+                                    <input id="text-decoration-none" type="radio" name="text-decoration" value="none"
+                                        checked />
+                                    <label for="text-decoration-none"><i class="ri-close-line"></i></label>
+                                </li>
+                                <li class="edit-form-toggler">
+                                    <input id="text-decoration-overline" type="radio" name="text-decoration"
+                                        value="underline" />
+                                    <label for="text-decoration-overline"><i class="ri-underline"></i></label>
+                                </li>
+                                <li class="edit-form-toggler">
+                                    <input id="text-decoration-line-through" type="radio" name="text-decoration"
+                                        value="line-through" />
+                                    <label for="text-decoration-line-through"><i class="ri-strikethrough"></i></label>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <hr>
                 </div>
+                <hr>
             </section>
         </main>
     </div>
     <script src="/assets/dist/js/wispQuery.js"></script>
     <script src="/assets/src/js/components/accordion.js"></script>
     <script src="/assets/src/js/components/navbar.js"></script>
-    <script src="/assets/src/js/components/navtab.js"></script>
     <script src="/assets/dist/js/pageBuilder.js"></script>
     <script src="/assets/dist/js/draggableInput.js"></script>
     <script>

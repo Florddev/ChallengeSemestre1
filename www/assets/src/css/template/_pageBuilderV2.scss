@@ -1,4 +1,4 @@
-$bars-size: 19vw;
+$bars-size: rem(330);
 
 @mixin scroll-bar($hide) {
 
@@ -190,10 +190,6 @@ $bars-size: 19vw;
         justify-content: space-between;
         overflow-y: hidden;
 
-        & .editor-accordion {
-            display: none;
-        }
-
         & .main-components-toggler {
             position: absolute;
             width: rem(35);
@@ -264,7 +260,6 @@ $bars-size: 19vw;
             border-right: rem(3) solid $grey-lighter;
             transition: var(--transition-duration) ease-in-out;
             padding: rem(20);
-            width: 100%;
 
             & .components-preview {
                 display: flex;
@@ -324,31 +319,27 @@ $bars-size: 19vw;
             display: flex;
             justify-content: center;
 
-            & .components:not(.sortable-placeholder) {
-                display: none;
-            }
-
             & .editor-container {
                 width: 100%;
-                //min-height: 100vh; // TODO: Changer pour fit-content
+                min-height: 100vh; // TODO: Changer pour fit-content
                 background-color: $white;
                 border-radius: var(--main-radius);
                 overflow: hidden;
-                height: max-content;
 
                 &[editor-mode="pc"] {
                     width: 100%;
+                    height: 100%;
                 }
 
                 &[editor-mode="pad"] {
-                    //width: 100%;
+                    width: 100%;
                     // height: rem(960);
                     width: rem(1280);
                     border-radius: var(--main-radius);
                 }
 
                 &[editor-mode="phone"] {
-                    //width: 100%;
+                    width: 100%;
                     // height: rem(667);
                     width: rem(475);
                     border-radius: var(--main-radius);
@@ -357,24 +348,6 @@ $bars-size: 19vw;
                 & .editable,
                 & .sortable-element {
                     position: relative;
-                }
-
-                & .editable-image-container {
-                    width: fit-content;
-                    height: fit-content;
-                    padding: 0;
-                    margin: 0;
-                    border: 0;
-                    & img {
-                        object-fit: cover;
-                        object-position: center;
-                        height: 100%;
-                        width: 100%;
-                    }
-                }
-
-                & .sortable-element {
-                    border: rem(1) dashed $grey;
                 }
 
                 & .editable::before,
@@ -387,9 +360,17 @@ $bars-size: 19vw;
                     height: 100%;
                 }
 
-                & .editable-text[contenteditable="true"]{
-                    outline: none;
+                /*
+                & .editable-text[contenteditable="true"]::before,
+                & .sortable-element::before {
+                    border: rem(1) dashed var(--grey);
                 }
+
+                & .editable-text[contenteditable="true"]:hover::before {
+                    border: rem(2.3) solid var(--info);
+                }
+                */
+
 
                 & .editable:not(.selected-item):hover::before,
                 & .sortable-element:not(.selected-item):hover::before {
@@ -411,28 +392,23 @@ $bars-size: 19vw;
                     padding: 0 !important;
                     margin: 0 !important;
                     position: relative;
-                    border: rem(2) solid var(--tercery);
+                    border: rem(3) solid var(--tercery);
                     overflow: hidden;
                 }
 
                 & .selected-item {
                     border-radius: 0;
-                    border: rem(2) solid var(--tercery) !important;
+                    border: rem(3) solid var(--tercery) !important;
                 }
 
                 & .editor-content {
+                    height: 100%;
                     display: flex;
                     flex-direction: column;
 
                     & .main {
                         //padding-bottom: 50vh;
                         height: 100%;
-                        min-height: 90vh;
-                        //padding-bottom: 50vh;
-                        border: rem(1) solid transparent;
-                        border-radius: var(--main-radius);
-                        //width: 100%;
-                        //max-width: rem(1200);
                     }
 
                     /* Style pour l'élément popup */
@@ -444,7 +420,6 @@ $bars-size: 19vw;
                         right: rem(-2.3);
                         padding: rem(5) rem(10);
                         transform: translate(0, -100%);
-                        z-index: 100;
 
                         & ul {
                             display: flex;
@@ -452,19 +427,14 @@ $bars-size: 19vw;
                             gap: rem(15);
                             color: var(--light);
                             font-size: rem(18);
-                            height: 100%;
+                            height: rem(20);
                             align-items: center;
 
                             & li {
-                                height: 100%;
-                                display: flex;
-                                justify-content: center;
-                                align-items: center;
+
                                 & i {
                                     font-size: rem(18) !important;
                                     cursor: pointer;
-                                    letter-spacing: 0 !important;
-                                    line-height: rem(20) !important;
                                 }
                             }
                         }
@@ -484,54 +454,10 @@ $bars-size: 19vw;
             border-left: rem(3) solid $grey-lighter;
             padding: rem(20);
             transition: var(--transition-duration) ease-in-out;
-            width: 100%;
 
             & .draggable-input {
                 cursor: n-resize;
             }
         }
     }
-}
-
-
-.resizer-container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-}
-
-[resizer] {
-    list-style: none;
-    position: absolute;
-    width: rem(10);
-    height: rem(10);
-    border: 2px solid var(--tercery);
-    background-color: var(--white);
-    transform: translate(-50%, -50%);
-}
-
-[resizer="top"] {
-    top: 0;
-    left: 50%;
-    cursor: s-resize;
-}
-
-[resizer="right"] {
-    top: 50%;
-    left: 100%;
-    cursor: e-resize;
-}
-
-[resizer="bottom"] {
-    top: 100%;
-    left: 50%;
-    cursor: s-resize;
-}
-
-[resizer="left"] {
-    top: 50%;
-    left: 0;
-    cursor: e-resize;
 }
