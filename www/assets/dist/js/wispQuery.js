@@ -95,32 +95,27 @@ let ajax = (method = "POST", request) => {  // Request: url, data, async, succes
 };
 
 let Json = () => {
-    const mod =
-        {
-            From: (str) => {
-                return JSON.parse(str);
-            },
-            To: (val) => {
-                return JSON.stringify(val, null, 3);
-            }
-        };
-    return mod;
+    return {
+        From: (str) => {
+            return JSON.parse(str);
+        },
+        To: (val) => {
+            return JSON.stringify(val, null, 3);
+        }
+    };
 };
 
 let SList = () => {
-    const mod =
-        {
-            From: (str) => {
-                let list = str.replaceAll(",", "").split(' ');
-                return list;
-            },
-            To: (val) => {
-                let str = "";
-                val.forEach((v) => { str += v + ", " });
-                return str.slice(0, -1);
-            }
-        };
-    return mod;
+    return {
+        From: (str) => {
+            return str.replaceAll(",", "").split(' ');
+        },
+        To: (val) => {
+            let str = "";
+            val.forEach((v) => { str += v + ", " });
+            return str.slice(0, -1);
+        }
+    };
 };
 
 let partial = (url, data, method) => {
@@ -168,9 +163,7 @@ function _(selector) {
         element.partial = (url, data, method) => {
             return partial(url, data, method)
                 .then((result) => {
-                    if (selector.startsWith('#')) {
-                        element.innerHTML = result;
-                    }
+                    element.innerHTML = result;
                     return result;
                 });
         };
@@ -226,19 +219,19 @@ function _(selector) {
 
         // Events functions
         element.click = (func) => {
-            element.onclick = (evt) => {
-                func(evt);
-            };
+            element.onclick = evt => { func(evt) };
+        }
+        element.input = (func) => {
+            element.addEventListener("input", evt => func(evt));
+        }
+        element.change = (func) => {
+            element.addEventListener("change", evt => func(evt));
         }
         element.dblclick = (func) => {
-            element.addEventListener("dblclick", (evt) => {
-                func(evt);
-            });
+            element.addEventListener("dblclick", evt => func(evt));
         }
         element.ready = (func) => {
-            element.addEventListener("DOMContentLoaded", (evt) => {
-                func(evt);
-            });
+            element.addEventListener("DOMContentLoaded", evt => func(evt));
         }
 
         // Display functions
@@ -248,3 +241,9 @@ function _(selector) {
 
     return element;
 }
+
+_(document).ready(e => {
+    _("[data-plugin='partial']").forEach(e =>
+        _(e).partial(_(e).attr("data-partial-src"))
+    );
+})
