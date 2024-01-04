@@ -57,15 +57,7 @@ function makeElementeditable(elem) {
 
 // Gestionnaire de clic sur un élément éditable
 function handleElementClick(event) {
-    console.log("test");
-
     event.stopPropagation();
-
-    // TODO: Retiré pour la nouvelle version
-    // _("[rel='props']")[0].click();
-    // document.getElementById("props-general-accordion").setAttribute("checked", true);
-
-    _("#props-general").innerHTML = "";
     const elem = event.currentTarget;
 
     if (elem.tagName == "IMG" || window.getComputedStyle(elem).backgroundImage !== 'none') {
@@ -74,6 +66,7 @@ function handleElementClick(event) {
 
     displayEditorAreaFor(elem);
 
+    _('.editor-accordion').forEach(e => _(e).css('display', 'block'));
     _(".selected-item").forEach(e => e.classList.remove("selected-item"));
     _(".action-popup").forEach(p => p.remove());
     elem.classList.add("selected-item");
@@ -301,7 +294,7 @@ function addPopup(targetElement) {
 // Fonction pour vérifier si un élément a overflow: hidden
 function hasOverflowHidden(element) {
     const style = window.getComputedStyle(element);
-    return style.overflow === 'hidden';
+    return style.overflow === 'hidden' || style.overflow === 'scroll';
 }
 
 // Initialisation de la fonctionnalité de tri pour un élément
@@ -348,266 +341,73 @@ function initSortableContainer() {
 
 // Fonction pour afficher la zone d'édition pour un élément
 function displayEditorAreaFor(elem) {
-    const editorArea = _("#props-general");
-    const elemToAppend = [];
-
     const elemStyle = getComputedStyle(elem);
+    let initInputsFromPartial = (url, destElement) => {
+        partial(url).then((result) => {
+            destElement.innerHTML = result;
 
-    /*
-    const toEdit = [
-        { attr: "width", name: "Width" },
-        { attr: "height", name: "Height" },
+            destElement.querySelectorAll("select[edit-mp-input]").forEach((select) => {
+                let s = _(select), style = s.attr("edit-mp-input");
 
+                let currentValue = (elem.style[style] === '' ? s.attr("default-value") : elem.style[style]);
+                if(currentValue !== null) currentValue = currentValue.replaceAll('"', '').replaceAll('&quot;', '');
 
-        { attr: "marginLeft", name: "Margin Left" },
-        { attr: "marginRight", name: "Margin Right" },
-        { attr: "marginTop", name: "Margin Top" },
-        { attr: "marginBottom", name: "Margin Bottom" },
-        { attr: "paddingLeft", name: "Padding Left" },
-        { attr: "paddingRight", name: "Padding Right" },
-        { attr: "paddingTop", name: "Padding Top" },
-        { attr: "paddingBottom", name: "Padding Bottom" },
+                s.val(currentValue);
+                s.change(evt => {
+                    elem.style[style] = s.val();
+                });
+            });
 
-    ];
+            destElement.querySelectorAll("input[edit-mp-input]").forEach((input) => {
+                input = _(input);
+                var style = input.attr("edit-mp-input");
 
-    toEdit.forEach(edt => {
-        const container = document.createElement("div");
-        const currentValue = elem.style[edt.attr] != "" ? elem.style[edt.attr] : elemStyle[edt.attr];
-        const numericValue = parseFloat(currentValue);
-        const roundedValue = Math.round(numericValue);
-        const unit = currentValue.replace(numericValue, "");
-        const roundedStyle = roundedValue + unit;
+                const currentValue = (elem.style[style] !== "" ? elem.style[style] : elemStyle[style]).replace("auto", "Auto").replace("none", "");
+                const numericValue = parseFloat(currentValue);
+                const roundedValue = Math.round(numericValue);
+                let unit = currentValue.replace(numericValue, "");
 
-        const label = document.createElement("label");
-        label.innerHTML = edt.name + ":";
+                if(input.attr('type') === 'radio' || input.attr('type') === 'checkbox'){
+                    let inputToCheck = _(`input[type="${input.attr('type')}"][edit-mp-input="${style}"][value="${currentValue.toLowerCase()}"]`)[0];
+                    if(inputToCheck !== undefined) inputToCheck.setAttribute('checked', 'true');
+                    input.change(evt => {
+                        elem.style[style] = input.val();
+                    });
+                } else {
 
-        const inputNumber = document.createElement("input");
-        inputNumber.classList.add("draggable-input");
-        inputNumber.setAttribute("value", roundedStyle);
-        inputNumber.style.display = 'inline';
-        inputNumber.style.width = "100%";
+                    const roundedStyle = roundedValue + unit;
 
-        setInputDraggable(inputNumber);
+                    if(input.attr("draggable-input") !== 'false') input.classList.add("draggable-input");
+                    input.setAttribute("value", isNaN(roundedValue) ? currentValue : roundedValue);
+                    input.style.display = 'inline';
+                    input.style.width = "100%";
 
-        inputNumber.addEventListener("input", () => {
-            elem.style[edt.attr] = inputNumber.value;
+                    setInputDraggable(input);
+
+                    let select = input.nextSibling.nextSibling;
+                    let hasSelect = select !== null && select !== undefined;
+                    if(hasSelect) select.value = unit;
+
+                    let inputEvent = () => {
+                        if(hasSelect && select.classList.contains('edit-unit')) {
+                            if(unit === '' || unit === undefined || unit === null || unit === 'Auto' || unit === 'none'){
+                                select.value = _(select).attr("default-value");
+                            }
+                            unit = select.value;
+                        }
+                        let val = parseInt(input.value);
+                        val = (isNaN(val) ? input.value : input.value + unit)
+                        elem.style[style] = val;
+                    }
+
+                    input.addEventListener("input", inputEvent);
+                    if(hasSelect) select.addEventListener("change", inputEvent);
+                }
+            });
         });
-
-        container.append(label, inputNumber);
-        container.classList.add("tools-container");
-        elemToAppend.push(container);
-    });
-    */
-
-    var styleDimen = document.createElement("div");
-    styleDimen.innerHTML = `
-            <div class="edit-mp">
-                <div class="edit-mp-mtop">
-                    <input type="text" edit-mp-input="margin-top" value="Auto" />
-                </div>
-                <div class="edit-mp-mid">
-                    <div class="edit-mp-mleft">
-                        <input type="text" edit-mp-input="margin-left" value="Auto" />
-                    </div>
-                    <div class="edit-mp-p">
-                        <div class="edit-mp-pleft">
-                            <input type="text" edit-mp-input="padding-left" value="0" />
-                        </div>
-                        <div class="edit-mp-pmid">
-                            <input type="text" edit-mp-input="padding-top" value="0" />
-                            <div class="edit-mp-center">
-                                <i class="ri-link"></i>
-                            </div>
-                            <input type="text" edit-mp-input="padding-bottom" value="0" />
-                        </div>
-                        <div class="edit-mp-pright">
-                            <input type="text" edit-mp-input="padding-right" value="0" />
-                        </div>
-                    </div>
-                    <div class="edit-mp-mright">
-                        <input type="text" edit-mp-input="margin-right" value="Auto" />
-                    </div>
-                </div>
-                <div class="edit-mp-mbot">
-                    <input type="text" edit-mp-input="margin-bottom" value="Auto" />
-                </div>
-            </div>
-            <br>
-            <div class="edit-form-control">
-                <div class="edit-form fluid">
-                    <label>Width</label>
-                    <div class="edit-form-inputs">
-                        <input type="text" edit-mp-input="width" placeholder="Auto" />
-                        <select class="edit-unit">
-                            <option value="Auto" hidden>-</option>
-                            <option value="none" hidden>-</option>
-                            <option value="" selected>-</option>
-                            <option value="px">px</option>
-                            <option value="%">%</option>
-                            <option value="em">em</option>
-                            <option value="rem">rem</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="edit-form fluid">
-                    <label>Height</label>
-                    <div class="edit-form-inputs">
-                        <input type="text" edit-mp-input="height" placeholder="Auto" />
-                        <select class="edit-unit">
-                            <option value="Auto" hidden>-</option>
-                            <option value="none" hidden>-</option>
-                            <option value="" selected>-</option>
-                            <option value="px">px</option>
-                            <option value="%">%</option>
-                            <option value="em">em</option>
-                            <option value="rem">rem</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="edit-form-control">
-                <div class="edit-form fluid">
-                    <label>Min W</label>
-                    <div class="edit-form-inputs">
-                        <input type="text" edit-mp-input="min-width" placeholder="Auto" />
-                        <select class="edit-unit">
-                            <option value="Auto" hidden>-</option>
-                            <option value="none" hidden>-</option>
-                            <option value="" selected>-</option>
-                            <option value="px">px</option>
-                            <option value="%">%</option>
-                            <option value="em">em</option>
-                            <option value="rem">rem</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="edit-form fluid">
-                    <label>Min H</label>
-                    <div class="edit-form-inputs">
-                        <input type="text" edit-mp-input="min-height" placeholder="Auto" />
-                        <select class="edit-unit">
-                            <option value="Auto" hidden>-</option>
-                            <option value="none" hidden>-</option>
-                            <option value="" selected>-</option>
-                            <option value="px">px</option>
-                            <option value="%">%</option>
-                            <option value="em">em</option>
-                            <option value="rem">rem</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="edit-form-control">
-                <div class="edit-form fluid">
-                    <label>Max W</label>
-                    <div class="edit-form-inputs">
-                        <input type="text" edit-mp-input="max-width" placeholder="None" />
-                        <select class="edit-unit">
-                            <option value="Auto" hidden>-</option>
-                            <option value="none" hidden>-</option>
-                            <option value="" selected>-</option>
-                            <option value="px">px</option>
-                            <option value="%">%</option>
-                            <option value="em">em</option>
-                            <option value="rem">rem</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="edit-form fluid">
-                    <label>Max H</label>
-                    <div class="edit-form-inputs">
-                        <input type="text" edit-mp-input="max-height" placeholder="None" />
-                        <select class="edit-unit">
-                            <option value="Auto" hidden>-</option>
-                            <option value="none" hidden>-</option>
-                            <option value="" selected>-</option>
-                            <option value="px">px</option>
-                            <option value="%">%</option>
-                            <option value="em">em</option>
-                            <option value="rem">rem</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div class="edit-form-control">
-                <div class="edit-form fluid">
-                    <label>Ratio</label>
-                    <div class="edit-form-inputs">
-                        <input type="number" min="0" placeholder="Auto" />
-                    </div>
-                </div>
-                <div class="edit-form fluid">
-                    /
-                    <div class="edit-form-inputs">
-                        <input type="number" min="0" placeholder="Auto" />
-                    </div>
-                </div>
-            </div>
-            <div class="edit-form fluid">
-                <label>Overflow</label>
-                <ul class="edit-form-inputs">
-                    <li class="edit-form-toggler">
-                        <input id="overflow-visible" type="radio" name="overflow" value="visible" checked />
-                        <label for="overflow-visible"><i class="ri-eye-fill"></i></label>
-                    </li>
-                    <li class="edit-form-toggler">
-                        <input id="overflow-hidden" type="radio" name="overflow" value="hidden" />
-                        <label for="overflow-hidden"><i class="ri-eye-off-line"></i></label>
-                    </li>
-                    <li class="edit-form-toggler">
-                        <input id="overflow-scroll" type="radio" name="overflow" value="scroll" />
-                        <label for="overflow-scroll"><i class="ri-line-height"></i></label>
-                    </li>
-                    <li class="edit-form-toggler">
-                        <input id="overflow-auto" type="radio" name="overflow" value="auto" />
-                        <label for="overflow-auto">Auto</label>
-                    </li>
-                </ul>
-            </div>`;
-
-    styleDimen.querySelectorAll("input[edit-mp-input]").forEach((input) => {
-        // TODO: Attribuer à l'input la valeur actuel de l'element grâce à l'attribut "edit-mp-input" pour savoir quelle style appliquer (Ex: edit-mp-input="margin-top")
-
-        var style = _(input).attr("edit-mp-input");
-
-        const currentValue = (elem.style[style] !== "" ? elem.style[style] : elemStyle[style]).replace("auto", "Auto");
-        const numericValue = parseFloat(currentValue);
-        const roundedValue = Math.round(numericValue);
-        let unit = currentValue.replace(numericValue, "");
-
-        const roundedStyle = roundedValue + unit;
-
-        input.classList.add("draggable-input");
-        input.setAttribute("value", isNaN(roundedValue) ? currentValue : roundedValue);
-        input.style.display = 'inline';
-        input.style.width = "100%";
-
-        setInputDraggable(input);
-
-        let select = input.nextSibling.nextSibling;
-        let hasSelect = select !== null && select !== undefined;
-        if(hasSelect) select.value = unit;
-
-        let inputEvent = () => {
-            if(hasSelect && select.classList.contains('edit-unit')) {
-                unit = select.value;
-            }
-
-            let val = parseInt(input.value);
-            val = (isNaN(val) ? input.value : input.value + unit)
-            elem.style[style] = val;
-        }
-
-        input.addEventListener("input", inputEvent);
-        if(hasSelect) select.addEventListener("change", inputEvent);
-    });
-
-    // TODO: Ajouter editMP dans la toolbar
-    editorArea.append(styleDimen);
-
-
-    elemToAppend.forEach(e => editorArea.append(e));
+    }
+    let listEditorStyleArea = ["#editStyle-dimensions", "#editStyle-typo"];
+    listEditorStyleArea.forEach(e => initInputsFromPartial(_(e).attr("data-partial-src"), _(e)));
 }
 
 // Fonction pour rendre un champ d'entrée draggable
@@ -704,10 +504,13 @@ function initializeEditor() {
         }
     }
     _(".page-builder-main-editor")[0].onclick = (evt) => {
+        // TODO: Créer une fonction désélection de l'element séléctionné
         _(".selected-item").forEach((e) => {
             _(e).removeClass("selected-item");
         })
-        _(".action-popup")[0].remove();
+        let popup = _(".action-popup")[0];
+        if(popup !== undefined) popup.remove();
+        _('.editor-accordion').forEach(e => _(e).css('display', 'none'));
     }
 }
 
