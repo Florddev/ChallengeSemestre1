@@ -1,0 +1,141 @@
+<div class="edit-form-control">
+    <div class="edit-form w-100">
+        <label>Font family</label>
+        <div class="edit-form-inputs">
+            <select edit-mp-input="font-family" default-value='Plus Jakarta Sans'>
+                <option value="Arial" >Arial</option>
+                <option value="Plus Jakarta Sans" selected>Plus Jakarta Sans</option>
+                <option value="Syne">Syne</option>
+                <option value="Inter">Inter</option>
+                <option value="Helvetica">Helvetica</option>
+                <option value="Georgia">Georgia</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Courier New">Courier New</option>
+                <option value="Verdana">Verdana</option>
+                <option value="Trebuchet MS">Trebuchet MS</option>
+                <option value="Impact">Impact</option>
+                <option value="Comic Sans MS">Comic Sans MS</option>
+                <option value="Arial, sans-serif">Arial, sans-serif</option>
+                <option value="Helvetica, sans-serif">Helvetica, sans-serif</option>
+                <option value="Georgia, serif">Georgia, serif</option>
+                <option value="Times New Roman, serif">Times New Roman, serif</option>
+                <option value="Courier New, monospace">Courier New, monospace</option>
+                <option value="Verdana, sans-serif">Verdana, sans-serif</option>
+                <option value="Trebuchet MS, sans-serif">Trebuchet MS, sans-serif</option>
+                <option value="Impact, sans-serif">Impact, sans-serif</option>
+                <option value="Comic Sans MS, cursive">Comic Sans MS, cursive</option>
+            </select>
+        </div>
+    </div>
+</div>
+<br>
+<div class="edit-form-control">
+    <div class="edit-form w-50">
+        <label>Font size</label>
+        <div class="edit-form-inputs">
+            <input type="text" value="45" edit-mp-input="font-size" />
+            <select class="edit-unit" default-value="px">
+                <option value="px" selected>px</option>
+                <option value="%">%</option>
+                <option value="em">em</option>
+                <option value="rem">rem</option>
+            </select>
+        </div>
+    </div>
+    <div class="edit-form w-50">
+        <label>Font weight</label>
+        <div class="edit-form-inputs">
+            <select edit-mp-input="font-weight">
+                <option value="100">Thin</option>
+                <option value="200">Extra-Light</option>
+                <option value="300">Light</option>
+                <option value="400" selected>Normal</option>
+                <option value="500">Medium</option>
+                <option value="600">Semi-Bold</option>
+                <option value="700">Bold</option>
+                <option value="800">Extra-Bold</option>
+                <option value="900">Ultra-Bold</option>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="edit-form-control">
+    <div class="edit-form">
+        <label>Letter spacing</label>
+        <div class="edit-form-inputs">
+            <input type="text" value="16" step="0.01" edit-mp-input="letter-spacing"/>
+            <select class="edit-unit" default-value="px">
+                <option value="px" selected>px</option>
+                <option value="%">%</option>
+                <option value="em">em</option>
+                <option value="rem">rem</option>
+                <option value="vh">vh</option>
+                <option value="vw">vw</option>
+            </select>
+        </div>
+    </div>
+    <div class="edit-form">
+        <label>Line height</label>
+        <div class="edit-form-inputs">
+            <input type="text" value="16" edit-mp-input="line-height"/>
+            <select class="edit-unit" default-value="px">
+                <option value="px" selected>px</option>
+                <option value="%">%</option>
+                <option value="em">em</option>
+                <option value="rem">rem</option>
+                <option value="vh">vh</option>
+                <option value="vw">vw</option>
+            </select>
+        </div>
+    </div>
+</div>
+<br>
+<div class="edit-form">
+    <label>Couleur</label>
+    <div class="edit-form-inputs">
+        <input type="color" value="#FFFFFF" edit-mp-input="color"/>
+    </div>
+</div>
+<br>
+<div class="edit-form">
+    <label>Align</label>
+    <ul class="edit-form-inputs">
+        <li class="edit-form-toggler">
+            <input id="text-align-left" type="radio" name="text-align" edit-mp-input="text-align" value="start" />
+            <label for="text-align-left"><i class="ri-align-left"></i></label>
+        </li>
+        <li class="edit-form-toggler">
+            <input id="text-align-center" type="radio" name="text-align" edit-mp-input="text-align" value="center" />
+            <label for="text-align-center"><i class="ri-align-center"></i></label>
+        </li>
+        <li class="edit-form-toggler">
+            <input id="text-align-right" type="radio" name="text-align" edit-mp-input="text-align" value="end" />
+            <label for="text-align-right"><i class="ri-align-right"></i></label>
+        </li>
+        <li class="edit-form-toggler">
+            <input id="text-align-justify" type="radio" name="text-align" edit-mp-input="text-align" value="justify" />
+            <label for="text-align-justify"><i class="ri-align-justify"></i></label>
+        </li>
+        <li class="edit-form-toggler">
+            <input id="text-align-inherit" type="radio" name="text-align" edit-mp-input="text-align" value="" />
+            <label for="text-align-inherit"><i class="ri-close-line"></i></label>
+        </li>
+    </ul>
+</div>
+<div class="edit-form">
+    <label>Decoration</label>
+    <ul class="edit-form-inputs">
+        <li class="edit-form-toggler">
+            <input id="text-decoration-none" type="radio" name="text-decoration" value="none" edit-mp-input="text-decoration" />
+            <label for="text-decoration-none"><i class="ri-close-line"></i></label>
+        </li>
+        <li class="edit-form-toggler">
+            <input id="text-decoration-overline" type="radio" name="text-decoration"value="underline" edit-mp-input="text-decoration" />
+            <label for="text-decoration-overline"><i class="ri-underline"></i></label>
+        </li>
+        <li class="edit-form-toggler">
+            <input id="text-decoration-line-through" type="radio" name="text-decoration"value="line-through" edit-mp-input="text-decoration" />
+            <label for="text-decoration-line-through"><i class="ri-strikethrough"></i></label>
+        </li>
+    </ul>
+</div>

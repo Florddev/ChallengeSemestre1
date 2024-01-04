@@ -1,4 +1,4 @@
-$bars-size: rem(330);
+$bars-size: 19vw;
 
 @mixin scroll-bar($hide) {
 
@@ -190,6 +190,10 @@ $bars-size: rem(330);
         justify-content: space-between;
         overflow-y: hidden;
 
+        & .editor-accordion {
+            display: none;
+        }
+
         & .main-components-toggler {
             position: absolute;
             width: rem(35);
@@ -260,6 +264,7 @@ $bars-size: rem(330);
             border-right: rem(3) solid $grey-lighter;
             transition: var(--transition-duration) ease-in-out;
             padding: rem(20);
+            width: 100%;
 
             & .components-preview {
                 display: flex;
@@ -360,17 +365,9 @@ $bars-size: rem(330);
                     height: 100%;
                 }
 
-                /*
-                & .editable-text[contenteditable="true"]::before,
-                & .sortable-element::before {
-                    border: rem(1) dashed var(--grey);
+                & .editable-text[contenteditable="true"]{
+                    outline: none;
                 }
-
-                & .editable-text[contenteditable="true"]:hover::before {
-                    border: rem(2.3) solid var(--info);
-                }
-                */
-
 
                 & .editable:not(.selected-item):hover::before,
                 & .sortable-element:not(.selected-item):hover::before {
@@ -392,13 +389,13 @@ $bars-size: rem(330);
                     padding: 0 !important;
                     margin: 0 !important;
                     position: relative;
-                    border: rem(3) solid var(--tercery);
+                    border: rem(2) solid var(--tercery);
                     overflow: hidden;
                 }
 
                 & .selected-item {
                     border-radius: 0;
-                    border: rem(3) solid var(--tercery) !important;
+                    border: rem(2) solid var(--tercery) !important;
                 }
 
                 & .editor-content {
@@ -427,14 +424,19 @@ $bars-size: rem(330);
                             gap: rem(15);
                             color: var(--light);
                             font-size: rem(18);
-                            height: rem(20);
+                            height: 100%;
                             align-items: center;
 
                             & li {
-
+                                height: 100%;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
                                 & i {
                                     font-size: rem(18) !important;
                                     cursor: pointer;
+                                    letter-spacing: 0 !important;
+                                    line-height: rem(20) !important;
                                 }
                             }
                         }
@@ -454,6 +456,7 @@ $bars-size: rem(330);
             border-left: rem(3) solid $grey-lighter;
             padding: rem(20);
             transition: var(--transition-duration) ease-in-out;
+            width: 100%;
 
             & .draggable-input {
                 cursor: n-resize;
