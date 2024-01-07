@@ -82,20 +82,20 @@
                         <i class="ri-arrow-down-s-line"></i>
                     </label>
                     <div class="accordion-panel">
-                        <div class="components-preview">
-                            <div class="components">
+                        <div class="components-preview sortable-models">
+                            <div class="components" data-partial-src="/Views/Partial/Editor/editorTools-dimensions.html">
                                 <label>Navbar</label>
                                 <div class="components-view">
                                     <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Navbar1.svg"></i>
                                 </div>
                             </div>
-                            <div class="components">
+                            <div class="components" data-partial-src="/Views/Partial/Editor/editorTools-dimensions.html">
                                 <label>Navbar centré</label>
                                 <div class="components-view">
                                     <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Navbar2.svg"></i>
                                 </div>
                             </div>
-                            <div class="components">
+                            <div class="components" data-partial-src="/Views/Partial/Editor/editorTools-dimensions.html">
                                 <label>Navbar replié</label>
                                 <div class="components-view">
                                     <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Navbar3.svg"></i>
@@ -112,14 +112,14 @@
                         <i class="ri-arrow-down-s-line"></i>
                     </label>
                     <div class="accordion-panel">
-                        <div class="components-preview">
+                        <div class="components-preview sortable-models">
                             <div class="components">
                                 <label>Header 1</label>
                                 <div class="components-view">
                                     <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Header1.svg"></i>
                                 </div>
                             </div>
-                            <div class="components">
+                            <div class="components" data-partial-src="/Views/Partial/Editor/Components/header2.html">
                                 <label>Header 2</label>
                                 <div class="components-view">
                                     <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Header2.svg"></i>
@@ -303,8 +303,10 @@
                         <span>Dimension</span>
                         <i class="ri-arrow-down-s-line"></i>
                     </label>
-                    <div class="accordion-panel" id="editStyle-dimensions" data-plugin="partial" data-partial-src="/Views/Partial/Editor/editorTools-dimensions.html">
-
+                    <div class="accordion-panel"
+                         id="editStyle-dimensions"
+                         data-plugin="partial"
+                         data-partial-src="/Views/Partial/Editor/editorTools-dimensions.html">
                     </div>
                     <hr>
                 </div>
@@ -314,8 +316,10 @@
                         <span>Typography</span>
                         <i class="ri-arrow-down-s-line"></i>
                     </label>
-                    <div class="accordion-panel" id="editStyle-typo" data-plugin="partial" data-partial-src="/Views/Partial/Editor/editorTools-typo.html">
-
+                    <div class="accordion-panel"
+                         id="editStyle-typo"
+                         data-plugin="partial"
+                         data-partial-src="/Views/Partial/Editor/editorTools-typo.html">
                     </div>
                     <hr>
                 </div>
