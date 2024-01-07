@@ -115,3 +115,10 @@
         }
     }
 }
+
+*[data-plugin="tabnav"]{
+    display: none;
+}
+*[data-plugin="tabnav"].active{
+    display: block;
+}

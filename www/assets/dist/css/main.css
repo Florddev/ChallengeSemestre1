@@ -90,7 +90,7 @@ img {
 .container {
   max-width: 70rem;
   margin: 0 auto;
-  padding: 0.9375rem 1.875rem;
+  width: 100%;
 }
 
 @media screen and (min-width: 1150px) {
@@ -351,7 +351,7 @@ img {
   margin-left: 0%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-1.full-width,
 .row .col-sm-1.full-width,
@@ -366,84 +366,84 @@ img {
   margin-left: 8.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-1.offset-2 {
   width: 8.3333333333%;
   margin-left: 16.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-1.offset-3 {
   width: 8.3333333333%;
   margin-left: 25%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-1.offset-4 {
   width: 8.3333333333%;
   margin-left: 33.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-1.offset-5 {
   width: 8.3333333333%;
   margin-left: 41.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-1.offset-6 {
   width: 8.3333333333%;
   margin-left: 50%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-1.offset-7 {
   width: 8.3333333333%;
   margin-left: 58.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-1.offset-8 {
   width: 8.3333333333%;
   margin-left: 66.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-1.offset-9 {
   width: 8.3333333333%;
   margin-left: 75%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-1.offset-10 {
   width: 8.3333333333%;
   margin-left: 83.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-1.offset-11 {
   width: 8.3333333333%;
   margin-left: 91.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-1.offset-12 {
   width: 8.3333333333%;
   margin-left: 100%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 @media screen and (max-width: 576px) {
   .row .col-sm-1 {
@@ -478,7 +478,7 @@ img {
   margin-left: 0%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-2.full-width,
 .row .col-sm-2.full-width,
@@ -493,84 +493,84 @@ img {
   margin-left: 8.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-2.offset-2 {
   width: 16.6666666667%;
   margin-left: 16.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-2.offset-3 {
   width: 16.6666666667%;
   margin-left: 25%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-2.offset-4 {
   width: 16.6666666667%;
   margin-left: 33.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-2.offset-5 {
   width: 16.6666666667%;
   margin-left: 41.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-2.offset-6 {
   width: 16.6666666667%;
   margin-left: 50%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-2.offset-7 {
   width: 16.6666666667%;
   margin-left: 58.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-2.offset-8 {
   width: 16.6666666667%;
   margin-left: 66.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-2.offset-9 {
   width: 16.6666666667%;
   margin-left: 75%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-2.offset-10 {
   width: 16.6666666667%;
   margin-left: 83.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-2.offset-11 {
   width: 16.6666666667%;
   margin-left: 91.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-2.offset-12 {
   width: 16.6666666667%;
   margin-left: 100%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 @media screen and (max-width: 576px) {
   .row .col-sm-2 {
@@ -605,7 +605,7 @@ img {
   margin-left: 0%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-3.full-width,
 .row .col-sm-3.full-width,
@@ -620,84 +620,84 @@ img {
   margin-left: 8.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-3.offset-2 {
   width: 25%;
   margin-left: 16.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-3.offset-3 {
   width: 25%;
   margin-left: 25%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-3.offset-4 {
   width: 25%;
   margin-left: 33.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-3.offset-5 {
   width: 25%;
   margin-left: 41.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-3.offset-6 {
   width: 25%;
   margin-left: 50%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-3.offset-7 {
   width: 25%;
   margin-left: 58.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-3.offset-8 {
   width: 25%;
   margin-left: 66.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-3.offset-9 {
   width: 25%;
   margin-left: 75%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-3.offset-10 {
   width: 25%;
   margin-left: 83.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-3.offset-11 {
   width: 25%;
   margin-left: 91.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-3.offset-12 {
   width: 25%;
   margin-left: 100%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 @media screen and (max-width: 576px) {
   .row .col-sm-3 {
@@ -732,7 +732,7 @@ img {
   margin-left: 0%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-4.full-width,
 .row .col-sm-4.full-width,
@@ -747,84 +747,84 @@ img {
   margin-left: 8.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-4.offset-2 {
   width: 33.3333333333%;
   margin-left: 16.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-4.offset-3 {
   width: 33.3333333333%;
   margin-left: 25%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-4.offset-4 {
   width: 33.3333333333%;
   margin-left: 33.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-4.offset-5 {
   width: 33.3333333333%;
   margin-left: 41.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-4.offset-6 {
   width: 33.3333333333%;
   margin-left: 50%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-4.offset-7 {
   width: 33.3333333333%;
   margin-left: 58.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-4.offset-8 {
   width: 33.3333333333%;
   margin-left: 66.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-4.offset-9 {
   width: 33.3333333333%;
   margin-left: 75%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-4.offset-10 {
   width: 33.3333333333%;
   margin-left: 83.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-4.offset-11 {
   width: 33.3333333333%;
   margin-left: 91.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-4.offset-12 {
   width: 33.3333333333%;
   margin-left: 100%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 @media screen and (max-width: 576px) {
   .row .col-sm-4 {
@@ -859,7 +859,7 @@ img {
   margin-left: 0%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-5.full-width,
 .row .col-sm-5.full-width,
@@ -874,84 +874,84 @@ img {
   margin-left: 8.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-5.offset-2 {
   width: 41.6666666667%;
   margin-left: 16.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-5.offset-3 {
   width: 41.6666666667%;
   margin-left: 25%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-5.offset-4 {
   width: 41.6666666667%;
   margin-left: 33.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-5.offset-5 {
   width: 41.6666666667%;
   margin-left: 41.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-5.offset-6 {
   width: 41.6666666667%;
   margin-left: 50%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-5.offset-7 {
   width: 41.6666666667%;
   margin-left: 58.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-5.offset-8 {
   width: 41.6666666667%;
   margin-left: 66.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-5.offset-9 {
   width: 41.6666666667%;
   margin-left: 75%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-5.offset-10 {
   width: 41.6666666667%;
   margin-left: 83.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-5.offset-11 {
   width: 41.6666666667%;
   margin-left: 91.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-5.offset-12 {
   width: 41.6666666667%;
   margin-left: 100%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 @media screen and (max-width: 576px) {
   .row .col-sm-5 {
@@ -986,7 +986,7 @@ img {
   margin-left: 0%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-6.full-width,
 .row .col-sm-6.full-width,
@@ -1001,84 +1001,84 @@ img {
   margin-left: 8.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-6.offset-2 {
   width: 50%;
   margin-left: 16.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-6.offset-3 {
   width: 50%;
   margin-left: 25%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-6.offset-4 {
   width: 50%;
   margin-left: 33.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-6.offset-5 {
   width: 50%;
   margin-left: 41.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-6.offset-6 {
   width: 50%;
   margin-left: 50%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-6.offset-7 {
   width: 50%;
   margin-left: 58.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-6.offset-8 {
   width: 50%;
   margin-left: 66.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-6.offset-9 {
   width: 50%;
   margin-left: 75%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-6.offset-10 {
   width: 50%;
   margin-left: 83.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-6.offset-11 {
   width: 50%;
   margin-left: 91.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-6.offset-12 {
   width: 50%;
   margin-left: 100%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 @media screen and (max-width: 576px) {
   .row .col-sm-6 {
@@ -1113,7 +1113,7 @@ img {
   margin-left: 0%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-7.full-width,
 .row .col-sm-7.full-width,
@@ -1128,84 +1128,84 @@ img {
   margin-left: 8.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-7.offset-2 {
   width: 58.3333333333%;
   margin-left: 16.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-7.offset-3 {
   width: 58.3333333333%;
   margin-left: 25%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-7.offset-4 {
   width: 58.3333333333%;
   margin-left: 33.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-7.offset-5 {
   width: 58.3333333333%;
   margin-left: 41.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-7.offset-6 {
   width: 58.3333333333%;
   margin-left: 50%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-7.offset-7 {
   width: 58.3333333333%;
   margin-left: 58.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-7.offset-8 {
   width: 58.3333333333%;
   margin-left: 66.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-7.offset-9 {
   width: 58.3333333333%;
   margin-left: 75%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-7.offset-10 {
   width: 58.3333333333%;
   margin-left: 83.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-7.offset-11 {
   width: 58.3333333333%;
   margin-left: 91.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-7.offset-12 {
   width: 58.3333333333%;
   margin-left: 100%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 @media screen and (max-width: 576px) {
   .row .col-sm-7 {
@@ -1240,7 +1240,7 @@ img {
   margin-left: 0%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-8.full-width,
 .row .col-sm-8.full-width,
@@ -1255,84 +1255,84 @@ img {
   margin-left: 8.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-8.offset-2 {
   width: 66.6666666667%;
   margin-left: 16.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-8.offset-3 {
   width: 66.6666666667%;
   margin-left: 25%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-8.offset-4 {
   width: 66.6666666667%;
   margin-left: 33.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-8.offset-5 {
   width: 66.6666666667%;
   margin-left: 41.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-8.offset-6 {
   width: 66.6666666667%;
   margin-left: 50%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-8.offset-7 {
   width: 66.6666666667%;
   margin-left: 58.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-8.offset-8 {
   width: 66.6666666667%;
   margin-left: 66.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-8.offset-9 {
   width: 66.6666666667%;
   margin-left: 75%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-8.offset-10 {
   width: 66.6666666667%;
   margin-left: 83.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-8.offset-11 {
   width: 66.6666666667%;
   margin-left: 91.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-8.offset-12 {
   width: 66.6666666667%;
   margin-left: 100%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 @media screen and (max-width: 576px) {
   .row .col-sm-8 {
@@ -1367,7 +1367,7 @@ img {
   margin-left: 0%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-9.full-width,
 .row .col-sm-9.full-width,
@@ -1382,84 +1382,84 @@ img {
   margin-left: 8.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-9.offset-2 {
   width: 75%;
   margin-left: 16.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-9.offset-3 {
   width: 75%;
   margin-left: 25%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-9.offset-4 {
   width: 75%;
   margin-left: 33.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-9.offset-5 {
   width: 75%;
   margin-left: 41.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-9.offset-6 {
   width: 75%;
   margin-left: 50%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-9.offset-7 {
   width: 75%;
   margin-left: 58.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-9.offset-8 {
   width: 75%;
   margin-left: 66.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-9.offset-9 {
   width: 75%;
   margin-left: 75%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-9.offset-10 {
   width: 75%;
   margin-left: 83.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-9.offset-11 {
   width: 75%;
   margin-left: 91.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-9.offset-12 {
   width: 75%;
   margin-left: 100%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 @media screen and (max-width: 576px) {
   .row .col-sm-9 {
@@ -1494,7 +1494,7 @@ img {
   margin-left: 0%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-10.full-width,
 .row .col-sm-10.full-width,
@@ -1509,84 +1509,84 @@ img {
   margin-left: 8.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-10.offset-2 {
   width: 83.3333333333%;
   margin-left: 16.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-10.offset-3 {
   width: 83.3333333333%;
   margin-left: 25%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-10.offset-4 {
   width: 83.3333333333%;
   margin-left: 33.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-10.offset-5 {
   width: 83.3333333333%;
   margin-left: 41.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-10.offset-6 {
   width: 83.3333333333%;
   margin-left: 50%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-10.offset-7 {
   width: 83.3333333333%;
   margin-left: 58.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-10.offset-8 {
   width: 83.3333333333%;
   margin-left: 66.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-10.offset-9 {
   width: 83.3333333333%;
   margin-left: 75%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-10.offset-10 {
   width: 83.3333333333%;
   margin-left: 83.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-10.offset-11 {
   width: 83.3333333333%;
   margin-left: 91.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-10.offset-12 {
   width: 83.3333333333%;
   margin-left: 100%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 @media screen and (max-width: 576px) {
   .row .col-sm-10 {
@@ -1621,7 +1621,7 @@ img {
   margin-left: 0%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-11.full-width,
 .row .col-sm-11.full-width,
@@ -1636,84 +1636,84 @@ img {
   margin-left: 8.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-11.offset-2 {
   width: 91.6666666667%;
   margin-left: 16.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-11.offset-3 {
   width: 91.6666666667%;
   margin-left: 25%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-11.offset-4 {
   width: 91.6666666667%;
   margin-left: 33.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-11.offset-5 {
   width: 91.6666666667%;
   margin-left: 41.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-11.offset-6 {
   width: 91.6666666667%;
   margin-left: 50%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-11.offset-7 {
   width: 91.6666666667%;
   margin-left: 58.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-11.offset-8 {
   width: 91.6666666667%;
   margin-left: 66.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-11.offset-9 {
   width: 91.6666666667%;
   margin-left: 75%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-11.offset-10 {
   width: 91.6666666667%;
   margin-left: 83.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-11.offset-11 {
   width: 91.6666666667%;
   margin-left: 91.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-11.offset-12 {
   width: 91.6666666667%;
   margin-left: 100%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 @media screen and (max-width: 576px) {
   .row .col-sm-11 {
@@ -1748,7 +1748,7 @@ img {
   margin-left: 0%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-12.full-width,
 .row .col-sm-12.full-width,
@@ -1763,84 +1763,84 @@ img {
   margin-left: 8.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-12.offset-2 {
   width: 100%;
   margin-left: 16.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-12.offset-3 {
   width: 100%;
   margin-left: 25%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-12.offset-4 {
   width: 100%;
   margin-left: 33.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-12.offset-5 {
   width: 100%;
   margin-left: 41.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-12.offset-6 {
   width: 100%;
   margin-left: 50%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-12.offset-7 {
   width: 100%;
   margin-left: 58.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-12.offset-8 {
   width: 100%;
   margin-left: 66.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-12.offset-9 {
   width: 100%;
   margin-left: 75%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-12.offset-10 {
   width: 100%;
   margin-left: 83.3333333333%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-12.offset-11 {
   width: 100%;
   margin-left: 91.6666666667%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 .row .col-12.offset-12 {
   width: 100%;
   margin-left: 100%;
   float: left;
   box-sizing: border-box;
-  padding: 0.625rem;
+  min-height: 1.875rem;
 }
 @media screen and (max-width: 576px) {
   .row .col-sm-12 {
@@ -1967,6 +1967,14 @@ img {
   }
 }
 
+*[data-plugin=tabnav] {
+  display: none;
+}
+
+*[data-plugin=tabnav].active {
+  display: block;
+}
+
 .accordion {
   padding: 0rem 0;
 }
@@ -2079,6 +2087,7 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0.625rem;
 }
 .navbar .nav__logo {
   color: var(--title-color);
@@ -2960,27 +2969,40 @@ img {
 }
 .page-builder-main-editor .editor-container {
   width: 100%;
-  min-height: 100vh;
   background-color: #fff;
   border-radius: var(--main-radius);
   overflow: hidden;
+  height: max-content;
 }
 .page-builder-main-editor .editor-container[editor-mode=pc] {
   width: 100%;
-  height: 100%;
 }
 .page-builder-main-editor .editor-container[editor-mode=pad] {
-  width: 100%;
   width: 80rem;
   border-radius: var(--main-radius);
 }
 .page-builder-main-editor .editor-container[editor-mode=phone] {
-  width: 100%;
   width: 29.6875rem;
   border-radius: var(--main-radius);
 }
 .page-builder-main-editor .editor-container .editable, .page-builder-main-editor .editor-container .sortable-element {
   position: relative;
+}
+.page-builder-main-editor .editor-container .editable-image-container {
+  width: fit-content;
+  height: fit-content;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+.page-builder-main-editor .editor-container .editable-image-container img {
+  object-fit: cover;
+  object-position: center;
+  height: 100%;
+  width: 100%;
+}
+.page-builder-main-editor .editor-container .sortable-element {
+  border: 0.0625rem dashed #a3aed0;
 }
 .page-builder-main-editor .editor-container .editable::before, .page-builder-main-editor .editor-container .sortable-element::before {
   position: absolute;
@@ -3017,13 +3039,15 @@ img {
   border: 0.125rem solid var(--tercery) !important;
 }
 .page-builder-main-editor .editor-container .editor-content {
-  height: 100%;
   display: flex;
   flex-direction: column;
   /* Style pour l'élément popup */
 }
 .page-builder-main-editor .editor-container .editor-content .main {
   height: 100%;
+  min-height: 90vh;
+  border: 0.0625rem solid transparent;
+  border-radius: var(--main-radius);
 }
 .page-builder-main-editor .editor-container .editor-content .action-popup {
   position: absolute;
@@ -3033,6 +3057,7 @@ img {
   right: -0.14375rem;
   padding: 0.3125rem 0.625rem;
   transform: translate(0, -100%);
+  z-index: 100;
 }
 .page-builder-main-editor .editor-container .editor-content .action-popup ul {
   display: flex;

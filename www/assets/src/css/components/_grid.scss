@@ -46,7 +46,8 @@ $col-total: 12;
     margin-left: percentage($offset / $col-total);
     float: left;
     box-sizing: border-box;
-    padding: rem(10);
+    min-height: rem(30);
+    //padding: rem(5);
     // border: 5px solid green;
 }
 
