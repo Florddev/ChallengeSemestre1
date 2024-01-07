@@ -1,21 +1,10 @@
-function generateCustomId(length) {
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    const charactersLength = characters.length;
-    let counter = 0, result = '';
-    while (counter < length) {
-        result += characters.charAt(Math.floor(Math.random() * charactersLength));
-        counter += 1;
-    }
-    return result;
-}
-
 let initAccordions = (element) => {
     // Récupérer l'input et le label de chacun de mes accordions présent sur ma page
     let accordionInput = element.querySelector("input");
     let accordionLabel = element.querySelector(".accordion-label");
 
     // Leur définit un id et un for random pour qu'ils soitent liés enssemble
-    const customId = generateCustomId(10);
+    const customId = uniqueId(10);
     accordionLabel.setAttribute("for", customId);
     accordionInput.setAttribute("id", customId);
 
@@ -42,7 +31,7 @@ let initAccordions = (element) => {
     // Ajouter un evenement pour que lorsqu'un accordion est cliqué, activer au non celon son état
     accordionInput.addEventListener("change", function () {
         // Si l'accordion est de type 'radio' alors mettre à jours tout les autres accordions de la même famille grâce à l'attribut 'name'
-        if (accordionInput.getAttribute("type") == "radio") {
+        if (accordionInput.getAttribute("type") === "radio") {
             let inputList = document.querySelectorAll(`input[name='${accordionInput.getAttribute("name")}']`)
             inputList.forEach((input) => {
                 toggle(input);

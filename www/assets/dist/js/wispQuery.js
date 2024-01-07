@@ -105,6 +105,37 @@ let Json = () => {
     };
 };
 
+function uniqueId(pattern = 10, prefix='', suffix='') {
+    let gen = (l, i = '*') => {
+        const lower = 'abcdefghijklmnopqrstuvwxyz', upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', nums = '0123456789';
+        let c = () => {
+            if(i==='*') return lower + upper + nums;
+            if(i==='y') return lower + upper;
+            if(i==='X') return upper;
+            if(i==='x') return lower;
+            if(i==='0') return nums;
+        }, id = '';
+        for (let j = 0; j < l; j++) id += c().charAt(Math.floor(Math.random() * c().length));
+        return id;
+    }
+
+    let result, exitIndex = [];
+    if (isNaN(pattern)) {
+        patternArray = pattern.split('');
+        [...pattern.matchAll(/[0xXy*]/g)].forEach(e => {
+            if (pattern[e.index - 1] !== '/') patternArray[e.index] = gen(1, e[0]);
+            else exitIndex.push(e.index - 1);
+        });
+        for (var i = exitIndex.length; i > 0; i--) {
+            patternArray[exitIndex[i - 1]] = '';
+        }
+        result = patternArray.toString().replaceAll(',', '');
+    } else result = gen(pattern);
+
+    return prefix + result + suffix;
+}
+
+
 let SList = () => {
     return {
         From: (str) => {

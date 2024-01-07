@@ -2,6 +2,7 @@
 
 namespace App\Controllers\FrontOffice;
 use App\Core\View;
+use App\Models\Article;
 use App\Models\Category;
 use App\Models\Pages;
 use App\Models\User;

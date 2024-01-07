@@ -23,9 +23,15 @@
   action: register
   restricted: false
 
+
 /dashboard/builder:
   controller: BackOffice/Editor
   action: pageBuilder
+
+/dashboard/builder/last-articles:
+  controller: BackOffice/Editor
+  action: lastArticles
+
 
 /dashboard/users:
   controller: BackOffice/User
