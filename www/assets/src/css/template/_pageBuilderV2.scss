@@ -324,6 +324,10 @@ $bars-size: 19vw;
             display: flex;
             justify-content: center;
 
+            & .components:not(.sortable-placeholder) {
+                display: none;
+            }
+
             & .editor-container {
                 width: 100%;
                 min-height: 100vh; // TODO: Changer pour fit-content
