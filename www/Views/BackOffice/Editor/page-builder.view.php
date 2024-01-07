@@ -356,12 +356,9 @@
                             <input id="accordion-headers" type="radio" class="accordion-toggle" name="toggle" />
                             <label for="accordion-headers"><i class="ri-add-line"></i> Headers</label>
                             <section class="sortable-models">
-                                <section class="banner editable"
-                                         style="background-image: url(/assets/images/banner.jpg);">
-                                </section>
+                                <section class="banner editable" style="background-image: url(/assets/images/banner.jpg);"></section>
                                 <hr>
-                                <section class="banner banner-text editable"
-                                         style="background-image: url(/assets/images/banner.jpg);">
+                                <section class="banner banner-text editable"style="background-image: url(/assets/images/banner.jpg);">
                                     <p class="editable editable-text">Lorem ipsum dolor sit amet
                                         consectetur adipisicing elit.
                                         Perferendis

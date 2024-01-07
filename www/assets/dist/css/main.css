@@ -2955,6 +2955,9 @@ img {
 .page-builder-main-editor::-webkit-scrollbar-thumb:hover {
   background: #a3aed0;
 }
+.page-builder-main-editor .components:not(.sortable-placeholder) {
+  display: none;
+}
 .page-builder-main-editor .editor-container {
   width: 100%;
   min-height: 100vh;

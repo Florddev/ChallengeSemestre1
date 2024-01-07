@@ -60,9 +60,11 @@ function handleElementClick(event) {
     event.stopPropagation();
     const elem = event.currentTarget;
 
+    /*
     if (elem.tagName == "IMG" || window.getComputedStyle(elem).backgroundImage !== 'none') {
         addClickEventChangeImg(elem);
     }
+    */
 
     displayEditorAreaFor(elem);
 
@@ -321,16 +323,41 @@ function setSortableToElement(element) {
     });
 }
 
+async function setOuterHTMLAsync(elem, newHTML) {
+    return new Promise(function(resolve) {
+        elem.outerHTML = newHTML;
+        // Utilisez setTimeout pour permettre au navigateur de mettre à jour le DOM
+        setTimeout(function() {
+            resolve();
+        }, 0);
+    });
+}
+
 // Gestionnaire de l'ajout d'éléments triables
 function handleSortableAdd(evt) {
-    makeElementeditable(evt.item);
-    setSortableToElement(evt.item);
-    updateColumnStyle();
+    let elem = _(evt.item);
+    let initElement = e => {
+        makeElementeditable(e);
+        setSortableToElement(e);
+        updateColumnStyle();
 
-    evt.item.querySelectorAll(".editable").forEach(makeElementeditable);
-    evt.item.querySelectorAll('.sortable-element').forEach(setSortableToElement);
-    //evt.item.outerHTML = "Rien";
-    saveState();
+        e.querySelectorAll(".editable").forEach(makeElementeditable);
+        e.querySelectorAll('.sortable-element').forEach(setSortableToElement);
+
+        saveState();
+    }
+
+    let partialSrc = elem.attr("data-partial-src");
+    if(partialSrc !== null){
+        partial(partialSrc).then(result => {
+            let newElement = new DOMParser().parseFromString(result.toString(), 'text/html').body.firstChild;
+            elem.parentNode.replaceChild(newElement, elem);
+            elem = newElement;
+            initElement(elem);
+        });
+    } else {
+        initElement(elem);
+    }
 }
 
 // Initialisation de la fonctionnalité de tri pour le conteneur sortable
