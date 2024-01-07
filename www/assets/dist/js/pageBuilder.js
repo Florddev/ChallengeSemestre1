@@ -281,12 +281,12 @@ function addPopup(targetElement) {
     popupElement.setAttribute("contenteditable", "false");
     popupElement.style.display = 'block';
 
-    if (targetElement.tagName == "IMG") {
+    if (targetElement.tagName === "IMG") {
         targetElement = targetElement.parentElement;
     }
 
     const rect = targetElement.getBoundingClientRect();
-    if (hasOverflowHidden(targetElement) || (rect.top < 100 && !targetElement.classList.contains("nav__item"))) {
+    if (hasOverflowHidden(targetElement) || (rect.top < 200 && !targetElement.classList.contains("nav__item"))) {
         popupElement.style.transform = 'translate(0, 0)';
     }
 
@@ -337,17 +337,18 @@ async function setOuterHTMLAsync(elem, newHTML) {
 function handleSortableAdd(evt) {
     let elem = _(evt.item);
     let initElement = e => {
-        makeElementeditable(e);
-        setSortableToElement(e);
-        updateColumnStyle();
 
+
+        if(e.classList.contains('editable')) makeElementeditable(e);
+        if(e.classList.contains('sortable-element')) setSortableToElement(e);
         e.querySelectorAll(".editable").forEach(makeElementeditable);
         e.querySelectorAll('.sortable-element').forEach(setSortableToElement);
 
+        updateColumnStyle();
         saveState();
     }
 
-    let partialSrc = elem.attr("data-partial-src");
+    let partialSrc = elem.attr("data-partial-src").replace("{{origin}}", window.location.origin);
     if(partialSrc !== null){
         partial(partialSrc).then(result => {
             let newElement = new DOMParser().parseFromString(result.toString(), 'text/html').body.firstChild;
@@ -365,6 +366,7 @@ function initSortableContainer() {
     const sortableContainer = _('.editor-container .sortable-container')[0];
     setSortableToElement(sortableContainer);
 }
+
 
 // Fonction pour afficher la zone d'édition pour un élément
 function displayEditorAreaFor(elem) {
