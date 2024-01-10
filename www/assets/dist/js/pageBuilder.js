@@ -79,7 +79,7 @@ function handleElementClick(event) {
 }
 
 // Initialisation de la fonctionnalité de tri
-function initSortableElements() {
+function initSortableModels() {
     _('.sortable-models').forEach(sortableList => {
         sortableList.setAttribute("data-sortable", true);
         new Sortable(sortableList, {
@@ -141,7 +141,7 @@ function handleDisplayModeClick(modeItem) {
 
 // Fonction pour obtenir le contenu final de la page
 function getFinalPage() {
-    let editorContent = _(".editor-container .editor-content")[0].cloneNode(true);
+    let editorContent = _(".editor-container .editor-content .main")[0].cloneNode(true);
 
     editorContent.querySelectorAll("*[contenteditable], .editable, .selected-item, .sortable-element, .editable-text, *[draggable], .full-width").forEach(elem => {
         elem.removeAttribute("contenteditable");
@@ -309,6 +309,10 @@ function setNavbarSortableElement(element) {
         ghostClass: 'sortable-placeholder',
         onAdd: handleSortableAdd
     });
+}
+
+function initSortableElements(){
+    _('.sortable-element').forEach(e => setSortableToElement(e));
 }
 
 // Initialisation de la fonctionnalité de tri pour un élément
@@ -512,7 +516,24 @@ function saveImageChanges(elem, imageUrl) {
     document.querySelector('.edit-container').remove();
 }
 
-
+function savePage(){
+    let origin = window.location.origin;
+    ajax("POST", {
+        url: origin + "/dashboard/builder-save-page",
+        data: {
+            id: _("#page-id").val(),
+            url: _("#page-url").val(),
+            title: _("#page-title").val(),
+            content: minify(_("#page-content").html())
+        },
+        success: (result) => {
+            if(result !== "") {
+                let newUrl = origin + "/dashboard/builder/" +result;
+                history.pushState(null, null, newUrl);
+            }
+        }
+    });
+}
 
 let m_pos;
 let currentResizer;
@@ -579,6 +600,7 @@ function deselectSelectedItem(){
 // Initialisation de l'éditeur
 function initializeEditor() {
     initSortableElements();
+    initSortableModels();
     updateColumnStyle();
 
     //const navbar = document.querySelector(".navbar");

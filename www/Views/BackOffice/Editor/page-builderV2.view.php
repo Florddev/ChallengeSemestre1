@@ -11,12 +11,18 @@
 </head>
 
 <body>
-
     <div class="page-builder">
         <header class="page-builder-header">
             <section class="page-builder-header-start">
-                <h1>Wisp - Accueil</h1>
-                <p>https://wisp.com</p>
+                <input type="hidden" id="page-id" value="<?= $currentPage["id"] ?>">
+                <h1>
+                    <label for="page-title">Wisp&nbsp;-&nbsp;</label>
+                    <input id="page-title" type="text" value="<?= $currentPage["title"] ?>">
+                </h1>
+                <p>
+                    <label for="page-url"><?= $host ?>/</label>
+                    <input id="page-url" type="text" value="<?= ltrim($currentPage["url"], "/") ?>">
+                </p>
             </section>
             <section class="page-builder-header-mid">
                 <div class="header-mid-start"></div>
@@ -39,7 +45,7 @@
             </section>
             <section class="page-builder-header-end">
                 <ul class="header-end-list">
-                    <li><i class="ri-save-line"></i></li>
+                    <li onclick="savePage()"><i class="ri-save-line"></i></li>
                     <li><i class="ri-play-line"></i></li>
                     <li><button class="btn btn-primary btn-small">Publier</button></li>
                     <li><i class="ri-shield-user-line"></i></li>
@@ -295,7 +301,7 @@
                         </div>
                         -->
 
-                        <div class="main sortable-container editable" editable-popup="false"></div>
+                        <div class="main sortable-container editable" editable-popup="false" id="page-content"><?= $currentPage["content"] ?></div>
 
                     </div>
                 </div>

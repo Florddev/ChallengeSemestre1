@@ -13,9 +13,9 @@ class Main
     {
         /*
         $page = new Pages();
-        $page->setUrl("/myCustomPage");
-        $page->setTitle("Ma page custom");
-        $page->setContent("<h1>Ma page généré</h1><p>lorem ipsum blabla...</p>");
+        $page->setUrl("/contact");
+        $page->setTitle("Contact");
+        $page->setContent("<h1 class='editable editable-text'>Ma page de contact</h1>");
         $page->setMetaDescription("La meta description");
         $page->setIdCreator(2);
         $page->save();

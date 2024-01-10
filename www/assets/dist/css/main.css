@@ -2694,6 +2694,9 @@ img {
   color: #1b254b;
   border: 0.1875rem solid #eaebee;
 }
+.page-builder [contenteditable=true] {
+  outline: none;
+}
 .page-builder hr {
   border: 0;
   height: 0.1875rem;
@@ -2719,12 +2722,24 @@ img {
   justify-content: center;
   padding: 0 1.25rem;
 }
+.page-builder-header-start h1 {
+  font-weight: 900;
+  display: flex;
+}
 .page-builder-header-start p {
   color: #a3aed0;
   font-weight: 300;
 }
-.page-builder-header-start h1 {
-  font-weight: 900;
+.page-builder-header-start input {
+  display: inline-block;
+  color: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  width: fit-content;
+  margin: 0;
+  padding: 0;
+  border: none;
 }
 .page-builder-header-mid {
   position: relative;

@@ -94,6 +94,13 @@ let ajax = (method = "POST", request) => {  // Request: url, data, async, succes
     return ajaxFuncs;
 };
 
+let minify = s => {
+    // Supprimer les commentaires HTML (<!-- ... -->)
+    s = s.replace(/<!--[\s\S]*?-->/g, '');
+    // Minifier le code
+    return s.replace(/\>[\r\n ]+\</g, "><").replace(/(<.*?>)|\s+/g, (m, $1) => $1 ? $1 : ' ').trim();
+};
+
 let Json = () => {
     return {
         From: (str) => {

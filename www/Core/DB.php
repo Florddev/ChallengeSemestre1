@@ -89,11 +89,15 @@ class DB
 
     public function getAllBy(array $data, string $return = "array"): array
     {
-        $sql = "SELECT * FROM " . $this->table . " WHERE ";
-        foreach ($data as $column => $value) {
-            $sql .= " " . $column . "=:" . $column . " AND";
+        $sql = "SELECT * FROM " . $this->table;
+
+        if(!empty($data) && count($data) > 0){
+            $sql .= " WHERE ";
+            foreach ($data as $column => $value) {
+                $sql .= " " . $column . "=:" . $column . " AND";
+            }
+            $sql = rtrim($sql, ' AND') . ";";
         }
-        $sql = rtrim($sql, ' AND') . ";";
 
         $queryPrepared = $this->pdo->prepare($sql);
         $queryPrepared->execute($data);

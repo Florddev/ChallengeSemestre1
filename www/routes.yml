@@ -32,6 +32,10 @@
   controller: BackOffice/Editor
   action: lastArticles
 
+/dashboard/builder-save-page:
+  controller: BackOffice/Editor
+  action: savePage
+
 
 /dashboard/users:
   controller: BackOffice/User
