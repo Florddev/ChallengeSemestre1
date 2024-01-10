@@ -60,20 +60,22 @@ function handleElementClick(event) {
     event.stopPropagation();
     const elem = event.currentTarget;
 
-    /*
-    if (elem.tagName == "IMG" || window.getComputedStyle(elem).backgroundImage !== 'none') {
-        addClickEventChangeImg(elem);
+    if(elem){
+        /*
+        if (elem.tagName == "IMG" || window.getComputedStyle(elem).backgroundImage !== 'none') {
+            addClickEventChangeImg(elem);
+        }
+        */
+
+        displayEditorAreaFor(elem);
+        deselectSelectedItem();
+        _('.editor-accordion').forEach(e => _(e).css('display', 'block'));
+
+        elem.classList.add("selected-item");
+
+        if(_(elem).attr("editable-popup") !== "false") addPopup(elem);
+        //setElementResizable(elem);
     }
-    */
-
-    displayEditorAreaFor(elem);
-
-    _('.editor-accordion').forEach(e => _(e).css('display', 'block'));
-    _(".selected-item").forEach(e => e.classList.remove("selected-item"));
-    _(".action-popup").forEach(p => p.remove());
-    elem.classList.add("selected-item");
-
-    if(_(elem).attr("editable-popup") !== "false") addPopup(elem);
 }
 
 // Initialisation de la fonctionnalité de tri
@@ -98,9 +100,6 @@ function updateNavbarStyle(timeout = 0) {
     const parentBox = _('.editor-content')[0];
     const navbar = parentBox.querySelector('.navbar');
     const breakpoint = 700;
-
-    console.log(parentBox);
-    console.log(navbar);
 
     setTimeout(() => {
         const parentWidth = parentBox.offsetWidth;
@@ -264,6 +263,7 @@ function duplicateElement(targetElement) {
 function removeElement(targetElement) {
     targetElement.remove();
     saveState();
+    deselectSelectedItem();
 }
 
 // Fonction pour ajouter un popup à un élément
@@ -335,6 +335,11 @@ async function setOuterHTMLAsync(elem, newHTML) {
 
 // Gestionnaire de l'ajout d'éléments triables
 function handleSortableAdd(evt) {
+    // Empêcher le glisser-déposer si la classe no-drag est présente sur l'élément
+    if (evt.from.classList.contains('no-drag')) {
+        evt.preventDefault();
+    }
+
     let elem = _(evt.item);
     let initElement = e => {
 
@@ -348,8 +353,9 @@ function handleSortableAdd(evt) {
         saveState();
     }
 
-    let partialSrc = elem.attr("data-partial-src").replace("{{origin}}", window.location.origin);
+    let partialSrc = elem.attr("data-partial-src");
     if(partialSrc !== null){
+        partialSrc = partialSrc.replace("{{origin}}", window.location.origin);
         partial(partialSrc).then(result => {
             let newElement = new DOMParser().parseFromString(result.toString(), 'text/html').body.firstChild;
             elem.parentNode.replaceChild(newElement, elem);
@@ -360,6 +366,7 @@ function handleSortableAdd(evt) {
         initElement(elem);
     }
 }
+
 
 // Initialisation de la fonctionnalité de tri pour le conteneur sortable
 function initSortableContainer() {
@@ -505,6 +512,70 @@ function saveImageChanges(elem, imageUrl) {
     document.querySelector('.edit-container').remove();
 }
 
+
+
+let m_pos;
+let currentResizer;
+function addResizeEvent(elem) {
+    function resize(e) {
+        if (currentResizer) {
+            let parent = elem.parentNode;
+
+            if(parent){
+                let delta = currentResizer === "left" || currentResizer === "right" ? m_pos - e.x : m_pos - e.y;
+                m_pos = currentResizer === "left" || currentResizer === "right" ? e.x : e.y;
+
+                let p_width = parseInt(getComputedStyle(parent, '').width);
+                let p_height = parseInt(getComputedStyle(parent, '').height);
+
+                if (currentResizer === "left") parent.style.width = (p_width + delta) + "px";
+                if (currentResizer === "right") parent.style.width = (p_width - delta) + "px";
+                if (currentResizer === "top") parent.style.height = (p_height + delta) + "px";  // Ajustement ici
+                if (currentResizer === "bottom") parent.style.height = (p_height - delta) + "px";
+            }
+        }
+    }
+
+    elem.addEventListener("mousedown", function (e) {
+        currentResizer = elem.getAttribute("resizer");
+        m_pos = currentResizer === "left" || currentResizer === "right" ? e.x : e.y;
+        document.addEventListener("mousemove", function (event) {
+            resize(event);
+        }, false);
+    }, false);
+
+    document.addEventListener("mouseup", function () {
+        currentResizer = null;
+        document.removeEventListener("mousemove", resize, false);
+    }, false);
+}
+
+//var resize_el = document.querySelectorAll("[resizer]");
+//resize_el.forEach(e => addResizeEvent(e));
+
+function setElementResizable(elem){
+    let resizer = ["top", "right", "bottom", "left"];
+    resizer.forEach(r => {
+        let resizerElement = document.createElement('li');
+        _(resizerElement).attr("resizer", r);
+
+        addResizeEvent(resizerElement);
+        elem.append(resizerElement);
+    });
+}
+
+function deselectSelectedItem(){
+    _(".selected-item").forEach((e) => _(e).removeClass("selected-item"));
+
+    let popup = _(".action-popup");
+    if(popup !== undefined) popup.forEach(r => r.remove());
+
+    let resizer = _("[resizer]");
+    if(resizer !== undefined) resizer.forEach(r => r.remove());
+
+    _('.editor-accordion').forEach(e => _(e).css('display', 'none'));
+}
+
 // Initialisation de l'éditeur
 function initializeEditor() {
     initSortableElements();
@@ -533,18 +604,13 @@ function initializeEditor() {
         }
     }
     _(".page-builder-main-editor")[0].onclick = (evt) => {
-        // TODO: Créer une fonction désélection de l'element séléctionné
-        _(".selected-item").forEach((e) => {
-            _(e).removeClass("selected-item");
-        })
-        let popup = _(".action-popup")[0];
-        if(popup !== undefined) popup.remove();
-        _('.editor-accordion').forEach(e => _(e).css('display', 'none'));
+        deselectSelectedItem();
     }
 }
-
 // Initialisation de l'éditeur lors du chargement de la page
 window.addEventListener('load', initializeEditor);
+
+
 
 let initialSize = 'empty';
 let initialPadding = 'empty';
@@ -575,5 +641,4 @@ function closeShutters(input, target){
             parent.css("right", initialSize);
         }
     }
-    console.log(initialSize);
 }
