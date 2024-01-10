@@ -294,10 +294,10 @@
                             </div>
                         </div>
                         -->
+
                         <div class="main sortable-container editable" editable-popup="false"></div>
 
                     </div>
-
                 </div>
             </section>
             <section class="page-builder-main-tools" id="editorShutter">

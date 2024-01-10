@@ -492,3 +492,46 @@ $bars-size: 19vw;
         }
     }
 }
+
+
+.resizer-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+[resizer] {
+    list-style: none;
+    position: absolute;
+    width: rem(10);
+    height: rem(10);
+    border: 2px solid var(--tercery);
+    background-color: var(--white);
+    transform: translate(-50%, -50%);
+}
+
+[resizer="top"] {
+    top: 0;
+    left: 50%;
+    cursor: s-resize;
+}
+
+[resizer="right"] {
+    top: 50%;
+    left: 100%;
+    cursor: e-resize;
+}
+
+[resizer="bottom"] {
+    top: 100%;
+    left: 50%;
+    cursor: s-resize;
+}
+
+[resizer="left"] {
+    top: 50%;
+    left: 0;
+    cursor: e-resize;
+}
