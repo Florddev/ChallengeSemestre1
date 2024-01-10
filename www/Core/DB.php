@@ -54,6 +54,13 @@ class DB
         return $object->getOneBy(["id"=>$id], "object");
     }
 
+    public static function getBy(array $data)
+    {
+        $class = get_called_class();
+        $object = new $class();
+        return $object->getOneBy($data, "object");
+    }
+
     //$data = ["id"=>1] ou ["email"=>"y.skrzypczyk@gmail.com"]
     public function getOneBy(array $data, string $return = "array")
     {
@@ -61,10 +68,10 @@ class DB
         foreach ($data as $column=>$value){
             $sql .= " ".$column."=:".$column. " AND";
         }
-        $sql = substr($sql, 0, -3).";";
-
+        $sql = substr($sql, 0, -3);
         $queryPrepared = $this->pdo->prepare($sql);
         $queryPrepared->execute($data);
+
         if($return == "object"){
             $queryPrepared->setFetchMode(\PDO::FETCH_CLASS, get_called_class());
         }

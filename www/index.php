@@ -2,6 +2,7 @@
 
 namespace App;
 use App\Controllers\Error;
+use App\Models\Pages;
 
 spl_autoload_register("App\myAutoloader");
 
@@ -21,7 +22,7 @@ function myAutoloader(String $class): void
 // Exemple on doit avoir "/", "/login", "/logout", ...
 $uri = strtolower($_SERVER["REQUEST_URI"]); // Variable supper global
 $uri = strtok($uri, "?");
-$uri = strlen($uri) > 1 ? rtrim($uri) : $uri; // nettoyer correctement l'uri des / a la fin de la ligne
+$uri = strlen($uri) > 1 ? rtrim($uri, "/") : $uri; // nettoyer correctement l'uri des / a la fin de la ligne
 
 // Récupérer le contenu du fichier routes.yaml
 if (!file_exists("routes.yml")) {
@@ -70,7 +71,11 @@ if(!empty($listOfRoutes[$uri])){
         } else die("La route ne contient pas d'action");
     } else die("La route ne contient pas de controller");
 } else {
-    require "Controllers/Error.php";
-    $customError = new Error();
-    $customError->page404();
+    if($page = Pages::getBy(["url"=>$uri])){
+        echo $page->getContent();
+    } else {
+        require "Controllers/Error.php";
+        $customError = new Error();
+        $customError->page404();
+    }
 }
