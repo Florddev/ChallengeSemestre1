@@ -6,6 +6,7 @@ class View
 {
     private String $templateName;
     private String $viewName;
+    private array $data = [];
 
     public function __construct(string $viewName, string $templateName = "")
     {
@@ -42,6 +43,11 @@ class View
         $this->viewName = "Views/".$viewName.".view.php";
     }
 
+    public function assign(string $key, $value): void
+    {
+        $this->data[$key]=$value;
+    }
+
     public function partial(String $partielView)
     {
         if(!file_exists("Views/Partial/".$partielView.".partialView.php"))
@@ -53,6 +59,7 @@ class View
 
     public function __destruct()
     {
+        extract($this->data);
         if(empty($this->templateName)) include $this->viewName;
         else include $this->templateName;
     }

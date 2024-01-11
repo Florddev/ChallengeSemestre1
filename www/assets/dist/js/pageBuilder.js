@@ -1,41 +1,85 @@
-// Fonction utilitaire pour la sélection d'éléments
-function _(selector) {
-    return selector.startsWith('#') ? document.querySelector(selector) : document.querySelectorAll(selector);
+let undoStack = [];
+let redoStack = [];
+
+// Fonction pour sauvegarder l'état actuel dans la pile undo
+function saveState() {
+    const currentState = _(".editor-content")[0].innerHTML;
+    undoStack.push(currentState);
+
+    // Réinitialise la pile redo lorsqu'un nouvel état est enregistré
+    redoStack = [];
 }
+// Fonction pour annuler l'action
+function undo() {
+    if (undoStack.length > 1) {
+        const currentState = undoStack.pop();
+        redoStack.push(currentState);
+        const previousState = undoStack[undoStack.length - 1];
+        _(".editor-content")[0].innerHTML = previousState;
+    }
+    initializeEditor();
+}
+
+// Fonction pour rétablir l'action
+function redo() {
+    if (redoStack.length > 0) {
+        const nextState = redoStack.pop();
+        undoStack.push(nextState);
+        _(".editor-content")[0].innerHTML = nextState;
+    }
+    initializeEditor();
+}
+// Gestionnaire d'événement pour les touches
+document.addEventListener('keydown', function (event) {
+    if (event.ctrlKey && event.key === 'z') {
+        undo();
+    } else if (event.ctrlKey && event.key === 'y') {
+        redo();
+    }
+});
+
+
 
 // Fonction pour rendre un élément éditable
 function makeElementeditable(elem) {
     if (elem.classList.contains("editable")) {
         elem.addEventListener('click', handleElementClick);
     }
+    if (elem.classList.contains("editable-text")) {
+        _(elem).dblclick((e) => {
+            if (_(e.target).attr("contenteditable") !== "true") {
+                saveState();
+                _(e.target).attr("contenteditable", "true");
+            }
+        });
+    }
 }
 
 // Gestionnaire de clic sur un élément éditable
 function handleElementClick(event) {
-    console.log("test");
-
     event.stopPropagation();
-    _("[rel='props']")[0].click();
-    document.getElementById("props-general-accordion").setAttribute("checked", true);
-
-    _("#props-general").innerHTML = "";
     const elem = event.currentTarget;
 
-    if (elem.tagName == "IMG" || window.getComputedStyle(elem).backgroundImage !== 'none') {
-        addClickEventChangeImg(elem);
+    if(elem){
+        /*
+        if (elem.tagName == "IMG" || window.getComputedStyle(elem).backgroundImage !== 'none') {
+            addClickEventChangeImg(elem);
+        }
+        */
+
+        displayEditorAreaFor(elem);
+        deselectSelectedItem();
+        _('.editor-accordion').forEach(e => _(e).css('display', 'block'));
+
+        elem.classList.add("selected-item");
+
+        if(_(elem).attr("editable-popup") !== "false") addPopup(elem);
+        //setElementResizable(elem);
     }
-
-    displayEditorAreaFor(elem);
-
-    _(".selected-item").forEach(e => e.classList.remove("selected-item"));
-    _(".action-popup").forEach(p => p.remove());
-    elem.classList.add("selected-item");
-
-    addPopup(elem);
 }
 
 // Initialisation de la fonctionnalité de tri
-function initSortableElements() {
+function initSortableModels() {
     _('.sortable-models').forEach(sortableList => {
         sortableList.setAttribute("data-sortable", true);
         new Sortable(sortableList, {
@@ -56,9 +100,6 @@ function updateNavbarStyle(timeout = 0) {
     const parentBox = _('.editor-content')[0];
     const navbar = parentBox.querySelector('.navbar');
     const breakpoint = 700;
-
-    console.log(parentBox);
-    console.log(navbar);
 
     setTimeout(() => {
         const parentWidth = parentBox.offsetWidth;
@@ -100,7 +141,7 @@ function handleDisplayModeClick(modeItem) {
 
 // Fonction pour obtenir le contenu final de la page
 function getFinalPage() {
-    let editorContent = _(".editor-container .editor-content")[0].cloneNode(true);
+    let editorContent = _(".editor-container .editor-content .main")[0].cloneNode(true);
 
     editorContent.querySelectorAll("*[contenteditable], .editable, .selected-item, .sortable-element, .editable-text, *[draggable], .full-width").forEach(elem => {
         elem.removeAttribute("contenteditable");
@@ -129,8 +170,10 @@ function initEditorActions() {
     });
 }
 
+
 // Gestionnaire de l'action d'édition
 function handleEditAction(elem) {
+    saveState();
     elem.classList.toggle("active");
     _(".editor-container .editable-text").forEach(e => {
         const editable = e.getAttribute("contenteditable");
@@ -173,7 +216,6 @@ function selectParentWithClass(element, className) {
         parent = parent.parentElement;
     }
 
-    console.log(parent);
     if (parent && parent.classList.contains(className)) {
         handleElementClick({ currentTarget: parent, stopPropagation: () => { } });
     }
@@ -188,6 +230,7 @@ function initPopupActions(targetElement) {
     popupLiUp.addEventListener('click', (event) => {
         event.stopPropagation(); // Empêcher la propagation du clic à l'élément parent
         selectParentWithClass(targetElement, 'editable');
+        saveState();
     });
 
     const popupLiCopy = document.createElement('li');
@@ -213,11 +256,14 @@ function duplicateElement(targetElement) {
 
     clonedElement.querySelectorAll('.editable').forEach(makeElementeditable);
     clonedElement.querySelectorAll('.sortable-element').forEach(setSortableToElement);
+    saveState();
 }
 
 // Fonction pour supprimer un élément
 function removeElement(targetElement) {
     targetElement.remove();
+    saveState();
+    deselectSelectedItem();
 }
 
 // Fonction pour ajouter un popup à un élément
@@ -235,12 +281,12 @@ function addPopup(targetElement) {
     popupElement.setAttribute("contenteditable", "false");
     popupElement.style.display = 'block';
 
-    if (targetElement.tagName == "IMG") {
+    if (targetElement.tagName === "IMG") {
         targetElement = targetElement.parentElement;
     }
 
     const rect = targetElement.getBoundingClientRect();
-    if (hasOverflowHidden(targetElement) || (rect.top < 100 && !targetElement.classList.contains("nav__item"))) {
+    if (hasOverflowHidden(targetElement) || (rect.top < 200 && !targetElement.classList.contains("nav__item"))) {
         popupElement.style.transform = 'translate(0, 0)';
     }
 
@@ -250,7 +296,7 @@ function addPopup(targetElement) {
 // Fonction pour vérifier si un élément a overflow: hidden
 function hasOverflowHidden(element) {
     const style = window.getComputedStyle(element);
-    return style.overflow === 'hidden';
+    return style.overflow === 'hidden' || style.overflow === 'scroll';
 }
 
 // Initialisation de la fonctionnalité de tri pour un élément
@@ -265,6 +311,10 @@ function setNavbarSortableElement(element) {
     });
 }
 
+function initSortableElements(){
+    _('.sortable-element').forEach(e => setSortableToElement(e));
+}
+
 // Initialisation de la fonctionnalité de tri pour un élément
 function setSortableToElement(element) {
     element.setAttribute("data-sortable", true);
@@ -277,15 +327,50 @@ function setSortableToElement(element) {
     });
 }
 
+async function setOuterHTMLAsync(elem, newHTML) {
+    return new Promise(function(resolve) {
+        elem.outerHTML = newHTML;
+        // Utilisez setTimeout pour permettre au navigateur de mettre à jour le DOM
+        setTimeout(function() {
+            resolve();
+        }, 0);
+    });
+}
+
 // Gestionnaire de l'ajout d'éléments triables
 function handleSortableAdd(evt) {
-    makeElementeditable(evt.item);
-    setSortableToElement(evt.item);
-    updateColumnStyle();
+    // Empêcher le glisser-déposer si la classe no-drag est présente sur l'élément
+    if (evt.from.classList.contains('no-drag')) {
+        evt.preventDefault();
+    }
 
-    evt.item.querySelectorAll(".editable").forEach(makeElementeditable);
-    evt.item.querySelectorAll('.sortable-element').forEach(setSortableToElement);
+    let elem = _(evt.item);
+    let initElement = e => {
+
+
+        if(e.classList.contains('editable')) makeElementeditable(e);
+        if(e.classList.contains('sortable-element')) setSortableToElement(e);
+        e.querySelectorAll(".editable").forEach(makeElementeditable);
+        e.querySelectorAll('.sortable-element').forEach(setSortableToElement);
+
+        updateColumnStyle();
+        saveState();
+    }
+
+    let partialSrc = elem.attr("data-partial-src");
+    if(partialSrc !== null){
+        partialSrc = partialSrc.replace("{{origin}}", window.location.origin);
+        partial(partialSrc).then(result => {
+            let newElement = new DOMParser().parseFromString(result.toString(), 'text/html').body.firstChild;
+            elem.parentNode.replaceChild(newElement, elem);
+            elem = newElement;
+            initElement(elem);
+        });
+    } else {
+        initElement(elem);
+    }
 }
+
 
 // Initialisation de la fonctionnalité de tri pour le conteneur sortable
 function initSortableContainer() {
@@ -293,59 +378,82 @@ function initSortableContainer() {
     setSortableToElement(sortableContainer);
 }
 
+
 // Fonction pour afficher la zone d'édition pour un élément
 function displayEditorAreaFor(elem) {
-    const editorArea = _("#props-general");
-    const elemToAppend = [];
-
     const elemStyle = getComputedStyle(elem);
-    const toEdit = [
-        { attr: "width", name: "Width" },
-        { attr: "height", name: "Height" },
-        { attr: "marginLeft", name: "Margin Left" },
-        { attr: "marginRight", name: "Margin Right" },
-        { attr: "marginTop", name: "Margin Top" },
-        { attr: "marginBottom", name: "Margin Bottom" },
-        { attr: "paddingLeft", name: "Padding Left" },
-        { attr: "paddingRight", name: "Padding Right" },
-        { attr: "paddingTop", name: "Padding Top" },
-        { attr: "paddingBottom", name: "Padding Bottom" },
-    ];
+    let initInputsFromPartial = (url, destElement) => {
+        partial(url).then((result) => {
+            destElement.innerHTML = result;
 
-    toEdit.forEach(edt => {
-        const container = document.createElement("div");
-        const currentValue = elem.style[edt.attr] != "" ? elem.style[edt.attr] : elemStyle[edt.attr];
-        const numericValue = parseFloat(currentValue);
-        const roundedValue = Math.round(numericValue);
-        const unit = currentValue.replace(numericValue, "");
-        const roundedStyle = roundedValue + unit;
+            destElement.querySelectorAll("select[edit-mp-input]").forEach((select) => {
+                let s = _(select), style = s.attr("edit-mp-input");
 
-        const label = document.createElement("label");
-        label.innerHTML = edt.name + ":";
+                let currentValue = (elem.style[style] === '' ? s.attr("default-value") : elem.style[style]);
+                if(currentValue !== null) currentValue = currentValue.replaceAll('"', '').replaceAll('&quot;', '');
 
-        const inputNumber = document.createElement("input");
-        inputNumber.classList.add("draggable-input");
-        inputNumber.setAttribute("value", roundedStyle);
-        inputNumber.style.display = 'inline';
-        inputNumber.style.width = "100%";
+                s.val(currentValue);
+                s.change(evt => {
+                    elem.style[style] = s.val();
+                });
+            });
 
-        setInputDraggable(inputNumber);
+            destElement.querySelectorAll("input[edit-mp-input]").forEach((input) => {
+                input = _(input);
+                var style = input.attr("edit-mp-input");
 
-        inputNumber.addEventListener("input", () => {
-            elem.style[edt.attr] = inputNumber.value;
+                const currentValue = (elem.style[style] !== "" ? elem.style[style] : elemStyle[style]).replace("auto", "Auto").replace("none", "");
+                const numericValue = parseFloat(currentValue);
+                const roundedValue = Math.round(numericValue);
+                let unit = currentValue.replace(numericValue, "");
+
+                if(input.attr('type') === 'radio' || input.attr('type') === 'checkbox'){
+                    let inputToCheck = _(`input[type="${input.attr('type')}"][edit-mp-input="${style}"][value="${currentValue.toLowerCase()}"]`)[0];
+                    if(inputToCheck !== undefined) inputToCheck.setAttribute('checked', 'true');
+                    input.change(evt => {
+                        elem.style[style] = input.val();
+                    });
+                } else {
+
+                    const roundedStyle = roundedValue + unit;
+
+                    if(input.attr("draggable-input") !== 'false') input.classList.add("draggable-input");
+                    input.setAttribute("value", isNaN(roundedValue) ? currentValue : roundedValue);
+                    input.style.display = 'inline';
+                    input.style.width = "100%";
+
+                    setInputDraggable(input);
+
+                    let select = input.nextSibling.nextSibling;
+                    let hasSelect = select !== null && select !== undefined;
+                    if(hasSelect) select.value = unit;
+
+                    let inputEvent = () => {
+                        if(hasSelect && select.classList.contains('edit-unit')) {
+                            if(unit === '' || unit === undefined || unit === null || unit === 'Auto' || unit === 'none'){
+                                select.value = _(select).attr("default-value");
+                            }
+                            unit = select.value;
+                        }
+                        let val = parseInt(input.value);
+                        val = (isNaN(val) ? input.value : input.value + unit)
+                        elem.style[style] = val;
+                    }
+
+                    input.addEventListener("input", inputEvent);
+                    if(hasSelect) select.addEventListener("change", inputEvent);
+                }
+            });
         });
-
-        container.append(label, inputNumber);
-        container.classList.add("tools-container");
-        elemToAppend.push(container);
-    });
-
-    elemToAppend.forEach(e => editorArea.append(e));
+    }
+    let listEditorStyleArea = ["#editStyle-dimensions", "#editStyle-typo"];
+    listEditorStyleArea.forEach(e => initInputsFromPartial(_(e).attr("data-partial-src"), _(e)));
 }
 
 // Fonction pour rendre un champ d'entrée draggable
 function setInputDraggable(input) {
     input.addEventListener("mousedown", (event) => {
+        saveState();
         event.preventDefault();
         const startX = event.clientX;
         const startValue = parseFloat(input.value);
@@ -361,6 +469,7 @@ function setInputDraggable(input) {
         function handleDragEnd() {
             document.removeEventListener("mousemove", handleDragMove);
             document.removeEventListener("mouseup", handleDragEnd);
+            saveState();
         }
 
         document.addEventListener("mousemove", handleDragMove);
@@ -407,14 +516,96 @@ function saveImageChanges(elem, imageUrl) {
     document.querySelector('.edit-container').remove();
 }
 
+function savePage(){
+    let origin = window.location.origin;
+    ajax("POST", {
+        url: origin + "/dashboard/builder-save-page",
+        data: {
+            id: _("#page-id").val(),
+            url: _("#page-url").val(),
+            title: _("#page-title").val(),
+            content: minify(_("#page-content").html())
+        },
+        success: (result) => {
+            if(result !== "") {
+                let newUrl = origin + "/dashboard/builder/" +result;
+                history.pushState(null, null, newUrl);
+            }
+        }
+    });
+}
+
+let m_pos;
+let currentResizer;
+function addResizeEvent(elem) {
+    function resize(e) {
+        if (currentResizer) {
+            let parent = elem.parentNode;
+
+            if(parent){
+                let delta = currentResizer === "left" || currentResizer === "right" ? m_pos - e.x : m_pos - e.y;
+                m_pos = currentResizer === "left" || currentResizer === "right" ? e.x : e.y;
+
+                let p_width = parseInt(getComputedStyle(parent, '').width);
+                let p_height = parseInt(getComputedStyle(parent, '').height);
+
+                if (currentResizer === "left") parent.style.width = (p_width + delta) + "px";
+                if (currentResizer === "right") parent.style.width = (p_width - delta) + "px";
+                if (currentResizer === "top") parent.style.height = (p_height + delta) + "px";  // Ajustement ici
+                if (currentResizer === "bottom") parent.style.height = (p_height - delta) + "px";
+            }
+        }
+    }
+
+    elem.addEventListener("mousedown", function (e) {
+        currentResizer = elem.getAttribute("resizer");
+        m_pos = currentResizer === "left" || currentResizer === "right" ? e.x : e.y;
+        document.addEventListener("mousemove", function (event) {
+            resize(event);
+        }, false);
+    }, false);
+
+    document.addEventListener("mouseup", function () {
+        currentResizer = null;
+        document.removeEventListener("mousemove", resize, false);
+    }, false);
+}
+
+//var resize_el = document.querySelectorAll("[resizer]");
+//resize_el.forEach(e => addResizeEvent(e));
+
+function setElementResizable(elem){
+    let resizer = ["top", "right", "bottom", "left"];
+    resizer.forEach(r => {
+        let resizerElement = document.createElement('li');
+        _(resizerElement).attr("resizer", r);
+
+        addResizeEvent(resizerElement);
+        elem.append(resizerElement);
+    });
+}
+
+function deselectSelectedItem(){
+    _(".selected-item").forEach((e) => _(e).removeClass("selected-item"));
+
+    let popup = _(".action-popup");
+    if(popup !== undefined) popup.forEach(r => r.remove());
+
+    let resizer = _("[resizer]");
+    if(resizer !== undefined) resizer.forEach(r => r.remove());
+
+    _('.editor-accordion').forEach(e => _(e).css('display', 'none'));
+}
+
 // Initialisation de l'éditeur
 function initializeEditor() {
     initSortableElements();
+    initSortableModels();
     updateColumnStyle();
 
-    const navbar = document.querySelector(".navbar");
-    navbar.querySelectorAll(".editable").forEach(makeElementeditable);
-    navbar.querySelectorAll('.sortable-element').forEach(setNavbarSortableElement);
+    //const navbar = document.querySelector(".navbar");
+    _(".editor-content .editable").forEach(makeElementeditable);
+    _('.editor-content.sortable-element').forEach(setNavbarSortableElement);
 
     _("ul.editor-mode li").forEach(modeItem => {
         modeItem.addEventListener("click", () => handleDisplayModeClick(modeItem));
@@ -422,7 +613,54 @@ function initializeEditor() {
 
     initEditorActions();
     initSortableContainer();
-}
 
+    document.body.onclick = (e) => {
+        if (_(e.target).attr("contenteditable") !== "true") {
+            let ce = _(".editable-text[contenteditable='true']");
+            if (ce.length > 0) {
+                ce.forEach((elem) => {
+                    _(elem).attr("contenteditable", "false");
+                    saveState();
+                });
+            }
+        }
+    }
+    _(".page-builder-main-editor")[0].onclick = (evt) => {
+        deselectSelectedItem();
+    }
+}
 // Initialisation de l'éditeur lors du chargement de la page
 window.addEventListener('load', initializeEditor);
+
+
+
+let initialSize = 'empty';
+let initialPadding = 'empty';
+function closeShutters(input, target){
+    target = _("#" + target);
+    if(initialSize === "empty") initialSize = target.style.maxWidth;
+    if(initialPadding === "empty") initialPadding = target.style.padding;
+
+    let parent = _(input.parentElement);
+
+    if(input.checked) {
+        target.css("max-width", "0");
+        target.css("padding", "0");
+
+        if(parent.classList.contains('left')){
+            parent.css("left", '2rem');
+        } else if(parent.classList.contains('right')){
+            parent.css("right", '2rem');
+        }
+    }
+    else {
+        target.css("max-width", initialSize);
+        target.css("padding", initialPadding);
+
+        if(parent.classList.contains('left')){
+            parent.css("left", initialSize);
+        } else if(parent.classList.contains('right')){
+            parent.css("right", initialSize);
+        }
+    }
+}

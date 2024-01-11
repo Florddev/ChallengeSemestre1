@@ -1,0 +1,166 @@
+<div class="edit-mp">
+    <div class="edit-mp-mtop">
+        <input type="text" edit-mp-input="margin-top" value="Auto" />
+    </div>
+    <div class="edit-mp-mid">
+        <div class="edit-mp-mleft">
+            <input type="text" edit-mp-input="margin-left" value="Auto" />
+        </div>
+        <div class="edit-mp-p">
+            <div class="edit-mp-pleft">
+                <input type="text" edit-mp-input="padding-left" value="0" />
+            </div>
+            <div class="edit-mp-pmid">
+                <input type="text" edit-mp-input="padding-top" value="0" />
+                <div class="edit-mp-center">
+                    <i class="ri-link"></i>
+                </div>
+                <input type="text" edit-mp-input="padding-bottom" value="0" />
+            </div>
+            <div class="edit-mp-pright">
+                <input type="text" edit-mp-input="padding-right" value="0" />
+            </div>
+        </div>
+        <div class="edit-mp-mright">
+            <input type="text" edit-mp-input="margin-right" value="Auto" />
+        </div>
+    </div>
+    <div class="edit-mp-mbot">
+        <input type="text" edit-mp-input="margin-bottom" value="Auto" />
+    </div>
+</div>
+<br>
+<div class="edit-form-control">
+    <div class="edit-form fluid">
+        <label>Width</label>
+        <div class="edit-form-inputs">
+            <input type="text" edit-mp-input="width" placeholder="Auto" />
+            <select class="edit-unit" default-value="px">
+                <option value="Auto" hidden>-</option>
+                <option value="none" hidden>-</option>
+                <option value="" selected>-</option>
+                <option value="px">px</option>
+                <option value="%">%</option>
+                <option value="em">em</option>
+                <option value="rem">rem</option>
+            </select>
+        </div>
+    </div>
+    <div class="edit-form fluid">
+        <label>Height</label>
+        <div class="edit-form-inputs">
+            <input type="text" edit-mp-input="height" placeholder="Auto" />
+            <select class="edit-unit" default-value="px">
+                <option value="Auto" hidden>-</option>
+                <option value="none" hidden>-</option>
+                <option value="" selected>-</option>
+                <option value="px">px</option>
+                <option value="%">%</option>
+                <option value="em">em</option>
+                <option value="rem">rem</option>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="edit-form-control">
+    <div class="edit-form fluid">
+        <label>Min W</label>
+        <div class="edit-form-inputs">
+            <input type="text" edit-mp-input="min-width" placeholder="Auto" />
+            <select class="edit-unit" default-value="px">
+                <option value="Auto" hidden>-</option>
+                <option value="none" hidden>-</option>
+                <option value="" selected>-</option>
+                <option value="px">px</option>
+                <option value="%">%</option>
+                <option value="em">em</option>
+                <option value="rem">rem</option>
+            </select>
+        </div>
+    </div>
+    <div class="edit-form fluid">
+        <label>Min H</label>
+        <div class="edit-form-inputs">
+            <input type="text" edit-mp-input="min-height" placeholder="Auto" />
+            <select class="edit-unit" default-value="px">
+                <option value="Auto" hidden>-</option>
+                <option value="none" hidden>-</option>
+                <option value="" selected>-</option>
+                <option value="px">px</option>
+                <option value="%">%</option>
+                <option value="em">em</option>
+                <option value="rem">rem</option>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="edit-form-control">
+    <div class="edit-form fluid">
+        <label>Max W</label>
+        <div class="edit-form-inputs">
+            <input type="text" edit-mp-input="max-width" placeholder="None" />
+            <select class="edit-unit" default-value="px">
+                <option value="Auto" hidden>-</option>
+                <option value="none" hidden>-</option>
+                <option value="" selected>-</option>
+                <option value="px">px</option>
+                <option value="%">%</option>
+                <option value="em">em</option>
+                <option value="rem">rem</option>
+            </select>
+        </div>
+    </div>
+    <div class="edit-form fluid">
+        <label>Max H</label>
+        <div class="edit-form-inputs">
+            <input type="text" edit-mp-input="max-height" placeholder="None" />
+            <select class="edit-unit" default-value="px">
+                <option value="Auto" hidden>-</option>
+                <option value="none" hidden>-</option>
+                <option value="" selected>-</option>
+                <option value="px">px</option>
+                <option value="%">%</option>
+                <option value="em">em</option>
+                <option value="rem">rem</option>
+            </select>
+        </div>
+    </div>
+</div>
+<!--
+<hr>
+<div class="edit-form-control">
+    <div class="edit-form fluid">
+        <label>Ratio</label>
+        <div class="edit-form-inputs">
+            <input type="number" min="0" placeholder="Auto" />
+        </div>
+    </div>
+    <div class="edit-form fluid">
+        /
+        <div class="edit-form-inputs">
+            <input type="number" min="0" placeholder="Auto" />
+        </div>
+    </div>
+</div>
+-->
+<div class="edit-form fluid">
+    <label>Overflow</label>
+    <ul class="edit-form-inputs">
+        <li class="edit-form-toggler">
+            <input id="overflow-visible" edit-mp-input="overflow" type="radio" name="overflow" value="visible" />
+            <label for="overflow-visible"><i class="ri-eye-fill"></i></label>
+        </li>
+        <li class="edit-form-toggler">
+            <input id="overflow-hidden" edit-mp-input="overflow" type="radio" name="overflow" value="hidden" />
+            <label for="overflow-hidden"><i class="ri-eye-off-line"></i></label>
+        </li>
+        <li class="edit-form-toggler">
+            <input id="overflow-scroll" edit-mp-input="overflow" type="radio" name="overflow" value="scroll" />
+            <label for="overflow-scroll"><i class="ri-line-height"></i></label>
+        </li>
+        <li class="edit-form-toggler">
+            <input id="overflow-auto" edit-mp-input="overflow" type="radio" name="overflow" value="auto" />
+            <label for="overflow-auto">Auto</label>
+        </li>
+    </ul>
+</div>

@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use App\Controllers\BackOffice\Editor;
 use App\Controllers\Error;
 use App\Models\Pages;
 
@@ -58,7 +59,7 @@ if(!empty($listOfRoutes[$uri])){
                                 // TODO: Vérifier que l'utilisateur à bien le/les role(s) nécessaire(s) pour accéder à la page
                                 die("Vous n'avez pas les droits pour accéder à cette page");
                             } else {
-                                header("Location: /login");
+                                header("Location: /login"); // TODO: A modifier
                             }
                         }
 
@@ -72,10 +73,32 @@ if(!empty($listOfRoutes[$uri])){
     } else die("La route ne contient pas de controller");
 } else {
     if($page = Pages::getBy(["url"=>$uri])){
-        echo $page->getContent();
+        $builder = new Editor();
+        $builder->displayPage($page->getId());
     } else {
-        require "Controllers/Error.php";
-        $customError = new Error();
-        $customError->page404();
+        if(str_starts_with($uri, "/dashboard/builder/")){
+            $pages = Pages::populateAllBy([]);
+            $pageFound = null;
+            foreach ($pages as $page){
+                $title = str_replace(" ", "-", strtolower($page["title"]));
+                if("/dashboard/builder/".$title === $uri) {
+                    $pageFound = $page;
+                    break;
+                }
+            }
+            if($pageFound !== null) {
+                $builder = new Editor();
+                $builder->pageBuilder($pageFound);
+            } else {
+                require "Controllers/Error.php";
+                $customError = new Error();
+                $customError->page404();
+            }
+        } else {
+            require "Controllers/Error.php";
+            $customError = new Error();
+            $customError->page404();
+        }
     }
 }
+//

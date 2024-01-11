@@ -79,6 +79,37 @@ class DB
         return $queryPrepared->fetch();
     }
 
+
+    public static function populateAllBy(array $data, string $return = "array"): array
+    {
+        $class = get_called_class();
+        $object = new $class();
+        return $object->getAllBy($data, $return);
+    }
+
+    public function getAllBy(array $data, string $return = "array"): array
+    {
+        $sql = "SELECT * FROM " . $this->table;
+
+        if(!empty($data) && count($data) > 0){
+            $sql .= " WHERE ";
+            foreach ($data as $column => $value) {
+                $sql .= " " . $column . "=:" . $column . " AND";
+            }
+            $sql = rtrim($sql, ' AND') . ";";
+        }
+
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute($data);
+
+        if ($return === "object") {
+            $queryPrepared->setFetchMode(\PDO::FETCH_CLASS, get_called_class());
+        }
+
+        return ($return === "object") ? $queryPrepared->fetchAll() : $queryPrepared->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+
 }
 
 

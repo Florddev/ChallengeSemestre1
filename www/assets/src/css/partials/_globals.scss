@@ -1,5 +1,7 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
@@ -17,7 +19,6 @@ img {
     height: auto;
 }
 
-
 .fsize {
     @for $i from 1 through 10 {
         &-#{$i} {
@@ -29,7 +30,8 @@ img {
 .container {
     max-width: rem(1120);
     margin: 0 auto;
-    padding: rem(15);
+    padding: rem(10);
+    width: 100%;
 }
 
 @media screen and (min-width: 1150px) {
