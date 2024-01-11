@@ -28,14 +28,29 @@
                 <div class="header-mid-start"></div>
                 <div class="header-mid-center">
                     <ul class="editor-responsive">
-                        <li class="active"><i class="ri-computer-fill"></i></li>
-                        <li><i class="ri-tablet-line"></i></li>
-                        <li><i class="ri-smartphone-line"></i></li>
+                        <li editor-mode="pc">
+                            <input type="radio" id="editor-mode-pc" name="editor-mode-radio" checked>
+                            <label for="editor-mode-pc"><i class="ri-computer-fill"></i></label>
+                        </li>
+                        <li editor-mode="pad">
+                            <input type="radio" id="editor-mode-pad" name="editor-mode-radio">
+                            <label for="editor-mode-pad"><i class="ri-tablet-line"></i></label>
+                        </li>
+                        <li editor-mode="phone">
+                            <input type="radio" id="editor-mode-phone" name="editor-mode-radio">
+                            <label for="editor-mode-phone"><i class="ri-smartphone-line"></i></label>
+                        </li>
                     </ul>
                     <ul class="editor-size">
-                        <li>1440 <span>px</span></li>
+                        <li>
+                            <input type="text" value="" id="editor-size" min="0" class="draggable-input">
+                            <label for="editor-size"><span> px</span></label>
+                        </li>
                         <li><span>/</span></li>
-                        <li>60 <span>%</span></li>
+                        <li>
+                            <input type="text" value="100" id="editor-size-percent" min="0" max="100" class="draggable-input">
+                            <label for="editor-size-percent"><span> %</span></label>
+                        </li>
                     </ul>
                 </div>
                 <div class="header-mid-end">
@@ -61,7 +76,6 @@
                 <input type="checkbox" id="right-toggler" onchange="closeShutters(this, 'editorShutter')">
                 <label for="right-toggler"><i class="ri-arrow-right-line"></i></label>
             </div>
-
             <section class="page-builder-main-components" id="componentsShutter">
                 <div class="btn-multiple">
                     <div class="btn-multiple-child">

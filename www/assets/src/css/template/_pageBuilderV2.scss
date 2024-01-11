@@ -119,9 +119,16 @@ $bars-size: 19vw;
                             cursor: pointer;
                             transition: var(--transition-duration);
 
-                            &:hover,
-                            &.active {
-                                color: $text-black;
+                            & label {
+                                transition: var(--transition-duration);
+                            }
+
+                            & input {
+                                display: none;
+
+                                &:checked ~ label {
+                                    color: $text-black;
+                                }
                             }
                         }
                     }
@@ -131,6 +138,14 @@ $bars-size: 19vw;
                         display: flex;
                         font-weight: 600;
                         gap: rem(10);
+
+                        & input {
+                            max-width: rem(40);
+                            font-family: inherit;
+                            font-size: inherit;
+                            font-weight: inherit;
+                            cursor: n-resize;
+                        }
 
                         & span {
                             color: $grey;
@@ -352,6 +367,7 @@ $bars-size: 19vw;
                 border-radius: var(--main-radius);
                 overflow: hidden;
                 height: max-content;
+                transition: var(--transition-duration);
 
                 &[editor-mode="pc"] {
                     width: 100%;

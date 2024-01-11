@@ -187,11 +187,11 @@ function _(selector) {
                 if (event) { event.preventDefault(); }
 
                 let form = element;
-                if (request.data == undefined) request.data = [];
+                if (request.data === undefined) request.data = [];
 
                 for (let i = 0; i < form.length; i++) {
                     let e = form.elements[i];
-                    if (e.name != "") request.data[e.name] = e.type == "number" ? parseInt(e.value) : e.value;
+                    if (e.name !== "") request.data[e.name] = e.type === "number" ? parseInt(e.value) : e.value;
                 }
             }
             return ajax(method, request);
@@ -207,69 +207,81 @@ function _(selector) {
         };
 
         // Value functions
-        element.val = (value) => {
-            if (value != undefined) element.value = value;
+        element.val = value => {
+            if (value !== undefined) element.value = value;
             else return element.value;
         };
 
         // Content functions
-        element.html = (value) => {
-            if (value != undefined) element.innerHTML = value;
+        element.html = value => {
+            if (value !== undefined) element.innerHTML = value;
             else return element.innerHTML;
         };
-        element.text = (value) => {
-            if (value != undefined) element.innerText = value;
+        element.text = value => {
+            if (value !== undefined) element.innerText = value;
             else return element.innerText;
         };
 
         // Attribute functions
         element.attr = (name, value) => {
-            if (value != undefined) element.setAttribute(name, value);
+            if (value !== undefined) element.setAttribute(name, value);
             else return element.getAttribute(name);
         };
-        element.removeAttr = (name) => {
-            if (name != undefined) element.removeAttribute(name);
+        element.removeAttr = name => {
+            if (name !== undefined) element.removeAttribute(name);
         };
 
         // Class functions
-        element.addClass = (name) => {
-            if (name != undefined) {
+        element.addClass = name => {
+            if (name !== undefined) {
                 SList().From(name).forEach((e) => { element.classList.add(e); })
             }
         };
-        element.removeClass = (name) => {
-            if (name != undefined) {
+        element.removeClass = name => {
+            if (name !== undefined) {
                 SList().From(name).forEach((e) => { element.classList.remove(e); })
             }
         };
-        element.toggleClass = (name) => {
-            if (name != undefined) {
+        element.toggleClass = name => {
+            if (name !== undefined) {
                 SList().From(name).forEach((e) => { element.classList.toggle(e); })
             }
         };
 
         // CSS functions
         element.css = (style, value) => {
-            if (style != undefined && value != undefined) {
-                element.style[style] = value;
+            if (style !== undefined) {
+                if (value !== undefined) element.style[style] = value;
+                else return element.style[style];
             }
         };
 
         // Events functions
-        element.click = (func) => {
+        element.click = func => {
             element.onclick = evt => { func(evt) };
         }
-        element.input = (func) => {
+        element.input = func => {
             element.addEventListener("input", evt => func(evt));
         }
-        element.change = (func) => {
+        element.change = func => {
             element.addEventListener("change", evt => func(evt));
         }
-        element.dblclick = (func) => {
+        element.dblclick = func => {
             element.addEventListener("dblclick", evt => func(evt));
         }
-        element.ready = (func) => {
+        element.ready = func => {
             element.addEventListener("DOMContentLoaded", evt => func(evt));
+        }
+        element.resize = func => {
+            element.addEventListener("resize", evt => func(evt));
+        }
+
+        // Seletor
+        element.qs = querySelector => {
+            return element.querySelector(querySelector);
+        }
+        element.qsa = querySelectorAll => {
+            return element.querySelectorAll(querySelectorAll);
         }
 
         // Display functions

@@ -3,6 +3,8 @@ const units = ['px', '%', 'rem', 'em', 'vh', 'vw', 'vmin', 'vmax', 'ex', 'cm', '
 const shiftKeyMultiple = 10;
 
 let inputElement = null;
+let inputMax = 9999;
+let inputMin = -9999;
 let initialPosition = 0;
 let initialValue = 0;
 let initialUnit = '';
@@ -16,6 +18,8 @@ let dragState = 0;
 
 function reset() {
     inputElement = null;
+    inputMax = 9999;
+    inputMin = -9999;
     initialPosition = 0;
     initialValue = 0;
     initialUnit = '';
@@ -31,6 +35,9 @@ function setInputDraggable(element) {
         }
 
         inputElement = element;
+        if(element.getAttribute("max") !== null) inputMax = element.getAttribute("max");
+        if(element.getAttribute("min") !== null) inputMin = element.getAttribute("min");
+
         initialPosition = {
             x: e.pageX,
             y: e.pageY,
@@ -75,7 +82,10 @@ document.addEventListener('mousemove', function (e) {
             let step = _(inputElement).attr("step") !== null ? _(inputElement).attr("step") : 1;
 
             if(isNaN(initialValue) || initialValue === '') initialValue = 0;
-            inputElement.value = ((initialValue + (initialPosition.y - e.pageY) * (initialShiftKey ? shiftKeyMultiple : 1) + initialUnit)*(!isNaN(step) ? parseFloat(step) : 1)).toFixed(step !== 1 ? 2 : 0);
+
+            let finalValue = ((initialValue + (initialPosition.y - e.pageY) * (initialShiftKey ? shiftKeyMultiple : 1) + initialUnit)*(!isNaN(step) ? parseFloat(step) : 1)).toFixed(step !== 1 ? (step === "0.1" ? 1 : 2) : 0);
+            if(parseFloat(inputMax) >= parseFloat(finalValue) && parseFloat(inputMin) <= parseFloat(finalValue))
+                inputElement.value = finalValue;
 
             // Déclencher les événements 'input' et 'change'
             const inputEvent = new Event('input', { bubbles: true });
@@ -88,7 +98,7 @@ document.addEventListener('mousemove', function (e) {
     }
 });
 
-const draggableInput = document.querySelector('.draggable-input');
-if (draggableInput) {
-    setInputDraggable(draggableInput);
-}
+const draggableInput = document.querySelectorAll('.draggable-input');
+draggableInput.forEach(e => {
+    setInputDraggable(e);
+});

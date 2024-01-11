@@ -125,16 +125,26 @@ function updateColumnStyle(timeout = 0) {
 // Fonction pour gérer le clic sur les modes de l'éditeur
 function handleDisplayModeClick(modeItem) {
     const mode = modeItem.getAttribute("editor-mode");
-    const editorContent = _(".editor-container .editor-content")[0];
 
-    // Ajouter la classe "active" à l'élément cliqué
-    _(".editor-mode li").forEach(item => item.classList.remove("active"));
-    modeItem.classList.add("active");
+    _("[editor-mode]").forEach(e => {
+       let radio = _(e).qs("input");
+       let icon = _(e).qs("label i");
+        if(radio !== null && icon !== null){
+            let c = icon.classList[0];
+            icon.classList.remove(c);
+
+            if(radio.checked) icon.classList.add(c.replace("line", "fill"));
+            else icon.classList.add(c.replace("fill", "line"));
+        }
+    });
 
     if (mode) {
-        editorContent.setAttribute("editor-mode", mode);
+        _(".editor-container")[0].attr("editor-mode", mode);
+        //_(".editor-container")[0].attr("style", "");
+        _(".editor-container")[0].css("width", "");
         updateColumnStyle(300);
         updateNavbarStyle(300);
+        setTimeout(e => setEditorSizeInput(), 300);
     }
 }
 
@@ -597,6 +607,39 @@ function deselectSelectedItem(){
     _('.editor-accordion').forEach(e => _(e).css('display', 'none'));
 }
 
+function setEditorSizeInput(){
+    console.log('blabla');
+    let inputPx = _("#editor-size");
+    let editor = _(".editor-container")[0];
+    let inputPer = _("#editor-size-percent");
+
+    inputPx.val(editor.offsetWidth);
+    inputPx.attr("max", editor.offsetWidth);
+
+    inputPer.val((inputPx.val()*100)/editor.offsetWidth);
+}
+
+function initEditorSizeInput(){
+    setEditorSizeInput();
+    let inputPx = _("#editor-size");
+    let inputPer = _("#editor-size-percent");
+    let editor = _(".editor-container")[0];
+
+    inputPx.input(evt => {
+        let value = _(evt.target).val();
+        editor.style.width = value + "px";
+        inputPer.val(((value*100)/inputPx.attr("max")).toFixed(0));
+    })
+
+    inputPer.input(evt => {
+        let value = _(evt.target).val();
+
+        let toPixel = ((inputPx.attr("max")*value)/100).toFixed(0);
+        editor.style.width = toPixel + "px";
+        inputPx.val(toPixel);
+    })
+}
+
 // Initialisation de l'éditeur
 function initializeEditor() {
     initSortableElements();
@@ -607,10 +650,11 @@ function initializeEditor() {
     _(".editor-content .editable").forEach(makeElementeditable);
     _('.editor-content.sortable-element').forEach(setNavbarSortableElement);
 
-    _("ul.editor-mode li").forEach(modeItem => {
+    _("ul.editor-responsive li").forEach(modeItem => {
         modeItem.addEventListener("click", () => handleDisplayModeClick(modeItem));
     });
 
+    initEditorSizeInput();
     initEditorActions();
     initSortableContainer();
 
