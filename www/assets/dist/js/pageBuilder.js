@@ -1,6 +1,16 @@
 let undoStack = [];
 let redoStack = [];
 
+function updateStateArrows(){
+    const undoIcon = _("#state-undo");
+    if(undoStack.length > 1) undoIcon.addClass("active");
+    else undoIcon.removeClass("active");
+
+    const redoIcon = _("#state-redo");
+    if(redoStack.length > 0) redoIcon.addClass("active");
+    else redoIcon.removeClass("active");
+}
+
 // Fonction pour sauvegarder l'état actuel dans la pile undo
 function saveState() {
     const currentState = _(".editor-content")[0].innerHTML;
@@ -8,16 +18,25 @@ function saveState() {
 
     // Réinitialise la pile redo lorsqu'un nouvel état est enregistré
     redoStack = [];
+    updateStateArrows();
+
+    if (undoStack.length > 1) {
+        const saveIcon = _("#save-page");
+        let c = saveIcon.attr("class");
+        saveIcon.removeClass(c);
+        saveIcon.addClass(c.replace("line", "fill"));
+    }
 }
+
 // Fonction pour annuler l'action
 function undo() {
     if (undoStack.length > 1) {
         const currentState = undoStack.pop();
         redoStack.push(currentState);
-        const previousState = undoStack[undoStack.length - 1];
-        _(".editor-content")[0].innerHTML = previousState;
+        _(".editor-content")[0].innerHTML = undoStack[undoStack.length - 1];
     }
     initializeEditor();
+    updateStateArrows();
 }
 
 // Fonction pour rétablir l'action
@@ -28,15 +47,27 @@ function redo() {
         _(".editor-content")[0].innerHTML = nextState;
     }
     initializeEditor();
+    updateStateArrows();
 }
+saveState();
+function initSaveState(){
 // Gestionnaire d'événement pour les touches
 document.addEventListener('keydown', function (event) {
     if (event.ctrlKey && event.key === 'z') {
         undo();
     } else if (event.ctrlKey && event.key === 'y') {
         redo();
+    } else if (event.ctrlKey && event.key === 's') {
+        event.preventDefault(); // Empêche le comportement par défaut du navigateur
+        savePage();
     }
 });
+
+// Gestionnaire d'événement pour les touches
+_("#state-undo").click(evt => undo());
+_("#state-redo").click(evt => redo());
+}
+
 
 
 
@@ -405,12 +436,13 @@ function displayEditorAreaFor(elem) {
                 s.val(currentValue);
                 s.change(evt => {
                     elem.style[style] = s.val();
+                    saveState();
                 });
             });
 
             destElement.querySelectorAll("input[edit-mp-input]").forEach((input) => {
                 input = _(input);
-                var style = input.attr("edit-mp-input");
+                let style = input.attr("edit-mp-input");
 
                 const currentValue = (elem.style[style] !== "" ? elem.style[style] : elemStyle[style]).replace("auto", "Auto").replace("none", "");
                 const numericValue = parseFloat(currentValue);
@@ -422,13 +454,14 @@ function displayEditorAreaFor(elem) {
                     if(inputToCheck !== undefined) inputToCheck.setAttribute('checked', 'true');
                     input.change(evt => {
                         elem.style[style] = input.val();
+                        saveState();
                     });
                 } else {
 
                     const roundedStyle = roundedValue + unit;
 
                     if(input.attr("draggable-input") !== 'false') input.classList.add("draggable-input");
-                    input.setAttribute("value", isNaN(roundedValue) ? currentValue : roundedValue);
+                    input.setAttribute("value", rgbToHex(isNaN(roundedValue) ? currentValue : roundedValue));
                     input.style.display = 'inline';
                     input.style.width = "100%";
 
@@ -447,16 +480,18 @@ function displayEditorAreaFor(elem) {
                         }
                         let val = parseInt(input.value);
                         val = (isNaN(val) ? input.value : input.value + unit)
-                        elem.style[style] = val;
+                        elem.style[style] = rgbToHex(val);
                     }
 
                     input.addEventListener("input", inputEvent);
-                    if(hasSelect) select.addEventListener("change", inputEvent);
+                    input.addEventListener("change", saveState);
+                    if(hasSelect) select.addEventListener("change", e => { inputEvent(); saveState(); });
                 }
             });
         });
     }
-    let listEditorStyleArea = ["#editStyle-dimensions", "#editStyle-typo"];
+    //let listEditorStyleArea = ["#editStyle-dimensions", "#editStyle-typo"];
+    let listEditorStyleArea = _(".editStyle-accordion");
     listEditorStyleArea.forEach(e => initInputsFromPartial(_(e).attr("data-partial-src"), _(e)));
 }
 
@@ -541,6 +576,13 @@ function savePage(){
                 let newUrl = origin + "/dashboard/builder/" +result;
                 history.pushState(null, null, newUrl);
             }
+
+            saveState();
+
+            const saveIcon = _("#save-page");
+            let c = saveIcon.attr("class");
+            saveIcon.removeClass(c);
+            saveIcon.addClass(c.replace("fill", "line"));
         }
     });
 }
@@ -608,7 +650,6 @@ function deselectSelectedItem(){
 }
 
 function setEditorSizeInput(){
-    console.log('blabla');
     let inputPx = _("#editor-size");
     let editor = _(".editor-container")[0];
     let inputPer = _("#editor-size-percent");
@@ -616,7 +657,7 @@ function setEditorSizeInput(){
     inputPx.val(editor.offsetWidth);
     inputPx.attr("max", editor.offsetWidth);
 
-    inputPer.val((inputPx.val()*100)/editor.offsetWidth);
+    //inputPer.val((inputPx.val()*100)/editor.offsetWidth);
 }
 
 function initEditorSizeInput(){
@@ -628,15 +669,16 @@ function initEditorSizeInput(){
     inputPx.input(evt => {
         let value = _(evt.target).val();
         editor.style.width = value + "px";
-        inputPer.val(((value*100)/inputPx.attr("max")).toFixed(0));
+        //inputPer.val(((value*100)/inputPx.attr("max")).toFixed(0));
     })
 
     inputPer.input(evt => {
         let value = _(evt.target).val();
 
-        let toPixel = ((inputPx.attr("max")*value)/100).toFixed(0);
-        editor.style.width = toPixel + "px";
-        inputPx.val(toPixel);
+        //let toPixel = ((inputPx.attr("max")*value)/100).toFixed(0);
+        //editor.style.width = toPixel + "px";
+        editor.style.transform = "scale(" + value + "%)";
+        //inputPx.val(toPixel);
     })
 }
 
@@ -645,6 +687,7 @@ function initializeEditor() {
     initSortableElements();
     initSortableModels();
     updateColumnStyle();
+    initSaveState();
 
     //const navbar = document.querySelector(".navbar");
     _(".editor-content .editable").forEach(makeElementeditable);

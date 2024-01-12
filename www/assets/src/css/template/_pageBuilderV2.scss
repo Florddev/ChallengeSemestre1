@@ -49,7 +49,15 @@ $bars-size: 19vw;
         &.sm {
             height: rem(1.5);
             margin: rem(13) 0;
+            justify-content: flex-start;
         }
+    }
+
+    & .subtitle {
+        color: #a3aed0;
+        font-size: rem(10);
+        text-transform: uppercase;
+        margin-bottom: rem(5);
     }
 
     &-header {
@@ -121,6 +129,7 @@ $bars-size: 19vw;
 
                             & label {
                                 transition: var(--transition-duration);
+                                cursor: pointer;
                             }
 
                             & input {
@@ -139,12 +148,21 @@ $bars-size: 19vw;
                         font-weight: 600;
                         gap: rem(10);
 
-                        & input {
+                        & input, & select {
                             max-width: rem(40);
                             font-family: inherit;
                             font-size: inherit;
                             font-weight: inherit;
+                        }
+                        & input {
                             cursor: n-resize;
+                        }
+                        & select {
+                            width: max-content;
+                            -webkit-appearance: none;
+                            border: 1px solid transparent;
+                            outline: none;
+                            cursor: pointer;
                         }
 
                         & span {
@@ -164,6 +182,8 @@ $bars-size: 19vw;
 
                     & i {
                         cursor: pointer;
+                        transition: var(--transition-duration) ease-in-out;
+                        font-weight: 100;
 
                         &.active {
                             color: $text-black;
@@ -392,12 +412,14 @@ $bars-size: 19vw;
                     position: relative;
                 }
 
-                & .editable-image-container {
+                & .image-container {
                     width: fit-content;
                     height: fit-content;
                     padding: 0;
                     margin: 0;
                     border: 0;
+                    overflow: hidden;
+
                     & img {
                         object-fit: cover;
                         object-position: center;
@@ -407,7 +429,6 @@ $bars-size: 19vw;
                 }
 
                 & .sortable-element {
-                    border: rem(1) dashed $grey;
                 }
 
                 & .editable::before,
@@ -418,6 +439,9 @@ $bars-size: 19vw;
                     content: '';
                     width: 100%;
                     height: 100%;
+                }
+                & .sortable-element::before {
+                    border: rem(1) dashed $grey;
                 }
 
                 & .editable-text[contenteditable="true"]{

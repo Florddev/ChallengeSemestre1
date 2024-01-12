@@ -142,6 +142,30 @@ function uniqueId(pattern = 10, prefix='', suffix='') {
     return prefix + result + suffix;
 }
 
+function rgbToHex(rgbString) {
+    // Vérifie si rgbString est une chaîne
+    if (typeof rgbString !== 'string') {
+        return rgbString; // La valeur n'est pas une chaîne
+    }
+
+    // Utilise une expression régulière pour extraire les valeurs de rouge, vert et bleu
+    const match = rgbString.match(/(\d+),\s*(\d+),\s*(\d+)/);
+
+    // Vérifie si la correspondance est trouvée
+    if (!match) {
+        return rgbString; // La chaîne n'a pas le format attendu
+    }
+
+    // Convertit les valeurs en entiers
+    const red = parseInt(match[1]);
+    const green = parseInt(match[2]);
+    const blue = parseInt(match[3]);
+
+    // Convertit les valeurs en hexadécimal et les concatène
+    const hex = '#' + ((1 << 24) + (red << 16) + (green << 8) + blue).toString(16).slice(1).toUpperCase();
+
+    return hex;
+}
 
 let SList = () => {
     return {

@@ -75,7 +75,6 @@ $col-total: 12;
             }
         }
 
-
         // Ajouter des classes d'offset
         @for $offset from 1 through $col-total {
             .col-#{$i}.offset-#{$offset} {

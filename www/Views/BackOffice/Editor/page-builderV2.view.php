@@ -48,19 +48,31 @@
                         </li>
                         <li><span>/</span></li>
                         <li>
-                            <input type="text" value="100" id="editor-size-percent" min="0" max="100" class="draggable-input">
+                            <!--<input type="text" value="100" id="editor-size-percent" min="0" max="100" class="draggable-input">-->
+                            <select id="editor-size-percent">
+                                <option value="100" selected>100</option>
+                                <option value="90">90</option>
+                                <option value="80">80</option>
+                                <option value="70">70</option>
+                                <option value="60">60</option>
+                                <option value="50">50</option>
+                                <option value="40">40</option>
+                                <option value="30">30</option>
+                                <option value="20">20</option>
+                                <option value="10">10</option>
+                            </select>
                             <label for="editor-size-percent"><span> %</span></label>
                         </li>
                     </ul>
                 </div>
                 <div class="header-mid-end">
-                    <i class="ri-arrow-go-back-fill active"></i>
-                    <i class="ri-arrow-go-forward-fill"></i>
+                    <i class="ri-arrow-go-back-fill" id="state-undo"></i>
+                    <i class="ri-arrow-go-forward-fill" id="state-redo"></i>
                 </div>
             </section>
             <section class="page-builder-header-end">
                 <ul class="header-end-list">
-                    <li onclick="savePage()"><i class="ri-save-line"></i></li>
+                    <li onclick="savePage()"><i class="ri-save-line" id="save-page"></i></li>
                     <li><i class="ri-play-line"></i></li>
                     <li><button class="btn btn-primary btn-small">Publier</button></li>
                     <li><i class="ri-shield-user-line"></i></li>
@@ -390,7 +402,7 @@
                         <span>Dimension</span>
                         <i class="ri-arrow-down-s-line"></i>
                     </label>
-                    <div class="accordion-panel"
+                    <div class="accordion-panel editStyle-accordion"
                          id="editStyle-dimensions"
                          data-plugin="partial"
                          data-partial-src="/Views/Partial/Editor/editorTools-dimensions.html">
@@ -403,10 +415,36 @@
                         <span>Typography</span>
                         <i class="ri-arrow-down-s-line"></i>
                     </label>
-                    <div class="accordion-panel"
+                    <div class="accordion-panel editStyle-accordion"
                          id="editStyle-typo"
                          data-plugin="partial"
                          data-partial-src="/Views/Partial/Editor/editorTools-typo.html">
+                    </div>
+                    <hr>
+                </div>
+                <div class="accordion editor-accordion">
+                    <input type="checkbox" />
+                    <label class="accordion-label">
+                        <span>Decoration</span>
+                        <i class="ri-arrow-down-s-line"></i>
+                    </label>
+                    <div class="accordion-panel editStyle-accordion"
+                         id="editStyle-decoration"
+                         data-plugin="partial"
+                         data-partial-src="/Views/Partial/Editor/editorTools-decoration.html">
+                    </div>
+                    <hr>
+                </div>
+                <div class="accordion editor-accordion">
+                    <input type="checkbox" />
+                    <label class="accordion-label">
+                        <span>Position</span>
+                        <i class="ri-arrow-down-s-line"></i>
+                    </label>
+                    <div class="accordion-panel editStyle-accordion"
+                         id="editStyle-position"
+                         data-plugin="partial"
+                         data-partial-src="/Views/Partial/Editor/editorTools-positions.html">
                     </div>
                     <hr>
                 </div>
