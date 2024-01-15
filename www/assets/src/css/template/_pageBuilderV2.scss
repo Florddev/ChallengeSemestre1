@@ -383,7 +383,6 @@ $bars-size: 19vw;
             & .editor-container {
                 width: 100%;
                 //min-height: 100vh; // TODO: Changer pour fit-content
-                background-color: $white;
                 border-radius: var(--main-radius);
                 overflow: hidden;
                 height: max-content;
@@ -490,6 +489,7 @@ $bars-size: 19vw;
                         border-radius: var(--main-radius);
                         //width: 100%;
                         //max-width: rem(1200);
+                        background-color: var(--white);
                     }
 
                     /* Style pour l'élément popup */

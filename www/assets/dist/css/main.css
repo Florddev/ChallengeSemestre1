@@ -3022,7 +3022,6 @@ img {
 }
 .page-builder-main-editor .editor-container {
   width: 100%;
-  background-color: #fff;
   border-radius: var(--main-radius);
   overflow: hidden;
   height: max-content;
@@ -3103,6 +3102,7 @@ img {
   min-height: 90vh;
   border: 0.0625rem solid transparent;
   border-radius: var(--main-radius);
+  background-color: var(--white);
 }
 .page-builder-main-editor .editor-container .editor-content .action-popup {
   position: absolute;

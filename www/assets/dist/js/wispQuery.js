@@ -180,6 +180,20 @@ let SList = () => {
     };
 };
 
+// Fonction pour charger le contenu du fichier SVG
+function loadSVG(url) {
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", url, false);  // Le troisième paramètre indique une requête synchrone
+    xhr.send();
+
+    if (xhr.status === 200) {
+        return xhr.responseText;
+    } else {
+        console.error("Erreur de chargement du fichier SVG");
+        return null;
+    }
+}
+
 let partial = (url, data, method) => {
     return new Promise((resolve, reject) => {
         ajax(method, {
@@ -252,7 +266,7 @@ function _(selector) {
             else return element.getAttribute(name);
         };
         element.removeAttr = name => {
-            if (name !== undefined) element.removeAttribute(name);
+            if (name !== undefined) SList().From(name).forEach((e) => { element.removeAttribute(e) });
         };
 
         // Class functions
@@ -261,10 +275,8 @@ function _(selector) {
                 SList().From(name).forEach((e) => { element.classList.add(e); })
             }
         };
-        element.removeClass = name => {
-            if (name !== undefined) {
-                SList().From(name).forEach((e) => { element.classList.remove(e); })
-            }
+        element.removeClass = (...args) => {
+            args.forEach((arg, index) => { element.classList.remove(arg); })
         };
         element.toggleClass = name => {
             if (name !== undefined) {

@@ -101,7 +101,7 @@
 <div class="edit-form-container">
     <div class="edit-form-control">
         <div class="edit-form w-50">
-            <label>Flex-Direction</label>
+            <label>Direction</label>
             <div class="edit-form-inputs">
                 <select edit-mp-input="flex-direction" default-value='row'>
                     <option value="row">Row</option>
@@ -112,7 +112,7 @@
             </div>
         </div>
         <div class="edit-form w-50">
-            <label>Flex-Wrap</label>
+            <label>Wrap</label>
             <div class="edit-form-inputs">
                 <select edit-mp-input="flex-wrap" default-value='nowrap'>
                     <option value="wrap">Wrap</option>
@@ -145,6 +145,22 @@
                     <option value="center">Center</option>
                     <option value="stretch">Stretch</option>
                     <option value="baseline">Baseline</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="edit-form-control">
+        <div class="edit-form w-100">
+            <label>Gap</label>
+            <div class="edit-form-inputs">
+                <input type="text" value="0" min="0" edit-mp-input="gap"/>
+                <select class="edit-unit" default-value="px">
+                    <option value="px" selected>px</option>
+                    <option value="%">%</option>
+                    <option value="em">em</option>
+                    <option value="rem">rem</option>
+                    <option value="vh">vh</option>
+                    <option value="vw">vw</option>
                 </select>
             </div>
         </div>

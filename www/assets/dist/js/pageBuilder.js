@@ -181,15 +181,13 @@ function handleDisplayModeClick(modeItem) {
 
 
 // Fonction pour obtenir le contenu final de la page
-function getFinalPage() {
-    let editorContent = _(".editor-container .editor-content .main")[0].cloneNode(true);
+function getFinalPage(element) {
+    let editorContent = element.cloneNode(true);
 
     editorContent.querySelectorAll("*[contenteditable], .editable, .selected-item, .sortable-element, .editable-text, *[draggable], .full-width").forEach(elem => {
-        elem.removeAttribute("contenteditable");
-        elem.removeAttribute("draggable");
-        elem.classList.remove("editable", "selected-item", "sortable-element", "editable-text", "full-width");
+        _(elem).removeAttr("contenteditable, draggable");
+        _(elem).removeClass("editable, editable-text, selected-item, sortable-element, full-width");
     });
-
     editorContent.querySelectorAll(".action-popup").forEach(elem => elem.remove());
 
     return editorContent.innerHTML;
@@ -227,7 +225,7 @@ function handleEditAction(elem) {
 function handleViewAction() {
     const editorFinalView = _("#editor-final-view");
     editorFinalView.classList.add("active");
-    _("#editor-final-view .content").innerHTML = getFinalPage();
+    //_("#editor-final-view .content").innerHTML = getFinalPage(_(".editor-container .editor-content .main")[0]);
 
     initNavBar(editorFinalView);
 
@@ -561,8 +559,9 @@ function saveImageChanges(elem, imageUrl) {
     document.querySelector('.edit-container').remove();
 }
 
-function savePage(){
+async function savePage(){
     let origin = window.location.origin;
+    deselectSelectedItem();
     ajax("POST", {
         url: origin + "/dashboard/builder-save-page",
         data: {

@@ -455,26 +455,11 @@
     <script src="/assets/src/js/components/accordion.js"></script>
     <script src="/assets/src/js/components/navbar.js"></script>
     <script src="/assets/src/js/components/navtab.js"></script>
+    <script src="/assets/dist/js/globalPage.js"></script>
     <script src="/assets/dist/js/pageBuilder.js"></script>
     <script src="/assets/dist/js/draggableInput.js"></script>
     <script>
-        // Fonction pour charger le contenu du fichier SVG
-        function loadSVG(url) {
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", url, false);  // Le troisième paramètre indique une requête synchrone
-            xhr.send();
-
-            if (xhr.status === 200) {
-                return xhr.responseText;
-            } else {
-                console.error("Erreur de chargement du fichier SVG");
-                return null;
-            }
-        }
-
-        _('[data-plugin="svg"]').forEach(e => {
-            _(e).html(loadSVG(_(e).attr("data-svg-src")));
-        });
+        _('[data-plugin="svg"]').forEach(e => _(e).html(loadSVG(_(e).attr("data-svg-src"))));
     </script>
 </body>
 
