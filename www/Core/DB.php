@@ -87,6 +87,7 @@ class DB
         return $object->getAllBy($data, $return);
     }
 
+    //
     public function getAllBy(array $data, string $return = "array"): array
     {
         $sql = "SELECT * FROM " . $this->table;

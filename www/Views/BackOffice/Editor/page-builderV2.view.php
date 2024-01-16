@@ -72,10 +72,14 @@
             </section>
             <section class="page-builder-header-end">
                 <ul class="header-end-list">
+                    <!--
                     <li onclick="savePage()"><i class="ri-save-line" id="save-page"></i></li>
                     <li><i class="ri-play-line"></i></li>
                     <li><button class="btn btn-primary btn-small">Publier</button></li>
                     <li><i class="ri-shield-user-line"></i></li>
+                    -->
+                    <li onclick="savePage()"><button class="btn btn-primary btn-line">Enregistrer</button></li>
+                    <li><button class="btn btn-primary">Visualiser</button></li>
                 </ul>
             </section>
         </header>
@@ -335,11 +339,11 @@
             <section class="page-builder-main-tools" id="editorShutter">
                 <div class="btn-multiple">
                     <div class="btn-multiple-child">
-                        <input type="radio" name="toolbar" id="toolbar-1" checked>
+                        <input type="radio" name="toolbar" id="toolbar-1" data-tabnav-target="tabnav-element-style" checked>
                         <label for="toolbar-1">Style</label>
                     </div>
                     <div class="btn-multiple-child">
-                        <input type="radio" name="toolbar" id="toolbar-2">
+                        <input type="radio" name="toolbar" id="toolbar-2" data-tabnav-target="tabnav-element-settings">
                         <label for="toolbar-2">Paramètres</label>
                     </div>
                     <!--
@@ -350,101 +354,116 @@
                     -->
                 </div>
                 <br>
-                <div class="edit-form">
-                    <ul class="edit-form-inputs fluid">
-                        <li class="edit-form-toggler">
-                            <input id="align-horizontal-left" type="radio" name="align-horizontal" value="visible"
-                                checked />
-                            <label for="align-horizontal-left">
-                                <i data-plugin="svg" data-svg-src="/assets/images/svg/flex-align/align-left-line.svg"></i>
-                            </label>
-                        </li>
-                        <li class="edit-form-toggler">
-                            <input id="align-horizontal-mid" type="radio" name="align-horizontal" value="hidden" />
-                            <label for="align-horizontal-mid">
-                                <i data-plugin="svg"
-                                    data-svg-src="/assets/images/svg/flex-align/align-horizontal-center-line.svg"></i>
-                            </label>
-                        </li>
-                        <li class="edit-form-toggler">
-                            <input id="align-horizontal-right" type="radio" name="align-horizontal" value="scroll" />
-                            <label for="align-horizontal-right">
-                                <i data-plugin="svg" data-svg-src="/assets/images/svg/flex-align/align-right-line.svg"></i>
-                            </label>
-                        </li>
-                        <li class="edit-form-toggler">
-                            <input id="align-vertical-top" type="radio" name="align-vertical" value="auto" />
-                            <label for="align-vertical-top">
-                                <i data-plugin="svg" data-svg-src="/assets/images/svg/flex-align/align-top-line.svg"></i>
-                            </label>
-                        </li>
-                        <li class="edit-form-toggler">
-                            <input id="align-vertical-mid" type="radio" name="align-vertical" value="auto" />
-                            <label for="align-vertical-mid">
-                                <i data-plugin="svg"
-                                    data-svg-src="/assets/images/svg/flex-align/align-vertical-center-line.svg"></i>
-                            </label>
-                        </li>
-                        <li class="edit-form-toggler">
-                            <input id="align-vertical-bot" type="radio" name="align-vertical" value="auto" />
-                            <label for="align-vertical-bot">
-                                <i data-plugin="svg" data-svg-src="/assets/images/svg/flex-align/align-bottom-line.svg"></i>
-                            </label>
-                        </li>
-                    </ul>
-                </div>
-                <hr>
-
-
-                <div class="accordion editor-accordion">
-                    <input type="checkbox"/>
-                    <label class="accordion-label">
-                        <span>Dimension</span>
-                        <i class="ri-arrow-down-s-line"></i>
-                    </label>
-                    <div class="accordion-panel editStyle-accordion"
-                         id="editStyle-dimensions"
-                         data-plugin="partial"
-                         data-partial-src="/Views/Partial/Editor/editorTools-dimensions.html">
+                <div data-plugin="tabnav" id="tabnav-element-style">
+                    <div class="edit-form">
+                        <ul class="edit-form-inputs fluid">
+                            <li class="edit-form-toggler">
+                                <input id="align-horizontal-left" type="radio" name="align-horizontal" value="visible"
+                                    checked />
+                                <label for="align-horizontal-left">
+                                    <i data-plugin="svg" data-svg-src="/assets/images/svg/flex-align/align-left-line.svg"></i>
+                                </label>
+                            </li>
+                            <li class="edit-form-toggler">
+                                <input id="align-horizontal-mid" type="radio" name="align-horizontal" value="hidden" />
+                                <label for="align-horizontal-mid">
+                                    <i data-plugin="svg"
+                                        data-svg-src="/assets/images/svg/flex-align/align-horizontal-center-line.svg"></i>
+                                </label>
+                            </li>
+                            <li class="edit-form-toggler">
+                                <input id="align-horizontal-right" type="radio" name="align-horizontal" value="scroll" />
+                                <label for="align-horizontal-right">
+                                    <i data-plugin="svg" data-svg-src="/assets/images/svg/flex-align/align-right-line.svg"></i>
+                                </label>
+                            </li>
+                            <li class="edit-form-toggler">
+                                <input id="align-vertical-top" type="radio" name="align-vertical" value="auto" />
+                                <label for="align-vertical-top">
+                                    <i data-plugin="svg" data-svg-src="/assets/images/svg/flex-align/align-top-line.svg"></i>
+                                </label>
+                            </li>
+                            <li class="edit-form-toggler">
+                                <input id="align-vertical-mid" type="radio" name="align-vertical" value="auto" />
+                                <label for="align-vertical-mid">
+                                    <i data-plugin="svg"
+                                        data-svg-src="/assets/images/svg/flex-align/align-vertical-center-line.svg"></i>
+                                </label>
+                            </li>
+                            <li class="edit-form-toggler">
+                                <input id="align-vertical-bot" type="radio" name="align-vertical" value="auto" />
+                                <label for="align-vertical-bot">
+                                    <i data-plugin="svg" data-svg-src="/assets/images/svg/flex-align/align-bottom-line.svg"></i>
+                                </label>
+                            </li>
+                        </ul>
                     </div>
                     <hr>
-                </div>
-                <div class="accordion editor-accordion">
-                    <input type="checkbox" />
-                    <label class="accordion-label">
-                        <span>Typography</span>
-                        <i class="ri-arrow-down-s-line"></i>
-                    </label>
-                    <div class="accordion-panel editStyle-accordion"
-                         id="editStyle-typo"
-                         data-plugin="partial"
-                         data-partial-src="/Views/Partial/Editor/editorTools-typo.html">
+                    <div class="accordion editor-accordion">
+                        <input type="checkbox"/>
+                        <label class="accordion-label">
+                            <span>Dimension</span>
+                            <i class="ri-arrow-down-s-line"></i>
+                        </label>
+                        <div class="accordion-panel editStyle-accordion"
+                             id="editStyle-dimensions"
+                             data-plugin="partial"
+                             data-partial-src="/Views/Partial/Editor/editorTools-dimensions.html">
+                        </div>
+                        <hr>
                     </div>
-                    <hr>
-                </div>
-                <div class="accordion editor-accordion">
-                    <input type="checkbox" />
-                    <label class="accordion-label">
-                        <span>Decoration</span>
-                        <i class="ri-arrow-down-s-line"></i>
-                    </label>
-                    <div class="accordion-panel editStyle-accordion"
-                         id="editStyle-decoration"
-                         data-plugin="partial"
-                         data-partial-src="/Views/Partial/Editor/editorTools-decoration.html">
+                    <div class="accordion editor-accordion">
+                        <input type="checkbox" />
+                        <label class="accordion-label">
+                            <span>Typography</span>
+                            <i class="ri-arrow-down-s-line"></i>
+                        </label>
+                        <div class="accordion-panel editStyle-accordion"
+                             id="editStyle-typo"
+                             data-plugin="partial"
+                             data-partial-src="/Views/Partial/Editor/editorTools-typo.html">
+                        </div>
+                        <hr>
                     </div>
-                    <hr>
+                    <div class="accordion editor-accordion">
+                        <input type="checkbox" />
+                        <label class="accordion-label">
+                            <span>Decoration</span>
+                            <i class="ri-arrow-down-s-line"></i>
+                        </label>
+                        <div class="accordion-panel editStyle-accordion"
+                             id="editStyle-decoration"
+                             data-plugin="partial"
+                             data-partial-src="/Views/Partial/Editor/editorTools-decoration.html">
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="accordion editor-accordion">
+                        <input type="checkbox" />
+                        <label class="accordion-label">
+                            <span>Position</span>
+                            <i class="ri-arrow-down-s-line"></i>
+                        </label>
+                        <div class="accordion-panel editStyle-accordion"
+                             id="editStyle-position"
+                             data-plugin="partial"
+                             data-partial-src="/Views/Partial/Editor/editorTools-positions.html">
+                        </div>
+                        <hr>
+                    </div>
                 </div>
-                <div class="accordion editor-accordion">
-                    <input type="checkbox" />
-                    <label class="accordion-label">
-                        <span>Position</span>
-                        <i class="ri-arrow-down-s-line"></i>
-                    </label>
-                    <div class="accordion-panel editStyle-accordion"
-                         id="editStyle-position"
-                         data-plugin="partial"
-                         data-partial-src="/Views/Partial/Editor/editorTools-positions.html">
+                <div data-plugin="tabnav" id="tabnav-element-settings">
+                    <div class="accordion editor-accordion-settings" id="editor-setting-image">
+                        <input type="checkbox" />
+                        <label class="accordion-label">
+                            <span>Image</span>
+                            <i class="ri-arrow-down-s-line"></i>
+                        </label>
+                        <div class="accordion-panel editStyle-accordion"
+                             id="editStyle-dimensions"
+                             data-plugin="partial"
+                             data-partial-src="/Views/Partial/Editor/editorTools-settings-image.html">
+                        </div>
                     </div>
                     <hr>
                 </div>

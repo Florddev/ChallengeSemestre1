@@ -22,9 +22,11 @@ function saveState() {
 
     if (undoStack.length > 1) {
         const saveIcon = _("#save-page");
-        let c = saveIcon.attr("class");
-        saveIcon.removeClass(c);
-        saveIcon.addClass(c.replace("line", "fill"));
+        if(saveIcon) {
+            let c = saveIcon.attr("class");
+            saveIcon.removeClass(c);
+            saveIcon.addClass(c.replace("line", "fill"));
+        }
     }
 }
 
@@ -89,7 +91,7 @@ function makeElementeditable(elem) {
 // Gestionnaire de clic sur un élément éditable
 function handleElementClick(event) {
     event.stopPropagation();
-    const elem = event.currentTarget;
+    let elem = event.currentTarget;
 
     if(elem){
         /*
@@ -97,14 +99,18 @@ function handleElementClick(event) {
             addClickEventChangeImg(elem);
         }
         */
-
-        displayEditorAreaFor(elem);
         deselectSelectedItem();
-        _('.editor-accordion').forEach(e => _(e).css('display', 'block'));
-
+        if(_(elem).attr("editable-popup") !== "false") addPopup(elem);
         elem.classList.add("selected-item");
 
-        if(_(elem).attr("editable-popup") !== "false") addPopup(elem);
+        if(elem.classList.contains("image-container")) {
+            _("#editor-setting-image").css("display", "block");
+            //elem = _(elem).qs("img");
+        }
+
+        displayEditorAreaFor(elem);
+        _('.editor-accordion').forEach(e => _(e).css('display', 'block'));
+
         //setElementResizable(elem);
     }
 }
@@ -425,7 +431,20 @@ function displayEditorAreaFor(elem) {
         partial(url).then((result) => {
             destElement.innerHTML = result;
 
-            destElement.querySelectorAll("select[edit-mp-input]").forEach((select) => {
+            _(destElement).qsa("[edit-attr-input]").forEach(input => {
+                let currentElem = elem.classList.contains("image-container") ? _(elem).qs("img") : elem;
+                let i = _(input), attr = i.attr("edit-attr-input");
+
+                let currentValue = (_(currentElem).attr(attr) === '' ? '' : _(currentElem).attr(attr));
+                i.val(currentValue);
+
+                i.change(evt => {
+                    _(currentElem).setAttribute(attr, i.val());
+                    saveState();
+                });
+            });
+
+            _(destElement).qsa("select[edit-mp-input]").forEach((select) => {
                 let s = _(select), style = s.attr("edit-mp-input");
 
                 let currentValue = (elem.style[style] === '' ? s.attr("default-value") : elem.style[style]);
@@ -438,7 +457,7 @@ function displayEditorAreaFor(elem) {
                 });
             });
 
-            destElement.querySelectorAll("input[edit-mp-input]").forEach((input) => {
+            _(destElement).qsa("input[edit-mp-input]").forEach((input) => {
                 input = _(input);
                 let style = input.attr("edit-mp-input");
 
@@ -489,7 +508,10 @@ function displayEditorAreaFor(elem) {
         });
     }
     //let listEditorStyleArea = ["#editStyle-dimensions", "#editStyle-typo"];
-    let listEditorStyleArea = _(".editStyle-accordion");
+    let listEditorStyleArea = [
+        ..._(".editStyle-accordion"),
+        ..._(".editStyle-accordion-settings")
+    ];
     listEditorStyleArea.forEach(e => initInputsFromPartial(_(e).attr("data-partial-src"), _(e)));
 }
 
@@ -579,9 +601,11 @@ async function savePage(){
             saveState();
 
             const saveIcon = _("#save-page");
-            let c = saveIcon.attr("class");
-            saveIcon.removeClass(c);
-            saveIcon.addClass(c.replace("fill", "line"));
+            if(saveIcon){
+                let c = saveIcon.attr("class");
+                saveIcon.removeClass(c);
+                saveIcon.addClass(c.replace("fill", "line"));
+            }
         }
     });
 }
@@ -646,6 +670,7 @@ function deselectSelectedItem(){
     if(resizer !== undefined) resizer.forEach(r => r.remove());
 
     _('.editor-accordion').forEach(e => _(e).css('display', 'none'));
+    _('.editor-accordion-settings').forEach(e => _(e).css('display', 'none'));
 }
 
 function setEditorSizeInput(){

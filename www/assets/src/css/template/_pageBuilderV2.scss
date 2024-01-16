@@ -225,11 +225,12 @@ $bars-size: 19vw;
                         font-size: rem(32);
                         color: $grey;
                     }
-
+                    /*
                     & button {
                         font-weight: 400;
                         padding: rem(10) rem(30);
                     }
+                     */
                 }
             }
         }
@@ -242,7 +243,8 @@ $bars-size: 19vw;
         justify-content: space-between;
         overflow-y: hidden;
 
-        & .editor-accordion {
+        & .editor-accordion,
+        & .editor-accordion-settings {
             display: none;
         }
 
@@ -409,22 +411,6 @@ $bars-size: 19vw;
                 & .editable,
                 & .sortable-element {
                     position: relative;
-                }
-
-                & .image-container {
-                    width: fit-content;
-                    height: fit-content;
-                    padding: 0;
-                    margin: 0;
-                    border: 0;
-                    overflow: hidden;
-
-                    & img {
-                        object-fit: cover;
-                        object-position: center;
-                        height: 100%;
-                        width: 100%;
-                    }
                 }
 
                 & .sortable-element {
