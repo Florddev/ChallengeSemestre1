@@ -385,6 +385,7 @@ async function setOuterHTMLAsync(elem, newHTML) {
 // Gestionnaire de l'ajout d'éléments triables
 function handleSortableAdd(evt) {
     // Empêcher le glisser-déposer si la classe no-drag est présente sur l'élément
+
     if (evt.from.classList.contains('no-drag')) {
         evt.preventDefault();
     }
@@ -430,6 +431,24 @@ function displayEditorAreaFor(elem) {
     let initInputsFromPartial = (url, destElement) => {
         partial(url).then((result) => {
             destElement.innerHTML = result;
+
+            _(destElement).qsa("[edit-class-toggle]").forEach(input => {
+                let i = _(input);
+                let attrType = i.attr("type"),
+                    attrName = i.attr("name"),
+                    className = i.attr("edit-class-toggle");
+
+                if(attrType === "radio" || attrType === "checkbox"){
+                    if(elem.classList.contains(className)) {
+                        _(i).attr("checked", "true");
+                    }
+
+                    i.change(evt => {
+                        _(destElement).qsa(`[name="${attrName}"]`).forEach(e => _(elem).removeClass(_(e).attr("edit-class-toggle")));
+                        elem.toggleClass(className);
+                    })
+                }
+            });
 
             _(destElement).qsa("[edit-attr-input]").forEach(input => {
                 let currentElem = elem.classList.contains("image-container") ? _(elem).qs("img") : elem;
@@ -484,7 +503,7 @@ function displayEditorAreaFor(elem) {
 
                     setInputDraggable(input);
 
-                    let select = input.nextSibling.nextSibling;
+                    let select = input.nextSibling.nextSibling !== undefined ? input.nextSibling.nextSibling : null;
                     let hasSelect = select !== null && select !== undefined;
                     if(hasSelect) select.value = unit;
 
@@ -505,10 +524,13 @@ function displayEditorAreaFor(elem) {
                     if(hasSelect) select.addEventListener("change", e => { inputEvent(); saveState(); });
                 }
             });
+            _(destElement).qsa('[data-plugin="svg"]').forEach(svg => _(svg).html(loadSVG(_(svg).attr("data-svg-src"))));
         });
     }
+
     //let listEditorStyleArea = ["#editStyle-dimensions", "#editStyle-typo"];
     let listEditorStyleArea = [
+        ..._(".editStyle"),
         ..._(".editStyle-accordion"),
         ..._(".editStyle-accordion-settings")
     ];
@@ -775,3 +797,19 @@ function closeShutters(input, target){
         }
     }
 }
+
+
+function removeAllEventListeners(element) {
+    // Cloner l'élément pour créer un nouvel élément identique sans les écouteurs d'événements
+    const clonedElement = element.cloneNode(true);
+
+    // Remplacer l'élément d'origine par le clone
+    element.parentNode.replaceChild(clonedElement, element);
+
+    // Remarque : Le remplacement de l'élément d'origine peut entraîner la perte de certaines propriétés,
+    // comme les références aux objets DOM enfants. Assurez-vous de prendre cela en compte dans votre application.
+}
+
+// Exemple d'utilisation :
+//const monElement = document.getElementById('monElement');
+//

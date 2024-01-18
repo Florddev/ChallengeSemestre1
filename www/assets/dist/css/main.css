@@ -3,13 +3,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
 :root {
-  --white: #FFF;
+  --white: #fff;
   --black: #000;
-  --grey: #6C7570;
+  --grey: #a3aed0;
   --blue: #0D6EFD;
   --red: #dc3545;
   --blue-darker: #0257d5;
-  --grey-darker: #545a57;
+  --grey-darker: #8190bf;
   --red-darker: #bd2130;
   --dark: #151521;
   --primary: #1c1c2b;
@@ -2370,6 +2370,80 @@ img {
   }
 }
 
+*:has(.align-vertical-start,
+.align-vertically-centered,
+.align-vertically-end,
+.align-horizontal-start,
+.align-horizontal-center,
+.align-horizontal-end) {
+  position: relative;
+}
+*:has(.align-vertical-start,
+.align-vertically-centered,
+.align-vertically-end,
+.align-horizontal-start,
+.align-horizontal-center,
+.align-horizontal-end) .align-vertical-start {
+  position: absolute !important;
+  top: 0;
+}
+*:has(.align-vertical-start,
+.align-vertically-centered,
+.align-vertically-end,
+.align-horizontal-start,
+.align-horizontal-center,
+.align-horizontal-end) .align-vertical-center {
+  position: absolute !important;
+  top: 50%;
+  transform: translateY(-50%);
+}
+*:has(.align-vertical-start,
+.align-vertically-centered,
+.align-vertically-end,
+.align-horizontal-start,
+.align-horizontal-center,
+.align-horizontal-end) .align-vertical-end {
+  position: absolute !important;
+  bottom: 0;
+}
+*:has(.align-vertical-start,
+.align-vertically-centered,
+.align-vertically-end,
+.align-horizontal-start,
+.align-horizontal-center,
+.align-horizontal-end) .align-horizontal-start {
+  position: absolute !important;
+  left: 0;
+}
+*:has(.align-vertical-start,
+.align-vertically-centered,
+.align-vertically-end,
+.align-horizontal-start,
+.align-horizontal-center,
+.align-horizontal-end) .align-horizontal-center {
+  position: absolute !important;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+*:has(.align-vertical-start,
+.align-vertically-centered,
+.align-vertically-end,
+.align-horizontal-start,
+.align-horizontal-center,
+.align-horizontal-end) .align-horizontal-end {
+  position: absolute !important;
+  right: 0;
+}
+*:has(.align-vertical-start,
+.align-vertically-centered,
+.align-vertically-end,
+.align-horizontal-start,
+.align-horizontal-center,
+.align-horizontal-end) .align-horizontal-center.align-vertical-center {
+  transform: translate(-50%, -50%);
+}
+
 .edit-mp {
   width: 100%;
   /* A adapter si besoin */
@@ -2720,6 +2794,9 @@ img {
 }
 .page-builder [contenteditable=true] {
   outline: none;
+}
+.page-builder [contenteditable=true]::before {
+  pointer-events: none; /* Désactive les événements du pseudo-élément */
 }
 .page-builder hr {
   border: 0;
@@ -3107,7 +3184,7 @@ img {
 .page-builder-main-editor .editor-container .editor-content .main {
   height: 100%;
   min-height: 90vh;
-  border: 0.0625rem solid transparent;
+  border: 0.1875rem solid #f5f8fe;
   border-radius: var(--main-radius);
   background-color: var(--white);
 }
@@ -3172,6 +3249,30 @@ img {
 }
 .page-builder-main-tools .draggable-input {
   cursor: n-resize;
+}
+.page-builder-main-tools .input-color-container {
+  position: relative;
+  width: 40px;
+  border-radius: 6px;
+  overflow: hidden;
+  height: 25px;
+  margin-right: 10px;
+}
+.page-builder-main-tools .input-color-container input[type=color] {
+  display: inline;
+  position: absolute;
+  top: -30%;
+  left: -30%;
+  height: 300%;
+  width: 300% !important;
+}
+.page-builder-main-tools input, .page-builder-main-tools select {
+  font-family: var(--main-font1);
+  font-weight: 500;
+  color: var(--primary);
+}
+.page-builder-main-tools input::-webkit-calendar-picker-indicator, .page-builder-main-tools select::-webkit-calendar-picker-indicator {
+  display: none;
 }
 
 .resizer-container {

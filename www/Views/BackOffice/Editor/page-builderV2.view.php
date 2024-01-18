@@ -355,50 +355,14 @@
                 </div>
                 <br>
                 <div data-plugin="tabnav" id="tabnav-element-style">
-                    <div class="edit-form">
-                        <ul class="edit-form-inputs fluid">
-                            <li class="edit-form-toggler">
-                                <input id="align-horizontal-left" type="radio" name="align-horizontal" value="visible"
-                                    checked />
-                                <label for="align-horizontal-left">
-                                    <i data-plugin="svg" data-svg-src="/assets/images/svg/flex-align/align-left-line.svg"></i>
-                                </label>
-                            </li>
-                            <li class="edit-form-toggler">
-                                <input id="align-horizontal-mid" type="radio" name="align-horizontal" value="hidden" />
-                                <label for="align-horizontal-mid">
-                                    <i data-plugin="svg"
-                                        data-svg-src="/assets/images/svg/flex-align/align-horizontal-center-line.svg"></i>
-                                </label>
-                            </li>
-                            <li class="edit-form-toggler">
-                                <input id="align-horizontal-right" type="radio" name="align-horizontal" value="scroll" />
-                                <label for="align-horizontal-right">
-                                    <i data-plugin="svg" data-svg-src="/assets/images/svg/flex-align/align-right-line.svg"></i>
-                                </label>
-                            </li>
-                            <li class="edit-form-toggler">
-                                <input id="align-vertical-top" type="radio" name="align-vertical" value="auto" />
-                                <label for="align-vertical-top">
-                                    <i data-plugin="svg" data-svg-src="/assets/images/svg/flex-align/align-top-line.svg"></i>
-                                </label>
-                            </li>
-                            <li class="edit-form-toggler">
-                                <input id="align-vertical-mid" type="radio" name="align-vertical" value="auto" />
-                                <label for="align-vertical-mid">
-                                    <i data-plugin="svg"
-                                        data-svg-src="/assets/images/svg/flex-align/align-vertical-center-line.svg"></i>
-                                </label>
-                            </li>
-                            <li class="edit-form-toggler">
-                                <input id="align-vertical-bot" type="radio" name="align-vertical" value="auto" />
-                                <label for="align-vertical-bot">
-                                    <i data-plugin="svg" data-svg-src="/assets/images/svg/flex-align/align-bottom-line.svg"></i>
-                                </label>
-                            </li>
-                        </ul>
+                    <div class="editor-accordion">
+                        <div class="editStyle-accordion"
+                             id="editStyle-align"
+                             data-plugin="partial"
+                             data-partial-src="/Views/Partial/Editor/editorTools-align.html">
+
+                        </div>
                     </div>
-                    <hr>
                     <div class="accordion editor-accordion">
                         <input type="checkbox"/>
                         <label class="accordion-label">
@@ -470,6 +434,14 @@
             </section>
         </main>
     </div>
+    <datalist id="global-color-data-list">
+        <option value="#151521"></option>
+        <option value="#1c1c2b"></option>
+        <option value="#26263a"></option>
+        <option value="#7239EA"></option>
+        <option value="#a3aed0"></option>
+        <option value="#eaebee"></option>
+    </datalist>
     <script src="/assets/dist/js/wispQuery.js"></script>
     <script src="/assets/src/js/components/accordion.js"></script>
     <script src="/assets/src/js/components/navbar.js"></script>

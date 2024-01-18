@@ -38,6 +38,10 @@ $bars-size: 19vw;
 
     [contenteditable="true"]{
         outline: none;
+
+        &::before {
+            pointer-events: none; /* Désactive les événements du pseudo-élément */
+        }
     }
 
     & hr {
@@ -471,7 +475,7 @@ $bars-size: 19vw;
                         height: 100%;
                         min-height: 90vh;
                         //padding-bottom: 50vh;
-                        border: rem(1) solid transparent;
+                        border: rem(3) solid $light1;
                         border-radius: var(--main-radius);
                         //width: 100%;
                         //max-width: rem(1200);
@@ -531,6 +535,33 @@ $bars-size: 19vw;
 
             & .draggable-input {
                 cursor: n-resize;
+            }
+
+            & .input-color-container {
+                position: relative;
+                width: 40px;
+                border-radius: 6px;
+                overflow: hidden;
+                height: 25px;
+                margin-right: 10px;
+
+                & input[type="color"]{
+                    display: inline;
+                    position: absolute;
+                    top: -30%;
+                    left: -30%;
+                    height: 300%;
+                    width: 300% !important;
+                }
+            }
+            & input, select {
+                font-family: var(--main-font1);
+                font-weight: 500;
+                color: var(--primary);
+
+                &::-webkit-calendar-picker-indicator {
+                    display: none;
+                }
             }
         }
     }

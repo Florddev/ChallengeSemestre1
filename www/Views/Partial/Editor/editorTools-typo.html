@@ -90,7 +90,10 @@
 <div class="edit-form">
     <label>Couleur</label>
     <div class="edit-form-inputs">
-        <input type="color" value="#FFFFFF" edit-mp-input="color"/>
+        <div class="input-color-container">
+            <input type="color" list="global-color-data-list" draggable-input="false" value="#000000" edit-mp-input="color" id="typo-color-picker" oninput="_('#typo-color-input').val(this.value);">
+        </div>
+        <input type="text" draggable-input="false" value="#7239EA" edit-mp-input="color" style="display: inline; width: 100%;" id="typo-color-input" oninput="_('#typo-color-picker').val(this.value);">
     </div>
 </div>
 <br>

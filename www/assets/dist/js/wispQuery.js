@@ -294,22 +294,40 @@ function _(selector) {
 
         // Events functions
         element.click = func => {
-            element.onclick = evt => { func(evt) };
+            element.addEventListener("click", evt => {
+                evt.stopPropagation();
+                func(evt)
+            });
         }
         element.input = func => {
-            element.addEventListener("input", evt => func(evt));
+            element.addEventListener("input", evt => {
+                evt.stopPropagation();
+                func(evt)
+            });
         }
         element.change = func => {
-            element.addEventListener("change", evt => func(evt));
+            element.addEventListener("change", evt => {
+                evt.stopPropagation();
+                func(evt)
+            });
         }
         element.dblclick = func => {
-            element.addEventListener("dblclick", evt => func(evt));
+            element.addEventListener("dblclick", evt => {
+                evt.stopPropagation();
+                func(evt)
+            });
         }
         element.ready = func => {
-            element.addEventListener("DOMContentLoaded", evt => func(evt));
+            element.addEventListener("DOMContentLoaded", evt => {
+                evt.stopPropagation();
+                func(evt)
+            });
         }
         element.resize = func => {
-            element.addEventListener("resize", evt => func(evt));
+            element.addEventListener("resize", evt => {
+                evt.stopPropagation();
+                func(evt)
+            });
         }
 
         // Seletor
