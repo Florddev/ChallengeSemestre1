@@ -1,7 +1,7 @@
-/:
-  controller: FrontOffice/Main
-  action: home
-  template: front
+#/:
+#  controller: FrontOffice/Main
+#  action: home
+#  template: front
 
 /guide:
   controller: FrontOffice/Main
