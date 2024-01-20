@@ -1,40 +1,6 @@
 $bars-size: 19vw;
 
-@mixin scroll-bar($hide) {
-
-    /* width */
-    &::-webkit-scrollbar {
-        @if $hide ==true {
-            display: none;
-        }
-
-        width: rem(5);
-    }
-
-    /* Track */
-    &::-webkit-scrollbar-track {
-        background: transparent;
-    }
-
-    /* Handle */
-    &::-webkit-scrollbar-thumb {
-        background: #{lighten($grey, 5%)};
-        border-radius: var(--main-radius);
-    }
-
-    /* Handle on hover */
-    &::-webkit-scrollbar-thumb:hover {
-        background: $grey;
-    }
-}
-
 .page-builder {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    height: 100vh;
-    color: $text-black;
-    border: rem(3) solid $grey-lighter;
 
     [contenteditable="true"]{
         outline: none;
@@ -65,15 +31,7 @@ $bars-size: 19vw;
     }
 
     &-header {
-        height: rem(100);
-        border-bottom: rem(3) solid $grey-lighter;
-        display: flex;
-        justify-content: space-between;
-
         &-start {
-            position: relative;
-            max-width: $bars-size;
-            min-width: $bars-size;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -103,8 +61,6 @@ $bars-size: 19vw;
         }
 
         &-mid {
-            position: relative;
-            width: 100%;
             display: flex;
             justify-content: space-between;
             padding: rem(30);
@@ -198,12 +154,7 @@ $bars-size: 19vw;
         }
 
         &-end {
-            position: relative;
-            max-width: $bars-size;
-            min-width: $bars-size;
-            height: 100%;
             padding: rem(30) 0;
-
 
             & .header-end-list {
                 height: 100%;
@@ -241,88 +192,14 @@ $bars-size: 19vw;
     }
 
     &-main {
-        height: 100%;
-        display: flex;
-        position: relative;
-        justify-content: space-between;
-        overflow-y: hidden;
 
         & .editor-accordion,
         & .editor-accordion-settings {
             display: none;
         }
 
-        & .main-components-toggler {
-            position: absolute;
-            width: rem(35);
-            height: rem(35);
-            background-color: $white;
-            box-shadow: 0 0 rem(20) rgba($dark, .15);
-            bottom: rem(20);
-            border-radius: var(--main-radius);
-            z-index: 10;
-            cursor: pointer;
-            transition: var(--transition-duration) ease-in-out;
-
-            &.left {
-                left: $bars-size;
-                transform: translateX(-50%);
-            }
-            &.right {
-                right: $bars-size;
-                transform: translateX(50%);
-            }
-
-            & label {
-                height: 100%;
-                width: 100%;
-                font-size: rem(18);
-                cursor: pointer;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                transition: var(--transition-duration) ease-in-out;
-                border-radius: var(--main-radius);
-
-                & i {
-                    transition: var(--transition-duration) ease-in-out;
-                }
-            }
-
-            &:hover {
-                & label {
-                    background-color: $tercery;
-                    & i {
-                        color: $white;
-                    }
-                }
-            }
-
-            & input {
-                display: none;
-
-                &:checked~label {
-                    background-color: $tercery;
-                    & i {
-                        transform: rotate(180deg);
-                        color: $white;
-                    }
-                }
-            }
-        }
-
-        &-components {
-            @include scroll-bar(true);
-
-            overflow-x: hidden;
-            overflow-y: scroll;
-            position: relative;
-            max-width: $bars-size;
-            //min-width: $bars-size;
-            border-right: rem(3) solid $grey-lighter;
-            transition: var(--transition-duration) ease-in-out;
+        & #componentsShutter {
             padding: rem(20);
-            width: 100%;
 
             & .components-preview {
                 display: flex;
@@ -371,14 +248,7 @@ $bars-size: 19vw;
         }
 
         &-editor {
-            @include scroll-bar(false);
-
-            width: 100%;
-            position: relative;
-            background-color: $light1;
             padding: rem(80);
-            overflow-y: scroll;
-            color: initial;
             display: flex;
             justify-content: center;
 
@@ -520,18 +390,8 @@ $bars-size: 19vw;
             }
         }
 
-        &-tools {
-            @include scroll-bar(true);
-
-            overflow-x: hidden;
-            overflow-y: scroll;
-            position: relative;
-            max-width: $bars-size;
-            //min-width: $bars-size;
-            border-left: rem(3) solid $grey-lighter;
+        & #editorShutter {
             padding: rem(20);
-            transition: var(--transition-duration) ease-in-out;
-            width: 100%;
 
             & .draggable-input {
                 cursor: n-resize;
