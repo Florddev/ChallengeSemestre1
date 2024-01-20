@@ -47,14 +47,11 @@
         <div class="edit-form-inputs">
             <select edit-mp-input="font-weight">
                 <option value="100">Thin</option>
-                <option value="200">Extra-Light</option>
-                <option value="300">Light</option>
+                <!--<option value="200">Extra-Light</option>-->
                 <option value="400" selected>Normal</option>
                 <option value="500">Medium</option>
-                <option value="600">Semi-Bold</option>
                 <option value="700">Bold</option>
                 <option value="800">Extra-Bold</option>
-                <option value="900">Ultra-Bold</option>
             </select>
         </div>
     </div>
@@ -89,11 +86,27 @@
         </div>
     </div>
 </div>
+<div class="edit-form-control">
+    <div class="edit-form w-100">
+        <label>Text transform</label>
+        <div class="edit-form-inputs">
+            <select edit-mp-input="text-transform" default-value='none'>
+                <option value="none">None</option>
+                <option value="lowercase">Lowercase</option>
+                <option value="uppercase">Uppercase</option>
+                <option value="capitalize">Capitalize</option>
+            </select>
+        </div>
+    </div>
+</div>
 <br>
 <div class="edit-form">
     <label>Couleur</label>
     <div class="edit-form-inputs">
-        <input type="color" value="#FFFFFF" edit-mp-input="color"/>
+        <div class="input-color-container">
+            <input type="color" list="global-color-data-list" draggable-input="false" value="#000000" edit-mp-input="color" id="typo-color-picker" oninput="_('#typo-color-input').val(this.value);">
+        </div>
+        <input type="text" draggable-input="false" value="#7239EA" edit-mp-input="color" style="display: inline; width: 100%;" id="typo-color-input" oninput="_('#typo-color-picker').val(this.value);">
     </div>
 </div>
 <br>

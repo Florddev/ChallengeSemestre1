@@ -142,6 +142,30 @@ function uniqueId(pattern = 10, prefix='', suffix='') {
     return prefix + result + suffix;
 }
 
+function rgbToHex(rgbString) {
+    // Vérifie si rgbString est une chaîne
+    if (typeof rgbString !== 'string') {
+        return rgbString; // La valeur n'est pas une chaîne
+    }
+
+    // Utilise une expression régulière pour extraire les valeurs de rouge, vert et bleu
+    const match = rgbString.match(/(\d+),\s*(\d+),\s*(\d+)/);
+
+    // Vérifie si la correspondance est trouvée
+    if (!match) {
+        return rgbString; // La chaîne n'a pas le format attendu
+    }
+
+    // Convertit les valeurs en entiers
+    const red = parseInt(match[1]);
+    const green = parseInt(match[2]);
+    const blue = parseInt(match[3]);
+
+    // Convertit les valeurs en hexadécimal et les concatène
+    const hex = '#' + ((1 << 24) + (red << 16) + (green << 8) + blue).toString(16).slice(1).toUpperCase();
+
+    return hex;
+}
 
 let SList = () => {
     return {
@@ -155,6 +179,20 @@ let SList = () => {
         }
     };
 };
+
+// Fonction pour charger le contenu du fichier SVG
+function loadSVG(url) {
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", url, false);  // Le troisième paramètre indique une requête synchrone
+    xhr.send();
+
+    if (xhr.status === 200) {
+        return xhr.responseText;
+    } else {
+        console.error("Erreur de chargement du fichier SVG");
+        return null;
+    }
+}
 
 let partial = (url, data, method) => {
     return new Promise((resolve, reject) => {
@@ -187,11 +225,11 @@ function _(selector) {
                 if (event) { event.preventDefault(); }
 
                 let form = element;
-                if (request.data == undefined) request.data = [];
+                if (request.data === undefined) request.data = [];
 
                 for (let i = 0; i < form.length; i++) {
                     let e = form.elements[i];
-                    if (e.name != "") request.data[e.name] = e.type == "number" ? parseInt(e.value) : e.value;
+                    if (e.name !== "") request.data[e.name] = e.type === "number" ? parseInt(e.value) : e.value;
                 }
             }
             return ajax(method, request);
@@ -207,69 +245,97 @@ function _(selector) {
         };
 
         // Value functions
-        element.val = (value) => {
-            if (value != undefined) element.value = value;
+        element.val = value => {
+            if (value !== undefined) element.value = value;
             else return element.value;
         };
 
         // Content functions
-        element.html = (value) => {
-            if (value != undefined) element.innerHTML = value;
+        element.html = value => {
+            if (value !== undefined) element.innerHTML = value;
             else return element.innerHTML;
         };
-        element.text = (value) => {
-            if (value != undefined) element.innerText = value;
+        element.text = value => {
+            if (value !== undefined) element.innerText = value;
             else return element.innerText;
         };
 
         // Attribute functions
         element.attr = (name, value) => {
-            if (value != undefined) element.setAttribute(name, value);
+            if (value !== undefined) element.setAttribute(name, value);
             else return element.getAttribute(name);
         };
-        element.removeAttr = (name) => {
-            if (name != undefined) element.removeAttribute(name);
+        element.removeAttr = name => {
+            if (name !== undefined) SList().From(name).forEach((e) => { element.removeAttribute(e) });
         };
 
         // Class functions
-        element.addClass = (name) => {
-            if (name != undefined) {
+        element.addClass = name => {
+            if (name !== undefined) {
                 SList().From(name).forEach((e) => { element.classList.add(e); })
             }
         };
-        element.removeClass = (name) => {
-            if (name != undefined) {
-                SList().From(name).forEach((e) => { element.classList.remove(e); })
-            }
+        element.removeClass = (...args) => {
+            args.forEach((arg, index) => { element.classList.remove(arg); })
         };
-        element.toggleClass = (name) => {
-            if (name != undefined) {
+        element.toggleClass = name => {
+            if (name !== undefined) {
                 SList().From(name).forEach((e) => { element.classList.toggle(e); })
             }
         };
 
         // CSS functions
         element.css = (style, value) => {
-            if (style != undefined && value != undefined) {
-                element.style[style] = value;
+            if (style !== undefined) {
+                if (value !== undefined) element.style[style] = value;
+                else return element.style[style];
             }
         };
 
         // Events functions
-        element.click = (func) => {
-            element.onclick = evt => { func(evt) };
+        element.click = func => {
+            element.addEventListener("click", evt => {
+                evt.stopPropagation();
+                func(evt)
+            });
         }
-        element.input = (func) => {
-            element.addEventListener("input", evt => func(evt));
+        element.input = func => {
+            element.addEventListener("input", evt => {
+                evt.stopPropagation();
+                func(evt)
+            });
         }
-        element.change = (func) => {
-            element.addEventListener("change", evt => func(evt));
+        element.change = func => {
+            element.addEventListener("change", evt => {
+                evt.stopPropagation();
+                func(evt)
+            });
         }
-        element.dblclick = (func) => {
-            element.addEventListener("dblclick", evt => func(evt));
+        element.dblclick = func => {
+            element.addEventListener("dblclick", evt => {
+                evt.stopPropagation();
+                func(evt)
+            });
         }
-        element.ready = (func) => {
-            element.addEventListener("DOMContentLoaded", evt => func(evt));
+        element.ready = func => {
+            element.addEventListener("DOMContentLoaded", evt => {
+                evt.stopPropagation();
+                func(evt)
+            });
+        }
+        element.resize = func => {
+            element.addEventListener("resize", evt => {
+                evt.stopPropagation();
+                func(evt)
+            });
+        }
+
+        // Seletor
+        element.qs = querySelector => {
+            return element.querySelector(querySelector);
+        }
+        element.qsa = querySelectorAll => {
+            return element.querySelectorAll(querySelectorAll);
         }
 
         // Display functions

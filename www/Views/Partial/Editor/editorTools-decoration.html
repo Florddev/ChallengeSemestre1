@@ -1,0 +1,86 @@
+<p class="subtitle">Border</p>
+<div class="edit-form-container">
+    <div class="edit-form-control">
+        <div class="edit-form w-50">
+            <label>Width</label>
+            <div class="edit-form-inputs">
+                <input type="text" value="0" edit-mp-input="border-width"/>
+                <select class="edit-unit" default-value="px">
+                    <option value="px" selected>px</option>
+                    <option value="%">%</option>
+                    <option value="em">em</option>
+                    <option value="rem">rem</option>
+                    <option value="vh">vh</option>
+                    <option value="vw">vw</option>
+                </select>
+            </div>
+        </div>
+        <div class="edit-form w-50">
+            <label>Style</label>
+            <div class="edit-form-inputs">
+                <select edit-mp-input="border-style" default-value="none">
+                    <option value="none">None</option>
+                    <option value="solid">Solid</option>
+                    <option value="dotted">Dotted</option>
+                    <option value="dashed">Dashed</option>
+                    <option value="double">Double</option>
+                    <option value="groove">Groove</option>
+                    <option value="ridge">Ridge</option>
+                    <option value="inset">Inset</option>
+                    <option value="outset">Outset</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="edit-form-control">
+        <div class="edit-form w-100">
+            <label>Couleur</label>
+            <div class="edit-form-inputs">
+                <input type="text" value="0" edit-mp-input="border-color" id="bc-text" /><!--oninput="_('#bc-color').attr('value', this.value)"-->
+                <!--<input type="color" edit-mp-input="border-color" id="bc-color" oninput="_('#bc-text').attr('value', this.value)"/>-->
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<p class="subtitle">Border radius</p>
+<div class="edit-form-container">
+    <div class="edit-form-control">
+        <div class="edit-form w-50">
+            <label>Top Left</label>
+            <div class="edit-form-inputs">
+                <input type="text" value="0" edit-mp-input="border-top-left-radius" />
+            </div>
+        </div>
+        <div class="edit-form w-50">
+            <label>Top Right</label>
+            <div class="edit-form-inputs">
+                <input type="text" value="0" edit-mp-input="border-top-right-radius" />
+            </div>
+        </div>
+    </div>
+    <div class="edit-form-control">
+        <div class="edit-form">
+            <label>Bottom Left</label>
+            <div class="edit-form-inputs">
+                <input type="text" value="0" edit-mp-input="border-bottom-left-radius" />
+            </div>
+        </div>
+        <div class="edit-form">
+            <label>Bottom Right</label>
+            <div class="edit-form-inputs">
+                <input type="text" value="0" edit-mp-input="border-bottom-right-radius" />
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="edit-form">
+    <label>Background-Color</label>
+    <div class="edit-form-inputs">
+        <div class="input-color-container">
+            <input type="color" list="global-color-data-list" draggable-input="false" value="#000000" edit-mp-input="background-color" id="background-color-picker" oninput="_('#background-color-input').val(this.value);">
+        </div>
+        <input type="text" draggable-input="false" value="#7239EA" edit-mp-input="background-color" style="display: inline; width: 100%;" id="background-color-input" oninput="_('#background-color-picker').val(this.value);">
+    </div>
+</div>

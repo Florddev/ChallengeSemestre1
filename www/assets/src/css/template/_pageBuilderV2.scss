@@ -38,6 +38,10 @@ $bars-size: 19vw;
 
     [contenteditable="true"]{
         outline: none;
+
+        &::before {
+            pointer-events: none; /* Désactive les événements du pseudo-élément */
+        }
     }
 
     & hr {
@@ -49,7 +53,15 @@ $bars-size: 19vw;
         &.sm {
             height: rem(1.5);
             margin: rem(13) 0;
+            justify-content: flex-start;
         }
+    }
+
+    & .subtitle {
+        color: #a3aed0;
+        font-size: rem(10);
+        text-transform: uppercase;
+        margin-bottom: rem(5);
     }
 
     &-header {
@@ -119,9 +131,17 @@ $bars-size: 19vw;
                             cursor: pointer;
                             transition: var(--transition-duration);
 
-                            &:hover,
-                            &.active {
-                                color: $text-black;
+                            & label {
+                                transition: var(--transition-duration);
+                                cursor: pointer;
+                            }
+
+                            & input {
+                                display: none;
+
+                                &:checked ~ label {
+                                    color: $text-black;
+                                }
                             }
                         }
                     }
@@ -131,6 +151,23 @@ $bars-size: 19vw;
                         display: flex;
                         font-weight: 600;
                         gap: rem(10);
+
+                        & input, & select {
+                            max-width: rem(40);
+                            font-family: inherit;
+                            font-size: inherit;
+                            font-weight: inherit;
+                        }
+                        & input {
+                            cursor: n-resize;
+                        }
+                        & select {
+                            width: max-content;
+                            -webkit-appearance: none;
+                            border: 1px solid transparent;
+                            outline: none;
+                            cursor: pointer;
+                        }
 
                         & span {
                             color: $grey;
@@ -149,6 +186,8 @@ $bars-size: 19vw;
 
                     & i {
                         cursor: pointer;
+                        transition: var(--transition-duration) ease-in-out;
+                        font-weight: 100;
 
                         &.active {
                             color: $text-black;
@@ -190,11 +229,12 @@ $bars-size: 19vw;
                         font-size: rem(32);
                         color: $grey;
                     }
-
+                    /*
                     & button {
                         font-weight: 400;
                         padding: rem(10) rem(30);
                     }
+                     */
                 }
             }
         }
@@ -207,7 +247,8 @@ $bars-size: 19vw;
         justify-content: space-between;
         overflow-y: hidden;
 
-        & .editor-accordion {
+        & .editor-accordion,
+        & .editor-accordion-settings {
             display: none;
         }
 
@@ -348,10 +389,10 @@ $bars-size: 19vw;
             & .editor-container {
                 width: 100%;
                 //min-height: 100vh; // TODO: Changer pour fit-content
-                background-color: $white;
                 border-radius: var(--main-radius);
                 overflow: hidden;
                 height: max-content;
+                transition: var(--transition-duration);
 
                 &[editor-mode="pc"] {
                     width: 100%;
@@ -376,22 +417,7 @@ $bars-size: 19vw;
                     position: relative;
                 }
 
-                & .editable-image-container {
-                    width: fit-content;
-                    height: fit-content;
-                    padding: 0;
-                    margin: 0;
-                    border: 0;
-                    & img {
-                        object-fit: cover;
-                        object-position: center;
-                        height: 100%;
-                        width: 100%;
-                    }
-                }
-
                 & .sortable-element {
-                    border: rem(1) dashed $grey;
                 }
 
                 & .editable::before,
@@ -402,6 +428,9 @@ $bars-size: 19vw;
                     content: '';
                     width: 100%;
                     height: 100%;
+                }
+                & .sortable-element::before {
+                    border: rem(1) dashed $grey;
                 }
 
                 & .editable-text[contenteditable="true"]{
@@ -446,10 +475,11 @@ $bars-size: 19vw;
                         height: 100%;
                         min-height: 90vh;
                         //padding-bottom: 50vh;
-                        border: rem(1) solid transparent;
+                        border: rem(3) solid $light1;
                         border-radius: var(--main-radius);
                         //width: 100%;
                         //max-width: rem(1200);
+                        background-color: var(--white);
                     }
 
                     /* Style pour l'élément popup */
@@ -505,6 +535,33 @@ $bars-size: 19vw;
 
             & .draggable-input {
                 cursor: n-resize;
+            }
+
+            & .input-color-container {
+                position: relative;
+                width: 40px;
+                border-radius: 6px;
+                overflow: hidden;
+                height: 25px;
+                margin-right: 10px;
+
+                & input[type="color"]{
+                    display: inline;
+                    position: absolute;
+                    top: -30%;
+                    left: -30%;
+                    height: 300%;
+                    width: 300% !important;
+                }
+            }
+            & input, select {
+                font-family: var(--main-font1);
+                font-weight: 500;
+                color: var(--primary);
+
+                &::-webkit-calendar-picker-indicator {
+                    display: none;
+                }
             }
         }
     }

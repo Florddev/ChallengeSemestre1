@@ -28,27 +28,58 @@
                 <div class="header-mid-start"></div>
                 <div class="header-mid-center">
                     <ul class="editor-responsive">
-                        <li class="active"><i class="ri-computer-fill"></i></li>
-                        <li><i class="ri-tablet-line"></i></li>
-                        <li><i class="ri-smartphone-line"></i></li>
+                        <li editor-mode="pc">
+                            <input type="radio" id="editor-mode-pc" name="editor-mode-radio" checked>
+                            <label for="editor-mode-pc"><i class="ri-computer-fill"></i></label>
+                        </li>
+                        <li editor-mode="pad">
+                            <input type="radio" id="editor-mode-pad" name="editor-mode-radio">
+                            <label for="editor-mode-pad"><i class="ri-tablet-line"></i></label>
+                        </li>
+                        <li editor-mode="phone">
+                            <input type="radio" id="editor-mode-phone" name="editor-mode-radio">
+                            <label for="editor-mode-phone"><i class="ri-smartphone-line"></i></label>
+                        </li>
                     </ul>
                     <ul class="editor-size">
-                        <li>1440 <span>px</span></li>
+                        <li>
+                            <input type="text" value="" id="editor-size" min="0" class="draggable-input">
+                            <label for="editor-size"><span> px</span></label>
+                        </li>
                         <li><span>/</span></li>
-                        <li>60 <span>%</span></li>
+                        <li>
+                            <!--<input type="text" value="100" id="editor-size-percent" min="0" max="100" class="draggable-input">-->
+                            <select id="editor-size-percent">
+                                <option value="100" selected>100</option>
+                                <option value="90">90</option>
+                                <option value="80">80</option>
+                                <option value="70">70</option>
+                                <option value="60">60</option>
+                                <option value="50">50</option>
+                                <option value="40">40</option>
+                                <option value="30">30</option>
+                                <option value="20">20</option>
+                                <option value="10">10</option>
+                            </select>
+                            <label for="editor-size-percent"><span> %</span></label>
+                        </li>
                     </ul>
                 </div>
                 <div class="header-mid-end">
-                    <i class="ri-arrow-go-back-fill active"></i>
-                    <i class="ri-arrow-go-forward-fill"></i>
+                    <i class="ri-arrow-go-back-fill" id="state-undo"></i>
+                    <i class="ri-arrow-go-forward-fill" id="state-redo"></i>
                 </div>
             </section>
             <section class="page-builder-header-end">
                 <ul class="header-end-list">
-                    <li onclick="savePage()"><i class="ri-save-line"></i></li>
+                    <!--
+                    <li onclick="savePage()"><i class="ri-save-line" id="save-page"></i></li>
                     <li><i class="ri-play-line"></i></li>
                     <li><button class="btn btn-primary btn-small">Publier</button></li>
                     <li><i class="ri-shield-user-line"></i></li>
+                    -->
+                    <li onclick="savePage()"><button class="btn btn-primary btn-line">Enregistrer</button></li>
+                    <li><button class="btn btn-primary">Visualiser</button></li>
                 </ul>
             </section>
         </header>
@@ -61,7 +92,6 @@
                 <input type="checkbox" id="right-toggler" onchange="closeShutters(this, 'editorShutter')">
                 <label for="right-toggler"><i class="ri-arrow-right-line"></i></label>
             </div>
-
             <section class="page-builder-main-components" id="componentsShutter">
                 <div class="btn-multiple">
                     <div class="btn-multiple-child">
@@ -309,11 +339,11 @@
             <section class="page-builder-main-tools" id="editorShutter">
                 <div class="btn-multiple">
                     <div class="btn-multiple-child">
-                        <input type="radio" name="toolbar" id="toolbar-1" checked>
+                        <input type="radio" name="toolbar" id="toolbar-1" data-tabnav-target="tabnav-element-style" checked>
                         <label for="toolbar-1">Style</label>
                     </div>
                     <div class="btn-multiple-child">
-                        <input type="radio" name="toolbar" id="toolbar-2">
+                        <input type="radio" name="toolbar" id="toolbar-2" data-tabnav-target="tabnav-element-settings">
                         <label for="toolbar-2">Paramètres</label>
                     </div>
                     <!--
@@ -324,105 +354,103 @@
                     -->
                 </div>
                 <br>
-                <div class="edit-form">
-                    <ul class="edit-form-inputs fluid">
-                        <li class="edit-form-toggler">
-                            <input id="align-horizontal-left" type="radio" name="align-horizontal" value="visible"
-                                checked />
-                            <label for="align-horizontal-left">
-                                <i data-plugin="svg" data-svg-src="/assets/images/svg/flex-align/align-left-line.svg"></i>
-                            </label>
-                        </li>
-                        <li class="edit-form-toggler">
-                            <input id="align-horizontal-mid" type="radio" name="align-horizontal" value="hidden" />
-                            <label for="align-horizontal-mid">
-                                <i data-plugin="svg"
-                                    data-svg-src="/assets/images/svg/flex-align/align-horizontal-center-line.svg"></i>
-                            </label>
-                        </li>
-                        <li class="edit-form-toggler">
-                            <input id="align-horizontal-right" type="radio" name="align-horizontal" value="scroll" />
-                            <label for="align-horizontal-right">
-                                <i data-plugin="svg" data-svg-src="/assets/images/svg/flex-align/align-right-line.svg"></i>
-                            </label>
-                        </li>
-                        <li class="edit-form-toggler">
-                            <input id="align-vertical-top" type="radio" name="align-vertical" value="auto" />
-                            <label for="align-vertical-top">
-                                <i data-plugin="svg" data-svg-src="/assets/images/svg/flex-align/align-top-line.svg"></i>
-                            </label>
-                        </li>
-                        <li class="edit-form-toggler">
-                            <input id="align-vertical-mid" type="radio" name="align-vertical" value="auto" />
-                            <label for="align-vertical-mid">
-                                <i data-plugin="svg"
-                                    data-svg-src="/assets/images/svg/flex-align/align-vertical-center-line.svg"></i>
-                            </label>
-                        </li>
-                        <li class="edit-form-toggler">
-                            <input id="align-vertical-bot" type="radio" name="align-vertical" value="auto" />
-                            <label for="align-vertical-bot">
-                                <i data-plugin="svg" data-svg-src="/assets/images/svg/flex-align/align-bottom-line.svg"></i>
-                            </label>
-                        </li>
-                    </ul>
-                </div>
-                <hr>
+                <div data-plugin="tabnav" id="tabnav-element-style">
+                    <div class="editor-accordion">
+                        <div class="editStyle-accordion"
+                             id="editStyle-align"
+                             data-plugin="partial"
+                             data-partial-src="/Views/Partial/Editor/editorTools-align.html">
 
-
-                <div class="accordion editor-accordion">
-                    <input type="checkbox"/>
-                    <label class="accordion-label">
-                        <span>Dimension</span>
-                        <i class="ri-arrow-down-s-line"></i>
-                    </label>
-                    <div class="accordion-panel"
-                         id="editStyle-dimensions"
-                         data-plugin="partial"
-                         data-partial-src="/Views/Partial/Editor/editorTools-dimensions.html">
+                        </div>
                     </div>
-                    <hr>
+                    <div class="accordion editor-accordion">
+                        <input type="checkbox"/>
+                        <label class="accordion-label">
+                            <span>Dimension</span>
+                            <i class="ri-arrow-down-s-line"></i>
+                        </label>
+                        <div class="accordion-panel editStyle-accordion"
+                             id="editStyle-dimensions"
+                             data-plugin="partial"
+                             data-partial-src="/Views/Partial/Editor/editorTools-dimensions.html">
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="accordion editor-accordion">
+                        <input type="checkbox" />
+                        <label class="accordion-label">
+                            <span>Typography</span>
+                            <i class="ri-arrow-down-s-line"></i>
+                        </label>
+                        <div class="accordion-panel editStyle-accordion"
+                             id="editStyle-typo"
+                             data-plugin="partial"
+                             data-partial-src="/Views/Partial/Editor/editorTools-typo.html">
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="accordion editor-accordion">
+                        <input type="checkbox" />
+                        <label class="accordion-label">
+                            <span>Decoration</span>
+                            <i class="ri-arrow-down-s-line"></i>
+                        </label>
+                        <div class="accordion-panel editStyle-accordion"
+                             id="editStyle-decoration"
+                             data-plugin="partial"
+                             data-partial-src="/Views/Partial/Editor/editorTools-decoration.html">
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="accordion editor-accordion">
+                        <input type="checkbox" />
+                        <label class="accordion-label">
+                            <span>Position</span>
+                            <i class="ri-arrow-down-s-line"></i>
+                        </label>
+                        <div class="accordion-panel editStyle-accordion"
+                             id="editStyle-position"
+                             data-plugin="partial"
+                             data-partial-src="/Views/Partial/Editor/editorTools-positions.html">
+                        </div>
+                        <hr>
+                    </div>
                 </div>
-                <div class="accordion editor-accordion">
-                    <input type="checkbox" />
-                    <label class="accordion-label">
-                        <span>Typography</span>
-                        <i class="ri-arrow-down-s-line"></i>
-                    </label>
-                    <div class="accordion-panel"
-                         id="editStyle-typo"
-                         data-plugin="partial"
-                         data-partial-src="/Views/Partial/Editor/editorTools-typo.html">
+                <div data-plugin="tabnav" id="tabnav-element-settings">
+                    <div class="accordion editor-accordion-settings" id="editor-setting-image">
+                        <input type="checkbox" />
+                        <label class="accordion-label">
+                            <span>Image</span>
+                            <i class="ri-arrow-down-s-line"></i>
+                        </label>
+                        <div class="accordion-panel editStyle-accordion"
+                             id="editStyle-dimensions"
+                             data-plugin="partial"
+                             data-partial-src="/Views/Partial/Editor/editorTools-settings-image.html">
+                        </div>
                     </div>
                     <hr>
                 </div>
             </section>
         </main>
     </div>
+    <datalist id="global-color-data-list">
+        <option value="#151521"></option>
+        <option value="#1c1c2b"></option>
+        <option value="#26263a"></option>
+        <option value="#7239EA"></option>
+        <option value="#a3aed0"></option>
+        <option value="#eaebee"></option>
+    </datalist>
     <script src="/assets/dist/js/wispQuery.js"></script>
     <script src="/assets/src/js/components/accordion.js"></script>
     <script src="/assets/src/js/components/navbar.js"></script>
     <script src="/assets/src/js/components/navtab.js"></script>
+    <script src="/assets/dist/js/globalPage.js"></script>
     <script src="/assets/dist/js/pageBuilder.js"></script>
     <script src="/assets/dist/js/draggableInput.js"></script>
     <script>
-        // Fonction pour charger le contenu du fichier SVG
-        function loadSVG(url) {
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", url, false);  // Le troisième paramètre indique une requête synchrone
-            xhr.send();
-
-            if (xhr.status === 200) {
-                return xhr.responseText;
-            } else {
-                console.error("Erreur de chargement du fichier SVG");
-                return null;
-            }
-        }
-
-        _('[data-plugin="svg"]').forEach(e => {
-            _(e).html(loadSVG(_(e).attr("data-svg-src")));
-        });
+        _('[data-plugin="svg"]').forEach(e => _(e).html(loadSVG(_(e).attr("data-svg-src"))));
     </script>
 </body>
 

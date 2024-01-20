@@ -1,6 +1,16 @@
 let undoStack = [];
 let redoStack = [];
 
+function updateStateArrows(){
+    const undoIcon = _("#state-undo");
+    if(undoStack.length > 1) undoIcon.addClass("active");
+    else undoIcon.removeClass("active");
+
+    const redoIcon = _("#state-redo");
+    if(redoStack.length > 0) redoIcon.addClass("active");
+    else redoIcon.removeClass("active");
+}
+
 // Fonction pour sauvegarder l'état actuel dans la pile undo
 function saveState() {
     const currentState = _(".editor-content")[0].innerHTML;
@@ -8,16 +18,27 @@ function saveState() {
 
     // Réinitialise la pile redo lorsqu'un nouvel état est enregistré
     redoStack = [];
+    updateStateArrows();
+
+    if (undoStack.length > 1) {
+        const saveIcon = _("#save-page");
+        if(saveIcon) {
+            let c = saveIcon.attr("class");
+            saveIcon.removeClass(c);
+            saveIcon.addClass(c.replace("line", "fill"));
+        }
+    }
 }
+
 // Fonction pour annuler l'action
 function undo() {
     if (undoStack.length > 1) {
         const currentState = undoStack.pop();
         redoStack.push(currentState);
-        const previousState = undoStack[undoStack.length - 1];
-        _(".editor-content")[0].innerHTML = previousState;
+        _(".editor-content")[0].innerHTML = undoStack[undoStack.length - 1];
     }
     initializeEditor();
+    updateStateArrows();
 }
 
 // Fonction pour rétablir l'action
@@ -28,15 +49,27 @@ function redo() {
         _(".editor-content")[0].innerHTML = nextState;
     }
     initializeEditor();
+    updateStateArrows();
 }
+saveState();
+function initSaveState(){
 // Gestionnaire d'événement pour les touches
 document.addEventListener('keydown', function (event) {
     if (event.ctrlKey && event.key === 'z') {
         undo();
     } else if (event.ctrlKey && event.key === 'y') {
         redo();
+    } else if (event.ctrlKey && event.key === 's') {
+        event.preventDefault(); // Empêche le comportement par défaut du navigateur
+        savePage();
     }
 });
+
+// Gestionnaire d'événement pour les touches
+_("#state-undo").click(evt => undo());
+_("#state-redo").click(evt => redo());
+}
+
 
 
 
@@ -58,7 +91,7 @@ function makeElementeditable(elem) {
 // Gestionnaire de clic sur un élément éditable
 function handleElementClick(event) {
     event.stopPropagation();
-    const elem = event.currentTarget;
+    let elem = event.currentTarget;
 
     if(elem){
         /*
@@ -66,14 +99,18 @@ function handleElementClick(event) {
             addClickEventChangeImg(elem);
         }
         */
-
-        displayEditorAreaFor(elem);
         deselectSelectedItem();
-        _('.editor-accordion').forEach(e => _(e).css('display', 'block'));
-
+        if(_(elem).attr("editable-popup") !== "false") addPopup(elem);
         elem.classList.add("selected-item");
 
-        if(_(elem).attr("editable-popup") !== "false") addPopup(elem);
+        if(elem.classList.contains("image-container")) {
+            _("#editor-setting-image").css("display", "block");
+            //elem = _(elem).qs("img");
+        }
+
+        displayEditorAreaFor(elem);
+        _('.editor-accordion').forEach(e => _(e).css('display', 'block'));
+
         //setElementResizable(elem);
     }
 }
@@ -125,30 +162,38 @@ function updateColumnStyle(timeout = 0) {
 // Fonction pour gérer le clic sur les modes de l'éditeur
 function handleDisplayModeClick(modeItem) {
     const mode = modeItem.getAttribute("editor-mode");
-    const editorContent = _(".editor-container .editor-content")[0];
 
-    // Ajouter la classe "active" à l'élément cliqué
-    _(".editor-mode li").forEach(item => item.classList.remove("active"));
-    modeItem.classList.add("active");
+    _("[editor-mode]").forEach(e => {
+       let radio = _(e).qs("input");
+       let icon = _(e).qs("label i");
+        if(radio !== null && icon !== null){
+            let c = icon.classList[0];
+            icon.classList.remove(c);
+
+            if(radio.checked) icon.classList.add(c.replace("line", "fill"));
+            else icon.classList.add(c.replace("fill", "line"));
+        }
+    });
 
     if (mode) {
-        editorContent.setAttribute("editor-mode", mode);
+        _(".editor-container")[0].attr("editor-mode", mode);
+        //_(".editor-container")[0].attr("style", "");
+        _(".editor-container")[0].css("width", "");
         updateColumnStyle(300);
         updateNavbarStyle(300);
+        setTimeout(e => setEditorSizeInput(), 300);
     }
 }
 
 
 // Fonction pour obtenir le contenu final de la page
-function getFinalPage() {
-    let editorContent = _(".editor-container .editor-content .main")[0].cloneNode(true);
+function getFinalPage(element) {
+    let editorContent = element.cloneNode(true);
 
     editorContent.querySelectorAll("*[contenteditable], .editable, .selected-item, .sortable-element, .editable-text, *[draggable], .full-width").forEach(elem => {
-        elem.removeAttribute("contenteditable");
-        elem.removeAttribute("draggable");
-        elem.classList.remove("editable", "selected-item", "sortable-element", "editable-text", "full-width");
+        _(elem).removeAttr("contenteditable, draggable");
+        _(elem).removeClass("editable, editable-text, selected-item, sortable-element, full-width");
     });
-
     editorContent.querySelectorAll(".action-popup").forEach(elem => elem.remove());
 
     return editorContent.innerHTML;
@@ -186,7 +231,7 @@ function handleEditAction(elem) {
 function handleViewAction() {
     const editorFinalView = _("#editor-final-view");
     editorFinalView.classList.add("active");
-    _("#editor-final-view .content").innerHTML = getFinalPage();
+    //_("#editor-final-view .content").innerHTML = getFinalPage(_(".editor-container .editor-content .main")[0]);
 
     initNavBar(editorFinalView);
 
@@ -340,6 +385,7 @@ async function setOuterHTMLAsync(elem, newHTML) {
 // Gestionnaire de l'ajout d'éléments triables
 function handleSortableAdd(evt) {
     // Empêcher le glisser-déposer si la classe no-drag est présente sur l'élément
+
     if (evt.from.classList.contains('no-drag')) {
         evt.preventDefault();
     }
@@ -386,7 +432,38 @@ function displayEditorAreaFor(elem) {
         partial(url).then((result) => {
             destElement.innerHTML = result;
 
-            destElement.querySelectorAll("select[edit-mp-input]").forEach((select) => {
+            _(destElement).qsa("[edit-class-toggle]").forEach(input => {
+                let i = _(input);
+                let attrType = i.attr("type"),
+                    attrName = i.attr("name"),
+                    className = i.attr("edit-class-toggle");
+
+                if(attrType === "radio" || attrType === "checkbox"){
+                    if(elem.classList.contains(className)) {
+                        _(i).attr("checked", "true");
+                    }
+
+                    i.change(evt => {
+                        _(destElement).qsa(`[name="${attrName}"]`).forEach(e => _(elem).removeClass(_(e).attr("edit-class-toggle")));
+                        elem.toggleClass(className);
+                    })
+                }
+            });
+
+            _(destElement).qsa("[edit-attr-input]").forEach(input => {
+                let currentElem = elem.classList.contains("image-container") ? _(elem).qs("img") : elem;
+                let i = _(input), attr = i.attr("edit-attr-input");
+
+                let currentValue = (_(currentElem).attr(attr) === '' ? '' : _(currentElem).attr(attr));
+                i.val(currentValue);
+
+                i.change(evt => {
+                    _(currentElem).setAttribute(attr, i.val());
+                    saveState();
+                });
+            });
+
+            _(destElement).qsa("select[edit-mp-input]").forEach((select) => {
                 let s = _(select), style = s.attr("edit-mp-input");
 
                 let currentValue = (elem.style[style] === '' ? s.attr("default-value") : elem.style[style]);
@@ -395,12 +472,13 @@ function displayEditorAreaFor(elem) {
                 s.val(currentValue);
                 s.change(evt => {
                     elem.style[style] = s.val();
+                    saveState();
                 });
             });
 
-            destElement.querySelectorAll("input[edit-mp-input]").forEach((input) => {
+            _(destElement).qsa("input[edit-mp-input]").forEach((input) => {
                 input = _(input);
-                var style = input.attr("edit-mp-input");
+                let style = input.attr("edit-mp-input");
 
                 const currentValue = (elem.style[style] !== "" ? elem.style[style] : elemStyle[style]).replace("auto", "Auto").replace("none", "");
                 const numericValue = parseFloat(currentValue);
@@ -412,19 +490,20 @@ function displayEditorAreaFor(elem) {
                     if(inputToCheck !== undefined) inputToCheck.setAttribute('checked', 'true');
                     input.change(evt => {
                         elem.style[style] = input.val();
+                        saveState();
                     });
                 } else {
 
                     const roundedStyle = roundedValue + unit;
 
                     if(input.attr("draggable-input") !== 'false') input.classList.add("draggable-input");
-                    input.setAttribute("value", isNaN(roundedValue) ? currentValue : roundedValue);
+                    input.setAttribute("value", rgbToHex(isNaN(roundedValue) ? currentValue : roundedValue));
                     input.style.display = 'inline';
                     input.style.width = "100%";
 
                     setInputDraggable(input);
 
-                    let select = input.nextSibling.nextSibling;
+                    let select = input.nextSibling.nextSibling !== undefined ? input.nextSibling.nextSibling : null;
                     let hasSelect = select !== null && select !== undefined;
                     if(hasSelect) select.value = unit;
 
@@ -437,16 +516,24 @@ function displayEditorAreaFor(elem) {
                         }
                         let val = parseInt(input.value);
                         val = (isNaN(val) ? input.value : input.value + unit)
-                        elem.style[style] = val;
+                        elem.style[style] = rgbToHex(val);
                     }
 
                     input.addEventListener("input", inputEvent);
-                    if(hasSelect) select.addEventListener("change", inputEvent);
+                    input.addEventListener("change", saveState);
+                    if(hasSelect) select.addEventListener("change", e => { inputEvent(); saveState(); });
                 }
             });
+            _(destElement).qsa('[data-plugin="svg"]').forEach(svg => _(svg).html(loadSVG(_(svg).attr("data-svg-src"))));
         });
     }
-    let listEditorStyleArea = ["#editStyle-dimensions", "#editStyle-typo"];
+
+    //let listEditorStyleArea = ["#editStyle-dimensions", "#editStyle-typo"];
+    let listEditorStyleArea = [
+        ..._(".editStyle"),
+        ..._(".editStyle-accordion"),
+        ..._(".editStyle-accordion-settings")
+    ];
     listEditorStyleArea.forEach(e => initInputsFromPartial(_(e).attr("data-partial-src"), _(e)));
 }
 
@@ -516,8 +603,9 @@ function saveImageChanges(elem, imageUrl) {
     document.querySelector('.edit-container').remove();
 }
 
-function savePage(){
+async function savePage(){
     let origin = window.location.origin;
+    deselectSelectedItem();
     ajax("POST", {
         url: origin + "/dashboard/builder-save-page",
         data: {
@@ -530,6 +618,15 @@ function savePage(){
             if(result !== "") {
                 let newUrl = origin + "/dashboard/builder/" +result;
                 history.pushState(null, null, newUrl);
+            }
+
+            saveState();
+
+            const saveIcon = _("#save-page");
+            if(saveIcon){
+                let c = saveIcon.attr("class");
+                saveIcon.removeClass(c);
+                saveIcon.addClass(c.replace("fill", "line"));
             }
         }
     });
@@ -595,6 +692,40 @@ function deselectSelectedItem(){
     if(resizer !== undefined) resizer.forEach(r => r.remove());
 
     _('.editor-accordion').forEach(e => _(e).css('display', 'none'));
+    _('.editor-accordion-settings').forEach(e => _(e).css('display', 'none'));
+}
+
+function setEditorSizeInput(){
+    let inputPx = _("#editor-size");
+    let editor = _(".editor-container")[0];
+    let inputPer = _("#editor-size-percent");
+
+    inputPx.val(editor.offsetWidth);
+    inputPx.attr("max", editor.offsetWidth);
+
+    //inputPer.val((inputPx.val()*100)/editor.offsetWidth);
+}
+
+function initEditorSizeInput(){
+    setEditorSizeInput();
+    let inputPx = _("#editor-size");
+    let inputPer = _("#editor-size-percent");
+    let editor = _(".editor-container")[0];
+
+    inputPx.input(evt => {
+        let value = _(evt.target).val();
+        editor.style.width = value + "px";
+        //inputPer.val(((value*100)/inputPx.attr("max")).toFixed(0));
+    })
+
+    inputPer.input(evt => {
+        let value = _(evt.target).val();
+
+        //let toPixel = ((inputPx.attr("max")*value)/100).toFixed(0);
+        //editor.style.width = toPixel + "px";
+        editor.style.transform = "scale(" + value + "%)";
+        //inputPx.val(toPixel);
+    })
 }
 
 // Initialisation de l'éditeur
@@ -602,15 +733,17 @@ function initializeEditor() {
     initSortableElements();
     initSortableModels();
     updateColumnStyle();
+    initSaveState();
 
     //const navbar = document.querySelector(".navbar");
     _(".editor-content .editable").forEach(makeElementeditable);
     _('.editor-content.sortable-element').forEach(setNavbarSortableElement);
 
-    _("ul.editor-mode li").forEach(modeItem => {
+    _("ul.editor-responsive li").forEach(modeItem => {
         modeItem.addEventListener("click", () => handleDisplayModeClick(modeItem));
     });
 
+    initEditorSizeInput();
     initEditorActions();
     initSortableContainer();
 
@@ -664,3 +797,19 @@ function closeShutters(input, target){
         }
     }
 }
+
+
+function removeAllEventListeners(element) {
+    // Cloner l'élément pour créer un nouvel élément identique sans les écouteurs d'événements
+    const clonedElement = element.cloneNode(true);
+
+    // Remplacer l'élément d'origine par le clone
+    element.parentNode.replaceChild(clonedElement, element);
+
+    // Remarque : Le remplacement de l'élément d'origine peut entraîner la perte de certaines propriétés,
+    // comme les références aux objets DOM enfants. Assurez-vous de prendre cela en compte dans votre application.
+}
+
+// Exemple d'utilisation :
+//const monElement = document.getElementById('monElement');
+//

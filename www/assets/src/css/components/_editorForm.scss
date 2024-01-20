@@ -1,13 +1,18 @@
-.edit-form-control {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-}
-
 .edit-form {
     display: flex;
     flex-direction: column;
     gap: rem(5);
+
+    &-control {
+        display: flex;
+        justify-content: space-between;
+        gap: rem(10);
+    }
+    &-container {
+        padding: rem(10);
+        border: rem(2) solid $light1;
+        border-radius: var(--main-radius);
+    }
 
     &.w {
         &-33 {
@@ -40,8 +45,8 @@
     & .edit-form-inputs {
         width: 100%;
         background-color: $light1;
-        border-radius: 6px;
-        padding: 10px;
+        border-radius: rem(6);
+        padding: rem(10);
         display: flex;
         justify-content: space-between;
         list-style: none;
@@ -74,7 +79,7 @@
             }
 
             & select {
-                text-indent: 1px;
+                text-indent: rem(1);
                 text-overflow: '';
                 cursor: pointer;
                 appearance: none;
@@ -86,7 +91,7 @@
                     text-align: right;
                     text-transform: uppercase;
                     max-width: fit-content;
-                    font-size: 11px;
+                    font-size: rem(11);
 
                     &::-ms-expand {
                         display: none;
@@ -102,13 +107,13 @@
 
             & .edit-form-toggler {
                 width: 100%;
-                border: 1px solid $grey-lighter;
+                border: rem(1) solid $grey-lighter;
                 border-bottom: 0;
                 border-top: 0;
                 text-align: center;
-                padding: 2px 10px;
+                padding: rem(2) rem(10);
                 margin: 0;
-                border-radius: 3px;
+                border-radius: rem(3);
 
                 &:first-child {
                     border-left-color: transparent;
@@ -142,7 +147,7 @@
                     margin: 0;
                     padding: 0;
                     font-weight: 900;
-                    transition: 0.3s;
+                    transition: var(--transition-duration);
                     color: $grey;
                     text-transform: uppercase;
 
@@ -201,6 +206,7 @@
         //text-transform: uppercase;
         font-size: rem(13);
         font-weight: 500;
+        padding-top: rem(5);
     }
 
     &:has(input[type="color"]) {

@@ -39,3 +39,21 @@ img {
         margin-inline: auto;
     }
 }
+
+
+
+.image-container {
+    width: fit-content;
+    height: fit-content;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    overflow: hidden;
+
+    & img {
+        object-fit: cover;
+        object-position: center;
+        height: 100%;
+        width: 100%;
+    }
+}
