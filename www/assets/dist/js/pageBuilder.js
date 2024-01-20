@@ -766,39 +766,6 @@ function initializeEditor() {
 window.addEventListener('load', initializeEditor);
 
 
-
-let initialSize = 'empty';
-let initialPadding = 'empty';
-function closeShutters(input, target){
-    target = _("#" + target);
-    if(initialSize === "empty") initialSize = target.style.maxWidth;
-    if(initialPadding === "empty") initialPadding = target.style.padding;
-
-    let parent = _(input.parentElement);
-
-    if(input.checked) {
-        target.css("max-width", "0");
-        target.css("padding", "0");
-
-        if(parent.classList.contains('left')){
-            parent.css("left", '2rem');
-        } else if(parent.classList.contains('right')){
-            parent.css("right", '2rem');
-        }
-    }
-    else {
-        target.css("max-width", initialSize);
-        target.css("padding", initialPadding);
-
-        if(parent.classList.contains('left')){
-            parent.css("left", initialSize);
-        } else if(parent.classList.contains('right')){
-            parent.css("right", initialSize);
-        }
-    }
-}
-
-
 function removeAllEventListeners(element) {
     // Cloner l'élément pour créer un nouvel élément identique sans les écouteurs d'événements
     const clonedElement = element.cloneNode(true);

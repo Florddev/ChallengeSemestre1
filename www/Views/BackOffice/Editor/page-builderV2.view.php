@@ -11,9 +11,9 @@
 </head>
 
 <body>
-    <div class="page-builder">
-        <header class="page-builder-header">
-            <section class="page-builder-header-start">
+    <div class="page-wrapper page-builder">
+        <header class="page-wrapper-header page-builder-header">
+            <section class="page-wrapper-header-left page-builder-header-start">
                 <input type="hidden" id="page-id" value="<?= $currentPage["id"] ?>">
                 <h1>
                     <label for="page-title">Wisp&nbsp;-&nbsp;</label>
@@ -24,7 +24,7 @@
                     <input id="page-url" type="text" value="<?= ltrim($currentPage["url"], "/") ?>">
                 </p>
             </section>
-            <section class="page-builder-header-mid">
+            <section class="page-wrapper-header-center page-builder-header-mid">
                 <div class="header-mid-start"></div>
                 <div class="header-mid-center">
                     <ul class="editor-responsive">
@@ -70,7 +70,7 @@
                     <i class="ri-arrow-go-forward-fill" id="state-redo"></i>
                 </div>
             </section>
-            <section class="page-builder-header-end">
+            <section class="page-wrapper-header-right page-builder-header-end">
                 <ul class="header-end-list">
                     <!--
                     <li onclick="savePage()"><i class="ri-save-line" id="save-page"></i></li>
@@ -83,16 +83,16 @@
                 </ul>
             </section>
         </header>
-        <main class="page-builder-main">
-            <div class="main-components-toggler left">
+        <main class="page-wrapper-body page-builder-main">
+            <div class="sidebar-toggler sidebar-toggler-left">
                 <input type="checkbox" id="left-toggler" onchange="closeShutters(this, 'componentsShutter')">
                 <label for="left-toggler"><i class="ri-arrow-left-line"></i></label>
             </div>
-            <div class="main-components-toggler right">
+            <div class="sidebar-toggler sidebar-toggler-right">
                 <input type="checkbox" id="right-toggler" onchange="closeShutters(this, 'editorShutter')">
                 <label for="right-toggler"><i class="ri-arrow-right-line"></i></label>
             </div>
-            <section class="page-builder-main-components" id="componentsShutter">
+            <section class="sidebar" id="componentsShutter">
                 <div class="btn-multiple">
                     <div class="btn-multiple-child">
                         <input type="radio" name="choose-something" id="choose-something-1" data-tabnav-target="tabnav-test" checked>
@@ -268,7 +268,7 @@
                     <hr>
                 </div>
             </section>
-            <section class="page-builder-main-editor">
+            <section class="page-wrapper-body-container page-builder-main-editor">
                 <div class="editor-container" editor-mode="pc">
                     <div class="editor-content">
                         <!--
@@ -336,7 +336,7 @@
                     </div>
                 </div>
             </section>
-            <section class="page-builder-main-tools" id="editorShutter">
+            <section class="sidebar page-builder-main-tools" id="editorShutter">
                 <div class="btn-multiple">
                     <div class="btn-multiple-child">
                         <input type="radio" name="toolbar" id="toolbar-1" data-tabnav-target="tabnav-element-style" checked>
@@ -435,7 +435,7 @@
         </main>
     </div>
     <datalist id="global-color-data-list">
-        <option value="#151521"></option>
+        <option value="var(--info)"></option>
         <option value="#1c1c2b"></option>
         <option value="#26263a"></option>
         <option value="#7239EA"></option>
@@ -447,6 +447,7 @@
     <script src="/assets/src/js/components/navbar.js"></script>
     <script src="/assets/src/js/components/navtab.js"></script>
     <script src="/assets/dist/js/globalPage.js"></script>
+
     <script src="/assets/dist/js/pageBuilder.js"></script>
     <script src="/assets/dist/js/draggableInput.js"></script>
     <script>
