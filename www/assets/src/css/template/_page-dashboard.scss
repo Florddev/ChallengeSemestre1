@@ -1,18 +1,77 @@
 .page-wrapper-body-container {
-    .main-dashboard {
+    .header-main-dashboard {
         padding: 2rem;
+
         h1 {
             font-size: 30px;
+
             span {
                 color: #7e37d8;
             }
         }
+
         h2 {
             margin-top: 10px;
             font-weight: 700;
             font-size: 15px;
             color: #7e37d8;
             letter-spacing: 3px;
+        }
+    }
+
+    .stats-container {
+        padding: 2rem;
+        display: flex; // Utilise Flexbox pour la disposition des éléments
+        justify-content: space-between; // Répartit l'espace équitablement entre les éléments
+        gap: 20px; // Crée un espace entre les éléments
+
+        .stat-card {
+            height: 245px;
+            flex: 1; // Chaque carte prend une part égale de l'espace disponible
+            padding: 20px;
+            border-radius: 20px; // Rayon de bordure pour les coins arrondis
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            border-radius: 40px;
+            padding: 2rem;
+
+            // Vous pouvez ajouter des dégradés de couleurs ou des images d'arrière-plan selon les besoins
+            &.purple {
+                background-image: linear-gradient(to bottom right, #863ee2, #571f9e);
+            }
+
+            &.pink {
+                background-image: linear-gradient(to bottom right, #ff9cc3, #fd3484);
+            }
+
+            &.yellow {
+                background-image: linear-gradient(to bottom right, #ffd85d, #ffc200);
+            }
+
+            &.blue {
+                background-image: linear-gradient(to bottom right, #00d2d7, #07b2dd);
+            }
+
+            .stat-icon {
+                i {
+                    font-size: 100px;
+                }
+
+            }
+            .stat-info {
+                h3 {
+                    margin: 0;
+                    font-size: 1.2em;
+                }
+
+                p {
+                    margin: 0;
+                    font-size: 1em;
+                }
+            }
         }
     }
 }
