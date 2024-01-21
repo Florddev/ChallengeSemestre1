@@ -241,6 +241,7 @@ $bars-size: rem(350);
     }
     .item-sidebar:hover {
       background-color: #f8f4fe;
+      color: black;
     }
 
     .active {
@@ -272,6 +273,7 @@ $bars-size: rem(350);
       }
       li:hover {
         background-color: #fbf9fe;
+        color: black;
       }
       .active {
         color: #7e37d8;

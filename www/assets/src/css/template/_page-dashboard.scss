@@ -1,26 +1,52 @@
 .page-wrapper-body-container {
     .header-main-dashboard {
-        padding: 2rem;
+        display: flex;
+        justify-content: space-between;
+        padding: 2rem 2rem 1rem 2rem;
 
-        h1 {
-            font-size: 30px;
+        .header-main-dashboard-left {
+            h1 {
+                font-size: 30px;
 
-            span {
+                span {
+                    color: #7e37d8;
+                }
+            }
+
+            h2 {
+                margin-top: 10px;
+                font-weight: 700;
+                font-size: 15px;
                 color: #7e37d8;
+                letter-spacing: 3px;
             }
         }
 
-        h2 {
-            margin-top: 10px;
-            font-weight: 700;
-            font-size: 15px;
+        .header-main-dashboard-right {
+            display: flex;
+            align-items: center;
             color: #7e37d8;
-            letter-spacing: 3px;
+
+            i {
+                background-color: rgba(126, 55, 216, .12);
+                padding: 8px;
+                border-radius: 100%;
+                font-weight: 500;
+                margin-right: 0.5rem;
+            }
+
+            p {
+                font-size: 14px;
+
+                span {
+                    font-weight: 600;
+                }
+            }
         }
     }
 
     .stats-container {
-        padding: 2rem;
+        padding: 2rem 2rem 1rem 2rem;
         display: flex; // Utilise Flexbox pour la disposition des éléments
         justify-content: space-between; // Répartit l'espace équitablement entre les éléments
         gap: 20px; // Crée un espace entre les éléments
@@ -41,18 +67,22 @@
             // Vous pouvez ajouter des dégradés de couleurs ou des images d'arrière-plan selon les besoins
             &.purple {
                 background-image: linear-gradient(to bottom right, #863ee2, #571f9e);
+                box-shadow: 2px 12px 26px 3px rgba(126, 55, 216, .3);
             }
 
             &.pink {
                 background-image: linear-gradient(to bottom right, #ff9cc3, #fd3484);
+                box-shadow: 2px 12px 26px 3px rgba(254, 128, 178, .3)
             }
 
             &.yellow {
                 background-image: linear-gradient(to bottom right, #ffd85d, #ffc200);
+                box-shadow: 2px 12px 26px 3px rgba(255, 199, 23, .3);
             }
 
             &.blue {
                 background-image: linear-gradient(to bottom right, #00d2d7, #07b2dd);
+                box-shadow: 2px 12px 26px 3px rgba(6, 181, 221, .3);
             }
 
             .stat-icon {
@@ -61,6 +91,7 @@
                 }
 
             }
+
             .stat-info {
                 h3 {
                     margin: 0;
@@ -72,6 +103,64 @@
                     font-size: 1em;
                 }
             }
+        }
+    }
+
+    .charts-container {
+        padding: 2rem;
+        display: flex;
+        gap: 20px;
+
+        .chart-days-visite {
+            padding: 2rem;
+            background-color: white;
+            height: 350px;
+            flex: 4;
+            box-shadow: 0px 0px 25px 0px rgba(126, 55, 216, .05);
+            border-radius: 40px;
+            transition: all .3s ease;
+
+            .chart {
+                display: flex;
+                justify-content: space-around;
+                align-items: flex-end;
+                height: 200px;
+                margin: 20px;
+
+                .bar {
+                    width: 15px;
+                    margin: 0 5px;
+                    position: relative;
+                }
+
+                .bar-pink {
+                    background-image: linear-gradient(to bottom right, #ff9cc3, #fd3484);
+                    box-shadow: 2px 12px 26px 3px rgba(254, 128, 178, .3)
+                }
+
+                .bar-blue {
+                    background-image: linear-gradient(to bottom right, #158df7, #158df7);
+                    box-shadow: 2px 12px 26px 3px rgba(6, 181, 221, .3);
+                }
+
+                .bar::after {
+                    content: attr(data-month);
+                    position: absolute;
+                    bottom: -30px;
+                    /* Adjust distance below the bar */
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+            }
+        }
+
+        .chat-number-like-post {
+            background-color: white;
+            height: 350px;
+            flex: 2;
+            box-shadow: 0px 0px 25px 0px rgba(126, 55, 216, .05);
+            border-radius: 40px;
+            transition: all .3s ease;
         }
     }
 }

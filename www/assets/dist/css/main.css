@@ -2997,6 +2997,7 @@ img {
 }
 .back-office .items-sidebar .item-sidebar:hover {
   background-color: #f8f4fe;
+  color: black;
 }
 .back-office .items-sidebar .active {
   background-color: #7e37d8;
@@ -3027,6 +3028,7 @@ img {
 }
 .back-office .list-liens-sidebar ul li:hover {
   background-color: #fbf9fe;
+  color: black;
 }
 .back-office .list-liens-sidebar ul .active {
   color: #7e37d8;
@@ -3034,23 +3036,43 @@ img {
 }
 
 .page-wrapper-body-container .header-main-dashboard {
-  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 2rem 1rem 2rem;
 }
-.page-wrapper-body-container .header-main-dashboard h1 {
+.page-wrapper-body-container .header-main-dashboard .header-main-dashboard-left h1 {
   font-size: 30px;
 }
-.page-wrapper-body-container .header-main-dashboard h1 span {
+.page-wrapper-body-container .header-main-dashboard .header-main-dashboard-left h1 span {
   color: #7e37d8;
 }
-.page-wrapper-body-container .header-main-dashboard h2 {
+.page-wrapper-body-container .header-main-dashboard .header-main-dashboard-left h2 {
   margin-top: 10px;
   font-weight: 700;
   font-size: 15px;
   color: #7e37d8;
   letter-spacing: 3px;
 }
+.page-wrapper-body-container .header-main-dashboard .header-main-dashboard-right {
+  display: flex;
+  align-items: center;
+  color: #7e37d8;
+}
+.page-wrapper-body-container .header-main-dashboard .header-main-dashboard-right i {
+  background-color: rgba(126, 55, 216, 0.12);
+  padding: 8px;
+  border-radius: 100%;
+  font-weight: 500;
+  margin-right: 0.5rem;
+}
+.page-wrapper-body-container .header-main-dashboard .header-main-dashboard-right p {
+  font-size: 14px;
+}
+.page-wrapper-body-container .header-main-dashboard .header-main-dashboard-right p span {
+  font-weight: 600;
+}
 .page-wrapper-body-container .stats-container {
-  padding: 2rem;
+  padding: 2rem 2rem 1rem 2rem;
   display: flex;
   justify-content: space-between;
   gap: 20px;
@@ -3070,15 +3092,19 @@ img {
 }
 .page-wrapper-body-container .stats-container .stat-card.purple {
   background-image: linear-gradient(to bottom right, #863ee2, #571f9e);
+  box-shadow: 2px 12px 26px 3px rgba(126, 55, 216, 0.3);
 }
 .page-wrapper-body-container .stats-container .stat-card.pink {
   background-image: linear-gradient(to bottom right, #ff9cc3, #fd3484);
+  box-shadow: 2px 12px 26px 3px rgba(254, 128, 178, 0.3);
 }
 .page-wrapper-body-container .stats-container .stat-card.yellow {
   background-image: linear-gradient(to bottom right, #ffd85d, #ffc200);
+  box-shadow: 2px 12px 26px 3px rgba(255, 199, 23, 0.3);
 }
 .page-wrapper-body-container .stats-container .stat-card.blue {
   background-image: linear-gradient(to bottom right, #00d2d7, #07b2dd);
+  box-shadow: 2px 12px 26px 3px rgba(6, 181, 221, 0.3);
 }
 .page-wrapper-body-container .stats-container .stat-card .stat-icon i {
   font-size: 100px;
@@ -3090,6 +3116,56 @@ img {
 .page-wrapper-body-container .stats-container .stat-card .stat-info p {
   margin: 0;
   font-size: 1em;
+}
+.page-wrapper-body-container .charts-container {
+  padding: 2rem;
+  display: flex;
+  gap: 20px;
+}
+.page-wrapper-body-container .charts-container .chart-days-visite {
+  padding: 2rem;
+  background-color: white;
+  height: 350px;
+  flex: 4;
+  box-shadow: 0px 0px 25px 0px rgba(126, 55, 216, 0.05);
+  border-radius: 40px;
+  transition: all 0.3s ease;
+}
+.page-wrapper-body-container .charts-container .chart-days-visite .chart {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 200px;
+  margin: 20px;
+}
+.page-wrapper-body-container .charts-container .chart-days-visite .chart .bar {
+  width: 15px;
+  margin: 0 5px;
+  position: relative;
+}
+.page-wrapper-body-container .charts-container .chart-days-visite .chart .bar-pink {
+  background-image: linear-gradient(to bottom right, #ff9cc3, #fd3484);
+  box-shadow: 2px 12px 26px 3px rgba(254, 128, 178, 0.3);
+}
+.page-wrapper-body-container .charts-container .chart-days-visite .chart .bar-blue {
+  background-image: linear-gradient(to bottom right, #158df7, #158df7);
+  box-shadow: 2px 12px 26px 3px rgba(6, 181, 221, 0.3);
+}
+.page-wrapper-body-container .charts-container .chart-days-visite .chart .bar::after {
+  content: attr(data-month);
+  position: absolute;
+  bottom: -30px;
+  /* Adjust distance below the bar */
+  left: 50%;
+  transform: translateX(-50%);
+}
+.page-wrapper-body-container .charts-container .chat-number-like-post {
+  background-color: white;
+  height: 350px;
+  flex: 2;
+  box-shadow: 0px 0px 25px 0px rgba(126, 55, 216, 0.05);
+  border-radius: 40px;
+  transition: all 0.3s ease;
 }
 
 .page-builder [contenteditable=true] {
