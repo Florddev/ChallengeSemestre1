@@ -131,23 +131,46 @@
                     width: 15px;
                     margin: 0 5px;
                     position: relative;
+                    // Initialisez la hauteur à 0 pour l'animation
+                    height: 0;
+
+                    // Ajouter l'animation quand l'élément est rendu
+                    animation: grow 0.6s ease-out forwards;
+
+                    // Utilisez transform scaleY pour l'animation au lieu de la hauteur
+                    // Cela permettra à la barre de croître jusqu'à la hauteur définie dans l'attribut de style
+                    transform-origin: bottom;
+
+                    // Arrondissez uniquement les coins supérieurs des barres
+                    border-top-left-radius: 10px;
+                    border-top-right-radius: 10px;
+                    border-bottom-left-radius: 10px;
+                    border-bottom-right-radius: 10px;
+                }
+
+                // Définition de l'animation
+                @keyframes grow {
+                    from {
+                        transform: scaleY(0); // Commencez avec un facteur d'échelle de 0
+                    }
+
+                    to {
+                        transform: scaleY(1); // Évoluez jusqu'à un facteur d'échelle de 1
+                    }
                 }
 
                 .bar-pink {
                     background-image: linear-gradient(to bottom right, #ff9cc3, #fd3484);
-                    box-shadow: 2px 12px 26px 3px rgba(254, 128, 178, .3)
                 }
 
                 .bar-blue {
-                    background-image: linear-gradient(to bottom right, #158df7, #158df7);
-                    box-shadow: 2px 12px 26px 3px rgba(6, 181, 221, .3);
+                    background-image: linear-gradient(to bottom right, #78bcf8, #158df7);
                 }
 
                 .bar::after {
                     content: attr(data-month);
                     position: absolute;
                     bottom: -30px;
-                    /* Adjust distance below the bar */
                     left: 50%;
                     transform: translateX(-50%);
                 }
@@ -155,12 +178,57 @@
         }
 
         .chat-number-like-post {
+            padding: 2rem;
             background-color: white;
             height: 350px;
             flex: 2;
             box-shadow: 0px 0px 25px 0px rgba(126, 55, 216, .05);
             border-radius: 40px;
             transition: all .3s ease;
+            display: flex;
+            flex-direction: column;
+
+            .cercle-progression {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+
+                svg {
+                    transform: rotate(-90deg);
+
+                    .progress {
+                        fill: none;
+                        stroke-width: 10;
+                        stroke-linecap: round;
+                        transform-origin: center;
+                        transition: stroke-dasharray 0.6s ease-out;
+                    }
+
+                    .bleu {
+                        stroke: #158df7;
+                    }
+
+                    .violet {
+                        stroke: #571f9e;
+                    }
+
+                    .rose {
+                        stroke: #fd3484;
+                    }
+
+                    .pourcentage {
+                        fill: black;
+                        font-size: 20px;
+                        font-weight: 600;
+                        text-anchor: middle;
+                        alignment-baseline: middle;
+                        transform: rotate(90deg);
+                        transform-origin: center;
+                    }
+                }
+            }
         }
     }
 }

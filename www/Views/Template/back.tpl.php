@@ -93,5 +93,6 @@
     <script src="/assets/src/js/components/navbar.js"></script>
     <script src="/assets/src/js/components/navtab.js"></script>
     <script src="/assets/dist/js/globalPage.js"></script>
+    <script src="/assets/dist/js/cercleProgression.js"></script>
 </body>
 </html>

@@ -67,5 +67,15 @@
             <!-- Répétez pour chaque mois, ajustez la hauteur en pourcentage selon vos valeurs -->
         </div>
     </div>
-    <div class="chat-number-like-post"></div>
+    <div class="chat-number-like-post">
+    <h3>Objectif de likes</h3>
+      <div class="cercle-progression">
+        <svg width="200" height="200">
+          <circle cx="100" cy="100" r="90" class="progress violet" style="stroke-dasharray: 0, 565.48"/>
+          <circle cx="100" cy="100" r="70" class="progress rose" style="stroke-dasharray: 0, 439.82"/>
+          <circle cx="100" cy="100" r="50" class="progress bleu" style="stroke-dasharray: 0, 314.16"/>
+          <text x="100" y="100" class="pourcentage">75%</text>
+        </svg>
+      </div>
+    </div>
 </div>
