@@ -28,6 +28,11 @@
   action: home
   template: back
 
+/dashboard/articles:
+  controller: BackOffice/Articles
+  action: getAllArticles
+  template: back
+
 /dashboard/builder:
   controller: BackOffice/Editor
   action: pageBuilder

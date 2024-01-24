@@ -2972,12 +2972,20 @@ img {
 .back-office .wrappe-sidebar {
   display: flex;
 }
-.back-office .items-sidebar {
+.back-office .wrappe-sidebar .items-sidebar {
   max-width: 90px;
   display: flex;
   flex-direction: column;
 }
-.back-office .items-sidebar .item-sidebar {
+.back-office .wrappe-sidebar .items-sidebar a {
+  color: inherit;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+}
+.back-office .wrappe-sidebar .items-sidebar a .item-sidebar {
   height: 90px;
   width: 90px;
   display: flex;
@@ -2988,36 +2996,39 @@ img {
   border-top: none;
   border-left: none;
 }
-.back-office .items-sidebar .item-sidebar i {
+.back-office .wrappe-sidebar .items-sidebar a .item-sidebar i {
   font-size: 25px;
 }
-.back-office .items-sidebar .item-sidebar h2 {
+.back-office .wrappe-sidebar .items-sidebar a .item-sidebar h2 {
   font-weight: 600;
   font-size: 13px;
 }
-.back-office .items-sidebar .item-sidebar:hover {
+.back-office .wrappe-sidebar .items-sidebar a .item-sidebar:hover {
   background-color: #f8f4fe;
   color: black;
 }
-.back-office .items-sidebar .active {
+.back-office .wrappe-sidebar .items-sidebar a .active {
   background-color: #7e37d8;
   color: white;
 }
-.back-office .list-liens-sidebar {
+.back-office .wrappe-sidebar .list-liens-sidebar {
   width: 100%;
   display: flex;
   flex-direction: column;
+  animation: bounceInLeft 1s ease-in-out;
+  animation-fill-mode: forwards;
+  border-right: 2px solid rgba(126, 55, 216, 0.15);
 }
-.back-office .list-liens-sidebar h3 {
+.back-office .wrappe-sidebar .list-liens-sidebar h3 {
   font-size: 18px;
   color: #7e37d8;
   background-color: #fbf9fe;
   padding: 20px;
 }
-.back-office .list-liens-sidebar ul {
+.back-office .wrappe-sidebar .list-liens-sidebar ul {
   list-style-type: none;
 }
-.back-office .list-liens-sidebar ul li {
+.back-office .wrappe-sidebar .list-liens-sidebar ul li {
   height: 40px;
   display: flex;
   align-items: center;
@@ -3026,15 +3037,42 @@ img {
   padding-left: 20px;
   font-weight: 500;
 }
-.back-office .list-liens-sidebar ul li:hover {
+.back-office .wrappe-sidebar .list-liens-sidebar ul li:hover {
   background-color: #fbf9fe;
   color: black;
 }
-.back-office .list-liens-sidebar ul .active {
+.back-office .wrappe-sidebar .list-liens-sidebar ul .active {
   color: #7e37d8;
   font-weight: 600;
 }
 
+@keyframes bounceInLeft {
+  0% {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    opacity: 0;
+    transform: translate3d(-3000px, 0, 0);
+  }
+  60% {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    opacity: 1;
+    transform: translate3d(25px, 0, 0);
+  }
+  75% {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: translate3d(-10px, 0, 0);
+  }
+  90% {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: translate3d(5px, 0, 0);
+  }
+  100% {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: none;
+  }
+}
+.page-wrapper-body-container {
+  animation: pagebody 1000ms ease-in-out;
+}
 .page-wrapper-body-container .header-main-dashboard {
   display: flex;
   justify-content: space-between;
@@ -3218,6 +3256,16 @@ img {
   transform-origin: center;
 }
 
+@keyframes pagebody {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.95, 0.95, 0.95) translate(-20px, -100px);
+    transform: scale3d(0.95, 0.95, 0.95) translate(-20px, -100px);
+  }
+  50% {
+    opacity: 1;
+  }
+}
 .page-builder [contenteditable=true] {
   outline: none;
 }
@@ -3597,6 +3645,157 @@ img {
   top: 50%;
   left: 0;
   cursor: e-resize;
+}
+
+.page-wrapper-body-container .header-articles-dashboard {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 2rem 1rem 2rem;
+}
+.page-wrapper-body-container .header-articles-dashboard .header-articles-dashboard-left h1 {
+  font-size: 30px;
+}
+.page-wrapper-body-container .header-articles-dashboard .header-articles-dashboard-left h1 span {
+  color: #7e37d8;
+}
+.page-wrapper-body-container .header-articles-dashboard .header-articles-dashboard-left h2 {
+  margin-top: 10px;
+  font-weight: 700;
+  font-size: 15px;
+  color: #7e37d8;
+  letter-spacing: 3px;
+}
+.page-wrapper-body-container .header-articles-dashboard .header-articles-dashboard-right {
+  display: flex;
+  align-items: center;
+  color: #7e37d8;
+}
+.page-wrapper-body-container .header-articles-dashboard .header-articles-dashboard-right i {
+  background-color: rgba(126, 55, 216, 0.12);
+  padding: 8px;
+  border-radius: 100%;
+  font-weight: 500;
+  margin-right: 0.5rem;
+}
+.page-wrapper-body-container .header-articles-dashboard .header-articles-dashboard-right p {
+  font-size: 14px;
+}
+.page-wrapper-body-container .header-articles-dashboard .header-articles-dashboard-right p span {
+  font-weight: 600;
+}
+.page-wrapper-body-container .job-board {
+  padding: 2rem 2rem 1rem 2rem;
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+.page-wrapper-body-container .job-board .sidebar-article {
+  display: flex;
+  flex-direction: column;
+  width: 23%;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 15px;
+  height: auto;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 25px 0px rgba(126, 55, 216, 0.05);
+  gap: 20px;
+}
+.page-wrapper-body-container .job-board .sidebar-article .search-box input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}
+.page-wrapper-body-container .job-board .sidebar-article .filter-box label {
+  display: block;
+  margin-bottom: 5px;
+  letter-spacing: 0.3px;
+  font-size: 15px;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+.page-wrapper-body-container .job-board .sidebar-article .filter-box label input {
+  margin-right: 5px;
+  cursor: pointer;
+}
+.page-wrapper-body-container .job-board .sidebar-article .btn-find-jobs {
+  width: 100%;
+  padding: 10px;
+  background-color: #673ab7;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+.page-wrapper-body-container .job-board .job-listings {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.page-wrapper-body-container .job-board .job-listings .job {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 40px;
+  flex: 0 1 calc(50% - 1rem);
+  box-shadow: 0px 0px 25px 0px rgba(126, 55, 216, 0.05);
+}
+.page-wrapper-body-container .job-board .job-listings .job .head-article {
+  display: flex;
+  justify-content: space-between;
+}
+.page-wrapper-body-container .job-board .job-listings .job .head-article .left-head-article {
+  display: flex;
+}
+.page-wrapper-body-container .job-board .job-listings .job .head-article .left-head-article img {
+  margin-right: 1rem;
+}
+.page-wrapper-body-container .job-board .job-listings .job .head-article .left-head-article div h3 {
+  font-size: 16px;
+}
+.page-wrapper-body-container .job-board .job-listings .job .head-article .left-head-article div p {
+  font-size: 14px;
+}
+.page-wrapper-body-container .job-board .job-listings .job .head-article span {
+  align-self: flex-start;
+  background-color: #7e37d8;
+  color: #fff;
+  padding: 0.44em 0.7em;
+  font-size: 13px;
+  border-radius: 4px;
+}
+.page-wrapper-body-container .job-board .job-listings .job .description-article {
+  margin-top: 30px;
+  font-size: 13px;
+  line-height: 1.7;
+  letter-spacing: 0.7px;
+}
+.page-wrapper-body-container .job-board .job-listings .pagination {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
+}
+.page-wrapper-body-container .job-board .job-listings .pagination .page-link {
+  padding: 0.5rem 0.75rem;
+  margin: 0 0.25rem;
+  text-decoration: none;
+  color: #7e37d8;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: #fff;
+  box-shadow: 0px 3px 6px 0px rgba(126, 55, 216, 0.16);
+}
+.page-wrapper-body-container .job-board .job-listings .pagination .page-link:hover {
+  background-color: #f2f2f2;
+}
+.page-wrapper-body-container .job-board .job-listings .pagination .page-link.active {
+  color: #fff;
+  background-color: #7e37d8;
+  box-shadow: none;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -1,4 +1,5 @@
 .page-wrapper-body-container {
+    animation: pagebody 1000ms ease-in-out;
     .header-main-dashboard {
         display: flex;
         justify-content: space-between;
@@ -230,5 +231,16 @@
                 }
             }
         }
+    }
+}
+
+@keyframes pagebody {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(0.95, 0.95, 0.95) translate(-20px, -100px);
+        transform: scale3d(0.95, 0.95, 0.95) translate(-20px, -100px);
+    }
+    50% {
+        opacity: 1;
     }
 }

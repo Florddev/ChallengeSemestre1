@@ -32,34 +32,48 @@
         <div class="page-wrapper-body">
             <section class="sidebar  wrappe-sidebar" id="navbar-container">
                 <div class="items-sidebar">
-                    <div class="item-sidebar active">
-                        <i class="ri-home-3-line"></i>
-                        <h2>General</h2>
-                    </div>
-                    <div class="item-sidebar">
-                        <i class="ri-news-line"></i>
-                        <h2>Articles</h2>
-                    </div>
-                    <div class="item-sidebar">
-                        <i class="ri-file-copy-2-line"></i>
-                        <h2>Pages</h2>
-                    </div>
-                    <div class="item-sidebar">
-                        <i class="ri-database-2-line"></i>
-                        <h2>Tables</h2>
-                    </div>
-                    <div class="item-sidebar">
-                    <i class="ri-bar-chart-2-line"></i>
-                        <h2>Charts</h2>
-                    </div>
-                    <div class="item-sidebar">
-                        <i class="ri-user-settings-line"></i>
-                        <h2>Utilisateurs</h2>
-                    </div>
-                    <div class="item-sidebar">
-                        <i class="ri-settings-4-line"></i>
-                        <h2>Paramètres</h2>
-                    </div>
+                    <a href="/dashboard">
+                        <div class="item-sidebar">
+                            <i class="ri-home-3-line"></i>
+                            <h2>General</h2>
+                        </div>
+                    </a>
+                    <a href="/dashboard/articles">
+                        <div class="item-sidebar">
+                                <i class="ri-news-line"></i>
+                                <h2>Articles</h2>
+                        </div>
+                    </a>
+                    <a href="/dashboard">
+                        <div class="item-sidebar">
+                            <i class="ri-file-copy-2-line"></i>
+                            <h2>Pages</h2>
+                        </div>
+                    </a>
+                    <a href="/dashboard">
+                        <div class="item-sidebar">
+                            <i class="ri-database-2-line"></i>
+                            <h2>Tables</h2>
+                        </div>
+                    </a>
+                    <a href="/dashboard">
+                        <div class="item-sidebar">
+                        <i class="ri-bar-chart-2-line"></i>
+                            <h2>Charts</h2>
+                        </div>
+                    </a>
+                    <a href="/dashboard">
+                        <div class="item-sidebar">
+                            <i class="ri-user-settings-line"></i>
+                            <h2>Utilisateurs</h2>
+                        </div>
+                    </a>
+                    <a href="/dashboard">
+                        <div class="item-sidebar">
+                            <i class="ri-settings-4-line"></i>
+                            <h2>Paramètres</h2>
+                        </div>
+                    </a>
                 </div>
                 <div class="list-liens-sidebar">
                     <div>
@@ -69,10 +83,7 @@
                                 Accueil
                             </li>
                             <li>
-                                Graphique
-                            </li>
-                            <li>
-                                Évènement
+                                Mes articles
                             </li>
                         </ul>
                     </div>
@@ -94,5 +105,6 @@
     <script src="/assets/src/js/components/navtab.js"></script>
     <script src="/assets/dist/js/globalPage.js"></script>
     <script src="/assets/dist/js/cercleProgression.js"></script>
+    <script src="/assets/dist/js/isActiveClass.js"></script>
 </body>
 </html>
