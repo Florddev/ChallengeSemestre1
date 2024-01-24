@@ -50,9 +50,3 @@
   controller: BackOffice/User
   action: listUsers
   template: back
-  restricted: true
-  roles:
-    - admin
-    - modo
-    - author
-    - user

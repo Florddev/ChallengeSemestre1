@@ -23,6 +23,11 @@ document.addEventListener("DOMContentLoaded", function() {
         var liMesArticles = document.querySelector('.list-liens-sidebar ul li:nth-child(2)');
         liMesArticles.classList.add('active');
         liMesArticles.style.display = 'flex'; // Rendre visible
+    } else if(path === '/dashboard/users') {
+        document.querySelector('.ri-user-settings-line').parentNode.classList.add('active');
+        var liUsers = document.querySelector('.list-liens-sidebar ul li:nth-child(3)');
+        liUsers.classList.add('active');
+        liUsers.style.display = 'flex'
     } else if(path === '/dashboard') {
         document.querySelector('.ri-home-3-line').parentNode.classList.add('active');
         var liAccueil = document.querySelector('.list-liens-sidebar ul li:nth-child(1)');

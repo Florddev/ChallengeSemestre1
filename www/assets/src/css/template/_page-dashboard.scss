@@ -47,7 +47,7 @@
     }
 
     .stats-container {
-        padding: 2rem 2rem 1rem 2rem;
+        padding: 1.5rem 2rem 1rem 2rem;
         display: flex; // Utilise Flexbox pour la disposition des éléments
         justify-content: space-between; // Répartit l'espace équitablement entre les éléments
         gap: 20px; // Crée un espace entre les éléments
@@ -115,7 +115,7 @@
         .chart-days-visite {
             padding: 2rem;
             background-color: white;
-            height: 350px;
+            height: 340px;
             flex: 4;
             box-shadow: 0px 0px 25px 0px rgba(126, 55, 216, .05);
             border-radius: 40px;
@@ -181,7 +181,7 @@
         .chat-number-like-post {
             padding: 2rem;
             background-color: white;
-            height: 350px;
+            height: 340px;
             flex: 2;
             box-shadow: 0px 0px 25px 0px rgba(126, 55, 216, .05);
             border-radius: 40px;

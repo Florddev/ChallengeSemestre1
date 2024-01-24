@@ -62,7 +62,7 @@
                             <h2>Charts</h2>
                         </div>
                     </a>
-                    <a href="/dashboard">
+                    <a href="/dashboard/users">
                         <div class="item-sidebar">
                             <i class="ri-user-settings-line"></i>
                             <h2>Utilisateurs</h2>
@@ -84,6 +84,9 @@
                             </li>
                             <li>
                                 Mes articles
+                            </li>
+                            <li>
+                                Liste utilisateurs
                             </li>
                         </ul>
                     </div>

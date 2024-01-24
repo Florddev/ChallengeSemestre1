@@ -3110,7 +3110,7 @@ img {
   font-weight: 600;
 }
 .page-wrapper-body-container .stats-container {
-  padding: 2rem 2rem 1rem 2rem;
+  padding: 1.5rem 2rem 1rem 2rem;
   display: flex;
   justify-content: space-between;
   gap: 20px;
@@ -3163,7 +3163,7 @@ img {
 .page-wrapper-body-container .charts-container .chart-days-visite {
   padding: 2rem;
   background-color: white;
-  height: 350px;
+  height: 340px;
   flex: 4;
   box-shadow: 0px 0px 25px 0px rgba(126, 55, 216, 0.05);
   border-radius: 40px;
@@ -3212,7 +3212,7 @@ img {
 .page-wrapper-body-container .charts-container .chat-number-like-post {
   padding: 2rem;
   background-color: white;
-  height: 350px;
+  height: 340px;
   flex: 2;
   box-shadow: 0px 0px 25px 0px rgba(126, 55, 216, 0.05);
   border-radius: 40px;
@@ -3793,6 +3793,159 @@ img {
   background-color: #f2f2f2;
 }
 .page-wrapper-body-container .job-board .job-listings .pagination .page-link.active {
+  color: #fff;
+  background-color: #7e37d8;
+  box-shadow: none;
+}
+
+.page-wrapper-body-container .header-users-dashboard {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 2rem 1rem 2rem;
+}
+.page-wrapper-body-container .header-users-dashboard .header-users-dashboard-left h1 {
+  font-size: 30px;
+}
+.page-wrapper-body-container .header-users-dashboard .header-users-dashboard-left h1 span {
+  color: #7e37d8;
+}
+.page-wrapper-body-container .header-users-dashboard .header-users-dashboard-left h2 {
+  margin-top: 10px;
+  font-weight: 700;
+  font-size: 15px;
+  color: #7e37d8;
+  letter-spacing: 3px;
+}
+.page-wrapper-body-container .header-users-dashboard .header-users-dashboard-right {
+  display: flex;
+  align-items: center;
+  color: #7e37d8;
+}
+.page-wrapper-body-container .header-users-dashboard .header-users-dashboard-right i {
+  background-color: rgba(126, 55, 216, 0.12);
+  padding: 8px;
+  border-radius: 100%;
+  font-weight: 500;
+  margin-right: 0.5rem;
+}
+.page-wrapper-body-container .header-users-dashboard .header-users-dashboard-right p {
+  font-size: 14px;
+}
+.page-wrapper-body-container .header-users-dashboard .header-users-dashboard-right p span {
+  font-weight: 600;
+}
+.page-wrapper-body-container section {
+  padding: 2rem;
+}
+.page-wrapper-body-container section .table-container {
+  width: 100%;
+  margin: 0 auto;
+  box-shadow: 0px 0px 25px 0px rgba(126, 55, 216, 0.05);
+  border-radius: 40px;
+  background: #fff;
+}
+.page-wrapper-body-container section .table-container .title-table-container {
+  padding: 2.5rem 3rem;
+  border-bottom: 1px solid #ddd;
+}
+.page-wrapper-body-container section .table-container .title-table-container h2 {
+  text-transform: capitalize;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 0.7rem;
+  font-size: 18px;
+}
+.page-wrapper-body-container section .table-container .title-table-container p {
+  color: rgba(102, 102, 102, 0.6745098039);
+  font-size: 14px;
+}
+.page-wrapper-body-container section .table-container .title-table-container p code {
+  color: #7e37d8 !important;
+  background-color: #f8f5fd;
+  padding: 3px;
+  margin: 0 3px;
+  border-radius: 2px;
+  font-size: 1em;
+}
+.page-wrapper-body-container section .table-container .table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.page-wrapper-body-container section .table-container .table th,
+.page-wrapper-body-container section .table-container .table td {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+.page-wrapper-body-container section .table-container .table th {
+  background-color: #fff;
+}
+.page-wrapper-body-container section .table-container .table tbody {
+  color: #1b3155;
+}
+.page-wrapper-body-container section .table-container .table tbody .pending {
+  background-color: var(--warning); /* Changez ce code couleur pour la nuance exacte de vert que vous voulez, par exemple #28a745 pour un vert 'succès' de Bootstrap */
+  color: white; /* Pour le texte blanc */
+  padding: 0.25rem 0.5rem; /* Ajustez le remplissage au besoin */
+  border-radius: 4px; /* Pour les coins arrondis */
+  font-weight: 600; /* Si le texte doit être en gras */
+  font-size: 0.875rem; /* Ajustez la taille de la police au besoin */
+  display: inline-block; /* Pour s'assurer que le remplissage est appliqué correctement */
+}
+.page-wrapper-body-container section .table-container .table tbody .verifed {
+  background-color: var(--success); /* Changez ce code couleur pour la nuance exacte de vert que vous voulez, par exemple #28a745 pour un vert 'succès' de Bootstrap */
+  color: white; /* Pour le texte blanc */
+  padding: 0.25rem 0.5rem; /* Ajustez le remplissage au besoin */
+  border-radius: 4px; /* Pour les coins arrondis */
+  font-weight: 600; /* Si le texte doit être en gras */
+  font-size: 0.875rem; /* Ajustez la taille de la police au besoin */
+  width: fit-content;
+}
+.page-wrapper-body-container section .table-container .table tbody .delete {
+  background-color: rgba(126, 55, 216, 0.12);
+  color: var(--danger);
+  padding: 8px;
+  border-radius: 100%;
+  font-weight: 500;
+  margin-right: 0.5rem;
+}
+.page-wrapper-body-container section .table-container .table tbody .edit {
+  background-color: rgba(126, 55, 216, 0.12);
+  color: var(--info);
+  padding: 8px;
+  border-radius: 100%;
+  font-weight: 500;
+  margin-right: 0.5rem;
+}
+.page-wrapper-body-container section .table-container .table tbody .bold {
+  font-weight: bold;
+}
+.page-wrapper-body-container section .table-container .table tbody tr:hover {
+  background-color: #fff;
+  color: #1b3155;
+}
+.page-wrapper-body-container section .pagination {
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
+}
+.page-wrapper-body-container section .pagination .page-link {
+  padding: 0.5rem 0.75rem;
+  margin: 0 0.25rem;
+  text-decoration: none;
+  color: #7e37d8;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: #fff;
+  box-shadow: 0px 3px 6px 0px rgba(126, 55, 216, 0.16);
+}
+.page-wrapper-body-container section .pagination .page-link:hover {
+  background-color: #f2f2f2;
+}
+.page-wrapper-body-container section .pagination .page-link.active {
   color: #fff;
   background-color: #7e37d8;
   box-shadow: none;
