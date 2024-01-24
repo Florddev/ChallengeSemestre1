@@ -2,11 +2,13 @@
 $bars-size: rem(350);
 
 @mixin scroll-bar($hide) {
+
   /* width */
   &::-webkit-scrollbar {
     @if $hide ==true {
       display: none;
     }
+
     width: rem(5);
   }
 
@@ -43,7 +45,7 @@ $bars-size: rem(350);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 2.5px 4.33px 30px 0px rgba($tercery,0.035);
+    box-shadow: 2.5px 4.33px 30px 0px rgba($tercery, 0.035);
     z-index: 1;
 
     &-left {
@@ -52,11 +54,13 @@ $bars-size: rem(350);
       min-width: $bars-size;
       height: 100%;
     }
+
     &-center {
       position: relative;
       width: 100%;
       height: 100%;
     }
+
     &-right {
       position: relative;
       max-width: $bars-size;
@@ -114,6 +118,7 @@ $bars-size: rem(350);
       left: $bars-size;
       transform: translateX(-50%);
     }
+
     &-right {
       right: $bars-size;
       transform: translateX(50%);
@@ -138,6 +143,7 @@ $bars-size: rem(350);
     &:hover {
       & label {
         background-color: $tercery;
+
         & i {
           color: $white;
         }
@@ -149,6 +155,7 @@ $bars-size: rem(350);
 
       &:checked~label {
         background-color: $tercery;
+
         & i {
           transform: rotate(180deg);
           color: $white;
@@ -159,5 +166,178 @@ $bars-size: rem(350);
 }
 
 .back-office {
+  .nav-dashboard {
 
+    &-left {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      h2 {
+        text-transform: uppercase;
+        font-weight: 900;
+      }
+
+      label {
+        height: 35px;
+        width: 35px;
+        border-radius: 100%;
+        margin-left: 1.5rem;
+        background-color: #f8f5fd;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        svg {
+          color: #7e37d8;
+        }
+      }
+    }
+
+    &-right {
+      display: flex;
+      justify-content: right;
+      align-items: center;
+
+      i {
+        font-size: 18px;
+        margin: 0 1.5rem;
+      }
+
+      .profil-user {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 3rem 0 1.5rem;
+
+        img {
+          max-height: 50px;
+          max-width: 50px;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+
+  .wrappe-sidebar {
+    display: flex;
+    
+    .items-sidebar {
+      max-width: 90px;
+      display: flex;
+      flex-direction: column;
+      
+      a {
+        color: inherit;
+        text-decoration: none;
+        font-family: inherit;
+        font-size: inherit;
+        font-style: inherit;
+        font-weight: inherit;
+        
+        .item-sidebar {
+          height: 90px;
+          width: 90px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          border: 1px solid #f8f4fe;
+          border-top: none;
+          border-left: none;
+
+          i {
+            font-size: 25px;
+          }
+
+          h2 {
+            font-weight: 600;
+            font-size: 13px;
+          }
+        }
+
+        .item-sidebar:hover {
+          background-color: #f8f4fe;
+          color: black;
+        }
+
+        .active {
+          background-color: #7e37d8;
+          color: white;
+        }
+      }
+    }
+    .list-liens-sidebar {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      animation: bounceInLeft 1s ease-in-out;
+      animation-fill-mode: forwards;
+      border-right: 2px solid rgba(126,55,216,.15);
+  
+      h3 {
+        font-size: 18px;
+        color: #7e37d8;
+        background-color: #fbf9fe;
+        padding: 20px;
+      }
+  
+      ul {
+        list-style-type: none;
+  
+        li {
+          height: 40px;
+          display: flex;
+          align-items: center;
+          font-size: 15px;
+          color: black;
+          padding-left: 20px;
+          // padding-top: 20px;
+          font-weight: 500;
+        }
+  
+        li:hover {
+          background-color: #fbf9fe;
+          color: black;
+        }
+  
+        .active {
+          color: #7e37d8;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+}
+
+// Define the bounceInLeft animation
+@keyframes bounceInLeft {
+  0% {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    opacity: 0;
+    transform: translate3d(-3000px, 0, 0);
+  }
+
+  60% {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    opacity: 1;
+    transform: translate3d(25px, 0, 0);
+  }
+
+  75% {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  90% {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: translate3d(5px, 0, 0);
+  }
+
+  100% {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: none;
+  }
 }

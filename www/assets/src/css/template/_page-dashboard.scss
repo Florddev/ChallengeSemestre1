@@ -1,0 +1,246 @@
+.page-wrapper-body-container {
+    animation: pagebody 1000ms ease-in-out;
+    .header-main-dashboard {
+        display: flex;
+        justify-content: space-between;
+        padding: 2rem 2rem 1rem 2rem;
+
+        .header-main-dashboard-left {
+            h1 {
+                font-size: 30px;
+
+                span {
+                    color: #7e37d8;
+                }
+            }
+
+            h2 {
+                margin-top: 10px;
+                font-weight: 700;
+                font-size: 15px;
+                color: #7e37d8;
+                letter-spacing: 3px;
+            }
+        }
+
+        .header-main-dashboard-right {
+            display: flex;
+            align-items: center;
+            color: #7e37d8;
+
+            i {
+                background-color: rgba(126, 55, 216, .12);
+                padding: 8px;
+                border-radius: 100%;
+                font-weight: 500;
+                margin-right: 0.5rem;
+            }
+
+            p {
+                font-size: 14px;
+
+                span {
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+
+    .stats-container {
+        padding: 1.5rem 2rem 1rem 2rem;
+        display: flex; // Utilise Flexbox pour la disposition des éléments
+        justify-content: space-between; // Répartit l'espace équitablement entre les éléments
+        gap: 20px; // Crée un espace entre les éléments
+
+        .stat-card {
+            height: 245px;
+            flex: 1; // Chaque carte prend une part égale de l'espace disponible
+            padding: 20px;
+            border-radius: 20px; // Rayon de bordure pour les coins arrondis
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            border-radius: 40px;
+            padding: 2rem;
+
+            // Vous pouvez ajouter des dégradés de couleurs ou des images d'arrière-plan selon les besoins
+            &.purple {
+                background-image: linear-gradient(to bottom right, #863ee2, #571f9e);
+                box-shadow: 2px 12px 26px 3px rgba(126, 55, 216, .3);
+            }
+
+            &.pink {
+                background-image: linear-gradient(to bottom right, #ff9cc3, #fd3484);
+                box-shadow: 2px 12px 26px 3px rgba(254, 128, 178, .3)
+            }
+
+            &.yellow {
+                background-image: linear-gradient(to bottom right, #ffd85d, #ffc200);
+                box-shadow: 2px 12px 26px 3px rgba(255, 199, 23, .3);
+            }
+
+            &.blue {
+                background-image: linear-gradient(to bottom right, #00d2d7, #07b2dd);
+                box-shadow: 2px 12px 26px 3px rgba(6, 181, 221, .3);
+            }
+
+            .stat-icon {
+                i {
+                    font-size: 100px;
+                }
+
+            }
+
+            .stat-info {
+                h3 {
+                    margin: 0;
+                    font-size: 1.2em;
+                }
+
+                p {
+                    margin: 0;
+                    font-size: 1em;
+                }
+            }
+        }
+    }
+
+    .charts-container {
+        padding: 2rem;
+        display: flex;
+        gap: 20px;
+
+        .chart-days-visite {
+            padding: 2rem;
+            background-color: white;
+            height: 340px;
+            flex: 4;
+            box-shadow: 0px 0px 25px 0px rgba(126, 55, 216, .05);
+            border-radius: 40px;
+            transition: all .3s ease;
+
+            .chart {
+                display: flex;
+                justify-content: space-around;
+                align-items: flex-end;
+                height: 200px;
+                margin: 20px;
+
+                .bar {
+                    width: 15px;
+                    margin: 0 5px;
+                    position: relative;
+                    // Initialisez la hauteur à 0 pour l'animation
+                    height: 0;
+
+                    // Ajouter l'animation quand l'élément est rendu
+                    animation: grow 0.6s ease-out forwards;
+
+                    // Utilisez transform scaleY pour l'animation au lieu de la hauteur
+                    // Cela permettra à la barre de croître jusqu'à la hauteur définie dans l'attribut de style
+                    transform-origin: bottom;
+
+                    // Arrondissez uniquement les coins supérieurs des barres
+                    border-top-left-radius: 10px;
+                    border-top-right-radius: 10px;
+                    border-bottom-left-radius: 10px;
+                    border-bottom-right-radius: 10px;
+                }
+
+                // Définition de l'animation
+                @keyframes grow {
+                    from {
+                        transform: scaleY(0); // Commencez avec un facteur d'échelle de 0
+                    }
+
+                    to {
+                        transform: scaleY(1); // Évoluez jusqu'à un facteur d'échelle de 1
+                    }
+                }
+
+                .bar-pink {
+                    background-image: linear-gradient(to bottom right, #ff9cc3, #fd3484);
+                }
+
+                .bar-blue {
+                    background-image: linear-gradient(to bottom right, #78bcf8, #158df7);
+                }
+
+                .bar::after {
+                    content: attr(data-month);
+                    position: absolute;
+                    bottom: -30px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+            }
+        }
+
+        .chat-number-like-post {
+            padding: 2rem;
+            background-color: white;
+            height: 340px;
+            flex: 2;
+            box-shadow: 0px 0px 25px 0px rgba(126, 55, 216, .05);
+            border-radius: 40px;
+            transition: all .3s ease;
+            display: flex;
+            flex-direction: column;
+
+            .cercle-progression {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+
+                svg {
+                    transform: rotate(-90deg);
+
+                    .progress {
+                        fill: none;
+                        stroke-width: 10;
+                        stroke-linecap: round;
+                        transform-origin: center;
+                        transition: stroke-dasharray 0.6s ease-out;
+                    }
+
+                    .bleu {
+                        stroke: #158df7;
+                    }
+
+                    .violet {
+                        stroke: #571f9e;
+                    }
+
+                    .rose {
+                        stroke: #fd3484;
+                    }
+
+                    .pourcentage {
+                        fill: black;
+                        font-size: 20px;
+                        font-weight: 600;
+                        text-anchor: middle;
+                        alignment-baseline: middle;
+                        transform: rotate(90deg);
+                        transform-origin: center;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@keyframes pagebody {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(0.95, 0.95, 0.95) translate(-20px, -100px);
+        transform: scale3d(0.95, 0.95, 0.95) translate(-20px, -100px);
+    }
+    50% {
+        opacity: 1;
+    }
+}

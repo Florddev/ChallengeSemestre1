@@ -1,0 +1,182 @@
+$primary-bg: #fff;
+$secondary-bg: #f8f8f8;
+$hover-bg: #eaeaea;
+$odd-row-bg: #f2f2f2;
+$border-color: #ddd;
+$text-color: #333;
+$secondary-text-color: #666666ac;
+
+.page-wrapper-body-container {
+  .header-users-dashboard {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 2rem 1rem 2rem;
+
+    .header-users-dashboard-left {
+      h1 {
+        font-size: 30px;
+
+        span {
+          color: #7e37d8;
+        }
+      }
+
+      h2 {
+        margin-top: 10px;
+        font-weight: 700;
+        font-size: 15px;
+        color: #7e37d8;
+        letter-spacing: 3px;
+      }
+    }
+    .header-users-dashboard-right {
+      display: flex;
+      align-items: center;
+      color: #7e37d8;
+
+      i {
+        background-color: rgba(126, 55, 216, 0.12);
+        padding: 8px;
+        border-radius: 100%;
+        font-weight: 500;
+        margin-right: 0.5rem;
+      }
+
+      p {
+        font-size: 14px;
+
+        span {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  section {
+    padding: 2rem;
+    .table-container {
+      width: 100%;
+      margin: 0 auto;
+      box-shadow: 0px 0px 25px 0px rgba(126, 55, 216, 0.05);
+      border-radius: 40px;
+      background: $primary-bg;
+
+      .title-table-container {
+        padding: 2.5rem 3rem;
+        border-bottom: 1px solid $border-color;
+        h2 {
+          text-transform: capitalize;
+          font-weight: 700;
+          line-height: 1;
+          margin-bottom: 0.7rem;
+          font-size: 18px;
+        }
+
+        p {
+          color: $secondary-text-color;
+          font-size: 14px;
+          code {
+            color: #7e37d8 !important;
+            background-color: #f8f5fd;
+            padding: 3px;
+            margin: 0 3px;
+            border-radius: 2px;
+            font-size: 1em;
+          }
+        }
+      }
+
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+
+        th,
+        td {
+          text-align: left;
+          padding: 12px;
+          border-bottom: 1px solid $border-color;
+        }
+
+        
+        th {
+          background-color: $primary-bg;
+        }
+        
+        tbody {
+          color: #1b3155;
+          .pending {
+            background-color: var(--warning); /* Changez ce code couleur pour la nuance exacte de vert que vous voulez, par exemple #28a745 pour un vert 'succès' de Bootstrap */
+            color: white; /* Pour le texte blanc */
+            padding: 0.25rem 0.5rem; /* Ajustez le remplissage au besoin */
+            border-radius: 4px; /* Pour les coins arrondis */
+            font-weight: 600; /* Si le texte doit être en gras */
+            font-size: 0.875rem; /* Ajustez la taille de la police au besoin */
+            display: inline-block; /* Pour s'assurer que le remplissage est appliqué correctement */
+          }
+          .verifed {
+            background-color: var(--success); /* Changez ce code couleur pour la nuance exacte de vert que vous voulez, par exemple #28a745 pour un vert 'succès' de Bootstrap */
+            color: white; /* Pour le texte blanc */
+            padding: 0.25rem 0.5rem; /* Ajustez le remplissage au besoin */
+            border-radius: 4px; /* Pour les coins arrondis */
+            font-weight: 600; /* Si le texte doit être en gras */
+            font-size: 0.875rem; /* Ajustez la taille de la police au besoin */
+            // display: inline-block; /* Pour s'assurer que le remplissage est appliqué correctement */
+            width: fit-content;
+          }
+          .delete {
+            background-color: rgba(126, 55, 216, 0.12);
+            color: var(--danger);
+            padding: 8px;
+            border-radius: 100%;
+            font-weight: 500;
+            margin-right: 0.5rem;
+          }
+          .edit {
+            background-color: rgba(126, 55, 216, 0.12);
+            color: var(--info);
+            padding: 8px;
+            border-radius: 100%;
+            font-weight: 500;
+            margin-right: 0.5rem;
+          }
+          .bold {
+            font-weight: bold;
+          }        
+
+          tr:hover {
+            background-color: $primary-bg;
+            color: #1b3155;
+          }
+        }
+      }
+    }
+    .pagination {
+        margin-top: 1rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 1rem 0;
+
+        .page-link {
+            padding: 0.5rem 0.75rem;
+            margin: 0 0.25rem;
+            text-decoration: none;
+            color: #7e37d8;
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: #fff;
+            box-shadow: 0px 3px 6px 0px rgba(126, 55, 216, .16);
+
+            &:hover {
+                background-color: #f2f2f2;
+            }
+
+            &.active {
+                color: #fff;
+                background-color: #7e37d8;
+                box-shadow: none;
+            }
+        }
+    }
+  }
+}   
