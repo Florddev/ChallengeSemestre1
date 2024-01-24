@@ -1,4 +1,3 @@
-
 let initialSize = 'empty';
 let initialPadding = 'empty';
 function closeShutters(input, target){

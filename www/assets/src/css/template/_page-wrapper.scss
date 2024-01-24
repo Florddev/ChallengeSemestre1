@@ -46,6 +46,7 @@ $bars-size: rem(350);
     justify-content: space-between;
     align-items: center;
     box-shadow: 2.5px 4.33px 30px 0px rgba($tercery, 0.035);
+    background-color: var(--white);
     z-index: 1;
 
     &-left {
@@ -101,6 +102,7 @@ $bars-size: rem(350);
   //border-left: rem(3) solid $grey-lighter;
   transition: var(--transition-duration) ease-in-out;
   width: 100%;
+  background-color: $light1;
 
   &-toggler {
     position: absolute;
@@ -227,6 +229,8 @@ $bars-size: rem(350);
       max-width: 90px;
       display: flex;
       flex-direction: column;
+      background-color: var(--white);
+      z-index: 1;
       
       a {
         color: inherit;
@@ -272,9 +276,10 @@ $bars-size: rem(350);
       width: 100%;
       display: flex;
       flex-direction: column;
-      animation: bounceInLeft 1s ease-in-out;
+      animation: bounceInLeft 1s ease;
       animation-fill-mode: forwards;
       border-right: 2px solid rgba(126,55,216,.15);
+      background-color: var(--white);
   
       h3 {
         font-size: 18px;

@@ -31,6 +31,8 @@ $bars-size: 19vw;
     }
 
     &-header {
+        z-index: 0;
+
         &-start {
             display: flex;
             flex-direction: column;
@@ -196,6 +198,10 @@ $bars-size: 19vw;
         & .editor-accordion,
         & .editor-accordion-settings {
             display: none;
+        }
+
+        .sidebar {
+            background-color: var(--white);
         }
 
         & #componentsShutter {

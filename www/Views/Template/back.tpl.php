@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.6.0/remixicon.min.css">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="/assets/dist/js/sortable.js"></script>
     <title>Template Back</title>
 </head>
 <body>
@@ -30,7 +31,7 @@
         </div>
 
         <div class="page-wrapper-body">
-            <section class="sidebar  wrappe-sidebar" id="navbar-container">
+            <section class="sidebar  wrappe-sidebar" id="template-back-navbar-container">
                 <div class="items-sidebar">
                     <a href="/dashboard">
                         <div class="item-sidebar">
@@ -44,7 +45,7 @@
                                 <h2>Articles</h2>
                         </div>
                     </a>
-                    <a href="/dashboard">
+                    <a href="/dashboard/builder">
                         <div class="item-sidebar">
                             <i class="ri-file-copy-2-line"></i>
                             <h2>Pages</h2>
@@ -95,10 +96,9 @@
             <section class="page-wrapper-body-container">
                 <?php include $this->viewName;?>
             </section>
-
             <div class="sidebar-toggler sidebar-toggler-left">
-                <input type="checkbox" id="left-toggler" onchange="closeShutters(this, 'navbar-container')">
-                <label for="left-toggler"><i class="ri-arrow-left-line"></i></label>
+                <input type="checkbox" id="navbar-toggler" onchange="closeShutters(this, 'template-back-navbar-container')">
+                <label for="navbar-toggler"><i class="ri-arrow-left-line"></i></label>
             </div>
         </div>
     </div>
@@ -109,5 +109,10 @@
     <script src="/assets/dist/js/globalPage.js"></script>
     <script src="/assets/dist/js/cercleProgression.js"></script>
     <script src="/assets/dist/js/isActiveClass.js"></script>
+    <script src="/assets/dist/js/pageBuilder.js"></script>
+    <script src="/assets/dist/js/draggableInput.js"></script>
+    <script>
+        _('[data-plugin="svg"]').forEach(e => _(e).html(loadSVG(_(e).attr("data-svg-src"))));
+    </script>
 </body>
 </html>

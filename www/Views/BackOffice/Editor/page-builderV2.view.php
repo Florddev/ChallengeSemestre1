@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/assets/dist/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.6.0/remixicon.min.css">
-    <script src="/assets/dist/js/sortable.js"></script>
     <title>Page builder</title>
 </head>
 
 <body>
+-->
     <div class="page-wrapper page-builder">
         <header class="page-wrapper-header page-builder-header">
             <section class="page-wrapper-header-left page-builder-header-start">
@@ -85,12 +86,12 @@
         </header>
         <main class="page-wrapper-body page-builder-main">
             <div class="sidebar-toggler sidebar-toggler-left">
-                <input type="checkbox" id="left-toggler" onchange="closeShutters(this, 'componentsShutter')">
-                <label for="left-toggler"><i class="ri-arrow-left-line"></i></label>
+                <input type="checkbox" id="builder-left-toggler" onchange="closeShutters(this, 'componentsShutter')">
+                <label for="builder-left-toggler"><i class="ri-arrow-left-line"></i></label>
             </div>
             <div class="sidebar-toggler sidebar-toggler-right">
-                <input type="checkbox" id="right-toggler" onchange="closeShutters(this, 'editorShutter')">
-                <label for="right-toggler"><i class="ri-arrow-right-line"></i></label>
+                <input type="checkbox" id="builder-right-toggler" onchange="closeShutters(this, 'editorShutter')">
+                <label for="builder-right-toggler"><i class="ri-arrow-right-line"></i></label>
             </div>
             <section class="sidebar" id="componentsShutter">
                 <div class="btn-multiple">
@@ -442,6 +443,7 @@
         <option value="#a3aed0"></option>
         <option value="#eaebee"></option>
     </datalist>
+<!--
     <script src="/assets/dist/js/wispQuery.js"></script>
     <script src="/assets/src/js/components/accordion.js"></script>
     <script src="/assets/src/js/components/navbar.js"></script>
@@ -456,3 +458,4 @@
 </body>
 
 </html>
+-->
