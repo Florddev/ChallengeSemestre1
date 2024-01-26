@@ -11,8 +11,8 @@ services:
     volumes:
       - ./server/script.sql:/docker-entrypoint-initdb.d/init-script.sql
   web:
-    build: dockerfile/site
-    ports :
+    build: site
+    ports:
       - "80:80"
     volumes:
       - ./www:/var/www/html/
