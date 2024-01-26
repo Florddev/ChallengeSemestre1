@@ -31,6 +31,8 @@ $bars-size: 19vw;
     }
 
     &-header {
+        z-index: 0;
+
         &-start {
             display: flex;
             flex-direction: column;
@@ -198,6 +200,10 @@ $bars-size: 19vw;
             display: none;
         }
 
+        .sidebar {
+            background-color: var(--white);
+        }
+
         & #componentsShutter {
             padding: rem(20);
 
@@ -299,7 +305,7 @@ $bars-size: 19vw;
                     width: 100%;
                     height: 100%;
                 }
-                & .sortable-element::before {
+                & .sortable-element[data-sortable="true"]::before {
                     border: rem(1) dashed $grey;
                 }
 
@@ -307,15 +313,10 @@ $bars-size: 19vw;
                     outline: none;
                 }
 
-                & .editable:not(.selected-item):hover::before,
-                & .sortable-element:not(.selected-item):hover::before {
-                    border: rem(2) solid var(--info);
-                    box-sizing: border-box;
-                    display: inline-block;
-                }
-
-                & .editable:not(.selected-item):active::before,
-                & .sortable-element:not(.selected-item):focus::before {
+                & .editable[data-sortable="true"]:not(.selected-item):hover::before,
+                & .sortable-element[data-sortable="true"]:not(.selected-item):hover::before,
+                & .editable[data-sortable="true"]:not(.selected-item):active::before,
+                & .sortable-element[data-sortable="true"]:not(.selected-item):focus::before {
                     border: rem(2.2) solid var(--info);
                     box-sizing: border-box;
                     display: inline-block;

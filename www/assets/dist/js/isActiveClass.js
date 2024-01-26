@@ -18,21 +18,27 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // Ajouter la classe active à l'élément correspondant
-    if(path.includes('/dashboard/articles')) {
-        document.querySelector('.ri-news-line').parentNode.classList.add('active');
-        var liMesArticles = document.querySelector('.list-liens-sidebar ul li:nth-child(2)');
-        liMesArticles.classList.add('active');
-        liMesArticles.style.display = 'flex'; // Rendre visible
-    } else if(path === '/dashboard/users') {
-        document.querySelector('.ri-user-settings-line').parentNode.classList.add('active');
-        var liUsers = document.querySelector('.list-liens-sidebar ul li:nth-child(3)');
-        liUsers.classList.add('active');
-        liUsers.style.display = 'flex'
-    } else if(path === '/dashboard') {
+    if(path === '/dashboard') {
         document.querySelector('.ri-home-3-line').parentNode.classList.add('active');
         var liAccueil = document.querySelector('.list-liens-sidebar ul li:nth-child(1)');
         liAccueil.classList.add('active');
         liAccueil.style.display = 'flex'
+    } else if(path.startsWith('/dashboard/articles')) {
+        document.querySelector('.ri-news-line').parentNode.classList.add('active');
+        var liMesArticles = document.querySelector('.list-liens-sidebar ul li:nth-child(2)');
+        liMesArticles.classList.add('active');
+        liMesArticles.style.display = 'flex'; // Rendre visible
+    } else if(path.startsWith('/dashboard/users')) {
+        document.querySelector('.ri-user-settings-line').parentNode.classList.add('active');
+        var liUsers = document.querySelector('.list-liens-sidebar ul li:nth-child(3)');
+        liUsers.classList.add('active');
+        liUsers.style.display = 'flex'
+    } else if(path.startsWith('/dashboard/builder')) {
+
+        document.querySelector('.ri-file-copy-2-line').parentNode.classList.add('active');
+        var liBuilder = document.querySelector('.list-liens-sidebar ul li:nth-child(1)');
+        liBuilder.classList.add('active');
+        liBuilder.style.display = 'flex'
     }
     // Vous pouvez ajouter plus de conditions ici pour d'autres chemins
 });

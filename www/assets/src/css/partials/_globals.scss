@@ -4,8 +4,21 @@
     padding: 0;
 }
 
+html {
+    @media screen and (max-width: 600px) {
+        font-size: 12px;
+    }
+    @media screen and (max-width: 1500px) {
+        font-size: 14px;
+    }
+    @media screen and (min-width: 1500px) {
+        font-size: 16px;
+    }
+}
+
 body {
     font-family: var(--main-font1);
+    background-color: $light1;
 }
 
 input,

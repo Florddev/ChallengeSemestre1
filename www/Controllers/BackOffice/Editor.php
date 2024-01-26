@@ -12,9 +12,10 @@ class Editor
     public function pageBuilder($page): void
     {
         $host = $_SERVER["REQUEST_SCHEME"]."://".$_SERVER["HTTP_HOST"];
-        $editor = new View("BackOffice/Editor/page-builderV2");
+        $editor = new View("BackOffice/Editor/page-builderV2", "back");
         $editor->assign("currentPage", $page);
         $editor->assign("host", $host);
+        $editor->assign("inPreview", true);
     }
 
     public function savePage($route): void {
