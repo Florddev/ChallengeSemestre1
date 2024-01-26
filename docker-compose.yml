@@ -12,7 +12,7 @@ services:
     volumes:
       - ./server/script.sql:/script.sql
   web:
-    build: dockerfile/site
+    build: site
     ports :
       - "80:80"
     volumes:
