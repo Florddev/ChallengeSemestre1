@@ -1,13 +1,14 @@
 let initialSize = 'empty';
 let initialPadding = 'empty';
-function closeShutters(input, target){
+function closeShutters(input, target, action = "toggle"){
     target = _("#" + target);
+
     if(initialSize === "empty") initialSize = target.style.maxWidth;
     if(initialPadding === "empty") initialPadding = target.style.padding;
 
     let parent = _(input.parentElement);
 
-    if(input.checked) {
+    if(input.checked || action === "open") {
         target.css("max-width", "0");
         target.css("padding", "0");
 
@@ -17,7 +18,7 @@ function closeShutters(input, target){
             parent.css("right", '2rem');
         }
     }
-    else {
+    else if(!input.checked || action === "close") {
         target.css("max-width", initialSize);
         target.css("padding", initialPadding);
 
@@ -28,8 +29,26 @@ function closeShutters(input, target){
         }
     }
 }
+_(document).ready(evt => {
+    _(".sidebar-toggler input").forEach(e => { e = _(e);
+        let event = new Event('change');
+        e.dispatchEvent(event);
+    });
+})
 
+const editPage = () => {
+    const toggles = [
+        { id: "builder-left-toggler", active: false },
+        { id: "builder-right-toggler", active: false },
+        { id: "navbar-toggler", active: true }
+    ];
 
+    let event = new Event('change');
+    toggles.forEach(e => {
+        _(`#${e.id}`).checked = e.active
+        _(`#${e.id}`).dispatchEvent(event);
+    });
+}
 
 function convertPixelToRemFromString(style) {
     const rg = new RegExp("(([0-9]+.)[0-9]+)px|([0-9]+)px", "g");

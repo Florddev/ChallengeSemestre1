@@ -109,10 +109,15 @@
     <script src="/assets/dist/js/globalPage.js"></script>
     <script src="/assets/dist/js/cercleProgression.js"></script>
     <script src="/assets/dist/js/isActiveClass.js"></script>
-    <script src="/assets/dist/js/pageBuilder.js"></script>
     <script src="/assets/dist/js/draggableInput.js"></script>
+    <script src="/assets/dist/js/pageBuilder.js"></script>
     <script>
         _('[data-plugin="svg"]').forEach(e => _(e).html(loadSVG(_(e).attr("data-svg-src"))));
+
+        let modePreview = <?= $inPreview ?>;
+        if(modePreview) {
+            _('[data-sortable="true"]').forEach(e => _(e).attr("data-sortable", "false"));
+        }
     </script>
 </body>
 </html>

@@ -3,12 +3,16 @@ let redoStack = [];
 
 function updateStateArrows(){
     const undoIcon = _("#state-undo");
-    if(undoStack.length > 1) undoIcon.addClass("active");
-    else undoIcon.removeClass("active");
+    if(undoIcon){
+        if(undoStack.length > 1) undoIcon.addClass("active");
+        else undoIcon.removeClass("active");
+    }
 
     const redoIcon = _("#state-redo");
-    if(redoStack.length > 0) redoIcon.addClass("active");
-    else redoIcon.removeClass("active");
+    if(redoIcon){
+        if(redoStack.length > 0) redoIcon.addClass("active");
+        else redoIcon.removeClass("active");
+    }
 }
 
 // Fonction pour sauvegarder l'état actuel dans la pile undo
@@ -66,8 +70,8 @@ document.addEventListener('keydown', function (event) {
 });
 
 // Gestionnaire d'événement pour les touches
-_("#state-undo").click(evt => undo());
-_("#state-redo").click(evt => redo());
+if(_("#state-undo")) _("#state-undo").click(evt => undo());
+if(_("#state-redo")) _("#state-redo").click(evt => redo());
 }
 
 

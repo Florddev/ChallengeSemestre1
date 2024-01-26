@@ -33,9 +33,9 @@
   action: getAllArticles
   template: back
 
-/dashboard/builder:
-  controller: BackOffice/Editor
-  action: pageBuilder
+#/dashboard/builder:
+#  controller: BackOffice/Editor
+#  action: pageBuilder
 
 /dashboard/builder/last-articles:
   controller: BackOffice/Editor

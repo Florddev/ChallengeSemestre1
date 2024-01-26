@@ -3530,18 +3530,13 @@ img {
   width: 100%;
   height: 100%;
 }
-.page-builder-main-editor .editor-container .sortable-element::before {
+.page-builder-main-editor .editor-container .sortable-element[data-sortable=true]::before {
   border: 0.0625rem dashed #a3aed0;
 }
 .page-builder-main-editor .editor-container .editable-text[contenteditable=true] {
   outline: none;
 }
-.page-builder-main-editor .editor-container .editable:not(.selected-item):hover::before, .page-builder-main-editor .editor-container .sortable-element:not(.selected-item):hover::before {
-  border: 0.125rem solid var(--info);
-  box-sizing: border-box;
-  display: inline-block;
-}
-.page-builder-main-editor .editor-container .editable:not(.selected-item):active::before, .page-builder-main-editor .editor-container .sortable-element:not(.selected-item):focus::before {
+.page-builder-main-editor .editor-container .editable[data-sortable=true]:not(.selected-item):hover::before, .page-builder-main-editor .editor-container .sortable-element[data-sortable=true]:not(.selected-item):hover::before, .page-builder-main-editor .editor-container .editable[data-sortable=true]:not(.selected-item):active::before, .page-builder-main-editor .editor-container .sortable-element[data-sortable=true]:not(.selected-item):focus::before {
   border: 0.1375rem solid var(--info);
   box-sizing: border-box;
   display: inline-block;

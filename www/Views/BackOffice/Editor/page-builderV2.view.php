@@ -12,7 +12,7 @@
 
 <body>
 -->
-    <div class="page-wrapper page-builder">
+    <div class="page-wrapper page-builder <?= $inPreview ? "inPreview" : null ?>">
         <header class="page-wrapper-header page-builder-header">
             <section class="page-wrapper-header-left page-builder-header-start">
                 <input type="hidden" id="page-id" value="<?= $currentPage["id"] ?>">
@@ -67,30 +67,37 @@
                     </ul>
                 </div>
                 <div class="header-mid-end">
-                    <i class="ri-arrow-go-back-fill" id="state-undo"></i>
-                    <i class="ri-arrow-go-forward-fill" id="state-redo"></i>
+                    <?php if(!$inPreview): ?>
+                        <i class="ri-arrow-go-back-fill" id="state-undo"></i>
+                        <i class="ri-arrow-go-forward-fill" id="state-redo"></i>
+                    <?php endif; ?>
                 </div>
             </section>
             <section class="page-wrapper-header-right page-builder-header-end">
-                <ul class="header-end-list">
+                <ul class="header-end-list" <?php if($inPreview) echo "style='border:none; justify-content: end'" ?>>
                     <!--
                     <li onclick="savePage()"><i class="ri-save-line" id="save-page"></i></li>
                     <li><i class="ri-play-line"></i></li>
                     <li><button class="btn btn-primary btn-small">Publier</button></li>
                     <li><i class="ri-shield-user-line"></i></li>
                     -->
-                    <li onclick="savePage()"><button class="btn btn-primary btn-line">Enregistrer</button></li>
-                    <li><button class="btn btn-primary">Visualiser</button></li>
+
+                    <?php if(!$inPreview): ?>
+                        <li onclick="savePage()"><button class="btn btn-primary btn-line">Enregistrer</button></li>
+                        <li><button class="btn btn-primary">Visualiser</button></li>
+                    <?php else: ?>
+                        <li onclick="editPage()"><button class="btn btn-primary">Editer la page</button></li>
+                    <?php endif; ?>
                 </ul>
             </section>
         </header>
         <main class="page-wrapper-body page-builder-main">
             <div class="sidebar-toggler sidebar-toggler-left">
-                <input type="checkbox" id="builder-left-toggler" onchange="closeShutters(this, 'componentsShutter')">
+                <input type="checkbox" id="builder-left-toggler" checked onchange="closeShutters(this, 'componentsShutter')">
                 <label for="builder-left-toggler"><i class="ri-arrow-left-line"></i></label>
             </div>
             <div class="sidebar-toggler sidebar-toggler-right">
-                <input type="checkbox" id="builder-right-toggler" onchange="closeShutters(this, 'editorShutter')">
+                <input type="checkbox" id="builder-right-toggler" checked onchange="closeShutters(this, 'editorShutter')">
                 <label for="builder-right-toggler"><i class="ri-arrow-right-line"></i></label>
             </div>
             <section class="sidebar" id="componentsShutter">
