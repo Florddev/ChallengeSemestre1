@@ -7,10 +7,10 @@ services:
       - POSTGRES_DB=blog
       - POSTGRES_PASSWORD=password
       # - POSTGRES_USER=root
-    ports :
+    ports:
       - "5432:5432"
     volumes:
-      - ./server/script.sql:/script.sql
+      - ./server/script.sql:/docker-entrypoint-initdb.d/init-script.sql
   web:
     build: site
     ports :
