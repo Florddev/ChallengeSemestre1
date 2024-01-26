@@ -20,18 +20,8 @@ services:
       - ./server/000-default.conf:/etc/apache2/sites-available/000-default.conf
       - ./server/apache2.conf:/etc/apache2/apache2.conf
       - ./server/php.ini:/usr/local/etc/php/php.ini
+      - ./vendor:/var/www/html/vendor
     depends_on:
       - db
-
-  serveur_smtp:
-    image: namshi/smtp:latest
-    restart : always
-    ports:
-      - "1025:25"  
-    environment:
-      - SMTP_USERNAME=votre_email@gmail.com
-      - SMTP_PASSWORD=votre_mot_de_passe
-      - SMTP_SERVER=smtp.gmail.com
-      - SMTP_PORT=587
-    networks:
+    networks : 
       - default
