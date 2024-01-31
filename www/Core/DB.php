@@ -64,7 +64,7 @@ class DB
     //$data = ["id"=>1] ou ["email"=>"y.skrzypczyk@gmail.com"]
     public function getOneBy(array $data, string $return = "array")
     {
-        $sql = "SELECT * FROM ".$this->table. " WHERE ";
+        $sql = "SELECT * FROM public.".$this->table. " WHERE ";
         foreach ($data as $column=>$value){
             $sql .= " ".$column."=:".$column. " AND";
         }

@@ -14,7 +14,8 @@
         <div class="page-wrapper-header">
             <div class="page-wrapper-header-left nav-dashboard-left">
                 <h2>Wisp's</h2>
-                <label>
+                <input type="checkbox" id="sidebar-toggle" onchange="closeShutters(this, 'template-back-navbar-container')" style="display: none">
+                <label for="sidebar-toggle" style="cursor: pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-align-center font-primary" id="sidebar-toggle"><line x1="18" y1="10" x2="6" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="18" y1="18" x2="6" y2="18"></line></svg>
                 </label>
             </div>
@@ -96,10 +97,10 @@
             <section class="page-wrapper-body-container">
                 <?php include $this->viewName;?>
             </section>
-            <div class="sidebar-toggler sidebar-toggler-left">
-                <input type="checkbox" id="navbar-toggler" onchange="closeShutters(this, 'template-back-navbar-container')">
-                <label for="navbar-toggler"><i class="ri-arrow-left-line"></i></label>
-            </div>
+<!--            <div class="sidebar-toggler sidebar-toggler-left">-->
+<!--                <input type="checkbox" id="navbar-toggler" onchange="closeShutters(this, 'template-back-navbar-container')">-->
+<!--                <label for="navbar-toggler"><i class="ri-arrow-left-line"></i></label>-->
+<!--            </div>-->
         </div>
     </div>
     <script src="/assets/dist/js/wispQuery.js"></script>
@@ -109,15 +110,18 @@
     <script src="/assets/dist/js/globalPage.js"></script>
     <script src="/assets/dist/js/cercleProgression.js"></script>
     <script src="/assets/dist/js/isActiveClass.js"></script>
-    <script src="/assets/dist/js/draggableInput.js"></script>
     <script src="/assets/dist/js/pageBuilder.js"></script>
+    <script src="/assets/dist/js/articleManager.js"></script>
+    <script src="/assets/dist/js/draggableInput.js"></script>
     <script>
-        _('[data-plugin="svg"]').forEach(e => _(e).html(loadSVG(_(e).attr("data-svg-src"))));
+        _(document).ready(evt => {
+            _('[data-plugin="svg"]').forEach(e => _(e).html(loadSVG(_(e).attr("data-svg-src"))));
+        });
 
-        let modePreview = <?= $inPreview ?>;
-        if(modePreview) {
-            _('[data-sortable="true"]').forEach(e => _(e).attr("data-sortable", "false"));
-        }
+        //let modePreview = <?php //= $inPreview ?>//;
+        //if(modePreview) {
+        //    _('[data-sortable="true"]').forEach(e => _(e).attr("data-sortable", "false"));
+        //}
     </script>
 </body>
 </html>

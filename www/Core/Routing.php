@@ -2,8 +2,10 @@
 
 namespace App\Core;
 
+use App\Controllers\BackOffice\Articles;
 use App\Controllers\BackOffice\Editor;
 use App\Controllers\Error;
+use App\Models\Article;
 use App\Models\Pages;
 
 class Routing
@@ -43,7 +45,14 @@ class Routing
             $builder->displayPage($page->getId());
         } elseif (str_starts_with($uri, "/dashboard/builder/")) {
             $this->handleDashboardBuilderRedirection($uri);
+        } elseif (str_starts_with($uri, "/dashboard/article/builder/")) {
+            $this->handleDashboardArticleBuilderRedirection($uri);
+        } elseif (str_starts_with($uri, "/dashboard/article/")) {
+            $this->handleArticleRedirection($uri);
         } else {
+            require "Controllers/Error.php";
+            $errorsManager = new Error();
+            $errorsManager->page404();
         }
     }
 
@@ -53,7 +62,7 @@ class Routing
         $pageFound = null;
 
         foreach ($pages as $page) {
-            $title = str_replace(" ", "-", strtolower($page["title"]));
+            $title = Utils::url_encode($page["title"]);
             if ("/dashboard/builder/" . $title === $uri) {
                 $pageFound = $page;
                 break;
@@ -68,6 +77,58 @@ class Routing
             $errorsManager = new Error();
             $errorsManager->page404();
         }
+    }
+
+    private function handleDashboardArticleBuilderRedirection(string $uri): void
+    {
+        $articles = Article::populateAllBy([]);
+        $articleFound = null;
+
+        foreach ($articles as $article) {
+            $title = Utils::url_encode($article["title"]);
+            if ("/dashboard/article/builder/" . $title === $uri) {
+                $articleFound = $article;
+                break;
+            }
+        }
+
+        if ($articleFound !== null) {
+            $builder = new Articles();
+            $builder->articlesBuilder($articleFound);
+        } else {
+            require "Controllers/Error.php";
+            $errorsManager = new Error();
+            $errorsManager->page404();
+        }
+    }
+
+    private function handleArticleRedirection(string $uri): void
+    {
+        $articles = Article::populateAllBy([]);
+        $articleFound = null;
+
+        foreach ($articles as $article) {
+            $title = Utils::url_encode($article["title"]);
+            if ("/dashboard/article/" . $title === $uri) {
+                $articleFound = $article;
+                break;
+            }
+        }
+
+        if ($articleFound !== null) {
+            $articleDate = Utils::convertDate($articleFound["published_at"], "Y-m-d");
+            $currentDate = Utils::convertDate(\date("Y-m-d"), "Y-m-d");
+
+            if($articleDate <= $currentDate){
+                $builder = new Articles();
+                $builder->articlesPage($articleFound);
+                return;
+            }
+        }
+
+        require "Controllers/Error.php";
+        $errorsManager = new Error();
+        $errorsManager->page404();
     }
 
 

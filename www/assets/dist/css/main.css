@@ -3288,6 +3288,9 @@ img {
     opacity: 1;
   }
 }
+.page-builder {
+  height: calc(100vh - 5.625rem);
+}
 .page-builder [contenteditable=true] {
   outline: none;
 }
@@ -3324,9 +3327,10 @@ img {
   font-weight: 900;
   display: flex;
 }
-.page-builder-header-start p {
+.page-builder-header-start .page-url {
   color: #a3aed0;
   font-weight: 300;
+  display: flex;
 }
 .page-builder-header-start input {
   display: inline-block;

@@ -16,6 +16,17 @@ class Article extends DB
     protected int $id_creator;
     //protected ?string $updated_at;
     protected ?int $id_updator;
+    protected ?string $published_at;
+
+    public function getPublishedAt(): ?string
+    {
+        return $this->published_at;
+    }
+
+    public function setPublishedAt(?string $published_at): void
+    {
+        $this->published_at = $published_at;
+    }
 
     public function getId(): ?int
     {

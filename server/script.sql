@@ -44,10 +44,27 @@ CREATE TABLE "article" (
     "id_creator" INT NOT NULL,
     "updated_at" TIMESTAMP NULL,
     "id_updator" INT NULL,
+    "published_at" TIMESTAMP DEFAULT NULL,
     FOREIGN KEY ("id_category") REFERENCES "category"("id"),
     FOREIGN KEY ("id_creator") REFERENCES "user"("id"),
     FOREIGN KEY ("id_updator") REFERENCES "user"("id")
 );
+
+-- Trigger pour mettre automatiquement à jours le champ updated_at lorsque l'entrée est modifié
+CREATE OR REPLACE FUNCTION update_article_timestamp()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.updated_at = NOW();
+RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER trigger_update_article_timestamp
+    BEFORE UPDATE ON article
+    FOR EACH ROW
+    EXECUTE FUNCTION update_article_timestamp();
+
 
 -- Créer la table "like_users_articles"
 CREATE TABLE "like_users_articles" (
