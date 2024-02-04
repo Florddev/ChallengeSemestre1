@@ -6,6 +6,7 @@ services:
     environment:
       - POSTGRES_DB=blog
       - POSTGRES_PASSWORD=password
+      # - POSTGRES_USER=root
     ports:
       - "5432:5432"
     volumes:
@@ -19,5 +20,8 @@ services:
       - ./server/000-default.conf:/etc/apache2/sites-available/000-default.conf
       - ./server/apache2.conf:/etc/apache2/apache2.conf
       - ./server/php.ini:/usr/local/etc/php/php.ini
+      - ./vendor:/var/www/html/vendor
     depends_on:
       - db
+    networks : 
+      - default
