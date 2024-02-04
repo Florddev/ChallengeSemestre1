@@ -13,7 +13,7 @@ services:
       - ./server/script.sql:/docker-entrypoint-initdb.d/init-script.sql
   web:
     build: site
-    ports :
+    ports:
       - "80:80"
     volumes:
       - ./www:/var/www/html/
