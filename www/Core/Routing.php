@@ -47,7 +47,7 @@ class Routing
             $this->handleDashboardBuilderRedirection($uri);
         } elseif (str_starts_with($uri, "/dashboard/article/builder/")) {
             $this->handleDashboardArticleBuilderRedirection($uri);
-        } elseif (str_starts_with($uri, "/dashboard/article/")) {
+        } elseif (str_starts_with($uri, "/article/")) {
             $this->handleArticleRedirection($uri);
         } else {
             require "Controllers/Error.php";
@@ -109,7 +109,7 @@ class Routing
 
         foreach ($articles as $article) {
             $title = Utils::url_encode($article["title"]);
-            if ("/dashboard/article/" . $title === $uri) {
+            if ("/article/" . $title === $uri) {
                 $articleFound = $article;
                 break;
             }
