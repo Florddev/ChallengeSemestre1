@@ -124,3 +124,19 @@ INSERT INTO "pages" ("url", "title", "content", "metaDescription", "id_creator")
     'Meta description de la page',
     1
 );
+
+INSERT INTO "article" (
+    "title", 
+    "content", 
+    "keywords", 
+    "picture_url", 
+    "id_category", 
+    "id_creator"
+) VALUES (
+    'Mon premier concert', 
+    'Mon premier concert reste gravé dans ma mémoire comme une expérience indélébile, un moment où la musique a pris vie devant mes yeux. Entouré par une foule vibrante, chaque note résonnait comme un appel à l''unité et à la célébration. L''excitation préalable, l''attente des premières notes, et l''énergie contagieuse de la foule ont transformé cette soirée en une véritable épiphanie musicale. Cet article est le récit de cette aventure, où les émotions se mêlaient aux mélodies, créant un souvenir éternel. Au-delà de la performance sur scène, c''est la connexion humaine, l''échange d''énergies et la pure joie collective qui ont marqué mon esprit à jamais.', 
+    'premier concert, expérience en direct, énergie de la foule, performance live, souvenir musical', 
+    'https://demarchesadministratives.fr/images/actualites/3705/concert-test-fete-musique.jpg', 
+    1,
+    1
+);
