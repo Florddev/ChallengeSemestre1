@@ -33,6 +33,10 @@
   action: getAllArticles
   template: back
 
+/dashboard/builder-save-article:
+  controller: BackOffice/Articles
+  action: saveArticle
+
 #/dashboard/builder:
 #  controller: BackOffice/Editor
 #  action: pageBuilder
@@ -44,6 +48,7 @@
 /dashboard/builder-save-page:
   controller: BackOffice/Editor
   action: savePage
+
 
 
 /dashboard/users:

@@ -12,17 +12,15 @@
 
 <body>
 -->
-    <div class="page-wrapper page-builder <?= $inPreview ? "inPreview" : null ?>">
+    <div class="page-wrapper page-builder">
         <header class="page-wrapper-header page-builder-header">
             <section class="page-wrapper-header-left page-builder-header-start">
-                <input type="hidden" id="page-id" value="<?= $currentPage["id"] ?>">
+                <input type="hidden" id="article-id" value="<?= $currentArticle["id"] ?>">
                 <h1>
-<!--                    <label for="page-title">Wisp&nbsp;-&nbsp;</label>-->
-                    <input id="page-title" type="text" value="<?= $currentPage["title"] ?>">
+                    <label for="page-title">Publication: </label>
                 </h1>
                 <div class="page-url">
-                    <label for="page-url"><?= $host ?>/</label>
-                    <input id="page-url" type="text" value="<?= ltrim($currentPage["url"], "/") ?>">
+                    <input type="date" id="article-publicationDate" value="<?= date_format(date_create($currentArticle["published_at"]), 'Y-m-d') ?>">
                 </div>
             </section>
             <section class="page-wrapper-header-center page-builder-header-mid">
@@ -67,14 +65,12 @@
                     </ul>
                 </div>
                 <div class="header-mid-end">
-                    <?php if(!$inPreview): ?>
                         <i class="ri-arrow-go-back-fill" id="state-undo"></i>
                         <i class="ri-arrow-go-forward-fill" id="state-redo"></i>
-                    <?php endif; ?>
                 </div>
             </section>
             <section class="page-wrapper-header-right page-builder-header-end">
-                <ul class="header-end-list" <?php if($inPreview) echo "style='border:none; justify-content: end'" ?>>
+                <ul class="header-end-list">
                     <!--
                     <li onclick="savePage()"><i class="ri-save-line" id="save-page"></i></li>
                     <li><i class="ri-play-line"></i></li>
@@ -82,12 +78,8 @@
                     <li><i class="ri-shield-user-line"></i></li>
                     -->
 
-                    <?php if(!$inPreview): ?>
-                        <li onclick="savePage()"><button class="btn btn-primary btn-line">Enregistrer</button></li>
-                        <li><button class="btn btn-primary">Visualiser</button></li>
-                    <?php else: ?>
-                        <li onclick="editPage()"><button class="btn btn-primary">Editer la page</button></li>
-                    <?php endif; ?>
+                    <li onclick="saveArticle()"><button class="btn btn-primary btn-line">Enregistrer</button></li>
+                    <li><button class="btn btn-primary">Visiter l'article</button></li>
                 </ul>
             </section>
         </header>
@@ -134,20 +126,6 @@
                                         <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Navbar1.svg"></i>
                                     </div>
                                 </div>
-                                <!--
-                                <div class="components">
-                                    <label>Navbar centré</label>
-                                    <div class="components-view">
-                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Navbar2.svg"></i>
-                                    </div>
-                                </div>
-                                <div class="components" data-partial-src="/Views/Partial/Editor/components/navbar1.html">
-                                    <label>Navbar replié</label>
-                                    <div class="components-view">
-                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Navbar3.svg"></i>
-                                    </div>
-                                </div>
-                                -->
                             </div>
                         </div>
                     </div>
@@ -160,12 +138,6 @@
                         </label>
                         <div class="accordion-panel">
                             <div class="components-preview sortable-models">
-                                <div class="components" data-partial-src="{{origin}}/login">
-                                    <label>Form login</label>
-                                    <div class="components-view">
-                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Header2.svg"></i>
-                                    </div>
-                                </div>
                                 <div class="components">
                                     <label>Header 1</label>
                                     <div class="components-view">
@@ -285,68 +257,89 @@
             <section class="page-wrapper-body-container page-builder-main-editor">
                 <div class="editor-container" editor-mode="pc">
                     <div class="editor-content">
-                        <!--
-                        <div class="navbar" nav-is-fixed="true">
-                            <nav class="nav container">
-                                <a class="nav__logo" href="#">Wisp' Blog</a>
-                                <div class="nav__menu" data-modal="search">
-                                    <ul class="nav__list sortable-element">
-                                        <li class="nav__item editable"><a class="nav__link" href="#">Accueil</a></li>
-                                        <li class="nav__item editable"><a class="nav__link" href="#">A&nbsp;propos</a>
-                                        </li>
-                                        <li class="nav__item editable"><a class="nav__link" href="#">Blog</a></li>
-                                        <li class="nav__item editable"><a class="nav__link" href="#">Contact</a>
-                                        </li>
-                                    </ul>
-                                    <div class="nav__close" data-modal-toggle="nav-menu">
-                                        <i class="ri-close-line"></i>
+
+
+                        <div class="main" editable-popup="false" id="page-content">
+                            <div class="navbar editable" nav-is-fixed="true" draggable="false">
+                                <nav class="nav container">
+                                    <a class="nav__logo" href="#" draggable="false">Wisp' Blog</a>
+                                    <div class="nav__menu" data-modal="search">
+                                        <ul class="nav__list sortable-element" data-sortable="true">
+                                            <li class="nav__item editable"><a class="nav__link" href="#" draggable="false">Accueil</a></li>
+                                            <li class="nav__item editable"><a class="nav__link" href="#" draggable="false">A&nbsp;propos</a>
+                                            </li>
+                                            <li class="nav__item editable"><a class="nav__link" href="#" draggable="false">Blog</a></li>
+                                            <li class="nav__item editable"><a class="nav__link" href="#" draggable="false">Contact</a>
+                                            </li>
+                                        </ul>
+                                        <div class="nav__close" data-modal-toggle="nav-menu">
+                                            <i class="ri-close-line"></i>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="nav__actions">
-                                    <i class="ri-search-line nav__search" data-modal-trigger="search"></i>
-                                    <i class="ri-user-line nav__login" data-modal-trigger="login"></i>
-                                    <div class="nav__toggle" data-modal-toggle="nav-menu">
-                                        <i class="ri-menu-line"></i>
+                                    <div class="nav__actions">
+                                        <i class="ri-search-line nav__search" data-modal-trigger="search"></i>
+                                        <i class="ri-user-line nav__login" data-modal-trigger="login"></i>
+                                        <div class="nav__toggle" data-modal-toggle="nav-menu">
+                                            <i class="ri-menu-line"></i>
+                                        </div>
                                     </div>
+                                </nav>
+                                <div class="search" data-modal="search">
+                                    <form class="search__form" action="">
+                                        <i class="ri-search-line search__icon"></i>
+                                        <input class="search__input" type="search" placeholder="Que recherchez vous ?">
+                                    </form>
+                                    <i class="ri-close-line search__close" data-modal-toggle="search"></i>
                                 </div>
-                            </nav>
-                            <div class="search" data-modal="search">
-                                <form class="search__form" action="">
-                                    <i class="ri-search-line search__icon"></i>
-                                    <input class="search__input" type="search" placeholder="Que recherchez vous ?">
-                                </form>
-                                <i class="ri-close-line search__close" data-modal-toggle="search"></i>
+                                <div class="login" data-modal="login">
+                                    <form class="login__form" action="">
+                                        <h2 class="login__title">Connexion</h2>
+                                        <div class="login__group">
+                                            <div class="login__item">
+                                                <label class="login__label" for="email">Email</label>
+                                                <input class="login__input" type="email" placeholder="Entrez votre email" id="email">
+                                            </div>
+                                            <div class="login__item">
+                                                <label class="login__label" for="password">Password</label>
+                                                <input class="login__input" type="password" placeholder="Entrez votre mot de passe" id="password">
+                                            </div>
+                                        </div>
+                                        <div class="login__register">
+                                            <p class="login__signup">
+                                                Avez-vous un compte ? <a href="#" draggable="false">S'enregistrer</a>
+                                            </p>
+                                            <a class="login__forgot" href="#" draggable="false">Mot de passe oublié</a>
+                                            <button class="btn btn-primary btn-lg" type="button">Se connecter</button>
+                                        </div>
+                                    </form>
+                                    <i class="ri-close-line login__close" data-modal-toggle="login"></i>
+                                </div>
                             </div>
-                            <div class="login" data-modal="login">
-                                <form class="login__form" action="">
-                                    <h2 class="login__title">Connexion</h2>
-                                    <div class="login__group">
-                                        <div class="login__item">
-                                            <label class="login__label" for="email">Email</label>
-                                            <input class="login__input" type="email" placeholder="Entrez votre email"
-                                                   id="email">
-                                        </div>
-                                        <div class="login__item">
-                                            <label class="login__label" for="password">Password</label>
-                                            <input class="login__input" type="password"
-                                                   placeholder="Entrez votre mot de passe" id="password">
-                                        </div>
-                                    </div>
-                                    <div class="login__register">
-                                        <p class="login__signup">
-                                            Avez-vous un compte ? <a href="#">S'enregistrer</a>
-                                        </p>
-                                        <a class="login__forgot" href="#">Mot de passe oublié</a>
-                                        <button class="btn btn-primary btn-lg" type="button">Se connecter</button>
-                                    </div>
-                                </form>
-                                <i class="ri-close-line login__close" data-modal-toggle="login"></i>
+                            <div class="container" style="max-width: 1120px; padding-top: 100px; padding-bottom: 50px;">
+                                <div style="color: rgb(110, 112, 118); text-transform: uppercase; letter-spacing: 2px; font-size: 13px; font-weight: 500;">
+                                    Catégorie: <span id="currentCategory"><?= $currentArticle["Category"]->getLabel() ?></span>
+                                </div>
+                                <div id="article-title" class="editable editable-text" editable-popup="false" style="font-size: 64px; font-weight: 800; margin-top: 30px; margin-bottom: 30px;" data-sortable="true">
+                                    <?= $currentArticle["title"] ?>
+                                </div>
+                                <div style="color: rgb(110, 112, 118); text-transform: none; letter-spacing: 2px; font-size: 13px; font-weight: 500;">
+                                    <?= $currentArticle["Creator"]->getLogin() ?>, <?= $currentArticle["datePublication"] ?>
+                                </div>
+                            </div>
+                            <div class="container" style="max-width: 1120px; padding-bottom: 50px;">
+                                <div class="editable image-container" editable-popup="false" style="width: 100%; height: 474px;" data-sortable="true">
+                                    <img src="<?= $currentArticle["picture_url"] ?>" alt="myimage" id="article-main-image">
+                                </div>
+                            </div>
+                            <div class="container" style="max-width: 1120px;">
+                                <div class="editable editable-text" editable-popup="false" style="line-height: 25px; color: rgb(110, 112, 118); font-size: 16px; max-width: 1120px;" data-sortable="true" id="article-content">
+                                    <?= $currentArticle["content"] ?>
+                                </div>
+                            </div>
+                            <div class="container" style="max-width: 1120px;">
+                                <?php $this->partial("commentaires-articles", $currentArticle); ?>
                             </div>
                         </div>
-                        -->
-
-                        <div class="main sortable-container editable" editable-popup="false" id="page-content"><?= $currentPage["content"] ?></div>
-
                     </div>
                 </div>
             </section>
@@ -444,10 +437,24 @@
                         </div>
                     </div>
                     <hr>
+
+                    <div class="edit-form-control">
+                        <div class="edit-form w-100">
+                            <label>Categorie</label>
+                            <div class="edit-form-inputs">
+                                <select name="category" id="article-category" onchange="_('#currentCategory').html(_(this).qs(`option[value='${this.value}']`).text)">
+                                    <?php foreach ($Categories as $c): ?>
+                                        <option value="<?= $c->getId() ?>" <?= $c->getLabel() == $currentArticle["Category"]->getLabel() ? "selected" : null ?>><?= $c->getLabel() ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </main>
     </div>
+
     <datalist id="global-color-data-list">
         <option value="var(--info)"></option>
         <option value="#1c1c2b"></option>

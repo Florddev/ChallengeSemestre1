@@ -85,6 +85,7 @@ function makeElementeditable(elem) {
     if (elem.classList.contains("editable-text")) {
         _(elem).dblclick((e) => {
             if (_(e.target).attr("contenteditable") !== "true") {
+                removePopup();
                 saveState();
                 _(e.target).attr("contenteditable", "true");
             }
@@ -104,7 +105,8 @@ function handleElementClick(event) {
         }
         */
         deselectSelectedItem();
-        if(_(elem).attr("editable-popup") !== "false") addPopup(elem);
+        if(_(elem).attr("editable-popup") !== "false" && _(elem).attr("contenteditable") !== "true")
+            addPopup(elem);
         elem.classList.add("selected-item");
 
         if(elem.classList.contains("image-container")) {
@@ -616,7 +618,7 @@ async function savePage(){
             id: _("#page-id").val(),
             url: _("#page-url").val(),
             title: _("#page-title").val(),
-            content: minify(_("#page-content").html())
+            content: minify(_("#page-content").outerHTML)
         },
         success: (result) => {
             if(result !== "") {
@@ -686,11 +688,15 @@ function setElementResizable(elem){
     });
 }
 
+function removePopup(){
+    let popup = _(".action-popup");
+    if(popup !== undefined) popup.forEach(r => r.remove());
+}
+
 function deselectSelectedItem(){
     _(".selected-item").forEach((e) => _(e).removeClass("selected-item"));
 
-    let popup = _(".action-popup");
-    if(popup !== undefined) popup.forEach(r => r.remove());
+    removePopup();
 
     let resizer = _("[resizer]");
     if(resizer !== undefined) resizer.forEach(r => r.remove());

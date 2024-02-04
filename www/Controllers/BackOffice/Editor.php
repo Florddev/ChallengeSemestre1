@@ -15,7 +15,7 @@ class Editor
         $editor = new View("BackOffice/Editor/page-builderV2", "back");
         $editor->assign("currentPage", $page);
         $editor->assign("host", $host);
-        $editor->assign("inPreview", true);
+        $editor->assign("inPreview", false);
     }
 
     public function savePage($route): void {
