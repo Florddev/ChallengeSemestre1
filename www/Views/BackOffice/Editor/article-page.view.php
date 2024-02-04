@@ -62,7 +62,7 @@
             <?= $currentArticle["title"] ?>
         </div>
         <div style="color: rgb(110, 112, 118); text-transform: none; letter-spacing: 2px; font-size: 13px; font-weight: 500;">
-            <?= $currentArticle["Creator"]->getLogin() ?>, <?=  $currentArticle["convertedDate"] ?>
+            <?= $currentArticle["Creator"]->getLogin() ?>, <?=  $currentArticle["datePublication"] ?>
         </div>
     </div>
     <div class="container" style="max-width: 1120px; padding-bottom: 50px;">
@@ -70,9 +70,12 @@
             <img src="<?= $currentArticle["picture_url"] ?>" alt="myimage" id="article-main-image">
         </div>
     </div>
-    <div class="container" style="max-width: 1120px;">
+    <div class="container" style="max-width: 1120px;" style="max-width: 1120px;">
         <div class="editable editable-text" editable-popup="false" style="line-height: 25px; color: rgb(110, 112, 118); font-size: 16px; max-width: 1120px;" data-sortable="true" id="article-content">
             <?= $currentArticle["content"] ?>
         </div>
+    </div>
+    <div class="container">
+        <?php $this->partial("commentaires-articles", $currentArticle); ?>
     </div>
 </div>

@@ -17,26 +17,33 @@ class Articles
         $myView = new View("BackOffice/Dashboard/articles", $data["template"]);
     }
 
-    public function articlesBuilder($article): void
+    private function setDataToArticle(&$article): void
     {
-        $categories = (new Category())->getAllBy([], "object");
-
         $article["Creator"] = User::populate($article["id_creator"]);
         $article["Category"] = Category::populate($article["id_category"]);
-        $article["convertedDate"] = Utils::convertDate($article["published_at"]);
+        $article["datePublication"] = Utils::convertDate($article["published_at"]);
 
+        // TODO: Créer le model pour les commentaires, et récupérer les commentaires à partir de l'id de l'article
+        // Une fois le model "Comment" créé récupérer tout les commentaires liés à l'article avec:
+        // $article["Comments"] = Comment::populateAllBy(["id_article"=>$article["id"]]);
+    }
+
+    public function articlesBuilder($article): void
+    {
         $editor = new View("BackOffice/Editor/article-builder", "back");
+
+        $this->setDataToArticle($article);
         $editor->assign("currentArticle", $article);
+
+        $categories = (new Category())->getAllBy([], "object");
         $editor->assign("Categories", $categories);
     }
 
     public function articlesPage($article): void
     {
-        $article["Creator"] = User::populate($article["id_creator"]);
-        $article["Category"] = Category::populate($article["id_category"]);
-        $article["convertedDate"] = Utils::convertDate($article["published_at"]);
-
         $editor = new View("BackOffice/Editor/article-page", "front");
+
+        $this->setDataToArticle($article);
         $editor->assign("currentArticle", $article);
     }
 

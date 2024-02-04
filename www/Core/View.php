@@ -48,13 +48,15 @@ class View
         $this->data[$key]=$value;
     }
 
-    public function partial(String $partielView)
+    public function partial(String $partielView, array $data)
     {
         if(!file_exists("Views/Partial/".$partielView.".partialView.php"))
         {
             die("Le vue partiel 'Views/Partial/".$partielView.".partialView.php' n'existe pas");
         }
         include "Views/Partial/".$partielView.".partialView.php";
+
+        $this->assign("data", $data);
     }
 
     public function __destruct()
