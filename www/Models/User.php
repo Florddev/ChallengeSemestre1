@@ -16,7 +16,7 @@ class User extends DB
     protected bool $validate;
     protected string $role;
     protected int $status;
-    protected string $validation_token;
+    protected ?string $validation_token;
 
     /**
      * @return int|null

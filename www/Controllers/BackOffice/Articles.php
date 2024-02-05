@@ -19,9 +19,9 @@ class Articles
 
     private function setDataToArticle(&$article): void
     {
-        $article["Creator"] = User::populate($article["id_creator"]);
         $article["Category"] = Category::populate($article["id_category"]);
         $article["datePublication"] = Utils::convertDate($article["published_at"]);
+        $article["Creator"] = User::populate($article["id_creator"]);
 
         // TODO: Créer le model pour les commentaires, et récupérer les commentaires à partir de l'id de l'article
         // Une fois le model "Comment" créé récupérer tout les commentaires liés à l'article avec:
@@ -30,9 +30,9 @@ class Articles
 
     public function articlesBuilder($article): void
     {
+        $this->setDataToArticle($article);
         $editor = new View("BackOffice/Editor/article-builder", "back");
 
-        $this->setDataToArticle($article);
         $editor->assign("currentArticle", $article);
 
         $categories = (new Category())->getAllBy([], "object");
