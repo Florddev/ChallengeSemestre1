@@ -1,5 +1,8 @@
 <?php
 namespace App\Models;
+
+require_once 'Core/DB.php';
+
 use App\Core\DB;
 
 class User extends DB
@@ -13,6 +16,7 @@ class User extends DB
     protected bool $validate;
     protected string $role;
     protected int $status;
+    protected string $validation_token;
 
     /**
      * @return int|null
@@ -125,5 +129,21 @@ class User extends DB
     public function setStatus(int $status): void
     {
         $this->status = $status;
+    }
+
+    /**
+     * @return string
+     */
+    public function getValidationToken(): string
+    {
+        return $this->validation_token;
+    }
+
+    /**
+     * @param int $status
+     */
+    public function setValidationToken(string $validation_token): void
+    {
+        $this->validation_token = $validation_token;
     }
 }

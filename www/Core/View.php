@@ -59,6 +59,15 @@ class View
         $this->assign("data", $data);
     }
 
+    public function includeComponent(string $component, array $config, array $data = []): void
+    {
+        if(!file_exists("Views/Components/".$component.".php"))
+        {
+            die("Le composant Views/Components/".$component.".php n'existe pas");
+        }
+        include "Views/Components/".$component.".php";
+    }
+
     public function __destruct()
     {
         extract($this->data);
