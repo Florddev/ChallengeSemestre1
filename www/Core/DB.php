@@ -9,7 +9,7 @@ class DB
 
     public function __construct()
     {
-        //connexion à la bdd via pdo
+        //connexion Ã  la bdd via pdo
         try{
             $this->pdo = new \PDO("pgsql:host=db;dbname=blog;port=5432", "postgres", "password");
         }catch (\PDOException $e) {
@@ -31,10 +31,10 @@ class DB
     {
         $data = $this->getDataObject();
 
-        if( empty($this->getId())){
+        if(empty($this->getId())){
             $sql = 'INSERT INTO public.' . strtolower($this->table) . ' (' . implode(',', array_keys($data)) . ') VALUES (:' . implode(',:', array_keys($data)) . ');';
         }else{
-            $sql = "UPDATE " . $this->table . " SET ";
+            $sql = "UPDATE public." . $this->table . " SET ";
             foreach ($data as $column => $value){
                 $sql.= $column. "=:".$column. ",";
             }
@@ -64,7 +64,10 @@ class DB
     //$data = ["id"=>1] ou ["email"=>"y.skrzypczyk@gmail.com"]
     public function getOneBy(array $data, string $return = "array")
     {
-        $sql = "SELECT * FROM public.".$this->table. " WHERE ";
+        $sql = "SELECT * FROM ".$this->table. " WHERE ";
+        if ($this->table === "user") {
+            $sql = "SELECT * FROM public.".$this->table. " WHERE ";
+        }
         foreach ($data as $column=>$value){
             $sql .= " ".$column."=:".$column. " AND";
         }
@@ -91,6 +94,9 @@ class DB
     public function getAllBy(array $data, string $return = "array"): array
     {
         $sql = "SELECT * FROM " . $this->table;
+        if ($this->table === "user") {
+            $sql = "SELECT * FROM public." . $this->table;
+        }
 
         if(!empty($data) && count($data) > 0){
             $sql .= " WHERE ";
@@ -110,17 +116,20 @@ class DB
         return ($return === "object") ? $queryPrepared->fetchAll() : $queryPrepared->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public function getAll(string $return = "array"): array
+    {
+        $sql = "SELECT * FROM " . $this->table;
+        if ($this->table === "user") {
+            $sql = "SELECT * FROM public." . $this->table;
+        }
 
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute();
+
+        if ($return === "object") {
+            $queryPrepared->setFetchMode(\PDO::FETCH_CLASS, get_called_class());
+        }
+
+        return ($return === "object") ? $queryPrepared->fetchAll() : $queryPrepared->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-

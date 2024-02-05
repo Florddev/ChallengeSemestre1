@@ -25,11 +25,12 @@ CREATE TABLE "user" (
     "login" VARCHAR(50) NOT NULL,
     "email" VARCHAR(320) NOT NULL,
     "password" VARCHAR(255) NOT NULL,
-    "validate" BOOLEAN DEFAULT FALSE,
     "role" VARCHAR(20) DEFAULT 0,
     "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP NULL,
-    "status" SMALLINT DEFAULT 0
+    "status" SMALLINT DEFAULT 0,
+    "validate" BOOLEAN DEFAULT FALSE,
+    "validation_token" VARCHAR(32)
 );
 
 -- Créer la table "article"
@@ -98,7 +99,7 @@ CREATE TABLE "pages" (
     "url" VARCHAR(50) NOT NULL,
     "title" VARCHAR(255) NOT NULL,
     "content" TEXT NOT NULL,
-    "metaDescription" TEXT NOT NULL,
+    "meta_description" TEXT NOT NULL,
     "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     "id_creator" INT NOT NULL,
     "updated_at" TIMESTAMP NULL,
@@ -116,7 +117,7 @@ INSERT INTO "category" ("label") VALUES
 INSERT INTO "user" ("login", "email", "password") VALUES
 ('Admin', 'admin@wisp.fr', '$$Azerty123!');
 
-INSERT INTO "pages" ("url", "title", "content", "metaDescription", "id_creator")VALUES
+INSERT INTO "pages" ("url", "title", "content", "meta_description", "id_creator")VALUES
 (
     '/',
     'Accueil',

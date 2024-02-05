@@ -10,7 +10,7 @@ class Pages extends DB
     protected string $url;
     protected string $title;
     protected string $content;
-    protected string $metadescription;
+    protected string $meta_description;
     protected string $created_at;
     protected string $id_creator;
     protected ?string $updated_at;
@@ -58,12 +58,12 @@ class Pages extends DB
 
     public function getMetaDescription(): string
     {
-        return $this->metadescription;
+        return $this->meta_description;
     }
 
-    public function setMetaDescription(string $metaDescription): void
+    public function setMetaDescription(string $meta_description): void
     {
-        $this->metadescription = $metaDescription;
+        $this->meta_description = $meta_description;
     }
 
     public function getCreatedAt(): string
