@@ -152,6 +152,9 @@ img {
   padding: 2.5rem;
   box-shadow: 0 0 50px rgba(126, 55, 216, 0.15);
 }
+.sign-body a {
+  color: var(--tercery);
+}
 .sign-body h2 {
   margin: 0;
   font-weight: 900;
@@ -169,7 +172,7 @@ img {
   width: 100%;
 }
 .sign-body hr {
-  margin: 1.25rem 0 2.5rem 0;
+  margin: 0.625rem 0 1.25rem 0;
   height: 0.0625rem;
   background-color: var(--grey);
   border: 0;

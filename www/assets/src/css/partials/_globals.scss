@@ -93,6 +93,10 @@ img {
         padding: rem(40);
         box-shadow: 0 0 50px rgba($tercery, 0.15);
 
+        & a {
+            color: var(--tercery);
+        }
+
         & h2 {
             margin: 0;
             font-weight: 900;
@@ -114,7 +118,7 @@ img {
         }
 
         & hr {
-            margin: rem(20) 0 rem(40) 0;
+            margin: rem(10) 0 rem(20) 0;
             height: rem(1);
             background-color: var(--grey);
             border: 0;
