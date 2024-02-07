@@ -9,8 +9,8 @@ services:
       # - POSTGRES_USER=root
     ports:
       - "5432:5432"
-    volumes:
-      - ./server/script.sql:/docker-entrypoint-initdb.d/init-script.sql
+#    volumes:
+#      - ./server/script.sql:/docker-entrypoint-initdb.d/init-script.sql
   web:
     build: site
     ports:

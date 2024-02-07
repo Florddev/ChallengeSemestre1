@@ -12,6 +12,7 @@
   controller: FrontOffice/Security
   action: login
   restricted: false
+  template: front
 
 /logout:
   controller: FrontOffice/Security
@@ -22,6 +23,7 @@
   controller: FrontOffice/Security
   action: register
   restricted: false
+  template: front
 
 /dashboard:
   controller: BackOffice/Main

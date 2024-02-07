@@ -2,6 +2,7 @@
 
 namespace App\Controllers\BackOffice;
 
+use App\Controllers\Error;
 use App\Core\View;
 use App\Models\Article;
 use App\Models\Pages;
@@ -40,10 +41,14 @@ class Editor
 
     public function lastArticles($route): void
     {
-        $myArticles = (new Article())->getAllBy(["id_creator" => 2], "object");
+        if($_SERVER["REQUEST_METHOD"] === "POST")
+        {
+            $myArticles = (new Article())->getAllBy(["id_creator" => 2], "object");
 
-        echo "<pre>";
-        print_r($myArticles);
-        echo "</pre>";
+            echo "<pre>";
+            print_r($myArticles);
+            echo "</pre>";
+        }
+        else Error::page404();
     }
 }

@@ -38,8 +38,6 @@
 
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 @media screen and (max-width: 600px) {
@@ -60,7 +58,9 @@
 
 body {
   font-family: var(--main-font1);
-  background-color: #f8f5fd;
+  background-color: var(--white);
+  margin: 0;
+  padding: 0;
 }
 
 input,
@@ -2462,6 +2462,287 @@ img {
   transform: translate(-50%, -50%);
 }
 
+.form {
+  --main-color: #7e37d8;
+  --main-background-color: #fff;
+  --color-value: #000000;
+  --color-border: #80808060;
+  --color-label: #212529;
+  --color-label-focus: #21252995;
+  --color-placeholder: #80808090;
+  --color-valid: #50CD89;
+  --color-invalid: #F1416C;
+  --color-text: #6c757d;
+  --border-radius: 6px;
+  --padding-field-y: 10px;
+  --padding-field-x: 12px;
+  --spacing: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: var(--spacing);
+  /*transition: all .2s ease;*/
+}
+.form.form-sm {
+  --padding-field-y: 8px;
+  --padding-field-x: 10px;
+}
+.form.form-lg {
+  --padding-field-y: 14px;
+  --padding-field-x: 14px;
+}
+.form.form-xl {
+  --padding-field-y: 16px;
+  --padding-field-x: 14px;
+}
+.form .form-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.form .form-group.g-4 {
+  width: calc(33% - var(--spacing) / 2);
+}
+.form .form-group.g-6 {
+  width: calc(50% - var(--spacing) / 2);
+}
+.form .form-group .form-label {
+  color: var(--color-label);
+  padding: 0;
+}
+.form .form-group .form-label:has(~ .form-field-group .form-field:focus) {
+  color: var(--main-color) !important;
+}
+.form .form-group .form-required {
+  color: var(--color-invalid);
+}
+.form .form-group .form-text {
+  color: var(--color-text);
+  padding-top: 5px;
+  font-size: 12px;
+}
+.form .form-group .form-field-group {
+  position: relative;
+  display: flex;
+  /*flex-direction: column;*/
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.form .form-group .form-field-group .form-checkbox {
+  width: max-content;
+  margin: 0;
+}
+.form .form-group .form-field-group .form-checkbox ~ label {
+  margin: 0;
+}
+.form .form-group .form-field-group .form-field {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  padding: var(--padding-field-y) var(--padding-field-x);
+  border-radius: var(--border-radius);
+  transition: all 0.2s ease;
+  outline: none;
+  background-color: var(--main-background-color);
+}
+.form .form-group .form-field-group .form-field::placeholder {
+  color: var(--color-placeholder);
+}
+.form .form-group .form-field-group .form-field:focus {
+  border: 1px solid var(--main-color);
+  /*box-shadow: 0 0 10px rgba(var(--main-color), 0.2);*/
+  box-shadow: 0 0 10px rgba(126, 55, 216, 0.1254901961);
+}
+.form .form-group .form-field-group select.form-field {
+  background: url("data:image/svg+xml,<svg height='10px' width='10px' viewBox='0 0 16 16' fill='%23000000' xmlns='http://www.w3.org/2000/svg'><path d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/></svg>") no-repeat;
+  background-position: calc(100% - var(--padding-field-x)) center !important;
+  -moz-appearance: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  background-color: var(--main-background-color);
+  cursor: pointer;
+}
+.form .form-group .form-field-group select.form-field:has(option[hidden][disabled][value=""]:checked) {
+  color: var(--color-placeholder);
+}
+.form .form-group .form-field-group select.form-field option {
+  color: var(--color-value);
+}
+.form .form-group .form-field-group .form-feedback {
+  margin: 5px 0 0 0;
+  padding-left: 20px;
+  display: none;
+  font-size: 12px;
+}
+.form .form-group .form-field-group .form-feedback:has(li:only-child) {
+  list-style: none;
+  padding-left: 0;
+}
+.form .form-group .form-field-group .form-field-icon {
+  position: absolute;
+  right: 0;
+  padding: var(--padding-field-y) var(--padding-field-x);
+  cursor: pointer;
+  background-color: #F4F4F4;
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  border: 1px solid var(--color-border);
+  transition: all 0.2s ease;
+  font-size: 0.75rem;
+}
+.form .form-group .form-field-group .form-field-icon.left {
+  right: unset;
+  left: 0;
+  border-radius: var(--border-radius) 0 0 var(--border-radius);
+}
+.form .form-group .form-field-group .form-field-icon.discret {
+  border-left: none;
+  background-color: var(--main-background-color);
+}
+.form .form-group .form-field-group .form-field-icon.discret.left {
+  border: 1px solid var(--color-border);
+  border-right: none;
+}
+.form .form-group .form-field-group:has(.form-field-icon.left) .form-field {
+  padding-left: calc(var(--padding-field-x) * 4);
+}
+.form .form-group .form-field-group:has(.form-field-icon.left.discret) .form-field {
+  padding-left: calc(var(--padding-field-x) * 3.4);
+}
+.form .form-group .form-field-group:has(.form-field:focus) .form-field-icon {
+  border: 1px solid var(--main-color);
+}
+.form .form-group .form-field-group:has(.form-field:focus) .form-field-icon.left {
+  border: 1px solid var(--main-color);
+}
+.form .form-group .form-field-group:has(.form-field:focus) .form-field-icon.discret {
+  border-left: none;
+}
+.form .form-group .form-field-group:has(.form-field:focus) .form-field-icon.discret.left {
+  border: 1px solid var(--main-color);
+  border-right: none;
+}
+.form .form-group.valid .form-label {
+  color: var(--color-valid) !important;
+}
+.form .form-group.valid .form-field-group .form-field {
+  border: 1px solid var(--color-valid) !important;
+}
+.form .form-group.valid .form-field-group .form-feedback {
+  display: block;
+  color: var(--color-valid) !important;
+}
+.form .form-group.invalid .form-label {
+  color: var(--color-invalid) !important;
+}
+.form .form-group.invalid .form-field-group .form-field {
+  border: 1px solid var(--color-invalid) !important;
+}
+.form .form-group.invalid .form-field-group .form-feedback {
+  display: block;
+  color: var(--color-invalid) !important;
+}
+.form.form-fluid .form-group {
+  flex-direction: row;
+}
+.form.form-fluid .form-group .form-label, .form.form-fluid .form-group > .form-text {
+  width: 25%;
+  padding: 0 7.5px;
+}
+.form.form-fluid .form-group .form-field-group {
+  width: 75%;
+  padding: 0 7.5px;
+}
+.form.form-fluid .form-group .form-field-group .form-field-icon {
+  right: 7.5px;
+}
+.form.form-fluid .form-group .form-field-group .form-field-icon.left {
+  right: unset;
+  left: 7.5px;
+}
+.form.form-fluid:has(.form-text) .form-label, .form.form-fluid:has(.form-text) > .form-text {
+  width: 25%;
+}
+.form.form-fluid:has(.form-text) .form-field-group {
+  width: 50%;
+}
+.form.form-fluid.glue .form-label {
+  text-align: right;
+}
+.form.form-floating .form-group {
+  position: relative;
+}
+.form.form-floating .form-group .form-label {
+  position: absolute;
+  left: var(--padding-field-x);
+  margin: 0;
+  transition: all 0.2s ease;
+  cursor: text;
+}
+.form.form-floating .form-group .form-label:has(~ .form-field-group .form-field:placeholder-shown), .form.form-floating .form-group .form-label:has(~ .form-field-group option[hidden][disabled][value=""]:checked) {
+  top: var(--padding-field-y);
+  color: var(--color-placeholder);
+  font-size: inherit;
+  transform: translateY(0);
+  left: var(--padding-field-x);
+  padding: 0;
+}
+.form.form-floating .form-group .form-label:has(~ .form-field-group .form-field:not(:placeholder-shown)) {
+  top: 0;
+  font-size: 11px;
+  transform: translateY(-50%);
+  left: calc(var(--padding-field-x) / 2);
+  padding: 0 calc(var(--padding-field-x) / 2);
+  color: var(--color-label-focus);
+  background-color: var(--main-background-color);
+  border-radius: 100%;
+}
+.form.form-floating .form-group .form-label:has(~ .form-field-group .form-field:focus) {
+  top: 0 !important;
+  font-size: 11px !important;
+  transform: translateY(-50%) !important;
+  left: calc(var(--padding-field-x) / 2) !important;
+  padding: 0 calc(var(--padding-field-x) / 2) !important;
+  background-color: var(--main-background-color) !important;
+  border-radius: 100% !important;
+}
+.form.form-floating .form-group .form-field-group {
+  position: static;
+}
+.form.form-floating .form-group .form-field-group select.form-field:has(option[hidden][disabled][value=""]:checked) {
+  color: var(--main-background-color);
+}
+.form.form-floating .form-group .form-field-group .form-field::placeholder {
+  color: var(--main-background-color);
+}
+.form.form-floating .form-group:has(.form-field-icon.left) .form-label {
+  left: calc(var(--padding-field-x) * 4) !important;
+}
+.form.form-floating .form-group:has(.form-field-icon.left) .form-label:has(~ .form-field-group .form-field:not(:placeholder-shown)), .form.form-floating .form-group:has(.form-field-icon.left) .form-label:has(~ .form-field-group .form-field:focus) {
+  left: calc(var(--padding-field-x) * 3.5) !important;
+}
+.form.form-floating .form-group:has(.form-field-icon.left.discret) .form-label {
+  left: calc(var(--padding-field-x) * 3.4) !important;
+}
+.form.form-floating .form-group:has(.form-field-icon.left.discret) .form-label:has(~ .form-field-group .form-field:not(:placeholder-shown)), .form.form-floating .form-group:has(.form-field-icon.left.discret) .form-label:has(~ .form-field-group .form-field:focus) {
+  left: calc(var(--padding-field-x) * 3) !important;
+}
+.form.form-floating.inside .form-group .form-label:has(~ .form-field-group .form-field:placeholder-shown) {
+  top: calc(var(--padding-field-y) * 1.1) !important;
+  color: var(--color-placeholder);
+}
+.form.form-floating.inside .form-group .form-label:has(~ .form-field-group .form-field:not(:placeholder-shown)), .form.form-floating.inside .form-group .form-label:has(~ .form-field-group .form-field:focus) {
+  top: calc(var(--padding-field-y)) !important;
+}
+.form.form-floating.inside .form-group .form-field {
+  padding: calc(var(--padding-field-y) * 1.5) var(--padding-field-x) calc(var(--padding-field-y) / 2) var(--padding-field-x) !important;
+}
+.form.form-floating.inside .form-group:has(.form-field-icon.left) .form-field {
+  padding-left: calc(var(--padding-field-x) * 4) !important;
+}
+.form.form-floating.inside .form-group:has(.form-field-icon.left.discret) .form-field {
+  padding-left: calc(var(--padding-field-x) * 3.4) !important;
+}
+
 .edit-mp {
   width: 100%;
   /* A adapter si besoin */
@@ -3291,6 +3572,10 @@ img {
 .page-builder {
   height: calc(100vh - 5.625rem);
 }
+.page-builder * {
+  margin: 0;
+  padding: 0;
+}
 .page-builder [contenteditable=true] {
   outline: none;
 }
@@ -3556,7 +3841,7 @@ img {
 }
 .page-builder-main-editor .editor-container .selected-item {
   border-radius: 0;
-  border: 0.125rem solid var(--tercery) !important;
+  outline: 0.125rem solid var(--tercery) !important;
 }
 .page-builder-main-editor .editor-container .editor-content {
   display: flex;

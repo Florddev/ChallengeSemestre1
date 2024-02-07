@@ -1,6 +1,8 @@
 <?php
 namespace App\Core;
 
+use App\Controllers\BackOffice\Installation;
+
 class DB
 {
     private ?object $pdo = null;
@@ -10,8 +12,10 @@ class DB
     public function __construct()
     {
         //connexion Ã  la bdd via pdo
+        $inst = new Installation();
+
         try{
-            $this->pdo = new \PDO("pgsql:host=db;dbname=blog;port=5432", "postgres", "password");
+            $this->pdo = new \PDO($inst->getDsnFromDbType(DB_TYPE), DB_USER, DB_PASSWORD);
         }catch (\PDOException $e) {
             echo "Erreur SQL : ".$e->getMessage();
         }
@@ -32,15 +36,36 @@ class DB
         $data = $this->getDataObject();
 
         if(empty($this->getId())){
-            $sql = 'INSERT INTO public.' . strtolower($this->table) . ' (' . implode(',', array_keys($data)) . ') VALUES (:' . implode(',:', array_keys($data)) . ');';
+            $sql = 'INSERT INTO '. DB_PREFIX . strtolower($this->table) . ' (' . implode(',', array_keys($data)) . ') VALUES (:' . implode(',:', array_keys($data)) . ');';
         }else{
-            $sql = "UPDATE public." . $this->table . " SET ";
+            $sql = "UPDATE " . DB_PREFIX . $this->table . " SET ";
             foreach ($data as $column => $value){
                 $sql.= $column. "=:".$column. ",";
             }
             $sql = substr($sql, 0, -1);
             $sql.= " WHERE id = ".$this->getId().";";
         }
+
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute($data);
+    }
+
+    public function saveSetting(bool $insert = false)
+    {
+        $data = $this->getDataObject();
+
+        if($insert){
+            $sql = 'INSERT INTO '. DB_PREFIX . strtolower($this->table) . ' ("key", "value") VALUES ("'.$this->getKey().'", "'.$data["value"].'");';
+        }else{
+            $sql = "UPDATE ". DB_PREFIX . $this->table . " SET ";
+            foreach ($data as $column => $value){
+                $sql.= $column. "=:".$column. ",";
+            }
+            $sql = substr($sql, 0, -1);
+            $sql.= " WHERE key = '".$this->getKey()."';";
+        }
+
+        echo $sql;
 
         $queryPrepared = $this->pdo->prepare($sql);
         $queryPrepared->execute($data);
@@ -64,10 +89,8 @@ class DB
     //$data = ["id"=>1] ou ["email"=>"y.skrzypczyk@gmail.com"]
     public function getOneBy(array $data, string $return = "array")
     {
-        $sql = "SELECT * FROM ".$this->table. " WHERE ";
-        if ($this->table === "user") {
-            $sql = "SELECT * FROM public.".$this->table. " WHERE ";
-        }
+        $sql = "SELECT * FROM ".DB_PREFIX.$this->table. " WHERE ";
+
         foreach ($data as $column=>$value){
             $sql .= " ".$column."=:".$column. " AND";
         }
@@ -93,10 +116,7 @@ class DB
     //
     public function getAllBy(array $data, string $return = "array"): array
     {
-        $sql = "SELECT * FROM " . $this->table;
-        if ($this->table === "user") {
-            $sql = "SELECT * FROM public." . $this->table;
-        }
+        $sql = "SELECT * FROM " . DB_PREFIX . $this->table;
 
         if(!empty($data) && count($data) > 0){
             $sql .= " WHERE ";
@@ -118,10 +138,7 @@ class DB
 
     public function getAll(string $return = "array"): array
     {
-        $sql = "SELECT * FROM " . $this->table;
-        if ($this->table === "user") {
-            $sql = "SELECT * FROM public." . $this->table;
-        }
+        $sql = "SELECT * FROM " . DB_PREFIX . $this->table;
 
         $queryPrepared = $this->pdo->prepare($sql);
         $queryPrepared->execute();

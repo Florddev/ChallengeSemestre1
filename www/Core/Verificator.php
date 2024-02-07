@@ -34,14 +34,15 @@ class Verificator {
                     }
                 }
 
-
-                // Si c'est un email, vérifier que le format est correct
-                if($input["attrs"]["type"] == "email" && !self::checkEmail($data[$name])){
-                    $errors[$name][]="Email incorrect";
-                }
-                // Si c'est un mot de passe, vérifier que le format est correct
-                if($input["attrs"]["type"] == "password" && !self::checkPassword($data[$name])){
-                    $errors[$name][]="Mot de passe incorrect: Le mot de passe doit contenir au moins 8 caractères dont majuscule, minuscule et chiffre";
+                if(isset($input["attrs"]["type"])){
+                    // Si c'est un email, vérifier que le format est correct
+                    if($input["attrs"]["type"] == "email" && !self::checkEmail($data[$name])){
+                        $errors[$name][]="Email incorrect";
+                    }
+                    // Si c'est un mot de passe, vérifier que le format est correct
+                    if($input["attrs"]["type"] == "password" && (!isset($input["verify"]) || $input["verify"]) && !self::checkPassword($data[$name])){
+                        $errors[$name][]="Le mot de passe doit contenir au moins 8 caractères dont majuscule, minuscule et chiffre";
+                    }
                 }
                 // Autres validations nécessaires (par exemple, email, confirmation de mot de passe, etc.)
                 // ...
