@@ -1,6 +1,6 @@
 <div class="row center-container">
     <div class="col-lg-6">
-        <h1>Felicitation !</h1>
+        <h1>Félicitations !</h1>
         <p>L'installation de votre site c'est déroulé à merveille !! Connectez vous avec votre compte et commencez à construire le site internet de vos rêves !</p>
         <br>
         <div action="/" method="post" class="form form-fluid">
