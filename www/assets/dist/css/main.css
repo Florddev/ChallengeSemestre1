@@ -135,7 +135,7 @@ img {
 .sign-container {
   width: 100vw;
   height: 100vh;
-  background-color: var(--light);
+  background: linear-gradient(68.66deg, #e8e2ff 1.3%, #f7f5ff 50%);
 }
 .sign-header {
   width: 100%;
@@ -2557,7 +2557,7 @@ img {
   padding: 0;
 }
 .form .form-group .form-label:has(~ .form-field-group .form-field:focus) {
-  color: var(--main-color) !important;
+  color: var(--main-color);
 }
 .form .form-group .form-required {
   color: var(--color-invalid);
@@ -2626,6 +2626,7 @@ img {
 }
 .form .form-group .form-field-group .form-field-icon {
   position: absolute;
+  top: 0;
   right: 0;
   padding: var(--padding-field-y) var(--padding-field-x);
   cursor: pointer;

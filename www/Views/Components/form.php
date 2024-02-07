@@ -35,11 +35,11 @@
                         <li><?= $data[$name][0] ?></li>
                     </ul>
                 <?php endif;?>
-                <?php if($configInput["attrs"]["type"] === "password") :?>
-                    <div class="form-field-icon discret">
-                        <i class="ri-eye-fill"></i>
-                    </div>
-                <?php endif;?>
+<!--                --><?php //if($configInput["attrs"]["type"] === "password") :?>
+<!--                    <div class="form-field-icon discret">-->
+<!--                        <i class="ri-eye-fill"></i>-->
+<!--                    </div>-->
+<!--                --><?php //endif;?>
             </div>
         </div>
     <?php endforeach;?>

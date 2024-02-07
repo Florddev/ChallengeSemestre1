@@ -69,8 +69,6 @@ class Security
         if( $_SERVER["REQUEST_METHOD"] == $config["config"]["attrs"]["method"])
         {
             // Valider les données du formulaire
-            echo '<pre>'; var_dump($_REQUEST);
-            echo '</pre>';
             $verification = new Verificator();
             if($verification->checkForm($config, $_REQUEST, $errors))
             {

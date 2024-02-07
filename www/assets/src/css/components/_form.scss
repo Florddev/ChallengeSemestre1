@@ -62,7 +62,7 @@
       padding: 0;
 
       &:has(~.form-field-group .form-field:focus){
-        color: var(--main-color) !important;
+        color: var(--main-color) /*!important*/;
       }
     }
 
@@ -145,7 +145,7 @@
 
       & .form-field-icon {
         position: absolute;
-        //top: 0;
+        top: 0;
         right: 0;
         padding: var(--padding-field-y) var(--padding-field-x);
         cursor: pointer;

@@ -76,7 +76,8 @@ img {
     &-container {
         width: 100vw;
         height: 100vh;
-        background-color: var(--light);
+        //background-color: var(--light);
+        background: linear-gradient(68.66deg,#e8e2ff 1.3%,#f7f5ff 50%);
     }
     &-header {
         width: 100%;
