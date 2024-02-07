@@ -5,7 +5,7 @@
         <br>
         <div action="/" method="post" class="form form-fluid">
             <div class="form-group">
-                <label for="name3" class="form-label">Identifiant<i class="form-required">*</i></label>
+                <label for="name3" class="form-label">Identifiant</label>
                 <div class="form-field-group">
                     <input type="text" placeholder="Email" name="name3" id="name3" class="form-field" value="<?= $loginCreated ?>" readonly />
                     <div class="form-field-icon left">
@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="name3" class="form-label">Mot de passe<i class="form-required">*</i></label>
+                <label for="name3" class="form-label">Mot de passe</label>
                 <div class="form-field-group">
                     <input type="text" placeholder="Votre mot de passe choisi" name="name3" id="name3" class="form-field" readonly />
                     <div class="form-field-icon left">

@@ -10,7 +10,7 @@ class UserLogin
                 "attrs"=> [
                     "method"=>"POST",
                     "action"=>"/login",
-                    "class"=>"form",
+                    "class"=>"form form-lg",
                     "id"=>"form-login"
                 ],
                 "submit"=>"Se connecter"
@@ -21,8 +21,8 @@ class UserLogin
                     "balise"=>"input",
                     "attrs"=> [
                         "type"=>"email",
-                        "class"=>"input-form",
-                        "placeholder"=>"Email",
+                        "class"=>"form-field",
+                        "placeholder"=>"",
                         "required"=>true,
                     ],
                     "error"=>"Le format de l'email est incorrect",
@@ -33,8 +33,8 @@ class UserLogin
                     "balise"=>"input",
                     "attrs"=> [
                         "type"=>"password",
-                        "class"=>"input-form",
-                        "placeholder"=>"Mot de passe",
+                        "class"=>"form-field",
+                        "placeholder"=>"",
                         "required"=>true,
                     ],
                     "error"=>"Votre mot de passe doit faire plus de 8 caractères avec minuscule et chiffre",
