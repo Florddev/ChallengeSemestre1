@@ -150,6 +150,7 @@ img {
   background-color: var(--white);
   border-radius: calc(var(--main-radius) * 2);
   padding: 2.5rem;
+  box-shadow: 0 0 50px rgba(126, 55, 216, 0.15);
 }
 .sign-body h2 {
   margin: 0;

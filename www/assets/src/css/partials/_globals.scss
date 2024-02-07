@@ -91,6 +91,7 @@ img {
         background-color: var(--white);
         border-radius: calc(var(--main-radius)*2);
         padding: rem(40);
+        box-shadow: 0 0 50px rgba($tercery, 0.15);
 
         & h2 {
             margin: 0;
