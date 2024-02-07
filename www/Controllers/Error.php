@@ -3,7 +3,9 @@
 namespace App\Controllers;
 class Error
 {
-    public function page404():void
+
+//    public function page404():void
+    public static function page404():void
     {
         // Modifier le code http
         session_start();

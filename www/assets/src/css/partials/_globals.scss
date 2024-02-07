@@ -1,7 +1,5 @@
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
 html {
@@ -18,7 +16,9 @@ html {
 
 body {
     font-family: var(--main-font1);
-    background-color: $light1;
+    background-color: var(--white);
+    margin: 0;
+    padding: 0;
 }
 
 input,

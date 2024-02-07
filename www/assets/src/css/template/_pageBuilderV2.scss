@@ -3,6 +3,11 @@ $bars-size: 19vw;
 .page-builder {
     height: calc(100vh - rem(90));
 
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
     [contenteditable="true"]{
         outline: none;
 
@@ -336,7 +341,7 @@ $bars-size: 19vw;
 
                 & .selected-item {
                     border-radius: 0;
-                    border: rem(2) solid var(--tercery) !important;
+                    outline: rem(2) solid var(--tercery) !important;
                 }
 
                 & .editor-content {

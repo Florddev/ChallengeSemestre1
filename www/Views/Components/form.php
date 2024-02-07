@@ -3,25 +3,47 @@
         <?= (!empty($conf))? $conf."='".$configValue."'":""?>
     <?php endforeach;?>
 >
-    <!-- Affichage des inputs -->
+    <?php $containeRequired = false ?>
     <?php foreach ($config["inputs"] as $name=>$configInput):?>
-        <<?= $configInput["balise"] ?> name="<?= $name ?>"
-
-            <?php foreach ($configInput["attrs"] as $attr=>$inputAttribut):?>
-                <?= (!empty($attr))? $attr."='".$inputAttribut."'":""?>
-            <?php endforeach;?>
-
-            <?= (isset($_POST[$name]) && $configInput["initOnError"]) ? "value='" . htmlspecialchars($_POST[$name], ENT_QUOTES, 'UTF-8') . "'" : ""; ?>
-
-        > <?= ($configInput["balise"] !== "input") ? "</".$configInput["balise"].">" : "" ?>
-
-        <?php if(!empty($data[$name])) :?>
-            <div style="color: red">
-                <?= $data[$name][0] ?>
+        <?php
+            $isRequired = (!empty($configInput["attrs"]["required"]) && $configInput["attrs"]["required"]);
+            if($isRequired) $containeRequired = true;
+        ?>
+        <div class="form-group <?= (!empty($data[$name])) ? 'invalid' : (count($data) > 0 ? 'valid' : '') ?>">
+            <?php if(!empty($configInput["label"])) : ?>
+                <label for="<?= $config["config"]["attrs"]["id"]."_".$name ?>" class="form-label"><?= $configInput["label"] ?><?= $isRequired ? '<i class="form-required">*</i>' : "" ?></label>
+            <?php endif ?>
+            <div class="form-field-group">
+                <<?= $configInput["balise"] ?> name="<?= $name ?>" id="<?= $config["config"]["attrs"]["id"]."_".$name ?>"
+                    <?php foreach ($configInput["attrs"] as $attr=>$attrValue):?>
+                        <?= (!empty($attr))? $attr."='".$attrValue."'":""?>
+                    <?php endforeach;?>
+                    <?= (isset($_POST[$name]) && $configInput["initOnError"]) ? "value='" . htmlspecialchars($_POST[$name], ENT_QUOTES, 'UTF-8') . "'" : ""; ?>
+                >
+                <?php if($configInput["balise"] === "select"): ?>
+                    <?php foreach ($configInput["options"] as $optionName=>$option):?>
+                        <option <?php foreach ($option["attrs"] as $optionAttr=>$optionAttrValue):?>
+                                    <?= (!empty($optionAttr))? $optionAttr."='".$optionAttrValue."'":""?>
+                                <?php endforeach;?>>
+                            <?=$optionName?>
+                        </option>
+                    <?php endforeach;?>
+                <?php endif;?>
+                <?= ($configInput["balise"] !== "input") ? "</".$configInput["balise"].">" : "" ?>
+                <?php if(!empty($data[$name])) :?>
+                    <ul class="form-feedback">
+                        <li><?= $data[$name][0] ?></li>
+                    </ul>
+                <?php endif;?>
             </div>
-        <?php endif;?>
-        <br>
+        </div>
     <?php endforeach;?>
-
-    <input type="submit" value="<?= $config["config"]["submit"]??"Envoyer" ?>">
+    <div class="form-group">
+        <label class="form-label"></label>
+        <div class="form-field-group">
+            <button type="submit" class="btn btn-primary btn-sm"><?= $config["config"]["submit"]??"Envoyer" ?></button>
+            <?= $containeRequired ? '<small style="margin-left: 20px">(<i class="form-required">*</i>) Champs obligatoires</small>' : '' ?>
+        </div>
+    </div>
 </form>
+

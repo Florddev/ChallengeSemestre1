@@ -50,9 +50,7 @@ class Routing
         } elseif (str_starts_with($uri, "/article/")) {
             $this->handleArticleRedirection($uri);
         } else {
-            require "Controllers/Error.php";
-            $errorsManager = new Error();
-            $errorsManager->page404();
+            Error::page404();
         }
     }
 
@@ -73,9 +71,7 @@ class Routing
             $builder = new Editor();
             $builder->pageBuilder($pageFound);
         } else {
-            require "Controllers/Error.php";
-            $errorsManager = new Error();
-            $errorsManager->page404();
+            Error::page404();
         }
     }
 
@@ -96,9 +92,7 @@ class Routing
             $builder = new Articles();
             $builder->articlesBuilder($articleFound);
         } else {
-            require "Controllers/Error.php";
-            $errorsManager = new Error();
-            $errorsManager->page404();
+            Error::page404();
         }
     }
 
@@ -126,9 +120,7 @@ class Routing
             }
         }
 
-        require "Controllers/Error.php";
-        $errorsManager = new Error();
-        $errorsManager->page404();
+        Error::page404();
     }
 
 

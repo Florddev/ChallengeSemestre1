@@ -1,11 +1,11 @@
 -- Supprimer les tables avec CASCADE
-DROP TABLE IF EXISTS "user" CASCADE;
-DROP TABLE IF EXISTS "article" CASCADE;
-DROP TABLE IF EXISTS "category" CASCADE;
-DROP TABLE IF EXISTS "comment" CASCADE;
-DROP TABLE IF EXISTS "like_users_articles" CASCADE;
-DROP TABLE IF EXISTS "pages" CASCADE;
-DROP TABLE IF EXISTS "settings" CASCADE;
+DROP TABLE IF EXISTS "wisp_user" CASCADE;
+DROP TABLE IF EXISTS "wisp_article" CASCADE;
+DROP TABLE IF EXISTS "wisp_category" CASCADE;
+DROP TABLE IF EXISTS "wisp_comment" CASCADE;
+DROP TABLE IF EXISTS "wisp_like_users_articles" CASCADE;
+DROP TABLE IF EXISTS "wisp_pages" CASCADE;
+DROP TABLE IF EXISTS "wisp_settings" CASCADE;
 
 -- Créer la table "category"
 CREATE TABLE "category" (
@@ -51,21 +51,6 @@ CREATE TABLE "article" (
     FOREIGN KEY ("id_updator") REFERENCES "user"("id")
 );
 
--- Trigger pour mettre automatiquement à jours le champ updated_at lorsque l'entrée est modifié
-CREATE OR REPLACE FUNCTION update_article_timestamp()
-RETURNS TRIGGER AS $$
-BEGIN
-    NEW.updated_at = NOW();
-RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
-
-CREATE TRIGGER trigger_update_article_timestamp
-    BEFORE UPDATE ON article
-    FOR EACH ROW
-    EXECUTE FUNCTION update_article_timestamp();
-
 
 -- Créer la table "like_users_articles"
 CREATE TABLE "like_users_articles" (
@@ -108,6 +93,23 @@ CREATE TABLE "pages" (
     FOREIGN KEY ("id_updator") REFERENCES "user"("id")
 );
 
+
+-- Trigger pour mettre automatiquement à jours le champ updated_at lorsque l'entrée est modifié
+CREATE OR REPLACE FUNCTION update_article_timestamp()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.updated_at = NOW();
+RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER trigger_update_article_timestamp
+    BEFORE UPDATE ON article
+    FOR EACH ROW
+    EXECUTE FUNCTION update_article_timestamp();
+
+
 -- Insérer des données dans la table "category"
 INSERT INTO "category" ("label") VALUES
 ('Musique'),
@@ -127,17 +129,17 @@ INSERT INTO "pages" ("url", "title", "content", "meta_description", "id_creator"
 );
 
 INSERT INTO "article" (
-    "title", 
-    "content", 
-    "keywords", 
-    "picture_url", 
-    "id_category", 
+    "title",
+    "content",
+    "keywords",
+    "picture_url",
+    "id_category",
     "id_creator"
 ) VALUES (
-    'Mon premier concert', 
-    'Mon premier concert reste gravé dans ma mémoire comme une expérience indélébile, un moment où la musique a pris vie devant mes yeux. Entouré par une foule vibrante, chaque note résonnait comme un appel à l''unité et à la célébration. L''excitation préalable, l''attente des premières notes, et l''énergie contagieuse de la foule ont transformé cette soirée en une véritable épiphanie musicale. Cet article est le récit de cette aventure, où les émotions se mêlaient aux mélodies, créant un souvenir éternel. Au-delà de la performance sur scène, c''est la connexion humaine, l''échange d''énergies et la pure joie collective qui ont marqué mon esprit à jamais.', 
-    'premier concert, expérience en direct, énergie de la foule, performance live, souvenir musical', 
-    'https://demarchesadministratives.fr/images/actualites/3705/concert-test-fete-musique.jpg', 
+    'Mon premier concert',
+    'Mon premier concert reste gravé dans ma mémoire comme une expérience indélébile, un moment où la musique a pris vie devant mes yeux. Entouré par une foule vibrante, chaque note résonnait comme un appel à l''unité et à la célébration. L''excitation préalable, l''attente des premières notes, et l''énergie contagieuse de la foule ont transformé cette soirée en une véritable épiphanie musicale. Cet article est le récit de cette aventure, où les émotions se mêlaient aux mélodies, créant un souvenir éternel. Au-delà de la performance sur scène, c''est la connexion humaine, l''échange d''énergies et la pure joie collective qui ont marqué mon esprit à jamais.',
+    'premier concert, expérience en direct, énergie de la foule, performance live, souvenir musical',
+    'https://demarchesadministratives.fr/images/actualites/3705/concert-test-fete-musique.jpg',
     1,
     1
 );

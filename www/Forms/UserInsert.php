@@ -50,6 +50,7 @@ class UserInsert
                     ],
                     "minlen"=>8,
                     "maxlen"=>52,
+                    "verify"=>true,
                     "error"=>"Votre mot de passe doit faire plus de 8 caractères avec minuscule et chiffre",
                     "initOnError"=>false
                 ],
@@ -61,6 +62,7 @@ class UserInsert
                         "placeholder"=>"Confirmation",
                         "required"=>"true",
                     ],
+                    "verify"=>true,
                     "confirm"=>"password",
                     "error"=>"Votre mot de passe de confirmation ne correspond pas",
                     "initOnError"=>false
