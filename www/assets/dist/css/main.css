@@ -19,8 +19,8 @@
   --secondary-darker: #12121b;
   --tercery: #7e37d8;
   --tercery-darker: #6524b8;
-  --light: #EFEFEF;
-  --light-darker: #d6d6d6;
+  --light: #f8f5fd;
+  --light-darker: #dacbf5;
   --lighter: #d6d6e6;
   --lighter-darker: #b6b6d3;
   --warning: #FFC700;
@@ -130,6 +130,52 @@ img {
   object-position: center;
   height: 100%;
   width: 100%;
+}
+
+.sign-container {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(68.66deg, #e8e2ff 1.3%, #f7f5ff 50%);
+}
+.sign-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1.25rem 3.125rem;
+}
+.sign-body {
+  width: 100%;
+  max-width: 31.25rem;
+  margin: 0 auto;
+  background-color: var(--white);
+  border-radius: calc(var(--main-radius) * 2);
+  padding: 2.5rem;
+  box-shadow: 0 0 50px rgba(126, 55, 216, 0.15);
+}
+.sign-body a {
+  color: var(--tercery);
+}
+.sign-body h2 {
+  margin: 0;
+  font-weight: 900;
+  font-size: 2rem;
+}
+.sign-body .small {
+  color: var(--grey);
+  margin: 0.625rem 0 1.875rem 0;
+  font-size: 0.875rem;
+}
+.sign-body small {
+  margin: 1.25rem auto;
+}
+.sign-body .btn {
+  width: 100%;
+}
+.sign-body hr {
+  margin: 0.625rem 0 1.25rem 0;
+  height: 0.0625rem;
+  background-color: var(--grey);
+  border: 0;
 }
 
 .btn {
@@ -2476,7 +2522,7 @@ img {
   --border-radius: 6px;
   --padding-field-y: 10px;
   --padding-field-x: 12px;
-  --spacing: 15px;
+  --spacing: 20px;
   display: flex;
   flex-wrap: wrap;
   width: 100%;
@@ -2511,7 +2557,7 @@ img {
   padding: 0;
 }
 .form .form-group .form-label:has(~ .form-field-group .form-field:focus) {
-  color: var(--main-color) !important;
+  color: var(--main-color);
 }
 .form .form-group .form-required {
   color: var(--color-invalid);
@@ -2580,6 +2626,7 @@ img {
 }
 .form .form-group .form-field-group .form-field-icon {
   position: absolute;
+  top: 0;
   right: 0;
   padding: var(--padding-field-y) var(--padding-field-x);
   cursor: pointer;

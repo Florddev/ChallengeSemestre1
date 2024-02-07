@@ -35,13 +35,18 @@
                         <li><?= $data[$name][0] ?></li>
                     </ul>
                 <?php endif;?>
+<!--                --><?php //if($configInput["attrs"]["type"] === "password") :?>
+<!--                    <div class="form-field-icon discret">-->
+<!--                        <i class="ri-eye-fill"></i>-->
+<!--                    </div>-->
+<!--                --><?php //endif;?>
             </div>
         </div>
     <?php endforeach;?>
     <div class="form-group">
         <label class="form-label"></label>
         <div class="form-field-group">
-            <button type="submit" class="btn btn-primary btn-sm"><?= $config["config"]["submit"]??"Envoyer" ?></button>
+            <button type="submit" class="btn btn-primary"><?= $config["config"]["submit"]??"Envoyer" ?></button>
             <?= $containeRequired ? '<small style="margin-left: 20px">(<i class="form-required">*</i>) Champs obligatoires</small>' : '' ?>
         </div>
     </div>

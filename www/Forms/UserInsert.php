@@ -10,19 +10,20 @@ class UserInsert
                 "attrs"=> [
                     "method"=>"POST",
                     "action"=>"/register",
-                    "class"=>"form",
+                    "class"=>"form form-lg",
                     "id"=>"form-register",
                 ],
-                "submit"=>"S'inscrire"
+                "submit"=>"Créer un compte"
              ],
             "inputs"=>[
                 "login"=>[
+                    "label"=>"Login",
                     "balise"=>"input",
                     "attrs"=> [
                         "type"=>"text",
-                        "class"=>"input-form" ,
-                        "placeholder"=>"Login",
-                        "required"=>"true",
+                        "class"=>"form-field" ,
+                        "placeholder"=>"",
+                        "required"=>true,
                     ],
                     "minlen"=>2,
                     "maxlen"=>50,
@@ -30,23 +31,25 @@ class UserInsert
                     "initOnError"=>true
                 ],
                 "email"=>[
+                    "label"=>"Adresse Email",
                     "balise"=>"input",
                     "attrs"=> [
                         "type"=>"email",
-                        "class"=>"input-form",
-                        "placeholder"=>"Email",
-                        "required"=>"true",
+                        "class"=>"form-field",
+                        "placeholder"=>"",
+                        "required"=>true,
                     ],
                     "error"=>"Le format de l'email est incorrect",
                     "initOnError"=>true
                 ],
                 "password"=>[
+                    "label"=>"Mot de passe",
                     "balise"=>"input",
                     "attrs"=> [
                         "type"=>"password",
-                        "class"=>"input-form",
-                        "placeholder"=>"Mot de passe",
-                        "required"=>"true",
+                        "class"=>"form-field",
+                        "placeholder"=>"",
+                        "required"=>true,
                     ],
                     "minlen"=>8,
                     "maxlen"=>52,
@@ -55,12 +58,13 @@ class UserInsert
                     "initOnError"=>false
                 ],
                 "passwordConfirm"=>[
+                    "label"=>"Confirmation du mot de passe",
                     "balise"=>"input",
                     "attrs"=> [
                         "type"=>"password",
-                        "class"=>"input-form",
-                        "placeholder"=>"Confirmation",
-                        "required"=>"true",
+                        "class"=>"form-field",
+                        "placeholder"=>"",
+                        "required"=>true,
                     ],
                     "verify"=>true,
                     "confirm"=>"password",
