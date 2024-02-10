@@ -67,7 +67,13 @@ class Security
         $config = $form->getConfig();
 
         $errors = [];
-
+        ?>
+        <pre>
+        <?php
+        var_dump($_SERVER);
+        ?>
+        </pre>
+        <?php
         // Vérifier si le formulaire a été soumis
         if( $_SERVER["REQUEST_METHOD"] == $config["config"]["attrs"]["method"])
         {
@@ -86,6 +92,10 @@ class Security
                 $newUser->save();
 
                 $mail = new PHPMailer(true); 
+
+                $protocole = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https" : "http";
+
+                $host = $_SERVER['HTTP_HOST'];
 
                 try {
                     $mail->isSMTP();
@@ -110,8 +120,9 @@ class Security
                     // Content
                     $mail->isHTML(true); // Set email format to HTML
                     $mail->Subject = 'Confirmation d\'inscription';
-                    $mail->Body    = 'Bonjour, ' . $_REQUEST['login'] . ',<br><br>Merci de vous être inscrit sur notre site. <br><br> Pour valider votre compte, cliquez sur le lien suivant : <br>' . 
-                    'http://localhost/validate-account?token=' . $validationToken;
+                    $url = $protocole . "://" . $host . "/validate-account?token=$validationToken";
+                    $mail->Body    = "Bonjour, " . $_REQUEST['login'] . ",<br><br>Merci de votre inscription sur notre site. <br><br> Pour valider votre compte, cliquez sur le lien suivant : <br><br>
+                    <a href='$url'>$url</a>";
 
                     $mail->send();
                     echo 'E-mail de validation envoyé avec succès !';
@@ -166,6 +177,14 @@ class Security
 
         $errors = [];
 
+        ?>
+        <pre>
+        <?php
+        var_dump($_SERVER);
+        ?>
+        </pre>
+        <?php
+
         if( $_SERVER["REQUEST_METHOD"] == $config["config"]["attrs"]["method"])
         {
             $verification = new Verificator();
@@ -183,6 +202,11 @@ class Security
                     $userModel->save();
 
                     $mail = new PHPMailer(true);
+
+                    $protocole = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https" : "http";
+
+                    $host = $_SERVER['HTTP_HOST'];
+
                     try {
                         $mail->isSMTP();
                         $mail->Host = 'smtp.gmail.com';
@@ -204,8 +228,8 @@ class Security
 
                         $mail->isHTML(true);
                         $mail->Subject = 'Réinitialisation de votre mot de passe';
-                        $url = "http://localhost/reset-password?token=$token";
-                        $mail->Body = "Cliquez sur ce lien pour réinitialiser votre mot de passe: <a href='$url'>$url</a>";
+                        $url = $protocole . "://" . $host . "/reset-password?token=$token";
+                        $mail->Body = "Cliquez sur ce lien pour réinitialiser votre mot de passe: <br><br><a href='$url'>$url</a>";
 
                         $mail->send();
                         echo "Un email de réinitialisation a été envoyé à votre adresse.";

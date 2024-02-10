@@ -252,7 +252,7 @@ class Installation
                         "login" VARCHAR(50) NOT NULL,
                         "email" VARCHAR(320) NOT NULL,
                         "password" VARCHAR(255) NOT NULL,
-                        "role" VARCHAR(20) DEFAULT 0,
+                        "role" TINYINT DEFAULT 0,
                         "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                         "updated_at" TIMESTAMP NULL,
                         "status" SMALLINT DEFAULT 0,
