@@ -25,6 +25,23 @@
   restricted: false
   template: front
 
+/validate-account:
+  controller: FrontOffice/Security
+  action: validateAccount
+  restricted: false
+
+/reset-password-request:
+  controller: FrontOffice/Security
+  action: resetPasswordRequest
+  restricted: false
+  template: front
+
+/reset-password:
+  controller: FrontOffice/Security
+  action: resetPassword
+  restricted: false
+  template: front
+
 /dashboard:
   controller: BackOffice/Main
   action: home

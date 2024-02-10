@@ -257,7 +257,8 @@ class Installation
                         "updated_at" TIMESTAMP NULL,
                         "status" SMALLINT DEFAULT 0,
                         "validate" BOOLEAN DEFAULT FALSE,
-                        "validation_token" VARCHAR(32)
+                        "validation_token" VARCHAR(32) NULL,
+                        "reset_token" VARCHAR(255) NULL
                     );'
             ],
 

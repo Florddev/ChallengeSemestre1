@@ -14,7 +14,7 @@ class UserInsert
                     "id"=>"form-register",
                 ],
                 "submit"=>"Créer un compte"
-             ],
+            ],
             "inputs"=>[
                 "login"=>[
                     "label"=>"Login",

@@ -14,7 +14,7 @@ class FinishInstallation
                     "id"=>"form-finish-installation",
                 ],
                 "submit"=>"Finaliser l'installation !"
-             ],
+            ],
             "inputs"=>[
                 "finish_installation"=>[
                     "balise"=>"input",

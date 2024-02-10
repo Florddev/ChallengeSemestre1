@@ -17,6 +17,7 @@ class User extends DB
     protected string $role;
     protected int $status;
     protected ?string $validation_token;
+    protected ?string $reset_token;
 
     /**
      * @return int|null
@@ -140,10 +141,26 @@ class User extends DB
     }
 
     /**
-     * @param int $status
+     * @param string $validation_token
      */
     public function setValidationToken(string $validation_token): void
     {
         $this->validation_token = $validation_token;
+    }
+
+    /**
+     * @return string
+     */
+    public function getResetToken(): string
+    {
+        return $this->reset_token;
+    }
+
+    /**
+     * @param string $validation_token
+     */
+    public function setResetToken(string $reset_token): void
+    {
+        $this->reset_token = $reset_token;
     }
 }

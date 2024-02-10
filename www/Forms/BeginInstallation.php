@@ -14,7 +14,7 @@ class BeginInstallation
                     "id"=>"form-begin-to-install",
                 ],
                 "submit"=>"C'est parti !"
-             ],
+            ],
             "inputs"=>[
                 "begin_to_install"=>[
                     "balise"=>"input",
