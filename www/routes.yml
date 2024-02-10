@@ -35,11 +35,16 @@
   action: getAllArticles
   template: back
 
+/dashboard/settings:
+  controller: BackOffice/Settings
+  action: getSettings
+  template: back
+
 /dashboard/builder-save-article:
   controller: BackOffice/Articles
   action: saveArticle
 
-#/dashboard/builder:
+# /dashboard/builder:
 #  controller: BackOffice/Editor
 #  action: pageBuilder
 

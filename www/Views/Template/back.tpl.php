@@ -70,7 +70,7 @@
                             <h2>Utilisateurs</h2>
                         </div>
                     </a>
-                    <a href="/dashboard">
+                    <a href="/dashboard/settings">
                         <div class="item-sidebar">
                             <i class="ri-settings-4-line"></i>
                             <h2>Paramètres</h2>
