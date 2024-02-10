@@ -205,7 +205,7 @@ class Installation
 
     private function InsertDefaultSettings(): void 
     {
-        $settingsCssPrimary = new Settings();
+        $settingsCssPrimary = new Settings(); 
         $settingsCssPrimary->setKey("css:primary");
         $settingsCssPrimary->setValue("#FF0000");
         $settingsCssPrimary->save();
@@ -256,8 +256,6 @@ class Installation
         }
         //print_r($errors);
     }
-
-   
 
 
     private function getSqlTable(string $prefix): array

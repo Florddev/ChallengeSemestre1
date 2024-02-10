@@ -17,7 +17,6 @@ class UserLogin
             ],
             "inputs"=>[
                 "email"=>[
-                    "label"=>"Adresse Email",
                     "balise"=>"input",
                     "attrs"=> [
                         "type"=>"email",
@@ -29,7 +28,6 @@ class UserLogin
                     "initOnError"=>true
                 ],
                 "password"=>[
-                    "label"=>"Mot de passe",
                     "balise"=>"input",
                     "attrs"=> [
                         "type"=>"password",
