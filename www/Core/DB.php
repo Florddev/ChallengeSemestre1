@@ -136,6 +136,37 @@ class DB
         return ($return === "object") ? $queryPrepared->fetchAll() : $queryPrepared->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public function getAllByLike(array $data, string $return = "array"): array
+{
+    $sql = "SELECT * FROM " . DB_PREFIX . $this->table;
+
+    if (!empty($data) && count($data) > 0) {
+        $sql .= " WHERE ";
+        foreach ($data as $column => $value) {
+            // Utilisation de ILIKE pour une recherche insensible à la casse
+            $sql .= " " . $column . " ILIKE :" . $column . " AND";
+        }
+        $sql = rtrim($sql, ' AND') . ";";
+    }
+
+    $queryPrepared = $this->pdo->prepare($sql);
+
+    // Modification pour traiter correctement le joker %
+    foreach ($data as $column => $value) {
+        // Ajouter le joker % uniquement s'il n'est pas déjà présent
+        $queryPrepared->bindValue(":$column", '%' . $value . '%');
+    }
+
+    $queryPrepared->execute();
+
+    if ($return === "object") {
+        $queryPrepared->setFetchMode(\PDO::FETCH_CLASS, get_called_class());
+    }
+
+    return ($return === "object") ? $queryPrepared->fetchAll() : $queryPrepared->fetchAll(\PDO::FETCH_ASSOC);
+}
+
+
     public function getAll(string $return = "array"): array
     {
         $sql = "SELECT * FROM " . DB_PREFIX . $this->table;

@@ -3,7 +3,7 @@
 namespace App\Controllers\BackOffice;
 
 use App\Core\Utils;
-use App\Models\Settings;
+use App\Models\Settings as SettingsModel;
 use App\Models\User;
 use App\Core\View;
 use Cassandra\Date;
@@ -12,21 +12,12 @@ class Settings
 {
     public function getSettings($data): void
     {
-        $setting = new Settings;
-        $setting->getId();
-        $pdo = new \PDO($dsn, DB_USER, DB_PASSWORD);
-        $sql = "SELECT key FROM wisp_settings  ";
-        print_r($setting)
-        
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute(); // Exécution de la requête préparée
-        $result = $stmt->fetchColumn(); // Récupération du résultat
-        $data['result'] = $result;
-        print_r($data['result']);
+        $setting = new SettingsModel();
 
-        $myView = new View("BackOffice/Dashboard/settings", $data["template"], ["result" => $data["result"]]);
+        $variablesCss = $setting->getAllByLike(["key" => "css:"], "object");
+        print_r($variablesCss);
+
+        $myView = new View("BackOffice/Dashboard/settings", $data["template"]);
+        $myView->assign("variablesCss", $variablesCss);
     }
-
-    
-   
 }

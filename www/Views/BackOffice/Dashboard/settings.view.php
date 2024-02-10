@@ -13,24 +13,17 @@
         </div>
     </div>
 
-    <!-- Section des paramètres -->
     <div class="job-board">
 
         <main class="job-listings">
 
-            <!-- Utilisez une boucle PHP pour générer les champs d'entrée -->
-            <?php
-            for ($i = 0; $i < 4; $i++) {
-                ?>  
+            <?php foreach ($variablesCss as $variableCss) : ?>
                 <div class="setting-input">
-                    <label for="name"><?= $result ?></label>
-                    <input type="text" id="name" name="name" placeholder="Nom">
+                    <label for="name"><?= $variableCss->getKey() ?></label>
+                    <input type="text" id="name" name="name" placeholder="Nom" value="<?= $variableCss->getValue() ?>">
                 </div>
-                <?php
-            }
-            ?>
+            <?php endforeach; ?>
 
-            <!-- Bouton "Enregistrer" -->
             <button class="save-button">Enregistrer</button>
 
         </main>
