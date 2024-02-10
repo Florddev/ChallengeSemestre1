@@ -67,13 +67,7 @@ class Security
         $config = $form->getConfig();
 
         $errors = [];
-        ?>
-        <pre>
-        <?php
-        var_dump($_SERVER);
-        ?>
-        </pre>
-        <?php
+        
         // Vérifier si le formulaire a été soumis
         if( $_SERVER["REQUEST_METHOD"] == $config["config"]["attrs"]["method"])
         {
@@ -176,14 +170,6 @@ class Security
         $config = $form->getConfig();
 
         $errors = [];
-
-        ?>
-        <pre>
-        <?php
-        var_dump($_SERVER);
-        ?>
-        </pre>
-        <?php
 
         if( $_SERVER["REQUEST_METHOD"] == $config["config"]["attrs"]["method"])
         {
