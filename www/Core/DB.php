@@ -149,4 +149,22 @@ class DB
 
         return ($return === "object") ? $queryPrepared->fetchAll() : $queryPrepared->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    public function delete(array $data): bool
+    {
+        if (!empty($data)) {
+            $sql = "DELETE FROM " . DB_PREFIX . $this->table . " WHERE ";
+            
+            foreach ($data as $column => $value) {
+                $sql .= "$column = :$column AND ";
+            }
+            $sql = rtrim($sql, ' AND ');
+            
+            $queryPrepared = $this->pdo->prepare($sql);
+            if ($queryPrepared->execute($data)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

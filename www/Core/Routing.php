@@ -23,16 +23,43 @@ class Routing
         $this->listOfRoutes = yaml_parse_file("routes.yml");
     }
 
-    public function handleRequest(): void
-    {
-        // Comment récupérer et nettoyer l'URI
+    // public function handleRequest(): void
+    // {
+    //     // Comment récupérer et nettoyer l'URI
+    //     $uri = strtolower($_SERVER["REQUEST_URI"]);
+    //     $uri = strtok($uri, "?");
+    //     $uri = strlen($uri) > 1 ? rtrim($uri, "/") : $uri;
+
+    //     if (!empty($this->listOfRoutes[$uri])) {
+    //         $this->dispatch($uri);
+    //     } else {
+    //         $this->handleCustomRedirections($uri);
+    //     }
+    // }
+
+    public function handleRequest(): void {
         $uri = strtolower($_SERVER["REQUEST_URI"]);
         $uri = strtok($uri, "?");
         $uri = strlen($uri) > 1 ? rtrim($uri, "/") : $uri;
-
-        if (!empty($this->listOfRoutes[$uri])) {
-            $this->dispatch($uri);
-        } else {
+    
+        $foundRoute = false;
+    
+        foreach ($this->listOfRoutes as $route => $config) {
+            $pattern = preg_replace('/\/:([^\/]+)/', '/([^/]+)', $route);
+            if (preg_match('#^' . $pattern . '$#', $uri, $matches)) {
+                array_shift($matches);
+                $foundRoute = true;
+                if (!empty($config['params']) && !empty($matches)) {
+                    foreach ($config['params'] as $index => $name) {
+                        $_REQUEST[$name] = $matches[$index] ?? null;
+                    }
+                }
+                $this->dispatch($route);
+                break;
+            }
+        }
+    
+        if (!$foundRoute) {
             $this->handleCustomRedirections($uri);
         }
     }
