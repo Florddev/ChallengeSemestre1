@@ -5,6 +5,7 @@ namespace App\Core;
 use App\Controllers\BackOffice\Articles;
 use App\Controllers\BackOffice\Editor;
 use App\Controllers\Error;
+use App\Enums\Role;
 use App\Models\Article;
 use App\Models\Pages;
 
@@ -38,6 +39,10 @@ class Routing
     // }
 
     public function handleRequest(): void {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
         $uri = strtolower($_SERVER["REQUEST_URI"]);
         $uri = strtok($uri, "?");
         $uri = strlen($uri) > 1 ? rtrim($uri, "/") : $uri;
@@ -206,8 +211,12 @@ class Routing
                 // Si aucune session n'existe, envoyer sur login
                 Routing::Redirect("FrontOffice/Security", "login");
             } else {
-                // TODO: Vérifier que l'utilisateur a bien le/les rôle(s) nécessaire(s) pour accéder à la page
-                die("Vous n'avez pas les droits pour accéder à cette page");
+                $userRole = Role::tryFrom((int)$_SESSION['role']);
+
+                if ($userRole !== null && !empty($this->listOfRoutes[$uri]['roles']) && !in_array($userRole->value, $this->listOfRoutes[$uri]['roles'])) {
+                    // L'utilisateur n'a pas le bon rôle
+                    die("Vous n'avez pas les droits pour accéder à cette page");
+                }
             }
         }
     }

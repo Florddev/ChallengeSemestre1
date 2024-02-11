@@ -46,6 +46,8 @@
   controller: BackOffice/Main
   action: home
   template: back
+  restricted: true
+  roles: [3]
 
 /dashboard/articles:
   controller: BackOffice/Articles

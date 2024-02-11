@@ -46,6 +46,7 @@ class Security
                         if (password_verify($_REQUEST['password'], $user['password'])) {
                             session_start();
                             $_SESSION['id'] = $user['id'];
+                            $_SESSION['role'] = $user['role'];
                             header('Location: /');
                             exit;
                         } 
