@@ -16,16 +16,18 @@
     <div class="job-board">
 
         <main class="job-listings">
+            <form method="post">
 
-            <?php foreach ($variablesCss as $variableCss) : ?>
-                <div class="setting-input">
-                    <label for="name"><?= $variableCss->getKey() ?></label>
-                    <input type="text" id="name" name="name" placeholder="Nom" value="<?= $variableCss->getValue() ?>">
-                </div>
-            <?php endforeach; ?>
+                <?php foreach ($variablesCss as $variableCss) : ?>
+                    <div class="setting-input">
+                        <label><?= str_replace('css:', '', $variableCss->getKey()) ?></label>
+                        <input type="text" name="values[<?= $variableCss->getKey() ?>]" value="<?= $variableCss->getValue() ?>">
+                    </div>
+                <?php endforeach; ?>
 
-            <button class="save-button">Enregistrer</button>
+                <button type="submit" class="save-button">Enregistrer</button>
 
+            </form>
         </main>
 
     </div>
