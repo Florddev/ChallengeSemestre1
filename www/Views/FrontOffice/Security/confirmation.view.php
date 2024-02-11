@@ -1,1 +1,0 @@
-<p><?= htmlspecialchars($data['message']) ?></p>
