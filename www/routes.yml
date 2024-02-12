@@ -46,6 +46,8 @@
   controller: BackOffice/Main
   action: home
   template: back
+  restricted: true
+  roles: [3]
 
 /dashboard/articles:
   controller: BackOffice/Articles
@@ -74,3 +76,37 @@
   controller: BackOffice/User
   action: listUsers
   template: back
+
+/dashboard/users/create:
+  controller: BackOffice/User
+  action: createUser
+  template: back
+
+/dashboard/users/edit/:id:
+  controller: BackOffice/User
+  action: editUser
+  template: back
+  params:
+    - id
+
+/dashboard/users/show/:id:
+  controller: BackOffice/User
+  action: showUser
+  template: back
+  params:
+    - id
+
+/dashboard/users/delete/:id:
+  controller: BackOffice/User
+  action: deleteUser
+  template: back
+  params:
+    - id
+
+/dashboard/users/delete/confirm/:id:
+  controller: BackOffice/User
+  action: deleteUser
+  template: back
+  params:
+    - id
+

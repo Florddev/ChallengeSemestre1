@@ -33,7 +33,7 @@ class Security
         $errors = [];
 
         // Vérifier si le formulaire a été soumis
-        if( $_SERVER["REQUEST_METHOD"] == $config["config"]["attrs"]["method"])
+        if ($_SERVER["REQUEST_METHOD"] == $config["config"]["attrs"]["method"])
         {
             // Valider les données du formulaire
             $verification = new Verificator();
@@ -46,6 +46,7 @@ class Security
                         if (password_verify($_REQUEST['password'], $user['password'])) {
                             session_start();
                             $_SESSION['id'] = $user['id'];
+                            $_SESSION['role'] = $user['role'];
                             header('Location: /');
                             exit;
                         } 
