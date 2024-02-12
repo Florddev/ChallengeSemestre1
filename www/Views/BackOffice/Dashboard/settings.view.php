@@ -18,14 +18,10 @@
         <main class="job-listings">
             <form method="post">
 
-                <?php foreach ($variablesCss as $variableCss) : ?>
-                    <div class="setting-input">
-                        <label><?= str_replace('css:', '', $variableCss->getKey()) ?></label>
-                        <input type="text" name="values[<?= $variableCss->getKey() ?>]" value="<?= $variableCss->getValue() ?>">
-                    </div>
-                <?php endforeach; ?>
+        
 
-                <button type="submit" class="save-button">Enregistrer</button>
+
+                <?php $this->includeComponent("form", $configSettingsForm); ?>
 
             </form>
         </main>
