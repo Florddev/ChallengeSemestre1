@@ -24,8 +24,9 @@
                     <?php foreach ($configInput["options"] as $optionName=>$option):?>
                         <option <?php foreach ($option["attrs"] as $optionAttr=>$optionAttrValue):?>
                                     <?= (!empty($optionAttr))? $optionAttr."='".$optionAttrValue."'":""?>
+                                    <?= (isset($configInput["selected"]) && $configInput["selected"] == $option["attrs"]["value"]) ? 'selected="selected"' : '' ?>
                                 <?php endforeach;?>>
-                            <?=$optionName?>
+                            <?= htmlspecialchars($optionName) ?>
                         </option>
                     <?php endforeach;?>
                 <?php endif;?>

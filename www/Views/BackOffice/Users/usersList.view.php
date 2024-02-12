@@ -11,7 +11,7 @@
 
 <section>
     <div class="create-user-button-container" style="margin-bottom: 20px; text-align: left;">
-        <a href="/dashboard/users/create" class="create-user-button" style="padding: 10px 20px; background-color: #007bff; color: white; border-radius: 5px; text-decoration: none;">Créer un utilisateur</a>
+        <a href="/dashboard/users/create" class="btn btn-primary">Créer un utilisateur</a>
     </div>
     <div class="table-container">
         <div class="title-table-container">
@@ -38,13 +38,13 @@
                     <td class='bold'><?php echo $user['id']; ?></td>
                     <td><?php echo $user['login']; ?></td>
                     <td><?php echo $user['email']; ?></td>
-                    <td><?php echo $user['validate']; ?></td>
-                    <td><?php echo $user['role']; ?></td>
                     <td>
-                        <p class='<?php echo ($user['status'] === 1) ? 'verified' : 'pending'; ?>'>
-                            <?php echo $user['status'] ?>
-                        </p>
+                        <p class='<?php echo ($user['validate'] === true) ? 'verifed' : 'pending'; ?>'>
+                            <?php echo ($user['validate'] === true) ? 'Vérifié' : 'En cours';; ?>
+                        </p>    
                     </td>
+                    <td><?php echo $user['role']; ?></td>
+                    <td><?php echo $user['status'] ?></td>
                     <td><a href="/dashboard/users/show/<?php echo $user['id']; ?>" style="text-decoration: none;"><i class="ri-eye-line"></i></a></td>
                     <td><a href="/dashboard/users/edit/<?php echo $user['id']; ?>" style="text-decoration: none;"><i class='ri-edit-line edit'></i></a></td>
                     <td><a href="/dashboard/users/delete/<?php echo $user['id']; ?>" style="text-decoration: none;"><i class='ri-delete-bin-6-line delete'></i></a></td>

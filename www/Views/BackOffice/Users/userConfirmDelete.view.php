@@ -15,11 +15,9 @@
         <p>Email : <strong><?php echo htmlspecialchars($user['email']); ?></strong></p>
         
         <div class="delete-confirmation-actions">
-            <form action="/dashboard/users/delete/<?php echo $user['id']; ?>" method="post">
-                <input type="hidden" name="id" value="<?php echo $user['id']; ?>">
-                <button type="submit" class="confirm-delete">Confirmer</button>
-            </form>
-            <a href="/dashboard/users" class="cancel-delete">Annuler</a>
+            <?php $this->includeComponent("form", $configFormUserDelete, $errorsForm);?>
+            <br>
+            <a href="/dashboard/users" class="btn btn-danger">Annuler</a>
         </div>
     </div>
 </section>

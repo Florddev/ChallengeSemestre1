@@ -35,6 +35,12 @@ class DB
     {
         $data = $this->getDataObject();
 
+        foreach ($data as $key => $value) {
+            if (is_bool($value)) {
+                $data[$key] = $value ? 'true' : 'false';
+            }
+        }
+
         if(empty($this->getId())){
             $sql = 'INSERT INTO '. DB_PREFIX . strtolower($this->table) . ' (' . implode(',', array_keys($data)) . ') VALUES (:' . implode(',:', array_keys($data)) . ');';
         }else{
