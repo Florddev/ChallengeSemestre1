@@ -40,6 +40,11 @@
   action: getSettings
   template: back
 
+/dashboard/settings/update:
+  controller: BackOffice/Settings
+  action: getCurrentValuesAction
+  template: back
+
 /dashboard/builder-save-article:
   controller: BackOffice/Articles
   action: saveArticle

@@ -113,6 +113,7 @@
     <script src="/assets/dist/js/pageBuilder.js"></script>
     <script src="/assets/dist/js/articleManager.js"></script>
     <script src="/assets/dist/js/draggableInput.js"></script>
+    <script src="/assets/dist/js/settingsCss.js"></script>
     <script>
         _(document).ready(evt => {
             _('[data-plugin="svg"]').forEach(e => _(e).html(loadSVG(_(e).attr("data-svg-src"))));

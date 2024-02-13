@@ -11,30 +11,56 @@ use Cassandra\Date;
 
 class Settings
 {
+
+        private function getCurrentValuesFromDatabase(): array
+        {
+                $SettingModel = new SettingsModel();
+                $variables = ["css:primary", "css:secondary", "css:tercery", "css:main-font1", "css:main-radius", "css:transition-duration"];
+                $currentValues = [];
+
+                foreach ($variables as $variable) {
+                        $setting = $SettingModel->getOneBy(["key" => $variable]);
+                        if ($setting) {
+                                $value = $setting["value"];
+
+                                // Retirer "px" à la fin de "main-radius"
+                                if ($variable === "css:main-radius") {
+                                        $value = rtrim($value, 'px');
+                                }
+
+                                // Retirer "s" à la fin de "transition-duration"
+                                if ($variable === "css:transition-duration") {
+                                        $value = rtrim($value, 's');
+                                }
+                                $currentValues[$variable] = $value;
+                        }
+                }
+
+                return $currentValues;
+        }
+
+        public function getCurrentValuesAction()
+        {
+                $currentValues = $this->getCurrentValuesFromDatabase();
+                header('Content-Type: application/json');
+                echo json_encode($currentValues);
+                exit;
+        }
+
         public function getSettings($data): void
         {
-                //         $setting = new SettingsModel();
-
-                //         $variablesCss = $setting->getAllByLike(["key" => "css:"], "object");
-
-
-                //         $myView = new View("BackOffice/Dashboard/settings", $data["template"]);
-//         $myView->assign("variablesCss", $variablesCss);
-
-
-                //         if ($_SERVER["REQUEST_METHOD"] === "POST") {
-//             $i=0;
-
-                //             foreach ($_POST['values'] as $key F => $value) {
-//                 $variablesCss[$i]->setValue($value);
-//                 $variablesCss[$i]->save();
-//                 $i = $i + 1;
-//             }
-
-                //         }
-
                 $config = (new SettingsCSS())->getConfig();
                 $configCSS = new View("BackOffice/Dashboard/settings", $data["template"]);
+
+                $currentValues = $this->getCurrentValuesFromDatabase();
+
+                foreach ($currentValues as $key => $value) {
+                        if (isset($config["inputs"][$key])) {
+                                // Définir la valeur initiale du champ du formulaire
+                                $config["inputs"][$key]["attrs"]["value"] = $value;
+                        }
+                }
+
                 $configCSS->assign("configSettingsForm", $config);
 
                 if ($_SERVER["REQUEST_METHOD"] == $config["config"]["attrs"]["method"]) {
@@ -58,15 +84,15 @@ class Settings
                         $primary->save();
 
                         $primary = $SettingModel->getOneBy(["key" => "css:main-radius"], "object");
-                        $primary->setValue($_REQUEST["css:main-radius"]."px");
+                        $primary->setValue($_REQUEST["css:main-radius"] . "px");
                         $primary->save();
 
                         $primary = $SettingModel->getOneBy(["key" => "css:transition-duration"], "object");
-                        $primary->setValue($_REQUEST["css:transition-duration"]."s");
+                        $primary->setValue($_REQUEST["css:transition-duration"] . "s");
                         $primary->save();
-
 
                 }
 
         }
+
 }
