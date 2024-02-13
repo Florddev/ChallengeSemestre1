@@ -12,8 +12,8 @@ class SettingsCSS
                     "method" => "POST",
                     "action" => "/", 
                     "class" => "form form-floating",
-                    "id" => "SettingsCSS",
-                ],
+                    "id" => "SettingsCSS",        
+                      ],
                 "submit" => "Valider"
             ],
             "inputs" => [
@@ -105,6 +105,7 @@ class SettingsCSS
                         "class" => "form-field",
                         "required" => true,
                         "min" => 0, // Valeur minimale (ajustez selon vos besoins)
+                        "max" => 50, // Valeur maximale (ajustez selon vos besoins)
                         "step" => 1, // Permet seulement les nombres entiers
                     ],
                     "initOnError" => true
