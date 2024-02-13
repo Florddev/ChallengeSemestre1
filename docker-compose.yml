@@ -13,6 +13,7 @@ services:
 #      - ./server/script.sql:/docker-entrypoint-initdb.d/init-script.sql
   web:
     build: site
+    restart: always
     ports:
       - "80:80"
     volumes:

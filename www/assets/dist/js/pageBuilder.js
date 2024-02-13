@@ -431,6 +431,32 @@ function initSortableContainer() {
 }
 
 
+function initSortableNavigation() {
+    _('.sortable-navigation-container').forEach(e => {
+        new Sortable(e, {
+            group: 'navigation',
+            animation: 150,
+            filter: '.sortable-disabled',
+            ghostClass: 'sortable-placeholder',
+            onAdd: handleSortableAdd
+        });
+    })
+
+    _('.sortable-navigation-models').forEach(e => {
+        new Sortable(e, {
+            group: {
+                name: 'navigation',
+                pull: 'clone',
+                put: false
+            },
+            animation: 150,
+            ghostClass: 'sortable-placeholder',
+            sort: false
+        });
+    });
+}
+
+
 // Fonction pour afficher la zone d'édition pour un élément
 function displayEditorAreaFor(elem) {
     const elemStyle = getComputedStyle(elem);
@@ -618,7 +644,9 @@ async function savePage(){
             id: _("#page-id").val(),
             url: _("#page-url").val(),
             title: _("#page-title").val(),
-            content: minify(_("#page-content").outerHTML)
+            content: minify(_("#page-content").innerHTML),
+            page_header: minify(_("#page-header").innerHTML),
+            page_footer: minify(_("#page-footer").innerHTML),
         },
         success: (result) => {
             if(result !== "") {
@@ -756,6 +784,7 @@ function initializeEditor() {
     initEditorSizeInput();
     initEditorActions();
     initSortableContainer();
+    initSortableNavigation();
 
     document.body.onclick = (e) => {
         if (_(e.target).attr("contenteditable") !== "true") {

@@ -127,27 +127,13 @@
                             <i class="ri-arrow-down-s-line"></i>
                         </label>
                         <div class="accordion-panel">
-                            <div class="components-preview sortable-models">
+                            <div class="components-preview sortable-navigation-models">
                                 <div class="components" data-partial-src="/Views/Partial/Editor/components/navbar1.html">
                                     <label>Navbar</label>
                                     <div class="components-view">
                                         <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Navbar1.svg"></i>
                                     </div>
                                 </div>
-                                <!--
-                                <div class="components">
-                                    <label>Navbar centré</label>
-                                    <div class="components-view">
-                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Navbar2.svg"></i>
-                                    </div>
-                                </div>
-                                <div class="components" data-partial-src="/Views/Partial/Editor/components/navbar1.html">
-                                    <label>Navbar replié</label>
-                                    <div class="components-view">
-                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Navbar3.svg"></i>
-                                    </div>
-                                </div>
-                                -->
                             </div>
                         </div>
                     </div>
@@ -212,6 +198,12 @@
                             <div class="components-preview sortable-models">
                                 <div class="components" data-partial-src="/Views/Partial/Editor/Components/text.html">
                                     <label>Text</label>
+                                    <div class="components-view">
+                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/text.svg"></i>
+                                    </div>
+                                </div>
+                                <div class="components" data-partial-src="/Views/Partial/Editor/Components/dropdown.html">
+                                    <label>Dropdown</label>
                                     <div class="components-view">
                                         <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/text.svg"></i>
                                     </div>
@@ -345,7 +337,9 @@
                         </div>
                         -->
 
+                        <div class="editor-header sortable-navigation-container" id="page-header"><?= $site_navbar ?></div>
                         <div class="main sortable-container editable" editable-popup="false" id="page-content"><?= $currentPage["content"] ?></div>
+                        <div class="editor-footer sortable-navigation-container" id="page-footer"><?= $site_footer ?></div>
 
                     </div>
                 </div>

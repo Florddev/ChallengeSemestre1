@@ -137,6 +137,10 @@ $z_modal: 1000;
         -moz-column-gap: 3rem;
         align-items: center;
         column-gap: 3rem;
+        color: var(--title-color);
+        font-weight: var(--font-semi-bold);
+        transition: color 0.2s;
+        text-decoration: none;
     }
 
     @media screen and (max-width: 1023px) {

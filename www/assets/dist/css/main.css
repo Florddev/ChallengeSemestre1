@@ -38,6 +38,8 @@
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 @media screen and (max-width: 600px) {
@@ -59,8 +61,6 @@
 body {
   font-family: var(--main-font1);
   background-color: var(--white);
-  margin: 0;
-  padding: 0;
 }
 
 input,
@@ -2202,6 +2202,10 @@ img {
   -moz-column-gap: 3rem;
   align-items: center;
   column-gap: 3rem;
+  color: var(--title-color);
+  font-weight: var(--font-semi-bold);
+  transition: color 0.2s;
+  text-decoration: none;
 }
 @media screen and (max-width: 1023px) {
   .navbar .nav__list {
@@ -2790,6 +2794,104 @@ img {
   padding-left: calc(var(--padding-field-x) * 3.4) !important;
 }
 
+.dropdown {
+  --border-radius: 0;
+  position: relative;
+  width: fit-content;
+}
+.dropdown > .dropdown-menu {
+  display: none;
+  list-style: none;
+  position: absolute !important;
+  background-color: white;
+  border: var(--grey) solid 0.0625rem;
+  padding: 0;
+  top: 100%;
+  left: 0;
+  width: max-content;
+  min-width: 150px;
+  animation: dropdown-close 0.3s forwards;
+  border-radius: var(--border-radius);
+}
+.dropdown > .dropdown-menu.right {
+  top: 0;
+  left: 100%;
+}
+.dropdown > .dropdown-menu.left {
+  top: 0;
+  left: unset;
+  right: 100%;
+}
+.dropdown > .dropdown-menu li, .dropdown > .dropdown-menu .dropdown {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+  color: var(--black);
+  text-align: start;
+}
+.dropdown > .dropdown-menu li hr, .dropdown > .dropdown-menu .dropdown hr {
+  width: 80%;
+}
+.dropdown > .dropdown-menu li .dropdown-toggler, .dropdown > .dropdown-menu .dropdown .dropdown-toggler {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px;
+  gap: 20px;
+}
+.dropdown > .dropdown-menu li .dropdown-toggler i, .dropdown > .dropdown-menu .dropdown .dropdown-toggler i {
+  font-size: 12px;
+}
+.dropdown > .dropdown-menu li a, .dropdown > .dropdown-menu .dropdown a {
+  display: block;
+  width: 100%;
+  padding: 5px 20px;
+  text-decoration: none;
+  color: inherit;
+}
+.dropdown > .dropdown-menu li:hover, .dropdown > .dropdown-menu .dropdown:hover {
+  background-color: var(--tercery);
+  color: white;
+}
+.dropdown > .dropdown-menu li:first-child, .dropdown > .dropdown-menu .dropdown:first-child {
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+.dropdown > .dropdown-menu li:last-child, .dropdown > .dropdown-menu .dropdown:last-child {
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+.dropdown:hover > .dropdown-menu, .dropdown:has(.selected-item) > .dropdown-menu {
+  display: block;
+  animation: dropdown-open 0.3s forwards;
+}
+.dropdown:has(.dropdown) .dropdown .dropdown-menu {
+  top: 0 !important;
+  left: 100% !important;
+}
+
+@keyframes dropdown-open {
+  from {
+    display: block;
+    opacity: 0;
+  }
+  to {
+    display: block;
+    opacity: 1;
+  }
+}
+@keyframes dropdown-close {
+  0% {
+    display: block;
+    opacity: 1;
+  }
+  99% {
+    display: block;
+    opacity: 0;
+  }
+  100% {
+    display: none;
+    opacity: 0;
+  }
+}
 .edit-mp {
   width: 100%;
   /* A adapter si besoin */
@@ -3619,10 +3721,6 @@ img {
 .page-builder {
   height: calc(100vh - 5.625rem);
 }
-.page-builder * {
-  margin: 0;
-  padding: 0;
-}
 .page-builder [contenteditable=true] {
   outline: none;
 }
@@ -3837,6 +3935,13 @@ img {
 .page-builder-main-editor .components:not(.sortable-placeholder) {
   display: none;
 }
+.page-builder-main-editor .empty-element {
+  padding: 20px 50px;
+  border: 1px dashed grey;
+}
+.page-builder-main-editor .empty-element:has(> *:not(.sortable-placeholder)) {
+  padding: 0;
+}
 .page-builder-main-editor .editor-container {
   width: 100%;
   border-radius: var(--main-radius);
@@ -3878,13 +3983,19 @@ img {
   display: inline-block;
 }
 .page-builder-main-editor .editor-container .sortable-placeholder {
-  width: 100%;
-  height: 0;
+  width: auto;
+  height: auto;
+  outline: 0.125rem solid var(--tercery);
+  display: block;
+  z-index: 2;
   padding: 0 !important;
   margin: 0 !important;
   position: relative;
-  border: 0.125rem solid var(--tercery);
   overflow: hidden;
+  border-radius: 6px;
+}
+.page-builder-main-editor .editor-container .sortable-placeholder * {
+  display: none;
 }
 .page-builder-main-editor .editor-container .selected-item {
   border-radius: 0;
@@ -3893,6 +4004,7 @@ img {
 .page-builder-main-editor .editor-container .editor-content {
   display: flex;
   flex-direction: column;
+  padding: 1.875rem;
   /* Style pour l'élément popup */
 }
 .page-builder-main-editor .editor-container .editor-content .main {
