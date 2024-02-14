@@ -102,6 +102,10 @@ function convertElementsStyleToClass(source, dest) {
 }
 
 function cleanPageBuilderCode(element){
+    _(element).qsa(".link-container").forEach(e => {
+        changeTagName(e, "a");
+    });
+
     let attrToRemove = ["contenteditable", "draggable", "data-sortable"];
     element.querySelectorAll("*[contenteditable], .editable, .selected-item, .sortable-element, .editable-text, *[draggable], .full-width").forEach(elem => {
         attrToRemove.forEach(attr => elem.removeAttribute(attr));

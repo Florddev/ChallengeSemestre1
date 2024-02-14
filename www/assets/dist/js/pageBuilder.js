@@ -80,6 +80,7 @@ if(_("#state-redo")) _("#state-redo").click(evt => redo());
 // Fonction pour rendre un élément éditable
 function makeElementeditable(elem) {
     if (elem.classList.contains("editable")) {
+        elem.removeEventListener('click', handleElementClick);
         elem.addEventListener('click', handleElementClick);
     }
     if (elem.classList.contains("editable-text")) {
@@ -95,9 +96,10 @@ function makeElementeditable(elem) {
 
 // Gestionnaire de clic sur un élément éditable
 function handleElementClick(event) {
+    // event.preventDefault();
     event.stopPropagation();
-    let elem = event.currentTarget;
 
+    let elem = event.currentTarget;
     if(elem){
         /*
         if (elem.tagName == "IMG" || window.getComputedStyle(elem).backgroundImage !== 'none') {
@@ -105,17 +107,24 @@ function handleElementClick(event) {
         }
         */
         deselectSelectedItem();
+
         if(_(elem).attr("editable-popup") !== "false" && _(elem).attr("contenteditable") !== "true")
-            addPopup(elem);
         elem.classList.add("selected-item");
 
         if(elem.classList.contains("image-container")) {
             _("#editor-setting-image").css("display", "block");
-            //elem = _(elem).qs("img");
+        }
+        if(elem.classList.contains("icon-container")) {
+            _("#editor-setting-icon").css("display", "block");
+        }
+        if(elem.classList.contains("link-container") || hasAncestorWithClass(elem, "link-container")) {
+            _("#editor-setting-link").css("display", "block");
         }
 
         displayEditorAreaFor(elem);
         _('.editor-accordion').forEach(e => _(e).css('display', 'block'));
+
+        addPopup(elem);
 
         //setElementResizable(elem);
     }
@@ -262,14 +271,13 @@ function handleClearAction() {
 // Fonction pour sélectionner le parent avec la classe 'editable'
 function selectParentWithClass(element, className) {
     let parent = element.parentElement;
-
     while (parent && !parent.classList.contains(className)) {
         parent = parent.parentElement;
     }
-
     if (parent && parent.classList.contains(className)) {
         handleElementClick({ currentTarget: parent, stopPropagation: () => { } });
     }
+    // saveState();
 }
 
 
@@ -281,7 +289,6 @@ function initPopupActions(targetElement) {
     popupLiUp.addEventListener('click', (event) => {
         event.stopPropagation(); // Empêcher la propagation du clic à l'élément parent
         selectParentWithClass(targetElement, 'editable');
-        saveState();
     });
 
     const popupLiCopy = document.createElement('li');
@@ -398,8 +405,6 @@ function handleSortableAdd(evt) {
 
     let elem = _(evt.item);
     let initElement = e => {
-
-
         if(e.classList.contains('editable')) makeElementeditable(e);
         if(e.classList.contains('sortable-element')) setSortableToElement(e);
         e.querySelectorAll(".editable").forEach(makeElementeditable);
@@ -456,6 +461,35 @@ function initSortableNavigation() {
     });
 }
 
+function initIconContainer(targetIcon) {
+    let iconContainer = document.getElementById("icon-search-container");
+    _(iconContainer).html("");
+
+    const url = "https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css";
+    fetch(url).then(r => r.text()).then(t => {
+        const rg = new RegExp(".ri-(.*):before", "g");
+        const result = [...t.matchAll(rg)]
+
+        result.forEach(m => {
+            let button = document.createElement("button");
+            let icon = document.createElement("i");
+            let tooltip = document.createElement("span");
+
+            button.className = "button-search-icon";
+
+            icon.classList.add(`ri-${m[1]}`);
+            tooltip.classList.add("tooltip", "tooltip-top", "tooltip-arrow", "text-transform-capitalize");
+            tooltip.textContent = m[1].replaceAll('-fill', ' (fill)').replaceAll('-line', ' (line)').replaceAll('-', ' ');
+
+            button.append(icon, tooltip);
+            iconContainer.append(button);
+
+            _(button).click(evt => {
+                targetIcon.className =  `ri-${m[1]}`;
+            });
+        });
+    });
+}
 
 // Fonction pour afficher la zone d'édition pour un élément
 function displayEditorAreaFor(elem) {
@@ -463,6 +497,10 @@ function displayEditorAreaFor(elem) {
     let initInputsFromPartial = (url, destElement) => {
         partial(url).then((result) => {
             destElement.innerHTML = result;
+
+            if(elem.classList.contains("icon-container")){
+                initIconContainer(_(elem).qs("i"));
+            }
 
             _(destElement).qsa("[edit-class-toggle]").forEach(input => {
                 let i = _(input);
@@ -483,16 +521,40 @@ function displayEditorAreaFor(elem) {
             });
 
             _(destElement).qsa("[edit-attr-input]").forEach(input => {
-                let currentElem = elem.classList.contains("image-container") ? _(elem).qs("img") : elem;
-                let i = _(input), attr = i.attr("edit-attr-input");
+                function initElemAttrEvent(currentElem){
+                    let i = _(input), attr = i.attr("edit-attr-input");
 
-                let currentValue = (_(currentElem).attr(attr) === '' ? '' : _(currentElem).attr(attr));
-                i.val(currentValue);
+                    let currentValue = (_(currentElem).attr(attr) === '' ? '' : _(currentElem).attr(attr));
+                    i.val(currentValue);
 
-                i.change(evt => {
-                    _(currentElem).setAttribute(attr, i.val());
-                    saveState();
-                });
+                    i.change(evt => {
+                        _(currentElem).setAttribute(attr, i.val());
+                        saveState();
+                    });
+                }
+
+                if(elem.classList.contains("image-container"))
+                    initElemAttrEvent(_(elem).qs("img"));
+
+                // else if(elem.classList.contains("icon-container")){
+                //     // initIconContainer(_(elem).qs("i"));
+                //     initElemAttrEvent(elem);
+                //
+                //     _(".button-search-icon").forEach(e => {
+                //         console.log(e);
+                //         // console.log(_(e).qs("i").attr("class"));
+                //     })
+                //
+                //     // console.log(document.getElementById("icon-search-container"));
+                // }
+
+                else if(hasAncestorWithClass(elem, "link-container"))
+                    initElemAttrEvent(getFirstParentWithClass(elem, "link-container"));
+
+                else initElemAttrEvent(elem);
+
+
+                // elem.classList.contains("link-container") || hasAncestorWithClass(elem, "link-container")
             });
 
             _(destElement).qsa("select[edit-mp-input]").forEach((select) => {

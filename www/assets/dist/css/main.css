@@ -69,6 +69,11 @@ button {
   outline: none;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 img {
   max-width: 100%;
   height: auto;
@@ -2842,10 +2847,10 @@ img {
 .dropdown > .dropdown-menu li .dropdown-toggler i, .dropdown > .dropdown-menu .dropdown .dropdown-toggler i {
   font-size: 12px;
 }
-.dropdown > .dropdown-menu li a, .dropdown > .dropdown-menu .dropdown a {
+.dropdown > .dropdown-menu li a, .dropdown > .dropdown-menu li .link-container, .dropdown > .dropdown-menu li .dropdown-toggler, .dropdown > .dropdown-menu .dropdown a, .dropdown > .dropdown-menu .dropdown .link-container, .dropdown > .dropdown-menu .dropdown .dropdown-toggler {
   display: block;
   width: 100%;
-  padding: 5px 20px;
+  padding: 5px 20px !important;
   text-decoration: none;
   color: inherit;
 }
@@ -2892,6 +2897,99 @@ img {
     opacity: 0;
   }
 }
+*:has(> .tooltip) {
+  position: relative;
+  width: max-content;
+}
+*:has(> .tooltip):hover .tooltip {
+  display: block;
+  animation: dropdown-open 0.3s forwards;
+}
+
+.tooltip {
+  position: absolute;
+  width: max-content;
+  max-width: 500px;
+  background-color: #2f3b46;
+  color: white;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 6px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1254901961);
+  font-size: 12px;
+  display: none;
+  z-index: 10;
+  animation: dropdown-close 0.3s forwards;
+}
+.tooltip:hover {
+  animation: dropdown-close 0.3s forwards;
+}
+
+.tooltip-arrow::after {
+  content: " ";
+  position: absolute;
+}
+
+.tooltip-right {
+  top: 50%;
+  left: 105%;
+  transform: translateY(-50%);
+}
+.tooltip-right.tooltip-arrow::after {
+  top: 50%;
+  right: 100%; /* To the left of the tooltip */
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent #2f3b46 transparent transparent;
+}
+
+.tooltip-left {
+  top: 50%;
+  right: 105%;
+  transform: translateY(-50%);
+}
+.tooltip-left.tooltip-arrow::after {
+  top: 50%;
+  left: 100%; /* To the right of the tooltip */
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent #2f3b46;
+}
+
+.tooltip-top {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.tooltip-top.tooltip-arrow::after {
+  top: 100%; /* At the bottom of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #2f3b46 transparent transparent transparent;
+}
+
+.tooltip-bottom {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.tooltip-bottom.tooltip-arrow::after {
+  bottom: 100%; /* At the top of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #2f3b46 transparent;
+}
+
+.text-transform-capitalize {
+  text-transform: capitalize;
+}
+
 .edit-mp {
   width: 100%;
   /* A adapter si besoin */
@@ -3936,10 +4034,11 @@ img {
   display: none;
 }
 .page-builder-main-editor .empty-element {
+  display: block;
   padding: 20px 50px;
   border: 1px dashed grey;
 }
-.page-builder-main-editor .empty-element:has(> *:not(.sortable-placeholder)) {
+.page-builder-main-editor .empty-element:has(> *:not(.sortable-placeholder):not(.action-popup)) {
   padding: 0;
 }
 .page-builder-main-editor .editor-container {
@@ -4044,6 +4143,7 @@ img {
   cursor: pointer;
   letter-spacing: 0 !important;
   line-height: 1.25rem !important;
+  color: var(--white);
 }
 .page-builder-main #editorShutter {
   padding: 1.25rem;
@@ -4116,6 +4216,39 @@ img {
   top: 50%;
   left: 0;
   cursor: e-resize;
+}
+
+#icon-search-container {
+  --spacing: 5px;
+  --icons-per-row: 5;
+  --icons-size: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing);
+}
+#icon-search-container > * {
+  width: calc(100% / var(--icons-per-row) - var(--spacing));
+  aspect-ratio: 1/1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  border-radius: 6px;
+  background-color: #f3fbff;
+  transition: 0.2s ease;
+  z-index: 1;
+  cursor: pointer;
+}
+#icon-search-container > * i {
+  color: #2f3b46;
+  font-size: var(--icons-size);
+}
+#icon-search-container > *:hover {
+  background-color: #e2eef5;
+}
+#icon-search-container > *:active {
+  transform: scale(0.9);
+  z-index: 10;
 }
 
 .page-wrapper-body-container .header-articles-dashboard {

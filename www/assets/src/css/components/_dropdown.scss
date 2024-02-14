@@ -54,10 +54,13 @@
         }
       }
 
-      & a {
+      & a,
+      & .link-container, // Editor
+      & .dropdown-toggler  // Editor
+      {
         display: block;
         width: 100%;
-        padding: 5px 20px;
+        padding: 5px 20px !important;
         text-decoration: none;
         color: inherit;
       }

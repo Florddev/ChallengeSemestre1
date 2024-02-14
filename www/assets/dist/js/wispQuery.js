@@ -255,10 +255,10 @@ function _(selector) {
             if (value !== undefined) element.innerHTML = value;
             else return element.innerHTML;
         };
-        element.text = value => {
-            if (value !== undefined) element.innerText = value;
-            else return element.innerText;
-        };
+        // element.text = value => {
+        //     if (value !== undefined) element.innerText = value;
+        //     else return element.innerText;
+        // };
 
         // Attribute functions
         element.attr = (name, value) => {

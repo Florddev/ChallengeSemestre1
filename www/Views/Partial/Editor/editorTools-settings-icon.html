@@ -1,0 +1,26 @@
+<!--<div class="edit-form-control">-->
+<!--    <div class="edit-form w-100">-->
+<!--        <label>Lien</label>-->
+<!--        <div class="edit-form-inputs">-->
+<!--            <input type="text" placeholder="Entrez un lien..." edit-attr-input="href" id="link" />&lt;!&ndash;oninput="_('#bc-color').attr('value', this.value)"&ndash;&gt;-->
+<!--            &lt;!&ndash;<input type="color" edit-mp-input="border-color" id="bc-color" oninput="_('#bc-text').attr('value', this.value)"/>&ndash;&gt;-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<input type="radio" name="search-icon-choise" id="radio1" value="fill" onclick="searchIcon(_('#search-icon').val(), this.value)" /><label for="radio1">Fill</label>
+<input type="radio" name="search-icon-choise" id="radio2" value="line" onclick="searchIcon(_('#search-icon').val(), this.value)"  /><label for="radio2">Line</label>
+<input type="radio" name="search-icon-choise" id="radio3" value="" onclick="searchIcon(_('#search-icon').val(), this.value)" checked /><label for="radio3">All</label>
+
+<div class="form form-sm form-floating">
+    <div class="form-group">
+        <label for="search-icon" class="form-label">Recherche icon</label>
+        <div class="form-field-group">
+            <input type="text" name="search-icon" id="search-icon" oninput="searchIcon(this.value)" placeholder="" class="form-field" />
+            <div class="form-field-icon discret" onclick="searchIcon(''); _('#search-icon').val('')"><i class="ri-close-fill"></i></div>
+        </div>
+    </div>
+</div>
+
+<!--<input type="hidden" name="search-icon" placeholder="Recherche icon" id="search-icon" oninput="searchIcon(this.value)" />-->
+<div id="icon-search-container"></div>

@@ -208,13 +208,19 @@
                                         <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/text.svg"></i>
                                     </div>
                                 </div>
+                                <div class="components" data-partial-src="/Views/Partial/Editor/Components/icon.html">
+                                    <label>Icon</label>
+                                    <div class="components-view">
+                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/text.svg"></i>
+                                    </div>
+                                </div>
                                 <div class="components" data-partial-src="/Views/Partial/Editor/Components/image.html">
                                     <label>Image</label>
                                     <div class="components-view">
                                         <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/image.svg"></i>
                                     </div>
                                 </div>
-                                <div class="components">
+                                <div class="components" data-partial-src="/Views/Partial/Editor/Components/link.html">
                                     <label>Lien</label>
                                     <div class="components-view">
                                         <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/link.svg"></i>
@@ -277,65 +283,6 @@
             <section class="page-wrapper-body-container page-builder-main-editor">
                 <div class="editor-container" editor-mode="pc">
                     <div class="editor-content">
-                        <!--
-                        <div class="navbar" nav-is-fixed="true">
-                            <nav class="nav container">
-                                <a class="nav__logo" href="#">Wisp' Blog</a>
-                                <div class="nav__menu" data-modal="search">
-                                    <ul class="nav__list sortable-element">
-                                        <li class="nav__item editable"><a class="nav__link" href="#">Accueil</a></li>
-                                        <li class="nav__item editable"><a class="nav__link" href="#">A&nbsp;propos</a>
-                                        </li>
-                                        <li class="nav__item editable"><a class="nav__link" href="#">Blog</a></li>
-                                        <li class="nav__item editable"><a class="nav__link" href="#">Contact</a>
-                                        </li>
-                                    </ul>
-                                    <div class="nav__close" data-modal-toggle="nav-menu">
-                                        <i class="ri-close-line"></i>
-                                    </div>
-                                </div>
-                                <div class="nav__actions">
-                                    <i class="ri-search-line nav__search" data-modal-trigger="search"></i>
-                                    <i class="ri-user-line nav__login" data-modal-trigger="login"></i>
-                                    <div class="nav__toggle" data-modal-toggle="nav-menu">
-                                        <i class="ri-menu-line"></i>
-                                    </div>
-                                </div>
-                            </nav>
-                            <div class="search" data-modal="search">
-                                <form class="search__form" action="">
-                                    <i class="ri-search-line search__icon"></i>
-                                    <input class="search__input" type="search" placeholder="Que recherchez vous ?">
-                                </form>
-                                <i class="ri-close-line search__close" data-modal-toggle="search"></i>
-                            </div>
-                            <div class="login" data-modal="login">
-                                <form class="login__form" action="">
-                                    <h2 class="login__title">Connexion</h2>
-                                    <div class="login__group">
-                                        <div class="login__item">
-                                            <label class="login__label" for="email">Email</label>
-                                            <input class="login__input" type="email" placeholder="Entrez votre email"
-                                                   id="email">
-                                        </div>
-                                        <div class="login__item">
-                                            <label class="login__label" for="password">Password</label>
-                                            <input class="login__input" type="password"
-                                                   placeholder="Entrez votre mot de passe" id="password">
-                                        </div>
-                                    </div>
-                                    <div class="login__register">
-                                        <p class="login__signup">
-                                            Avez-vous un compte ? <a href="#">S'enregistrer</a>
-                                        </p>
-                                        <a class="login__forgot" href="#">Mot de passe oublié</a>
-                                        <button class="btn btn-primary btn-lg" type="button">Se connecter</button>
-                                    </div>
-                                </form>
-                                <i class="ri-close-line login__close" data-modal-toggle="login"></i>
-                            </div>
-                        </div>
-                        -->
 
                         <div class="editor-header sortable-navigation-container" id="page-header"><?= $site_navbar ?></div>
                         <div class="main sortable-container editable" editable-popup="false" id="page-content"><?= $currentPage["content"] ?></div>
@@ -432,12 +379,38 @@
                             <i class="ri-arrow-down-s-line"></i>
                         </label>
                         <div class="accordion-panel editStyle-accordion"
-                             id="editStyle-dimensions"
+                             id="editStyle-image"
                              data-plugin="partial"
                              data-partial-src="/Views/Partial/Editor/editorTools-settings-image.html">
                         </div>
+                        <hr>
                     </div>
-                    <hr>
+                    <div class="accordion editor-accordion-settings" id="editor-setting-link">
+                        <input type="checkbox" />
+                        <label class="accordion-label">
+                            <span>Lien</span>
+                            <i class="ri-arrow-down-s-line"></i>
+                        </label>
+                        <div class="accordion-panel editStyle-accordion"
+                             id="editStyle-link"
+                             data-plugin="partial"
+                             data-partial-src="/Views/Partial/Editor/editorTools-settings-link.html">
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="accordion editor-accordion-settings" id="editor-setting-icon">
+                        <input type="checkbox" />
+                        <label class="accordion-label">
+                            <span>Icon</span>
+                            <i class="ri-arrow-down-s-line"></i>
+                        </label>
+                        <div class="accordion-panel editStyle-accordion"
+                             id="editStyle-icon"
+                             data-plugin="partial"
+                             data-partial-src="/Views/Partial/Editor/editorTools-settings-icon.html">
+                        </div>
+                        <hr>
+                    </div>
                 </div>
             </section>
         </main>
