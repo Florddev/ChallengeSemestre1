@@ -324,10 +324,14 @@ $bars-size: 19vw;
                     outline: none;
                 }
 
-                & .editable[data-sortable="true"]:not(.selected-item):hover::before,
-                & .sortable-element[data-sortable="true"]:not(.selected-item):hover::before,
-                & .editable[data-sortable="true"]:not(.selected-item):active::before,
-                & .sortable-element[data-sortable="true"]:not(.selected-item):focus::before {
+                //& .editable[data-sortable="true"]:not(.selected-item):hover::before,
+                //& .sortable-element[data-sortable="true"]:not(.selected-item):hover::before,
+                //& .editable[data-sortable="true"]:not(.selected-item):active::before,
+                //& .sortable-element[data-sortable="true"]:not(.selected-item):focus::before {
+                & .editable:not(.selected-item):hover::before,
+                & .sortable-element:not(.selected-item):hover::before,
+                & .editable:not(.selected-item):active::before,
+                & .sortable-element:not(.selected-item):focus::before {
                     border: rem(2.2) solid var(--info);
                     box-sizing: border-box;
                     display: inline-block;
@@ -518,7 +522,7 @@ $bars-size: 19vw;
         align-items: center;
         border: 0;
         border-radius: 6px;
-        background-color: #f3fbff;
+        background-color: $light1;
         transition: 0.2s ease;
         z-index: 1;
         cursor: pointer;
@@ -529,7 +533,7 @@ $bars-size: 19vw;
         }
 
         &:hover {
-            background-color: #e2eef5;
+            background-color: $lighter;
         }
         &:active {
             transform: scale(0.9);

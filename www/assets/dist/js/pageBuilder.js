@@ -461,36 +461,206 @@ function initSortableNavigation() {
     });
 }
 
-function initIconContainer(targetIcon) {
-    let iconContainer = document.getElementById("icon-search-container");
-    _(iconContainer).html("");
+const IconSelector = (function () {
+    'use strict';
 
-    const url = "https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css";
-    fetch(url).then(r => r.text()).then(t => {
-        const rg = new RegExp(".ri-(.*):before", "g");
-        const result = [...t.matchAll(rg)]
+    class IconSelector {
+        constructor(container, options) {
+            this.setup_options(options);
+            this.setup_editor(container);
+            this.search_icon();
+            this.set_target();
+        }
 
-        result.forEach(m => {
-            let button = document.createElement("button");
-            let icon = document.createElement("i");
-            let tooltip = document.createElement("span");
+        setup_editor(container) {
+            //this.set_editor_content(content);
+            this.target;
+            this.container = container;
+            this.search = "";
+            this.search_start = "";
+            this.search_endwith = "";
+            this.page = 0;
+            this.total_page = 0;
+            //...
+        }
 
-            button.className = "button-search-icon";
+        setup_options(options) {
+            const default_options = {
+                icon_max_count: 30,
+                pagination_max_page: 4
+            };
+            this.options = Object.assign({}, default_options, options);
+        }
 
-            icon.classList.add(`ri-${m[1]}`);
-            tooltip.classList.add("tooltip", "tooltip-top", "tooltip-arrow", "text-transform-capitalize");
-            tooltip.textContent = m[1].replaceAll('-fill', ' (fill)').replaceAll('-line', ' (line)').replaceAll('-', ' ');
+        update_pagination(page) {
+            if (page < 0 || page >= this.total_page) return;
+            this.page = page;
+            this.update_icons();
+        }
+        search_icon(search = "", endWith) {
+            if (endWith != undefined) this.search_endwith = endWith;
+            this.search = search;
+            this.page = 0;
+            this.update_icons();
+        }
+        set_target(target) {
+            if (target) this.target = target;
+            this.update_icons();
+        }
 
-            button.append(icon, tooltip);
-            iconContainer.append(button);
+        setup_pagination() {
+            let iconPaginationContainer = document.getElementById("icon-search-pagination");
+            iconPaginationContainer.innerHTML = "";
 
-            _(button).click(evt => {
-                targetIcon.className =  `ri-${m[1]}`;
+            let pageLeft = document.createElement("div");
+            pageLeft.classList.add("pagination-left");
+            let pageMiddle = document.createElement("div");
+            pageMiddle.classList.add("pagination-middle");
+            let pageRight = document.createElement("div");
+            pageRight.classList.add("pagination-right");
+
+
+            let previous = document.createElement("button");
+            previous.innerHTML = `<i class="ri-arrow-left-s-line"></i>`;
+            let next = document.createElement("button");
+            next.innerHTML = `<i class="ri-arrow-right-s-line"></i>`;
+
+            if (this.total_page <= 1 || this.page == 0) {
+                previous.setAttribute("disabled", "true");
+            }
+            if (this.total_page == this.page + 1 || this.total_page <= 1) {
+                next.setAttribute("disabled", "true");
+            }
+
+            pageLeft.append(previous);
+
+            let createPaginationButton = (page) => {
+                let pageButton = document.createElement("button");
+                pageButton.innerHTML = page + 1;
+
+                if (page != this.page) {
+                    pageButton.addEventListener("click", evt =>
+                        this.update_pagination(page)
+                    );
+                } else {
+                    pageButton.classList.add("active");
+                }
+
+                pageMiddle.append(pageButton);
+            }
+
+            let lastPageButton = document.createElement("button");
+            lastPageButton.innerHTML = "..." + this.total_page;
+
+            let firstPageButton = document.createElement("button");
+            firstPageButton.innerHTML = "1...";
+
+            if (this.total_page <= 1) {
+                createPaginationButton(0);
+            }
+            else if (this.total_page > this.options.pagination_max_page) {
+
+                if (this.page < Math.ceil(this.options.pagination_max_page / 2)) {
+                    for (var i = 0; i < this.options.pagination_max_page; i++) {
+                        createPaginationButton(i);
+                    }
+                    pageRight.append(lastPageButton);
+                }
+                else {
+                    pageLeft.append(firstPageButton);
+                    let minPage = this.page - Math.ceil(this.options.pagination_max_page / 2) + 1;
+                    let maxPage = this.page + Math.ceil(this.options.pagination_max_page / 2) - 1;
+
+                    if (maxPage < this.total_page - 2) {
+                        for (var i = minPage; i < this.page; i++) {
+                            createPaginationButton(i);
+                        }
+                        for (var i = this.page; i <= maxPage; i++) {
+                            createPaginationButton(i);
+                        }
+
+                        pageRight.append(lastPageButton);
+                    } else {
+                        minPage = (this.total_page - this.options.pagination_max_page);
+                        maxPage = this.total_page - 1;
+
+                        for (var i = minPage; i <= maxPage; i++) {
+                            createPaginationButton(i);
+                        }
+                    }
+                }
+            }
+            else {
+                for (var i = 0; i < this.total_page; i++) {
+                    createPaginationButton(i);
+                }
+            }
+
+
+            lastPageButton.addEventListener("click", evt =>
+                this.update_pagination(this.total_page - 1)
+            );
+            firstPageButton.addEventListener("click", evt =>
+                this.update_pagination(0)
+            );
+
+            pageRight.append(next);
+
+            iconPaginationContainer.append(pageLeft, pageMiddle, pageRight);
+            previous.addEventListener("click", evt => this.update_pagination(this.page - 1));
+            next.addEventListener("click", evt => this.update_pagination(this.page + 1));
+        }
+
+        update_icons() {
+            let iconContainer = this.container;
+            let iconList = [];
+
+            const url = "https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css";
+            fetch(url).then(r => r.text()).then(t => {
+                const rg = new RegExp(`.ri-(.*)${this.search}(.*)${this.search_endwith}:before`, "g");
+                const result = [...t.matchAll(rg)]
+
+                for (var i = 0; i < this.options.icon_max_count; i++) {
+                    let current = result[i + (this.page * this.options.icon_max_count)];
+                    if (current) {
+                        let currentClass = current[0].replace('.ri', 'ri').replace(':before', '');
+
+                        let button = document.createElement("button");
+                        let icon = document.createElement("i");
+                        let tooltip = document.createElement("span");
+
+                        button.className = "button-search-icon";
+
+                        icon.classList.add(currentClass);
+                        tooltip.classList.add("tooltip", "tooltip-top", "tooltip-arrow", "text-transform-capitalize");
+                        tooltip.textContent = currentClass.replaceAll('-fill', ' (fill)')
+                            .replaceAll('-line', ' (line)')
+                            .replaceAll('ri-', '')
+                            .replaceAll('-', ' ');
+
+                        button.append(icon, tooltip);
+                        iconList.push(button)
+
+                        //_(button).click(evt => {
+                        //    targetIcon.className = currentClass;
+                        //});
+                        button.addEventListener("click", evt => {
+                            this.target.className = currentClass;
+                        });
+                    }
+                }
+
+                iconContainer.replaceChildren(...iconList);
+
+                this.total_page = Math.ceil(result.length / this.options.icon_max_count);
+                this.setup_pagination();
             });
-        });
-    });
-}
+        }
+    }
+    return IconSelector;
+})();
 
+let iS;
 // Fonction pour afficher la zone d'édition pour un élément
 function displayEditorAreaFor(elem) {
     const elemStyle = getComputedStyle(elem);
@@ -499,7 +669,14 @@ function displayEditorAreaFor(elem) {
             destElement.innerHTML = result;
 
             if(elem.classList.contains("icon-container")){
-                initIconContainer(_(elem).qs("i"));
+                iS = new IconSelector(
+                    document.getElementById("icon-search-container"),
+                    {
+                        icon_max_count: 30,
+                        pagination_max_page: 4
+                    }
+                );
+                iS.set_target(_(elem).qs("i"));
             }
 
             _(destElement).qsa("[edit-class-toggle]").forEach(input => {
