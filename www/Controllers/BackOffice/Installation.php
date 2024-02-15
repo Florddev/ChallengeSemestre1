@@ -178,6 +178,7 @@ class Installation
                     $siteNameSetting->save();
 
                     $this->InsertDefaultData();
+                    $this->InsertDefaultSettings();
 
                     $beginInstall = new View("BackOffice/Installation/installation_finished", 'install');
                     $beginInstall->assign("loginCreated", $_REQUEST["login"]);
@@ -200,6 +201,39 @@ class Installation
         $page->setMetaDescription("Meta description");
         $page->setIdCreator(1);
         $page->save();
+    }
+
+    private function InsertDefaultSettings(): void 
+    {
+        $settingsCssPrimary = new Settings(); 
+        $settingsCssPrimary->setKey("css:primary");
+        $settingsCssPrimary->setValue("#FF0000");
+        $settingsCssPrimary->save();
+
+        $settingsCssSecondary = new Settings();
+        $settingsCssSecondary->setKey("css:secondary");
+        $settingsCssSecondary->setValue("#00FF00");
+        $settingsCssSecondary->save();
+
+        $settingsCssTercery = new Settings();
+        $settingsCssTercery->setKey("css:tercery");
+        $settingsCssTercery->setValue("#0000FF");
+        $settingsCssTercery->save();
+
+        $settingsCssMainFont1 = new Settings();
+        $settingsCssMainFont1->setKey("css:main-font1");
+        $settingsCssMainFont1->setValue("Plus Jakarta Sans");
+        $settingsCssMainFont1->save();
+
+        $settingsCssMainRadius = new Settings();
+        $settingsCssMainRadius->setKey("css:main-radius");
+        $settingsCssMainRadius->setValue("6px");
+        $settingsCssMainRadius->save();
+
+        $settingsCssTransitionDuration = new Settings();
+        $settingsCssTransitionDuration->setKey("css:transition-duration");
+        $settingsCssTransitionDuration->setValue("0.3s");
+        $settingsCssTransitionDuration->save();
     }
 
     private function InstallBDD(): void {

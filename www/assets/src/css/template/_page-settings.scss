@@ -1,0 +1,48 @@
+.page-settings-container {
+    padding: 2rem;
+
+    h1 {
+        font-size: 30px;
+        color: #7e37d8;
+        margin-bottom: 1rem;
+    }
+
+    .settings-form {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+
+        .setting-input {
+            label {
+                display: block;
+                font-size: 15px;
+                color: #7e37d8;
+                margin-bottom: 0.5rem;
+            }
+
+            input {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 20px;
+                margin-bottom: 1rem;
+            }
+        }
+
+        .save-button {
+            grid-column: span 2;
+            width: 100%;
+            padding: 10px;
+            background-color: #673ab7;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+
+            &:hover {
+                background-color: #5a2d96;
+            }
+        }
+    }
+}

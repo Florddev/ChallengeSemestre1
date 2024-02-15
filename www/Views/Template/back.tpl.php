@@ -70,7 +70,7 @@
                             <h2>Utilisateurs</h2>
                         </div>
                     </a>
-                    <a href="/dashboard">
+                    <a href="/dashboard/settings">
                         <div class="item-sidebar">
                             <i class="ri-settings-4-line"></i>
                             <h2>Paramètres</h2>
@@ -113,6 +113,7 @@
     <script src="/assets/dist/js/pageBuilder.js"></script>
     <script src="/assets/dist/js/articleManager.js"></script>
     <script src="/assets/dist/js/draggableInput.js"></script>
+    <script src="/assets/dist/js/settingsCss.js"></script>
     <script>
         _(document).ready(evt => {
             _('[data-plugin="svg"]').forEach(e => _(e).html(loadSVG(_(e).attr("data-svg-src"))));
