@@ -70,3 +70,59 @@ img {
         width: 100%;
     }
 }
+
+
+.sign {
+    &-container {
+        width: 100vw;
+        height: 100vh;
+        //background-color: var(--light);
+        background: linear-gradient(68.66deg,#e8e2ff 1.3%,#f7f5ff 50%);
+    }
+    &-header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: rem(20) rem(50);
+    }
+    &-body {
+        width: 100%;
+        max-width: rem(500);
+        margin: 0 auto;
+        background-color: var(--white);
+        border-radius: calc(var(--main-radius)*2);
+        padding: rem(40);
+        box-shadow: 0 0 50px rgba($tercery, 0.15);
+
+        & a {
+            color: var(--tercery);
+        }
+
+        & h2 {
+            margin: 0;
+            font-weight: 900;
+            font-size: rem(32);
+        }
+
+        & .small {
+            color: var(--grey);
+            margin: rem(10) 0 rem(30) 0;
+            font-size: rem(14);
+        }
+
+        & small {
+            margin: rem(20) auto;
+        }
+
+        & .btn{
+            width: 100%;
+        }
+
+        & hr {
+            margin: rem(10) 0 rem(20) 0;
+            height: rem(1);
+            background-color: var(--grey);
+            border: 0;
+        }
+    }
+}

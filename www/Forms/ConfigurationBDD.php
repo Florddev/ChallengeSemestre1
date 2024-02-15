@@ -14,7 +14,7 @@ class ConfigurationBDD
                     "id"=>"form-begin-to-install",
                 ],
                 "submit"=>"Valider"
-             ],
+            ],
             "inputs"=>[
                 "db_configuration"=>[
                     "balise"=>"input",

@@ -22,11 +22,11 @@ class Verificator {
                 }
                 // Vérification de la longueur minimale
                 if (isset($input['minlen']) && strlen($data[$name]) < $input['minlen']) {
-                    $errors[$name][] = "La longeur maximal doit être de " . $input['minlen'] . " caratères.";
+                    $errors[$name][] = "La longeur minimal doit être de " . $input['minlen'] . " caratères.";
                 }
                 // Vérification de la longueur maximale
                 if (isset($input['maxlen']) && strlen($data[$name]) > $input['maxlen']) {
-                    $errors[$name][] = "La longeur minimal doit être de " . $input['maxlen'] . " caratères.";
+                    $errors[$name][] = "La longeur maximal doit être de " . $input['maxlen'] . " caratères.";
                 }
                 if (isset($input['confirm'])){
                     if($data[$input['confirm']] !== $data[$name]){
@@ -39,9 +39,14 @@ class Verificator {
                     if($input["attrs"]["type"] == "email" && !self::checkEmail($data[$name])){
                         $errors[$name][]="Email incorrect";
                     }
-                    // Si c'est un mot de passe, vérifier que le format est correct
-                    if($input["attrs"]["type"] == "password" && (!isset($input["verify"]) || $input["verify"]) && !self::checkPassword($data[$name])){
-                        $errors[$name][]="Le mot de passe doit contenir au moins 8 caractères dont majuscule, minuscule et chiffre";
+
+                    if ($input["attrs"]["type"] == "password") {
+                        if (!empty($data[$name])) {
+                            // Si c'est un mot de passe, vérifier que le format est correct
+                            if((!isset($input["verify"]) || $input["verify"]) && !self::checkPassword($data[$name])){
+                                $errors[$name][]="Le mot de passe doit contenir au moins 8 caractères dont majuscule, minuscule et chiffre";
+                            }
+                        }
                     }
                 }
                 // Autres validations nécessaires (par exemple, email, confirmation de mot de passe, etc.)
