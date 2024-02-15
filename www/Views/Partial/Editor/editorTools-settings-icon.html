@@ -1,0 +1,48 @@
+<!--<div class="edit-form-control">-->
+<!--    <div class="edit-form w-100">-->
+<!--        <label>Lien</label>-->
+<!--        <div class="edit-form-inputs">-->
+<!--            <input type="text" placeholder="Entrez un lien..." edit-attr-input="href" id="link" />&lt;!&ndash;oninput="_('#bc-color').attr('value', this.value)"&ndash;&gt;-->
+<!--            &lt;!&ndash;<input type="color" edit-mp-input="border-color" id="bc-color" oninput="_('#bc-text').attr('value', this.value)"/>&ndash;&gt;-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<div class="form form-sm form-floating">-->
+<!--    <div class="form-group">-->
+<!--        <label for="search-icon" class="form-label">Recherche icon</label>-->
+<!--        <div class="form-field-group">-->
+<!--            <input type="text" name="search-icon" id="search-icon" oninput="iS.search_icon(this.value)" placeholder="" class="form-field" />-->
+<!--            <div class="form-field-icon discret" onclick="iS.search_icon(''); _('#search-icon').val('')"><i class="ri-close-fill"></i></div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<div class="edit-form" style="font-weight: 300">
+    <div class="edit-form-inputs">
+        <i class="ri-search-line"></i>
+        <input type="text" name="search-icon" placeholder="Recherchez parmis 2736 Icons" id="search-icon" oninput="iS.search_icon(this.value)" placeholder="" class="form-field" />
+        <i class="ri-close-line" onclick="iS.search_icon(''); _('#search-icon').val('')" style="cursor: pointer"></i>
+    </div>
+</div>
+<div class="edit-form">
+    <label></label>
+    <ul class="edit-form-inputs">
+        <li class="edit-form-toggler">
+            <input type="radio" name="search-icon-choise" id="search-icon-fill" value="fill" onclick="iS.search_icon(_('#search-icon').val(), this.value)" />
+            <label for="search-icon-fill"><i class="ri-square-fill"></i></label>
+        </li>
+        <li class="edit-form-toggler">
+            <input type="radio" name="search-icon-choise" id="search-icon-line" value="line" onclick="iS.search_icon(_('#search-icon').val(), this.value)" />
+            <label for="search-icon-line"><i class="ri-square-line"></i></label>
+        </li>
+        <li class="edit-form-toggler">
+            <input type="radio" name="search-icon-choise" id="search-icon-none" value="" onclick="iS.search_icon(_('#search-icon').val(), this.value)" checked />
+            <label for="search-icon-none"><i class="ri-close-fill"></i></label>
+        </li>
+    </ul>
+</div>
+<hr>
+<!--<input type="hidden" name="search-icon" placeholder="Recherche icon" id="search-icon" oninput="searchIcon(this.value)" />-->
+<div id="icon-search-container"></div>
+<div id="icon-search-pagination" class="pagination"></div>

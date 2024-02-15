@@ -1,0 +1,43 @@
+.pagination {
+  margin-top: 30px;
+  z-index: 11;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+
+  button {
+    border: 1.5px solid #eaebee;
+    border-right: none;
+    background-color: white;
+    padding: 7px 10px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #f8f5fd;
+    }
+
+    &.active {
+      background-color: #7e37d8;
+      color: white;
+      cursor: unset;
+    }
+
+    &:disabled {
+      background-color: #eaebee;
+      cursor: unset;
+    }
+  }
+
+  &-left {
+    button:first-child {
+      border-radius: 6px 0 0 6px;
+    }
+  }
+
+  &-right {
+    button:last-child {
+      border-radius: 0 6px 6px 0;
+      border-right: 1px solid #80808060;
+    }
+  }
+}

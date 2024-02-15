@@ -2,7 +2,6 @@
 namespace App\Forms;
 class ResetPasswordRequest
 {
-
     public function getConfig(): array
     {
         return [

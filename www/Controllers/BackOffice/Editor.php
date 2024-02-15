@@ -6,6 +6,7 @@ use App\Controllers\Error;
 use App\Core\View;
 use App\Models\Article;
 use App\Models\Pages;
+use App\Models\Settings;
 
 class Editor
 {
@@ -17,6 +18,9 @@ class Editor
         $editor->assign("currentPage", $page);
         $editor->assign("host", $host);
         $editor->assign("inPreview", false);
+
+        $editor->assign("site_navbar", Settings::getBy(["key"=>"site:navbar"])->getValue());
+        $editor->assign("site_footer", Settings::getBy(["key"=>"site:footer"])->getValue());
     }
 
     public function savePage($route): void {
@@ -30,6 +34,14 @@ class Editor
         $page->setTitle($title);
         $page->setContent($content);
 
+        $navbar = Settings::getBy(["key"=>"site:navbar"]);
+        $navbar->setValue($_POST["page_header"]);
+        $navbar->save();
+
+        $navbar = Settings::getBy(["key"=>"site:footer"]);
+        $navbar->setValue($_POST["page_footer"]);
+        $navbar->save();
+
         if($page->save()) echo str_replace(" ", "-", strtolower($title));
     }
 
@@ -37,6 +49,8 @@ class Editor
         $page = Pages::populate($idPage);
         $editor = new View("BackOffice/Editor/page", "front");
         $editor->assign("currentPage", $page);
+        $editor->assign("site_navbar", Settings::getBy(["key"=>"site:navbar"])->getValue());
+        $editor->assign("site_footer", Settings::getBy(["key"=>"site:footer"])->getValue());
     }
 
     public function lastArticles($route): void

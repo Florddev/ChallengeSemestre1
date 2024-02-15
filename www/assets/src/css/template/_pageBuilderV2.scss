@@ -3,11 +3,6 @@ $bars-size: 19vw;
 .page-builder {
     height: calc(100vh - rem(90));
 
-    * {
-        margin: 0;
-        padding: 0;
-    }
-
     [contenteditable="true"]{
         outline: none;
 
@@ -269,6 +264,15 @@ $bars-size: 19vw;
                 display: none;
             }
 
+            .empty-element {
+                display: block;
+                padding: 20px 50px;
+                border: 1px dashed grey;
+            }
+            .empty-element:has(> *:not(.sortable-placeholder):not(.action-popup)) {
+                padding: 0;
+            }
+
             & .editor-container {
                 width: 100%;
                 //min-height: 100vh; // TODO: Changer pour fit-content
@@ -320,23 +324,44 @@ $bars-size: 19vw;
                     outline: none;
                 }
 
-                & .editable[data-sortable="true"]:not(.selected-item):hover::before,
-                & .sortable-element[data-sortable="true"]:not(.selected-item):hover::before,
-                & .editable[data-sortable="true"]:not(.selected-item):active::before,
-                & .sortable-element[data-sortable="true"]:not(.selected-item):focus::before {
+                //& .editable[data-sortable="true"]:not(.selected-item):hover::before,
+                //& .sortable-element[data-sortable="true"]:not(.selected-item):hover::before,
+                //& .editable[data-sortable="true"]:not(.selected-item):active::before,
+                //& .sortable-element[data-sortable="true"]:not(.selected-item):focus::before {
+                & .editable:not(.selected-item):hover::before,
+                & .sortable-element:not(.selected-item):hover::before,
+                & .editable:not(.selected-item):active::before,
+                & .sortable-element:not(.selected-item):focus::before {
                     border: rem(2.2) solid var(--info);
                     box-sizing: border-box;
                     display: inline-block;
                 }
 
+                //& .sortable-placeholder {
+                //    width: 100%;
+                //    height: 0;
+                //    padding: 0 !important;
+                //    margin: 0 !important;
+                //    position: relative;
+                //    border: rem(2) solid var(--tercery);
+                //    overflow: hidden;
+                //}
+
                 & .sortable-placeholder {
-                    width: 100%;
-                    height: 0;
+                    width: auto;
+                    height: auto;
+                    outline: rem(2) solid var(--tercery);
+                    display: block;
+                    z-index: 2;
                     padding: 0 !important;
                     margin: 0 !important;
                     position: relative;
-                    border: rem(2) solid var(--tercery);
                     overflow: hidden;
+                    border-radius: 6px;
+
+                    & * {
+                        display: none;
+                    }
                 }
 
                 & .selected-item {
@@ -347,6 +372,7 @@ $bars-size: 19vw;
                 & .editor-content {
                     display: flex;
                     flex-direction: column;
+                    padding: rem(30);
 
                     & .main {
                         //padding-bottom: 50vh;
@@ -390,6 +416,7 @@ $bars-size: 19vw;
                                     cursor: pointer;
                                     letter-spacing: 0 !important;
                                     line-height: rem(20) !important;
+                                    color: var(--white);
                                 }
                             }
                         }
@@ -476,4 +503,41 @@ $bars-size: 19vw;
     top: 50%;
     left: 0;
     cursor: e-resize;
+}
+
+#icon-search-container {
+    --spacing: 5px;
+    --icons-per-row: 5;
+    --icons-size: 22px;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing);
+
+    & > * {
+        width: calc((100%/var(--icons-per-row)) - var(--spacing));
+        aspect-ratio: 1/1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 0;
+        border-radius: 6px;
+        background-color: $light1;
+        transition: 0.2s ease;
+        z-index: 1;
+        cursor: pointer;
+
+        & i {
+            color: #2f3b46;
+            font-size: var(--icons-size);
+        }
+
+        &:hover {
+            background-color: $lighter;
+        }
+        &:active {
+            transform: scale(0.9);
+            z-index: 10;
+        }
+    }
 }

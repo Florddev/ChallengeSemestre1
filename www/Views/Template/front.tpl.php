@@ -12,6 +12,7 @@
 <body>
     <?php include $this->viewName;?>
     <script src="/assets/dist/js/wispQuery.js"></script>
+    <script src="/assets/dist/js/utils.js"></script>
     <script src="/assets/src/js/components/navbar.js"></script>
     <script src="/assets/dist/js/globalPage.js"></script>
     <script> _(document).ready(loadPage); </script>
