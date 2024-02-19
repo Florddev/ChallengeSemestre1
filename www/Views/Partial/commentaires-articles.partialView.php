@@ -88,9 +88,6 @@ en créant le model "Comment" pour la table "comment" de la BDD
 
 <div class="comments-section">
     <!-- Affichage des commentaires existants, s'ils existent -->
-    <pre>
-        <?= print_r($data["Comments"]); ?>
-    </pre>
     <?php if (!empty($data["Comments"])): ?>
         <h2>Commentaires</h2>
         <?php foreach ($data["Comments"] as $comment): ?>
@@ -104,25 +101,43 @@ en créant le model "Comment" pour la table "comment" de la BDD
                     <p><?= htmlspecialchars($comment["content"]) ?></p>
                     <div class="comment-info">
                         <span class="comment-hits">22 HITS</span>
-                        <span class="comment-num-comments">1 COMMENTS</span>
+                        <?php 
+                            $commentInstance = new \App\Models\Comment();
+                            $numResponses = $commentInstance->countResponses($comment["id"]);
+                        ?>
+                        <span class="comment-num-comments"><?= $numResponses ?> COMMENTS</span>
                     </div>
-                </div>
-                <!-- Réponses au commentaire principal, si elles existent -->
-                <?php if (!empty($comment["Responses"])): ?>
-                    <div class="sub-comments">
-                        <?php foreach ($comment["Responses"] as $response): ?>
-                            <div class="comment">
-                                <div class="comment-avatar">
-                                    <img src="https://us.123rf.com/450wm/fayethequeen/fayethequeen2306/fayethequeen230600067/210514302-femme-noire-ic%C3%B4ne-moderne-avatar-femme-africaine-design-abstrait-contemporain-affiche-murale-art.jpg?ver=6" alt="Avatar">
+                    <!-- Réponses au commentaire principal, si elles existent -->
+                    <?php if (!empty($comment["Responses"])): ?>
+                        <div class="sub-comments">
+                            <?php foreach ($comment["Responses"] as $response): ?>
+                                <div class="comment">
+                                    <div class="comment-avatar">
+                                        <img src="https://us.123rf.com/450wm/fayethequeen/fayethequeen2306/fayethequeen230600067/210514302-femme-noire-ic%C3%B4ne-moderne-avatar-femme-africaine-design-abstrait-contemporain-affiche-murale-art.jpg?ver=6" alt="Avatar">
+                                    </div>
+                                    <div class="comment-content">
+                                        <div class="comment-author"><?= htmlspecialchars($response["User"]->getLogin()) ?></div>
+                                        <p><?= htmlspecialchars($response["content"]) ?></p>
+                                    </div>
                                 </div>
-                                <div class="comment-content">
-                                    <div class="comment-author"><?= htmlspecialchars($response["User"]->getLogin()) ?></div>
-                                    <p><?= htmlspecialchars($response["content"]) ?></p>
-                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+                    <!-- Formulaire pour répondre à un commentaire -->
+                    <form action="/dashboard/comments/create" method="POST">
+                        <div class="new-comment">
+                            <div class="new-comment-avatar">
+                                <img src="https://media.istockphoto.com/id/1175286242/vector/screaming-mans-face-in-profile-head-of-a-guy-in-stress-on-the-side-aggression-and-irritation.jpg?s=612x612&w=0&k=20&c=xH3SNF8hMM3oxi8B6S4yVBa2djOT0BZVjV9s1KZm56g=" alt="Your Avatar">
                             </div>
-                        <?php endforeach; ?>
-                    </div>
-                <?php endif; ?>
+                            <div class="new-comment-input-group">
+                                <input type="text" name="comment_content" placeholder="Répondre à ce commentaire...">
+                                <input type="hidden" name="id_article" value="<?= $data['id']; ?>">
+                                <input type="hidden" name="id_comment_response" value="<?= $comment['id']; ?>">
+                                <button type="submit">Envoyer</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         <?php endforeach; ?>
     <?php else: ?>
@@ -139,7 +154,6 @@ en créant le model "Comment" pour la table "comment" de la BDD
                 <input type="text" name="comment_content" placeholder="Laisser un commentaire...">
                 <input type="hidden" name="id_article" value="<?= $data['id']; ?>">
                 <button type="submit">Envoyer</button>
-                <!-- <?= print_r($data) ?> -->
             </div>
         </div>
     </form>

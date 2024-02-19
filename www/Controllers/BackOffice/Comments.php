@@ -9,10 +9,8 @@ use App\Models\User;
 class Comments
 {
     public function createComment($data) {
-
         $userId = 1;
         // $userId = $_SESSION['user_id'] ?? null;
-
 
         // if ($userId === null) {
         //     // Stockez le message d'erreur dans la session
@@ -22,15 +20,16 @@ class Comments
         //     header('Location: /login');
         //     exit;
         // }
-        print_r($_REQUEST);
+
         $comment = new Comment();
         $comment->setIdArticle($_REQUEST["id_article"]);
         $comment->setIdUser($userId);
         $comment->setContent($_REQUEST["comment_content"]);
+        if (isset($_REQUEST["id_comment_response"])) {
+            $comment->setIdCommentResponse($_REQUEST["id_comment_response"]);
+        }
         $comment->setValid("false");
         $comment->save();
-
-        // Rediriger ou renvoyer une réponse
     }
 
     public function validateComment($commentId) {

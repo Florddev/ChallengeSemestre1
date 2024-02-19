@@ -32,7 +32,6 @@ class Articles
                 $article["Comments"][$key]["Responses"][$key2]["datePublication"] = Utils::convertDate($response["created_at"]);
             }
         }
-        print_r($article["Comments"]);
     }
 
     public function articlesBuilder($article): void
