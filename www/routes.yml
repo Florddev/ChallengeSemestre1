@@ -42,6 +42,27 @@
   restricted: false
   template: front
 
+/account:
+  controller: FrontOffice/UserAccount
+  action: userAccount
+  restricted: false
+  template: front
+
+/change-password:
+  controller: FrontOffice/UserAccount
+  action: changePassword
+  template: front
+
+/deactivate-account:
+  controller: FrontOffice/UserAccount
+  action: deactivateAccount
+  template: front
+
+/delete-account:
+  controller: FrontOffice/UserAccount
+  action: deleteAccount
+  template: front
+
 /dashboard:
   controller: BackOffice/Main
   action: home
