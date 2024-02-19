@@ -104,6 +104,7 @@
         </div>
     </div>
     <script src="/assets/dist/js/wispQuery.js"></script>
+    <script src="/assets/dist/js/utils.js"></script>
     <script src="/assets/src/js/components/accordion.js"></script>
     <script src="/assets/src/js/components/navbar.js"></script>
     <script src="/assets/src/js/components/navtab.js"></script>
