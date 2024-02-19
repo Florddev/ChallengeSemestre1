@@ -11,16 +11,21 @@ use App\Models\Settings;
 class Editor
 {
 
-    public function pageBuilder($page): void
+    public function pageBuilder($route): void
     {
-        $host = $_SERVER["REQUEST_SCHEME"]."://".$_SERVER["HTTP_HOST"];
-        $editor = new View("BackOffice/Editor/page-builderV2", "back");
-        $editor->assign("currentPage", $page);
-        $editor->assign("host", $host);
-        $editor->assign("inPreview", false);
-
-        $editor->assign("site_navbar", Settings::getBy(["key"=>"site:navbar"])->getValue());
-        $editor->assign("site_footer", Settings::getBy(["key"=>"site:footer"])->getValue());
+        $page = new Pages();
+        if($page = $page->getOneBy(["id" => $_REQUEST["route_params"]["idPage"]]))
+        {
+            $host = $_SERVER["REQUEST_SCHEME"]."://".$_SERVER["HTTP_HOST"];
+            $editor = new View("BackOffice/Editor/page-builderV2", "back");
+            $editor->assign("currentPage", $page);
+            $editor->assign("host", $host);
+            $editor->assign("inPreview", false);
+    
+            $editor->assign("site_navbar", Settings::getBy(["key"=>"site:navbar"])->getValue());
+            $editor->assign("site_footer", Settings::getBy(["key"=>"site:footer"])->getValue());
+        }
+        else Error::page404();
     }
 
     public function savePage($route): void {

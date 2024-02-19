@@ -13,7 +13,6 @@ class User extends DB
     protected string $login;
     protected string $email;
     protected string $password;
-    protected bool $validate;
     protected string $role;
     protected int $status;
     protected ?string $validation_token;
@@ -82,22 +81,6 @@ class User extends DB
     {
         $password = password_hash($password, PASSWORD_DEFAULT);
         $this->password = $password;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isValidate(): bool
-    {
-        return $this->validate;
-    }
-
-    /**
-     * @param bool $validate
-     */
-    public function setValidate(bool $validate): void
-    {
-        $this->validate = $validate;
     }
 
     /**

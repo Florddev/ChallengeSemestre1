@@ -1,11 +1,23 @@
 <?php
 namespace App\Forms;
+use App\Enums\Role;
+use App\Enums\Status;
 
 class UserCreate
 {
 
     public function getConfig(): array
     {
+        $roleOptions = [];
+        foreach (Role::cases() as $role) {
+            $roleOptions[$role->name] = ["attrs"=>["value"=>(string)$role->value], "text"=>$role->name];
+        }
+
+        $statusOptions = [];
+        foreach (Status::cases() as $status) {
+            $statusOptions[$status->name] = ["attrs"=>["value"=>(string)$status->value], "text"=>$status->name];
+        }
+
         return [
             "config"=> [
                 "attrs"=> [
@@ -58,21 +70,6 @@ class UserCreate
                     "error"=>"Votre mot de passe doit faire plus de 8 caractères avec minuscule et chiffre",
                     "initOnError"=>false
                 ],
-                "validate"=>[
-                    "label"=>"Validé",
-                    "balise"=>"select",
-                    "attrs"=>[
-                        "class"=>"form-field",
-                        "name"=>"validate",
-                        "id"=>"validate",
-                    ],
-                    "options"=>[
-                        "Oui"=>["attrs"=>["value"=>"1"], "text"=>"Oui"],
-                        "Non"=>["attrs"=>["value"=>"0"], "text"=>"Non"],
-                    ],
-                    "error"=>"Veuillez sélectionner une option valide",
-                    "initOnError"=>true
-                ],
                 "role"=>[
                     "label"=>"Rôle",
                     "balise"=>"select",
@@ -82,12 +79,7 @@ class UserCreate
                         "name"=>"role",
                         "id"=>"role",
                     ],
-                    "options"=>[
-                        "User"=>["attrs"=>["value"=>"0"], "text"=>"User"],
-                        "Author"=>["attrs"=>["value"=>"1"], "text"=>"Author"],
-                        "Moderator"=>["attrs"=>["value"=>"2"], "text"=>"Moderator"],
-                        "Admin"=>["attrs"=>["value"=>"3"], "text"=>"Admin"],
-                    ],
+                    "options"=>$roleOptions,
                     "error"=>"Veuillez sélectionner un rôle valide",
                     "initOnError"=>true
                 ],
@@ -97,13 +89,10 @@ class UserCreate
                     "attrs"=>[
                         "class"=>"form-field",
                         "required"=>true,
-                        "name"=>"status", // Assurez-vous que l'attribut name est défini ici plutôt que dans chaque option
-                        "id"=>"status", // Optionnellement, vous pouvez aussi définir un ID pour le select
+                        "name"=>"status",
+                        "id"=>"status",
                     ],
-                    "options"=>[
-                        "Actif"=>["attrs"=>["value"=>"0"], "text"=>"Actif"],
-                        "Inactif"=>["attrs"=>["value"=>"1"], "text"=>"Inactif"],
-                    ],
+                    "options"=>$statusOptions,
                     "error"=>"Veuillez sélectionner un statut valide",
                     "initOnError"=>true
                 ],  

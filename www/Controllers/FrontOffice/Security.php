@@ -5,6 +5,8 @@ namespace App\Controllers\FrontOffice;
 use App\Core\Routing;
 use App\Core\Verificator;
 use App\Core\View;
+use App\Enums\Role;
+use App\Enums\Status;
 use App\Forms\ResetPassword;
 use App\Forms\ResetPasswordRequest;
 use App\Forms\UserInsert;
@@ -156,7 +158,8 @@ class Security
     if ($user) {
         $userModel->setId($user['id']);
         $userModel->setValidationToken('');
-        $userModel->setValidate('true');
+        $userModel->setStatus(Status::Validated->value);
+        $userModel->setRole(Role::User->value);
         $userModel->save();
 
         echo 'Félicitations, votre compte est maintenant validé ! Vous pouvez maintenant vous connecter.';

@@ -56,7 +56,7 @@ class Routing
                 $foundRoute = true;
                 if (!empty($config['params']) && !empty($matches)) {
                     foreach ($config['params'] as $index => $name) {
-                        $_REQUEST[$name] = $matches[$index] ?? null;
+                        $_REQUEST["route_params"][$name] = $matches[$index] ?? null;
                     }
                 }
                 $this->dispatch($route);
@@ -65,96 +65,9 @@ class Routing
         }
     
         if (!$foundRoute) {
-            $this->handleCustomRedirections($uri);
-        }
-    }
-
-    private function handleCustomRedirections(string $uri): void
-    {
-        // Check if page exists in Pages table
-        if ($page = Pages::getBy(["url" => $uri])) {
-            $builder = new Editor();
-            $builder->displayPage($page->getId());
-        } elseif (str_starts_with($uri, "/dashboard/builder/")) {
-            $this->handleDashboardBuilderRedirection($uri);
-        } elseif (str_starts_with($uri, "/dashboard/article/builder/")) {
-            $this->handleDashboardArticleBuilderRedirection($uri);
-        } elseif (str_starts_with($uri, "/article/")) {
-            $this->handleArticleRedirection($uri);
-        } else {
             Error::page404();
         }
     }
-
-    private function handleDashboardBuilderRedirection(string $uri): void
-    {
-        $pages = Pages::populateAllBy([]);
-        $pageFound = null;
-
-        foreach ($pages as $page) {
-            $title = Utils::url_encode($page["title"]);
-            if ("/dashboard/builder/" . $title === $uri) {
-                $pageFound = $page;
-                break;
-            }
-        }
-
-        if ($pageFound !== null) {
-            $builder = new Editor();
-            $builder->pageBuilder($pageFound);
-        } else {
-            Error::page404();
-        }
-    }
-
-    private function handleDashboardArticleBuilderRedirection(string $uri): void
-    {
-        $articles = Article::populateAllBy([]);
-        $articleFound = null;
-
-        foreach ($articles as $article) {
-            $title = Utils::url_encode($article["title"]);
-            if ("/dashboard/article/builder/" . $title === $uri) {
-                $articleFound = $article;
-                break;
-            }
-        }
-
-        if ($articleFound !== null) {
-            $builder = new Articles();
-            $builder->articlesBuilder($articleFound);
-        } else {
-            Error::page404();
-        }
-    }
-
-    private function handleArticleRedirection(string $uri): void
-    {
-        $articles = Article::populateAllBy([]);
-        $articleFound = null;
-
-        foreach ($articles as $article) {
-            $title = Utils::url_encode($article["title"]);
-            if ("/article/" . $title === $uri) {
-                $articleFound = $article;
-                break;
-            }
-        }
-
-        if ($articleFound !== null) {
-            $articleDate = Utils::convertDate($articleFound["published_at"], "Y-m-d");
-            $currentDate = Utils::convertDate(\date("Y-m-d"), "Y-m-d");
-
-            if($articleDate <= $currentDate){
-                $builder = new Articles();
-                $builder->articlesPage($articleFound);
-                return;
-            }
-        }
-
-        Error::page404();
-    }
-
 
     private function dispatch(string $uri): void
     {
@@ -208,13 +121,11 @@ class Routing
     {
         if (!empty($this->listOfRoutes[$uri]["restricted"])) {
             if (empty($_SESSION)) {
-                // Si aucune session n'existe, envoyer sur login
                 Routing::Redirect("FrontOffice/Security", "login");
             } else {
                 $userRole = Role::tryFrom((int)$_SESSION['role']);
 
                 if ($userRole !== null && !empty($this->listOfRoutes[$uri]['roles']) && !in_array($userRole->value, $this->listOfRoutes[$uri]['roles'])) {
-                    // L'utilisateur n'a pas le bon rôle
                     die("Vous n'avez pas les droits pour accéder à cette page");
                 }
             }

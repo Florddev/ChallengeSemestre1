@@ -4,6 +4,8 @@ namespace App\Controllers\BackOffice;
 
 use App\Core\View;
 use App\Core\Verificator;
+use App\Enums\Role;
+use App\Enums\Status;
 use App\Forms\UserCreate;
 use App\Forms\UserDeleteConfirm;
 use App\Forms\UserEdit;
@@ -15,18 +17,45 @@ class User
     {
         $userModel = new UserModel();
         $users = $userModel->getAll();
+
+        $roleNames = [];
+        foreach (Role::cases() as $roleCase) {
+            $roleNames[$roleCase->value] = $roleCase->name;
+        }
+
+        $statusNames = [];
+        foreach (Status::cases() as $statusCase) {
+            $statusNames[$statusCase->value] = $statusCase->name;
+        }
+
         $myView = new View("BackOffice/Users/usersList", $data["template"]);
         $myView->assign("users", $users);
+        $myView->assign("roleNames", $roleNames);
+        $myView->assign("statusNames", $statusNames);
     }
 
     public function showUser($data): void 
     {
         $uriSegments = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
         $userId = end($uriSegments);
+
         $userModel = new UserModel();
         $user = $userModel->getOneBy(['id' => $userId]); 
+
+        $roleNames = [];
+        foreach (Role::cases() as $roleCase) {
+            $roleNames[$roleCase->value] = $roleCase->name;
+        }
+
+        $statusNames = [];
+        foreach (Status::cases() as $statusCase) {
+            $statusNames[$statusCase->value] = $statusCase->name;
+        }
+
         $myView = new View("BackOffice/Users/userDetail", $data["template"]);
         $myView->assign("user", $user);
+        $myView->assign("roleNames", $roleNames);
+        $myView->assign("statusNames", $statusNames);
     }
 
     public function createUser($data): void
@@ -45,7 +74,6 @@ class User
                 $userModel->setLogin($_REQUEST['login']);
                 $userModel->setEmail($_REQUEST['email']);
                 $userModel->setPassword($_REQUEST['password']);
-                $userModel->setValidate($_REQUEST['validate']);
                 $userModel->setRole($_REQUEST['role']);
                 $userModel->setStatus($_REQUEST['status']);
 
@@ -74,6 +102,16 @@ class User
 
         $errors = [];
 
+        $roleNames = [];
+        foreach (Role::cases() as $roleCase) {
+            $roleNames[$roleCase->value] = $roleCase->name;
+        }
+
+        $statusName = [];
+        foreach (Status::cases() as $statusCase) {
+            $statusNames[$statusCase->value] = $statusCase->name;
+        }
+
         if ($_SERVER["REQUEST_METHOD"] == $config["config"]["attrs"]["method"]) {
             $verification = new Verificator();
             if ($verification->checkForm($config, $_REQUEST, $errors))
@@ -85,7 +123,6 @@ class User
                 if (!empty($_REQUEST['password'])) { 
                     $userModel->setPassword($_REQUEST['password']);
                 }
-                $userModel->setValidate($_REQUEST['validate']);
                 $userModel->setRole($_REQUEST['role']);
                 $userModel->setStatus($_REQUEST['status']);
 
@@ -100,6 +137,8 @@ class User
             $myView->assign("configFormUserEdit", $config);
             $myView->assign("errorsForm", $errors);
             $myView->assign("user", $userModel->getOneBy(['id' => $userId]));
+            $myView->assign("roleNames", $roleNames);
+            $myView->assign("statusNames", $statusNames);
         }
     }
 
