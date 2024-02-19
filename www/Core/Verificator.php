@@ -6,6 +6,10 @@ class Verificator {
 
     public function checkForm($config, $data, &$errors = []): bool {
         if(count($config["inputs"]) != count($data)){
+            echo "<pre>";
+            print_r($config["inputs"]);
+            print_r($data);
+            echo "</pre>";
             die("Tentative de Hack");
         } else {
             //CSRF => Important

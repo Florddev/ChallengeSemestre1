@@ -46,7 +46,7 @@
                                 <h2>Articles</h2>
                         </div>
                     </a>
-                    <a href="/dashboard/builder">
+                    <a href="/dashboard/pages">
                         <div class="item-sidebar">
                             <i class="ri-file-copy-2-line"></i>
                             <h2>Pages</h2>

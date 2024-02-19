@@ -89,6 +89,24 @@
   action: getAllArticles
   template: back
 
+
+
+/dashboard/pages:
+  controller: BackOffice/Pages
+  action: getPagesList
+  template: back
+
+/dashboard/pages/create:
+  controller: BackOffice/Pages
+  action: createNewPage
+
+/dashboard/pages/delete/:id:
+  controller: BackOffice/Pages
+  action: deletePage
+  params:
+    - id
+
+
 /dashboard/settings:
   controller: BackOffice/Settings
   action: getSettings
@@ -110,6 +128,9 @@
 /dashboard/builder-save-page:
   controller: BackOffice/Editor
   action: savePage
+
+
+
 
 /dashboard/users:
   controller: BackOffice/User
