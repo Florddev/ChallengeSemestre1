@@ -68,7 +68,21 @@
   action: home
   template: back
   restricted: true
-  roles: [3]
+  roles: [1]
+
+/dashboard/pages/builder/:idPage:
+  controller: BackOffice/Editor
+  action: pageBuilder
+  template: back
+  params:
+    - idPage
+
+/dashboard/articles/builder/:idArticle:
+  controller: BackOffice/Articles
+  action: articlesBuilder
+  template: back
+  params:
+    - idArticle
 
 /dashboard/articles:
   controller: BackOffice/Articles
@@ -88,10 +102,6 @@
 /dashboard/builder-save-article:
   controller: BackOffice/Articles
   action: saveArticle
-
-# /dashboard/builder:
-#  controller: BackOffice/Editor
-#  action: pageBuilder
 
 /dashboard/builder/last-articles:
   controller: BackOffice/Editor
@@ -142,3 +152,10 @@
 /dashboard/comments/create:
   controller: BackOffice/Comments
   action: createComment
+  
+/article/:idArticle:
+  controller: BackOffice/Articles
+  action: articlesPage
+  template: front
+  params:
+    - idArticle

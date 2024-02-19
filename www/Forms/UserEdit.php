@@ -1,5 +1,7 @@
 <?php
 namespace App\Forms;
+use App\Enums\Role;
+use App\Enums\Status;
 
 class UserEdit
 {
@@ -12,6 +14,16 @@ class UserEdit
 
     public function getConfig(): array
     {
+        $roleOptions = [];
+        foreach (Role::cases() as $role) {
+            $roleOptions[$role->name] = ["attrs"=>["value"=>(string)$role->value], "text"=>$role->name];
+        }
+
+        $statusOptions = [];
+        foreach (Status::cases() as $status) {
+            $statusOptions[$status->name] = ["attrs"=>["value"=>(string)$status->value], "text"=>$status->name];
+        }
+
         return [
             "config"=> [
                 "attrs"=> [
@@ -65,22 +77,6 @@ class UserEdit
                         "class"=>"form-field",
                     ],
                 ],
-                "validate"=>[
-                    "label"=>"Validé",
-                    "balise"=>"select",
-                    "attrs"=>[
-                        "class"=>"form-field",
-                        "name"=>"validate",
-                        "id"=>"validate",
-                    ],
-                    "options"=>[
-                        "Oui"=>["attrs"=>["value"=>"1"], "text"=>"Oui"],
-                        "Non"=>["attrs"=>["value"=>"0"], "text"=>"Non"],
-                    ],
-                    "selected"=>$this->userData['validate'] ?? '',
-                    "error"=>"Veuillez sélectionner une option valide",
-                    "initOnError"=>true
-                ],
                 "role"=>[
                     "label"=>"Rôle",
                     "balise"=>"select",
@@ -89,12 +85,7 @@ class UserEdit
                         "id"=>"role",
                         "class"=>"form-field" ,
                     ],
-                    "options"=>[
-                        "User"=>["attrs"=>["value"=>"0"], "text"=>"User"],
-                        "Author"=>["attrs"=>["value"=>"1"], "text"=>"Author"],
-                        "Moderator"=>["attrs"=>["value"=>"2"], "text"=>"Moderator"],
-                        "Admin"=>["attrs"=>["value"=>"3"], "text"=>"Admin"],
-                    ],
+                    "options"=>$roleOptions,
                     "selected"=>$this->userData['role'] ?? '',
                 ],
                 "status"=>[
@@ -105,10 +96,7 @@ class UserEdit
                         "id"=>"status",
                         "class"=>"form-field" ,
                     ],
-                    "options"=>[
-                        "Actif"=>["attrs"=>["value"=>"0"], "text"=>"Actif"],
-                        "Inactif"=>["attrs"=>["value"=>"1"], "text"=>"Inactif"],
-                    ],
+                    "options"=>$statusOptions,
                     "selected"=>$this->userData['status'] ?? '',
                 ],
             ]
