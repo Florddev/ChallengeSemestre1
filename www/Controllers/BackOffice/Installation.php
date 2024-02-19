@@ -4,6 +4,8 @@ namespace App\Controllers\BackOffice;
 
 use App\Core\Verificator;
 use App\Core\View;
+use App\Enums\Role;
+use App\Enums\Status;
 use App\Forms\BeginInstallation;
 use App\Forms\ConfigurationBDD;
 use App\Forms\FinishInstallation;
@@ -168,8 +170,8 @@ class Installation
                     $newUser->setLogin($_REQUEST["login"]);
                     $newUser->setEmail($_REQUEST["email"]);
                     $newUser->setPassword($_REQUEST["password"]);
-                    $newUser->setValidate(true);
-                    //$newUser->setRole(1); // TODO: Déffinir comme administrateur
+                    $newUser->setStatus(Status::Validated->value);
+                    $newUser->setRole(Role::Admin->value);
                     $newUser->save();
 
                     $siteNameSetting = new Settings();
@@ -296,11 +298,10 @@ class Installation
                         "login" VARCHAR(50) NOT NULL,
                         "email" VARCHAR(320) NOT NULL,
                         "password" VARCHAR(255) NOT NULL,
-                        "role" SMALLINT DEFAULT 0,
+                        "role" SMALLINT DEFAULT 4,
                         "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                         "updated_at" TIMESTAMP NULL,
-                        "status" SMALLINT DEFAULT 0,
-                        "validate" BOOLEAN DEFAULT FALSE,
+                        "status" SMALLINT DEFAULT 1,
                         "validation_token" VARCHAR(32) NULL,
                         "reset_token" VARCHAR(255) NULL
                     );'
@@ -329,11 +330,11 @@ class Installation
             $prefix."like_users_articles"=>[
                 "query"=>'
                     CREATE TABLE "'.$prefix.'like_users_articles" (
-                       "id_article" INT NOT NULL,
-                       "id_user" INT NOT NULL,
-                       PRIMARY KEY ("id_article", "id_user"),
-                       FOREIGN KEY ("id_article") REFERENCES "'.$prefix.'article"("id"),
-                       FOREIGN KEY ("id_user") REFERENCES "'.$prefix.'user"("id")
+                        "id_article" INT NOT NULL,
+                        "id_user" INT NOT NULL,
+                        PRIMARY KEY ("id_article", "id_user"),
+                        FOREIGN KEY ("id_article") REFERENCES "'.$prefix.'article"("id"),
+                        FOREIGN KEY ("id_user") REFERENCES "'.$prefix.'user"("id")
                     );'
             ],
 

@@ -2,6 +2,7 @@
 
 namespace App\Controllers\BackOffice;
 
+use App\Controllers\Error;
 use App\Core\Utils;
 use App\Models\Article;
 use App\Models\Category;
@@ -36,21 +37,28 @@ class Articles
 
     public function articlesBuilder($article): void
     {
-        $this->setDataToArticle($article);
-        $editor = new View("BackOffice/Editor/article-builder", "back");
+        $article = new Article();
+        if($article = $article->getOneBy(["id" => $_REQUEST["route_params"]["idArticle"]])) {
+            $this->setDataToArticle($article);
+            $editor = new View("BackOffice/Editor/article-builder", "back");
 
-        $editor->assign("currentArticle", $article);
+            $editor->assign("currentArticle", $article);
 
-        $categories = (new Category())->getAllBy([], "object");
-        $editor->assign("Categories", $categories);
+            $categories = (new Category())->getAllBy([], "object");
+            $editor->assign("Categories", $categories);
+        }
+        else Error::page404();
     }
 
     public function articlesPage($article): void
     {
-        $editor = new View("BackOffice/Editor/article-page", "front");
-
-        $this->setDataToArticle($article);
-        $editor->assign("currentArticle", $article);
+        $article = new Article();
+        if($article = $article->getOneBy(["id" => $_REQUEST["route_params"]["idArticle"]])) {
+            $editor = new View("BackOffice/Editor/article-page", "front");
+            $this->setDataToArticle($article);
+            $editor->assign("currentArticle", $article);
+        }
+        else Error::page404();
     }
 
     public function saveArticle($data): void

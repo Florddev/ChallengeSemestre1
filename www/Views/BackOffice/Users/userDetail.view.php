@@ -12,9 +12,8 @@
         <p>ID: <?= htmlspecialchars($user['id']) ?></p>
         <p>Login: <?= htmlspecialchars($user['login']) ?></p>
         <p>Email: <?= htmlspecialchars($user['email']) ?></p>
-        <p>Compte validé: <?= htmlspecialchars($user['validate']) ? 'Vérifié' : 'En cours' ?></p>
-        <p>Role: <?= htmlspecialchars($user['role']) ?></p>
-        <p>Status: <?= htmlspecialchars($user['status']) ? 'Inactif' : 'Actif' ?></p>
+        <p>Rôle: <?= htmlspecialchars($roleNames[$user['role']]) ?></p>
+        <p>Statut: <?= htmlspecialchars($statusNames[$user['status']]) ?></p>
         <br>
         <a class="btn btn-primary" href="/dashboard/users">Retour à la liste</a>
     </div>

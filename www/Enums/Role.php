@@ -3,8 +3,8 @@
 namespace App\Enums;
 
 enum Role: int {
-    case User = 0;
-    case Author = 1;
+    case Admin = 1;
     case Moderator = 2;
-    case Admin = 3;
+    case Author = 3;
+    case User = 4;
 }

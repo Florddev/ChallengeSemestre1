@@ -24,9 +24,8 @@
                     <th>#</th>
                     <th>Login</th>
                     <th>Email</th>
-                    <th>Validé</th>
                     <th>Rôle</th>
-                    <th>Status</th>
+                    <th>Statut</th>
                     <th>Voir</th>
                     <th>Editer</th>
                     <th>Supprimer</th>
@@ -38,13 +37,8 @@
                     <td class='bold'><?php echo $user['id']; ?></td>
                     <td><?php echo $user['login']; ?></td>
                     <td><?php echo $user['email']; ?></td>
-                    <td>
-                        <p class='<?php echo ($user['validate'] === true) ? 'verifed' : 'pending'; ?>'>
-                            <?php echo ($user['validate'] === true) ? 'Vérifié' : 'En cours';; ?>
-                        </p>    
-                    </td>
-                    <td><?php echo $user['role']; ?></td>
-                    <td><?php echo $user['status'] ?></td>
+                    <td><?php echo htmlspecialchars($roleNames[$user['role']]); ?></td>
+                    <td><?php echo htmlspecialchars($statusNames[$user['status']]); ?></td>
                     <td><a href="/dashboard/users/show/<?php echo $user['id']; ?>" style="text-decoration: none;"><i class="ri-eye-line"></i></a></td>
                     <td><a href="/dashboard/users/edit/<?php echo $user['id']; ?>" style="text-decoration: none;"><i class='ri-edit-line edit'></i></a></td>
                     <td><a href="/dashboard/users/delete/<?php echo $user['id']; ?>" style="text-decoration: none;"><i class='ri-delete-bin-6-line delete'></i></a></td>
