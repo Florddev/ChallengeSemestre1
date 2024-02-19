@@ -101,12 +101,13 @@ class SettingsCSS
                     "label" => "Rayon principal",
                     "balise" => "input",
                     "attrs" => [
-                        "type" => "number", // Utilisation du type number
+                        "type" => "text", // Utilisation du type number
                         "class" => "form-field",
                         "required" => true,
                         "min" => 0, // Valeur minimale (ajustez selon vos besoins)
                         "max" => 50, // Valeur maximale (ajustez selon vos besoins)
                         "step" => 1, // Permet seulement les nombres entiers
+                        "pattern" => ".*px$", 
                     ],
                     "initOnError" => true
                 ],
@@ -114,12 +115,13 @@ class SettingsCSS
                     "label" => "Durée de transition",
                     "balise" => "input",
                     "attrs" => [
-                        "type" => "number", // Utilisation du type number
+                        "type" => "text", 
                         "class" => "form-field",
                         "required" => true,
-                        "min" => 0, // Valeur minimale (ajustez selon vos besoins)
-                        "step" => 0.1, // Permet les nombres à virgule
-                        "max" => 10
+                        "min" => 0, 
+                        "step" => 0.1, 
+                        "max" => 10,
+                        "pattern" => ".*s$", 
                     ],
                     "initOnError" => true
                 ],
