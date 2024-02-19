@@ -5,6 +5,7 @@ namespace App\Controllers\BackOffice;
 use App\Core\Utils;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\User;
 use App\Core\View;
 use Cassandra\Date;
@@ -21,11 +22,7 @@ class Articles
     {
         $article["Category"] = Category::populate($article["id_category"]);
         $article["datePublication"] = Utils::convertDate($article["published_at"]);
-        $article["Creator"] = User::populate($article["id_creator"]);
-
-        // TODO: Créer le model pour les commentaires, et récupérer les commentaires à partir de l'id de l'article
-        // Une fois le model "Comment" créé récupérer tout les commentaires liés à l'article avec:
-        // $article["Comments"] = Comment::populateAllBy(["id_article"=>$article["id"]]);
+        $article["Comments"] = Comment::populateAllBy(["id_article"=>$article["id"]]);
     }
 
     public function articlesBuilder($article): void

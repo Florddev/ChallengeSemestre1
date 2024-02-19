@@ -4588,7 +4588,6 @@ img {
   background-color: #7e37d8;
   box-shadow: none;
 }
-
 .page-settings-container {
   padding: 2rem;
 }
@@ -4628,6 +4627,97 @@ img {
 }
 .page-settings-container .settings-form .save-button:hover {
   background-color: #5a2d96;
+}
+.comments-section {
+  width: 100%;
+  margin: auto;
+  margin-bottom: 2rem;
+}
+.comments-section h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+.comments-section .comment {
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 1rem;
+}
+.comments-section .comment .comment-avatar {
+  flex: 0 0 50px;
+}
+.comments-section .comment .comment-avatar img {
+  width: 100%;
+  border-radius: 50%;
+}
+.comments-section .comment .comment-content {
+  flex: 1;
+  padding-left: 10px;
+}
+.comments-section .comment .comment-content .comment-author {
+  font-weight: bold;
+}
+.comments-section .comment .comment-content .comment-author span {
+  font-weight: normal;
+}
+.comments-section .comment .comment-content p {
+  margin: 5px 0;
+}
+.comments-section .comment .comment-content .comment-info {
+  font-size: 14px;
+  color: #777;
+}
+.comments-section .comment .comment-content .comment-info span {
+  margin-right: 10px;
+}
+.comments-section .sub-comments .comment {
+  margin-bottom: 0;
+  padding-left: 20px;
+  border-left: 2px solid #eee;
+}
+.comments-section .new-comment {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+.comments-section .new-comment .new-comment-avatar {
+  flex: 0 0 50px;
+}
+.comments-section .new-comment .new-comment-avatar img {
+  width: 100%;
+  border-radius: 50%;
+}
+.comments-section .new-comment .new-comment-input-group {
+  position: relative;
+  flex-grow: 1;
+  margin-left: 10px;
+}
+.comments-section .new-comment .new-comment-input-group input {
+  width: 100%;
+  padding-right: 80px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.comments-section .new-comment .new-comment-input-group input:focus {
+  border-color: var(--info);
+  outline: none;
+}
+.comments-section .new-comment .new-comment-input-group button {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 15px;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  background-color: var(--info);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+.comments-section .new-comment .new-comment-input-group button:hover {
+  background-color: #006fe6;
 }
 
 /*# sourceMappingURL=main.css.map */
