@@ -23,15 +23,6 @@ class Settings
                         if ($setting) {
                                 $value = $setting["value"];
 
-                                // Retirer "px" à la fin de "main-radius"
-                                if ($variable === "css:main-radius") {
-                                        $value = rtrim($value, 'px');
-                                }
-
-                                // Retirer "s" à la fin de "transition-duration"
-                                if ($variable === "css:transition-duration") {
-                                        $value = rtrim($value, 's');
-                                }
                                 $currentValues[$variable] = $value;
                         }
                 }
@@ -84,12 +75,24 @@ class Settings
                         $primary->save();
 
                         $primary = $SettingModel->getOneBy(["key" => "css:main-radius"], "object");
-                        $primary->setValue($_REQUEST["css:main-radius"] . "px");
+                        $primary->setValue($_REQUEST["css:main-radius"]);
                         $primary->save();
 
                         $primary = $SettingModel->getOneBy(["key" => "css:transition-duration"], "object");
-                        $primary->setValue($_REQUEST["css:transition-duration"] . "s");
+                        $primary->setValue($_REQUEST["css:transition-duration"]);
                         $primary->save();
+
+                        $Newconfig = (new SettingsCSS())->getConfig();
+                        $NewcurrentValues = $this->getCurrentValuesFromDatabase();
+
+                        foreach ($NewcurrentValues as $key => $value) {
+                          if (isset($config["inputs"][$key])) {
+
+                                $config["inputs"][$key]["attrs"]["value"] = $value;
+                             }
+                        }
+
+                        $configCSS->assign("configSettingsForm", $Newconfig);
 
                 }
 
