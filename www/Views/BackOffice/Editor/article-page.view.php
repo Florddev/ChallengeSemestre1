@@ -75,6 +75,7 @@
             <?= $currentArticle["content"] ?>
         </div>
     </div>
+    <?php print_r($currentArticle) ?>
     <div class="container">
         <?php $this->partial("commentaires-articles", $currentArticle); ?>
     </div>

@@ -22,12 +22,12 @@ class Comments
         //     header('Location: /login');
         //     exit;
         // }
-
+        print_r($_REQUEST);
         $comment = new Comment();
-        $comment->setIdArticle($data["id_article"]);
+        $comment->setIdArticle($_REQUEST["id_article"]);
         $comment->setIdUser($userId);
-        $comment->setContent($data["content"]);
-        $comment->setValid(false);
+        $comment->setContent($_REQUEST["comment_content"]);
+        $comment->setValid("false");
         $comment->save();
 
         // Rediriger ou renvoyer une réponse

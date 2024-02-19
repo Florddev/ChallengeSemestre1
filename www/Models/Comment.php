@@ -8,11 +8,11 @@ class Comment extends DB
 {
     private ?int $id = null;
     protected int $id_article;
-    protected ?int $id_comment_response = null;
+    protected ?int $id_comment_response;
     protected int $id_user;
     protected string $content;
     protected string $created_at;
-    protected bool $valid = false;
+    protected bool $valid;
     protected ?string $validate_at = null;
     protected ?int $id_validator = null;
 

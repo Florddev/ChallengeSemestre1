@@ -89,28 +89,33 @@ en créant le model "Comment" pour la table "comment" de la BDD
 <div class="comments-section">
     
     <!-- Affichage des commentaires existants, s'ils existent -->
-    <?php if (!empty($article["Comments"])): ?>
+    <pre>
+        <?= print_r($data["Comments"]); ?>
+    </pre>
+    <?php if (!empty($data["Comments"])): ?>
         <h2>Commentaires</h2>
-        <?php foreach ($article["Comments"] as $comment): ?>
+        <?php foreach ($data["Comments"] as $comment): ?>
             <div class="comment">
                 <div class="comment-avatar">
                     <!-- Avatar du commentateur -->
-                    <img src="path/to/default/avatar" alt="Avatar">
+                    <img src="https://media.istockphoto.com/id/1175286242/vector/screaming-mans-face-in-profile-head-of-a-guy-in-stress-on-the-side-aggression-and-irritation.jpg?s=612x612&w=0&k=20&c=xH3SNF8hMM3oxi8B6S4yVBa2djOT0BZVjV9s1KZm56g=" alt="Avatar">
                 </div>
                 <div class="comment-content">
-                    <div class="comment-author"><?= htmlspecialchars($comment->getUser()->getName()) ?></div>
-                    <p><?= htmlspecialchars($comment->getContent()) ?></p>
+                    <div class="comment-author"><?= htmlspecialchars($comment["User"]->getLogin()) ?></div>
+                    <p><?= htmlspecialchars($comment["content"]) ?></p>
                 </div>
                 <!-- Réponses au commentaire principal, si elles existent -->
-                <?php if (!empty($comment->getResponses())): ?>
-                    <?php foreach ($comment->getResponses() as $response): ?>
-                        <div class="comment response">
-                            <div class="comment-avatar">
-                                <img src="path/to/responder/avatar" alt="Avatar">
-                            </div>
-                            <div class="comment-content">
-                                <div class="comment-author"><?= htmlspecialchars($response->getUser()->getName()) ?></div>
-                                <p><?= htmlspecialchars($response->getContent()) ?></p>
+                <?php if (!empty($comment["Responses"])): ?>
+                    <?php foreach ($comment["Responses"] as $response): ?>
+                        <div class="sub-comments">
+                            <div class="comment">
+                                <div class="comment-avatar">
+                                    <img src="https://media.istockphoto.com/id/1175286242/vector/screaming-mans-face-in-profile-head-of-a-guy-in-stress-on-the-side-aggression-and-irritation.jpg?s=612x612&w=0&k=20&c=xH3SNF8hMM3oxi8B6S4yVBa2djOT0BZVjV9s1KZm56g=" alt="Avatar">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-author"><?= htmlspecialchars($response["User"]->getLogin()) ?></div>
+                                    <p><?= htmlspecialchars($response["content"]) ?></p>
+                                </div>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -129,8 +134,9 @@ en créant le model "Comment" pour la table "comment" de la BDD
             </div>
             <div class="new-comment-input-group">
                 <input type="text" name="comment_content" placeholder="Laisser un commentaire...">
-                <input type="hidden" name="id_article" value="<?= $article['id'] ?>">
+                <input type="hidden" name="id_article" value="<?= $data['id']; ?>">
                 <button type="submit">Envoyer</button>
+                <!-- <?= print_r($data) ?> -->
             </div>
         </div>
     </form>
