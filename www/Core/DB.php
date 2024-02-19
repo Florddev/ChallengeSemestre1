@@ -123,23 +123,37 @@ class DB
     public function getAllBy(array $data, string $return = "array"): array
     {
         $sql = "SELECT * FROM " . DB_PREFIX . $this->table;
+        $params = [];
 
         if(!empty($data) && count($data) > 0){
             $sql .= " WHERE ";
             foreach ($data as $column => $value) {
-                $sql .= " " . $column . "=:" . $column . " AND";
+                if ($value === null) {
+                    $sql .= " " . $column . " IS NULL AND";
+                } else {
+                    $sql .= " " . $column . "=:" . $column . " AND";
+                    $params[$column] = $value;
+                }
             }
             $sql = rtrim($sql, ' AND') . ";";
         }
 
         $queryPrepared = $this->pdo->prepare($sql);
-        $queryPrepared->execute($data);
+        $queryPrepared->execute($params);
 
         if ($return === "object") {
             $queryPrepared->setFetchMode(\PDO::FETCH_CLASS, get_called_class());
         }
 
         return ($return === "object") ? $queryPrepared->fetchAll() : $queryPrepared->fetchAll(\PDO::FETCH_ASSOC);
+    }
+    
+    public function countResponses(int $id): int
+    {
+        $sql = "SELECT COUNT(*) FROM " . $this->table . " WHERE id_comment_response = :id";
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute(['id' => $id]);
+        return $queryPrepared->fetchColumn();
     }
 
     public function getAllByLike(array $data, string $return = "array"): array

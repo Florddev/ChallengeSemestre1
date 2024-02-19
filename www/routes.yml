@@ -101,8 +101,6 @@
   controller: BackOffice/Editor
   action: savePage
 
-
-
 /dashboard/users:
   controller: BackOffice/User
   action: listUsers
@@ -141,3 +139,6 @@
   params:
     - id
 
+/dashboard/comments/create:
+  controller: BackOffice/Comments
+  action: createComment
