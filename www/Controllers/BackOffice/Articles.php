@@ -22,17 +22,17 @@ class Articles
     {
         $article["Category"] = Category::populate($article["id_category"]);
         $article["datePublication"] = Utils::convertDate($article["published_at"]);
-        $article["Comments"] = Comment::populateAllBy(["id_article"=>$article["id"]]);
+        $article["Comments"] = Comment::populateAllBy(["id_article"=>$article["id"], "id_comment_response" => null]);
         foreach ($article["Comments"] as $key => $comment) {
             $article["Comments"][$key]["User"] = User::populate($comment["id_user"]);
             $article["Comments"][$key]["datePublication"] = Utils::convertDate($comment["created_at"]);
-            $article["Comments"][$key]["Responses"] = Comment::populateAllBy(["id_comment_response"=>$comment["id"], "id_comment_response"=> null]);
+            $article["Comments"][$key]["Responses"] = Comment::populateAllBy(["id_comment_response" => $comment["id"]]);
             foreach ($article["Comments"][$key]["Responses"] as $key2 => $response) {
                 $article["Comments"][$key]["Responses"][$key2]["User"] = User::populate($response["id_user"]);
                 $article["Comments"][$key]["Responses"][$key2]["datePublication"] = Utils::convertDate($response["created_at"]);
             }
         }
-        print_r($article)["Comments"];
+        print_r($article["Comments"]);
     }
 
     public function articlesBuilder($article): void
