@@ -18,8 +18,8 @@
     }
 
     & label.accordion-label {
-        background-color: $white;
-        color: $text-black;
+        background-color: var(--white);
+        color: var(--primary);
         font-weight: 800;
         cursor: pointer;
         width: 100%;
@@ -43,7 +43,7 @@
     }
 
     & .accordion-panel {
-        background-color: $white;
+        background-color: var(--white);
         max-height: 0;
         overflow: hidden;
         transition: all var(--transition-duration) ease-out;

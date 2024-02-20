@@ -43,7 +43,7 @@ $overlayRight: 5;
     }
 
     &::after {
-        border-radius: var(--main-radius);
+        border-radius: calc(var(--main-radius)/2);
         top: 0;
         left: 0;
     }
@@ -148,11 +148,11 @@ $overlayRight: 5;
 
 
     &-multiple {
-        background-color: $light1;
+        background-color: var(--light);
         width: 100%;
-        padding: 6px;
+        padding: rem(6);
         display: flex;
-        gap: 5px;
+        gap: rem(6);
         border-radius: var(--main-radius);
 
         &-child {
@@ -165,8 +165,8 @@ $overlayRight: 5;
 
                 &:checked~label {
                     font-weight: 700;
-                    background-color: $white;
-                    color: $text-black;
+                    background-color: var(--white);
+                    color: var(--primary);
                 }
             }
 
@@ -179,7 +179,7 @@ $overlayRight: 5;
                 text-align: center;
                 font-size: rem(16);
                 font-weight: 500;
-                color: $grey;
+                color: var(--grey);
                 cursor: pointer;
             }
         }

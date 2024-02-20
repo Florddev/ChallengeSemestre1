@@ -27,7 +27,7 @@
         float: left;
         list-style: none;
         height: rem(42);
-        border-bottom: 1px solid var(--borders);
+        border-bottom: rem(1) solid var(--borders);
         width: 100%;
         background-color: var(--bg-2);
 
@@ -35,12 +35,12 @@
             float: left;
             margin: 0;
             cursor: pointer;
-            padding: 0px 21px;
+            padding: rem(0) rem(21);
             height: rem(42);
             line-height: rem(42);
-            border-top: 2px solid var(--borders);
-            border-left: 2px solid var(--borders);
-            border-bottom: 2px solid var(--borders);
+            border-top: rem(2) solid var(--borders);
+            border-left: rem(2) solid var(--borders);
+            border-bottom: rem(2) solid var(--borders);
             background-color: var(--bg-2);
             color: var(--text-2);
             overflow: hidden;
@@ -48,7 +48,7 @@
             transition: var(--transition-duration);
 
             &.tab_last {
-                border-right: 1px solid var(--borders);
+                border-right: rem(1) solid var(--borders);
             }
 
             &:hover {
@@ -58,16 +58,16 @@
             &.active {
                 background-color: var(--bg-3);
                 color: var(--text-1);
-                border-top: 1px solid var(--borders);
-                border-bottom: 1px solid var(--bg-3);
-                // border-right: 1px solid var(--borders);
+                border-top: rem(1) solid var(--borders);
+                border-bottom: rem(1) solid var(--bg-3);
+                // border-right: rem(1) solid var(--borders);
                 display: block;
             }
         }
     }
 
     .tab_container {
-        border: 1px solid var(--borders);
+        border: rem(1) solid var(--borders);
         border-top: none;
         color: var(--text-2);
         clear: both;
@@ -78,7 +78,7 @@
         height: 100%;
 
         .tab_content {
-            // padding: 20px;
+            // padding: rem(20);
             display: none;
         }
     }
@@ -86,7 +86,7 @@
     .tab_drawer_heading {
         display: none;
 
-        @media screen and (max-width: 480px) {
+        @media screen and (max-width: rem(480)) {
             .tabs {
                 display: none;
             }
@@ -94,9 +94,9 @@
             & {
                 background-color: var(--bg-1);
                 color: var(--text-1);
-                border-top: 1px solid var(--bg-2);
+                border-top: rem(1) solid var(--bg-2);
                 margin: 0;
-                padding: 5px 20px;
+                padding: rem(5) rem(20);
                 display: block;
                 cursor: pointer;
 

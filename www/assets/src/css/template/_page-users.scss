@@ -1,10 +1,10 @@
-$primary-bg: #fff;
-$secondary-bg: #f8f8f8;
-$hover-bg: #eaeaea;
-$odd-row-bg: #f2f2f2;
-$border-color: #ddd;
-$text-color: #333;
-$secondary-text-color: #666666ac;
+$primary-bg: var(--white);
+$secondary-bg: var(--white);
+$hover-bg: var(--grey-lighter);
+$odd-row-bg: var(--grey-lighter);
+$border-color: var(--grey-lighter);
+$text-color: var(--primary);
+$secondary-text-color: var(--secondary);
 
 .page-wrapper-body-container {
   .header-users-dashboard {
@@ -14,36 +14,36 @@ $secondary-text-color: #666666ac;
 
     .header-users-dashboard-left {
       h1 {
-        font-size: 30px;
+        font-size: rem(30);
 
         span {
-          color: #7e37d8;
+          color: var(--tercery);
         }
       }
 
       h2 {
-        margin-top: 10px;
+        margin-top: rem(10);
         font-weight: 700;
-        font-size: 15px;
-        color: #7e37d8;
-        letter-spacing: 3px;
+        font-size: rem(15);
+        color: var(--tercery);
+        letter-spacing: rem(3);
       }
     }
     .header-users-dashboard-right {
       display: flex;
       align-items: center;
-      color: #7e37d8;
+      color: var(--tercery);
 
       i {
-        background-color: rgba(126, 55, 216, 0.12);
-        padding: 8px;
+        background-color: var(--primary);
+        padding: rem(8);
         border-radius: 100%;
         font-weight: 500;
         margin-right: 0.5rem;
       }
 
       p {
-        font-size: 14px;
+        font-size: rem(14);
 
         span {
           font-weight: 600;
@@ -56,30 +56,31 @@ $secondary-text-color: #666666ac;
     .table-container {
       width: 100%;
       margin: 0 auto;
-      box-shadow: 0px 0px 25px 0px rgba(126, 55, 216, 0.05);
-      border-radius: 40px;
+      box-shadow: rem(0) rem(0) rem(25) rem(0) rgba(126, 55, 216, 0.05);
+      border-radius: var(--main-radius);
       background: $primary-bg;
+      padding: 4rem 4.5rem;
 
       .title-table-container {
-        padding: 2.5rem 3rem;
-        border-bottom: 1px solid $border-color;
+        padding-bottom: 2.5rem;
+        border-bottom: rem(1) solid $border-color;
         h2 {
           text-transform: capitalize;
           font-weight: 700;
           line-height: 1;
           margin-bottom: 0.7rem;
-          font-size: 18px;
+          font-size: rem(18);
         }
 
         p {
           color: $secondary-text-color;
-          font-size: 14px;
+          font-size: rem(14);
           code {
-            color: #7e37d8 !important;
-            background-color: #f8f5fd;
-            padding: 3px;
-            margin: 0 3px;
-            border-radius: 2px;
+            color: var(--tercery) !important;
+            background-color: var(--white);
+            padding: rem(3);
+            margin: 0 rem(3);
+            border-radius: var(--main-radius);
             font-size: 1em;
           }
         }
@@ -88,95 +89,95 @@ $secondary-text-color: #666666ac;
       .table {
         width: 100%;
         border-collapse: collapse;
-        font-size: 14px;
+        font-size: rem(14);
 
         th,
         td {
           text-align: left;
-          padding: 12px;
-          border-bottom: 1px solid $border-color;
+          padding: rem(12);
+          border-bottom: rem(1) solid $border-color;
         }
 
-        
+
         th {
           background-color: $primary-bg;
         }
-        
+
         tbody {
-          color: #1b3155;
+          color: var(--primary);
           .pending {
             background-color: var(--warning); /* Changez ce code couleur pour la nuance exacte de vert que vous voulez, par exemple #28a745 pour un vert 'succès' de Bootstrap */
-            color: white; /* Pour le texte blanc */
+            color: var(--white); /* Pour le texte blanc */
             padding: 0.25rem 0.5rem; /* Ajustez le remplissage au besoin */
-            border-radius: 4px; /* Pour les coins arrondis */
+            border-radius: var(--main-radius); /* Pour les coins arrondis */
             font-weight: 600; /* Si le texte doit être en gras */
             font-size: 0.875rem; /* Ajustez la taille de la police au besoin */
             display: inline-block; /* Pour s'assurer que le remplissage est appliqué correctement */
           }
           .verifed {
             background-color: var(--success); /* Changez ce code couleur pour la nuance exacte de vert que vous voulez, par exemple #28a745 pour un vert 'succès' de Bootstrap */
-            color: white; /* Pour le texte blanc */
+            color: var(--white); /* Pour le texte blanc */
             padding: 0.25rem 0.5rem; /* Ajustez le remplissage au besoin */
-            border-radius: 4px; /* Pour les coins arrondis */
+            border-radius: var(--main-radius); /* Pour les coins arrondis */
             font-weight: 600; /* Si le texte doit être en gras */
             font-size: 0.875rem; /* Ajustez la taille de la police au besoin */
             // display: inline-block; /* Pour s'assurer que le remplissage est appliqué correctement */
             width: fit-content;
           }
           .delete {
-            background-color: rgba(126, 55, 216, 0.12);
+            background-color: var(--light);
             color: var(--danger);
-            padding: 8px;
+            padding: rem(8);
             border-radius: 100%;
             font-weight: 500;
             margin-right: 0.5rem;
           }
           .edit {
-            background-color: rgba(126, 55, 216, 0.12);
+            background-color: var(--light);
             color: var(--info);
-            padding: 8px;
+            padding: rem(8);
             border-radius: 100%;
             font-weight: 500;
             margin-right: 0.5rem;
           }
           .bold {
             font-weight: bold;
-          }        
+          }
 
           tr:hover {
             background-color: $primary-bg;
-            color: #1b3155;
+            color: var(--secondary);
           }
         }
       }
     }
     .pagination {
-        margin-top: 1rem;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        padding: 1rem 0;
+      margin-top: 1rem;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 1rem 0;
 
-        .page-link {
-            padding: 0.5rem 0.75rem;
-            margin: 0 0.25rem;
-            text-decoration: none;
-            color: #7e37d8;
-            border-radius: 4px;
-            font-size: 14px;
-            background-color: #fff;
-            box-shadow: 0px 3px 6px 0px rgba(126, 55, 216, .16);
+      .page-link {
+        padding: 0.5rem 0.75rem;
+        margin: 0 0.25rem;
+        text-decoration: none;
+        color: var(--tercery);
+        border-radius: var(--main-radius);
+        font-size: rem(14);
+        background-color: var(--white);
+        box-shadow: rem(0) rem(3) rem(6) rem(0) var(--secondary);
 
-            &:hover {
-                background-color: #f2f2f2;
-            }
-
-            &.active {
-                color: #fff;
-                background-color: #7e37d8;
-                box-shadow: none;
-            }
+        &:hover {
+          background-color: var(--white);
         }
+
+        &.active {
+          color: var(--white);
+          background-color: var(--tercery);
+          box-shadow: none;
+        }
+      }
     }
   }
 }   
