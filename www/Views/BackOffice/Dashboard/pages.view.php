@@ -27,8 +27,8 @@
                 <th>Url</th>
                 <th>Date de creation</th>
                 <th>Créé par</th>
-                <th>Date de modification</th>
-                <th>Modifié par</th>
+                <!-- <th>Date de modification</th>
+                <th>Modifié par</th> -->
                 <th>Voir</th>
                 <th>Editer</th>
                 <th>Supprimer</th>
@@ -43,8 +43,8 @@
                     <td><?= $page["url"] ?></td>
                     <td><?= $page["formated_created"] ?></td>
                     <td><?= $page["Creator"]->getLogin() ?></td>
-                    <td><?= empty($page["updated_at"]) ? $page["updated_at"] : '' ?></td>
-                    <td><?= !empty($page["Updator"]) ? $page["Updator"]->getLogin() : '' ?></td>
+                    <!-- <td><?= empty($page["updated_at"]) ? $page["updated_at"] : '' ?></td>
+                    <td><?= !empty($page["Updator"]) ? $page["Updator"]->getLogin() : '' ?></td> -->
                     <td><a href="<?= $page["url"] ?>" style="text-decoration: none;"><i class="ri-eye-line"></i></a></td>
                     <td><a href="/dashboard/pages/builder/<?= $page["id"] ?>" style="text-decoration: none;"><i class='ri-edit-line edit'></i></a></td>
                     <td><a href="/dashboard/pages/delete/<?= $page["id"] ?>" style="text-decoration: none;"><i class='ri-delete-bin-6-line delete'></i></a></td>
