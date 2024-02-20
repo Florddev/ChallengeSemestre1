@@ -12,7 +12,7 @@ class CategoryDeleteConfirm
 
     public function getConfig(): array
     {
-        $actionPath = "/dashboard/categories/delete" . ($this->categoryId ? "/{$this->categoryId}" : "");
+        $actionPath = "/dashboard/articles/categories/delete" . ($this->categoryId ? "/{$this->categoryId}" : "");
 
         return [
             "config"=> [

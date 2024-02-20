@@ -11,7 +11,7 @@
 
 <section>
     <div class="create-user-button-container" style="margin-bottom: 20px; text-align: left;">
-        <a href="/dashboard/categories/create" class="btn btn-primary">Créer une categorie</a>
+        <a href="/dashboard/articles/categories/create" class="btn btn-primary">Créer une categorie</a>
     </div>
     <div class="table-container">
         <div class="title-table-container">
@@ -33,9 +33,9 @@
                 <tr>
                     <td class='bold'><?php echo $category['id']; ?></td>
                     <td><?php echo $category['label']; ?></td>
-                    <td><a href="/dashboard/categories/show/<?php echo $category['id']; ?>" style="text-decoration: none;"><i class="ri-eye-line"></i></a></td>
-                    <td><a href="/dashboard/categories/edit/<?php echo $category['id']; ?>" style="text-decoration: none;"><i class='ri-edit-line edit'></i></a></td>
-                    <td><a href="/dashboard/categories/delete/<?php echo $category['id']; ?>" style="text-decoration: none;"><i class='ri-delete-bin-6-line delete'></i></a></td>
+                    <td><a href="/dashboard/articles/categories/show/<?php echo $category['id']; ?>" style="text-decoration: none;"><i class="ri-eye-line"></i></a></td>
+                    <td><a href="/dashboard/articles/categories/edit/<?php echo $category['id']; ?>" style="text-decoration: none;"><i class='ri-edit-line edit'></i></a></td>
+                    <td><a href="/dashboard/articles/categories/delete/<?php echo $category['id']; ?>" style="text-decoration: none;"><i class='ri-delete-bin-6-line delete'></i></a></td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
