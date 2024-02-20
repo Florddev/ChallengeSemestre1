@@ -37,11 +37,11 @@ $bars-size: rem(350);
   position: relative;
   height: 100vh;
   color: var(--primary);
-  //border: rem(3) solid $grey-lighter;
+  //border: rem(3) solid var(--grey)-lighter;
 
   &-header {
     height: rem(100);
-    //border-bottom: rem(3) solid $grey-lighter;
+    //border-bottom: rem(3) solid var(--grey)-lighter;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -82,7 +82,7 @@ $bars-size: rem(350);
 
       width: 100%;
       position: relative;
-      background-color: $light1;
+      background-color: var(--light);
       overflow-y: scroll;
       color: initial;
     }
@@ -99,17 +99,17 @@ $bars-size: rem(350);
   position: relative;
   max-width: $bars-size;
   //min-width: $bars-size;
-  //border-left: rem(3) solid $grey-lighter;
+  //border-left: rem(3) solid var(--grey)-lighter;
   transition: var(--transition-duration) ease-in-out;
   width: 100%;
-  background-color: $light1;
+  background-color: var(--light);
 
   &-toggler {
     position: absolute;
     width: rem(35);
     height: rem(35);
-    background-color: $white;
-    box-shadow: 0 0 rem(20) rgba($dark, .15);
+    background-color: var(--white);
+    box-shadow: 0 0 rem(20) rgba(var(--primary), .15);
     bottom: rem(20);
     border-radius: var(--main-radius);
     z-index: 10;
@@ -144,10 +144,10 @@ $bars-size: rem(350);
 
     &:hover {
       & label {
-        background-color: $tercery;
+        background-color: var(--tercery);
 
         & i {
-          color: $white;
+          color: var(--white);
         }
       }
     }
@@ -156,11 +156,11 @@ $bars-size: rem(350);
       display: none;
 
       &:checked~label {
-        background-color: $tercery;
+        background-color: var(--tercery);
 
         & i {
           transform: rotate(180deg);
-          color: $white;
+          color: var(--white);
         }
       }
     }

@@ -46,7 +46,7 @@ $bars-size: 19vw;
             }
 
             & .page-url {
-                color: $grey;
+                color: var(--grey);
                 font-weight: 300;
                 display: flex;
             }
@@ -84,10 +84,10 @@ $bars-size: 19vw;
                         justify-content: space-evenly;
                         gap: rem(30);
                         font-size: rem(32);
-                        border-right: rem(3) solid $grey-lighter;
+                        border-right: rem(3) solid var(--grey)-lighter;
 
                         & li {
-                            color: $grey;
+                            color: var(--grey);
                             cursor: pointer;
                             transition: var(--transition-duration);
 
@@ -100,7 +100,7 @@ $bars-size: 19vw;
                                 display: none;
 
                                 &:checked ~ label {
-                                    color: $text-black;
+                                    color: var(--primary);
                                 }
                             }
                         }
@@ -130,7 +130,7 @@ $bars-size: 19vw;
                         }
 
                         & span {
-                            color: $grey;
+                            color: var(--grey);
                             text-transform: uppercase;
                             font-weight: 400;
                         }
@@ -142,7 +142,7 @@ $bars-size: 19vw;
                     align-items: center;
                     font-size: rem(24);
                     gap: rem(30);
-                    color: $grey;
+                    color: var(--grey);
 
                     & i {
                         cursor: pointer;
@@ -150,7 +150,7 @@ $bars-size: 19vw;
                         font-weight: 100;
 
                         &.active {
-                            color: $text-black;
+                            color: var(--primary);
                         }
                     }
                 }
@@ -169,20 +169,20 @@ $bars-size: 19vw;
                 list-style: none;
                 transition: var(--transition-duration);
                 box-sizing: border-box;
-                border-left: rem(3) solid $grey-lighter;
+                border-left: rem(3) solid var(--grey)-lighter;
 
                 & li {
                     cursor: pointer;
                     text-align: center;
 
                     &:hover i {
-                        color: $text-black;
+                        color: var(--primary);
                     }
 
                     & i {
                         transition: var(--transition-duration);
                         font-size: rem(32);
-                        color: $grey;
+                        color: var(--grey);
                     }
                     /*
                     & button {
@@ -237,17 +237,17 @@ $bars-size: 19vw;
                             max-width: 100%;
                             aspect-ratio: 1/0.6;
                             height: fit-content;
-                            fill: $white;
+                            fill: var(--white);
 
-                            stroke: $tercery;
+                            stroke: var(--tercery);
 
                             & path {
-                                fill: $tercery;
-                                stroke: $tercery;
+                                fill: var(--tercery);
+                                stroke: var(--tercery);
                             }
 
                             & rect {
-                                stroke: $tercery;
+                                stroke: var(--tercery);
                             }
                         }
                     }
@@ -317,7 +317,7 @@ $bars-size: 19vw;
                     height: 100%;
                 }
                 & .sortable-element[data-sortable="true"]::before {
-                    border: rem(1) dashed $grey;
+                    border: rem(1) dashed var(--grey);
                 }
 
                 & .editable-text[contenteditable="true"]{
