@@ -14,8 +14,8 @@
 
   --border-radius: var(--main-radius);
 
-  --padding-field-y: rem(10);
-  --padding-field-x: rem(12);
+  --padding-field-y: #{rem(10)};
+  --padding-field-x: #{rem(12)};
 
   --spacing: #{rem(20)};
 
