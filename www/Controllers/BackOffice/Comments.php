@@ -9,36 +9,34 @@ use App\Models\User;
 class Comments
 {
     public function createComment($data) {
-        $userId = 1;
-        // $userId = $_SESSION['user_id'] ?? null;
-
-        // if ($userId === null) {
-        //     // Stockez le message d'erreur dans la session
-        //     $_SESSION['error_message'] = "Vous devez être connecté pour poster un commentaire.";
-
-        //      // Redirection vers la page de connexion
-        //     header('Location: /login');
-        //     exit;
-        // }
-
         $comment = new Comment();
         $comment->setIdArticle($_REQUEST["id_article"]);
-        $comment->setIdUser($userId);
+        $comment->setIdUser($_SESSION["id"]);
         $comment->setContent($_REQUEST["comment_content"]);
         if (isset($_REQUEST["id_comment_response"])) {
             $comment->setIdCommentResponse($_REQUEST["id_comment_response"]);
         }
-        $comment->setValid("false");
+        $comment->setValid(false);
         $comment->save();
+        
+        // Stocker le message dans une variable de session
+        $_SESSION['SucessComment'] = 'Votre commentaire a été envoyé et est en cours de validation.';
+        // Rediriger vers l'article après la soumission du commentaire
+        header('Location: /article/' . $_REQUEST["id_article"]);
+        exit;
     }
 
     public function validateComment($commentId) {
         // Cette fonction devrait être accessible uniquement par les administrateurs
+        $commentId = $_POST['id_comment'];
         $comment = Comment::populate($commentId);
         $comment->setValid(true);
         $comment->save();
 
-        // Rediriger ou renvoyer une réponse
+        $_SESSION['SucessComment'] = 'Votre validation du commentaire a été enregistrée.';
+        // Rediriger vers l'article après la validation du commentaire
+        header('Location: /dashboard/articles/builder/' . $comment->getIdArticle());
+        exit;
     }
 
     public function updateComment($commentId, $newData) {
@@ -46,15 +44,19 @@ class Comments
         $comment = Comment::populate($commentId);
         $comment->setContent($newData["content"]);
         $comment->save();
-
-        // Rediriger ou renvoyer une réponse
     }
 
-    public function deleteComment($commentId) {
-        // Assurez-vous que l'utilisateur est l'auteur du commentaire ou un administrateur
-        $comment = Comment::populate($commentId);
-        $comment->delete();
+    public function deleteComment() {
+        // Récupérer l'ID du commentaire à partir des données POST
+        $commentId = $_POST['id_comment'];
 
-        // Rediriger ou renvoyer une réponse
+        // Récupérer le commentaire à partir de la base de données
+        $comment = Comment::populate($commentId);
+        $comment->delete(['id' => $commentId]);
+
+        $_SESSION['DeleteComment'] = 'Votre commentaire a été supprimé.';
+        // Rediriger vers l'article après la mise à jour du commentaire
+        header('Location: /dashboard/articles/builder/' . $comment->getIdArticle());
+        exit;
     }
 }

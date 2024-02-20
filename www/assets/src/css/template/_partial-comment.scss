@@ -1,112 +1,165 @@
 .comments-section {
-    width: 100%;
-    margin: auto;
-    margin-bottom: 2rem;
+  width: 100%;
+  margin: auto;
+  margin-bottom: 2rem;
 
-    h2 {
-        font-size: rem(24);
-        border-bottom: rem(1) solid #ccc;
-        padding-bottom: rem(10);
+  h2 {
+    font-size: rem(24);
+    border-bottom: rem(1) solid #ccc;
+    padding-bottom: rem(10);
+  }
+
+  .comment-content {
+    flex: 1;
+    padding-left: 10px; // space between avatar and text
+
+    .comment-author {
+      font-weight: bold;
+
+      span {
+        font-weight: normal;
+      }
     }
 
-    .comment {
-        display: flex;
-        margin-top: rem(20);
-        margin-bottom: 1rem;
+    p {
+      margin: 5px 0;
+    }
 
-        .comment-avatar {
-            flex: 0 0 rem(50); // adjust width as needed
+    .comment-info {
+      font-size: 14px;
+      color: #777;
 
-            img {
-                width: 100%;
-                border-radius: 50%;
-            }
-        }
+      span {
+        margin-right: 10px;
+      }
+    }
+
+    .form-group {
+      display: flex;
+      margin-top: 1rem;
+      gap: 10px;
+    }
+  }
+}
+
+.sub-comments {
+  .comment {
+    display: flex;
+    margin-top: rem(20);
+    margin-bottom: 1rem;
+
+    .comment-avatar {
+      flex: 0 0 rem(50); // adjust width as needed
+
+      .new-comment-avatar {
+        flex: 0 0 50px; // Ajustez la taille selon vos besoins
 
         .comment-content {
-            flex: 1;
-            padding-left: rem(10); // space between avatar and text
+          flex: 1;
+          padding-left: rem(10); // space between avatar and text
 
-            .comment-author {
-                font-weight: bold;
+          .comment-author {
+            font-weight: bold;
 
-                span {
-                    font-weight: normal;
-                }
+            span {
+              font-weight: normal;
             }
+          }
 
-            p {
-                margin: rem(5) 0;
+          p {
+            margin: rem(5) 0;
+          }
+
+          .comment-info {
+            font-size: rem(14);
+            color: var(--grey);
+
+            span {
+              margin-right: rem(10);
             }
-
-            .comment-info {
-                font-size: rem(14);
-                color: var(--grey);
-
-                span {
-                    margin-right: rem(10);
-                }
-            }
+          }
         }
-    }
+      }
 
-    .sub-comments {
+      .sub-comments {
         .comment {
-            margin-bottom: 0;
-            padding-left: rem(20); // indent sub-comments
-            border-left: rem(2) solid var(--grey-lighter); // line to connect sub-comments with parent
+          margin-bottom: 0;
+          padding-left: rem(20); // indent sub-comments
+          border-left: rem(2) solid var(--grey-lighter); // line to connect sub-comments with parent
         }
+      }
+
+      button {
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 0 15px;
+        border: none;
+        border-radius: 0 4px 4px 0; // Arrondit uniquement les coins droits
+        background-color: var(--info);
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+
+        &:hover {
+          background-color: darken(#007bff, 5%);
+        }
+      }
+    }
+  }
+}
+
+.new-comment {
+  display: flex;
+  align-items: center; // Align avatar and input group
+  margin-top: rem(20);
+
+  .new-comment-avatar {
+    flex: 0 0 rem(50); // Ajustez la taille selon vos besoins
+
+    .close-button {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
     }
 
-    .new-comment {
-        display: flex;
-        align-items: center; // Align avatar and input group
-        margin-top: rem(20);
+    .new-comment-input-group {
+      position: relative;
+      flex-grow: 1;
+      margin-left: rem(10);
 
-        .new-comment-avatar {
-            flex: 0 0 rem(50); // Ajustez la taille selon vos besoins
+      input {
+        width: 100%;
+        padding-right: rem(80); // Faites de la place pour le bouton
+        padding: rem(10);
+        border: rem(1) solid var(--grey-lighter);
+        border-radius: rem(4);
 
-            img {
-                width: 100%;
-                border-radius: 50%;
-            }
+        &:focus {
+          border-color: var(--info);
+          outline: none;
         }
+      }
 
-        .new-comment-input-group {
-            position: relative;
-            flex-grow: 1;
-            margin-left: rem(10);
+      button {
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 0 rem(15);
+        border: none;
+        border-radius: 0 rem(4) rem(4) 0; // Arrondit uniquement les coins droits
+        background-color: var(--tercery);
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
 
-            input {
-                width: 100%;
-                padding-right: rem(80); // Faites de la place pour le bouton
-                padding: rem(10);
-                border: rem(1) solid var(--grey-lighter);
-                border-radius: rem(4);
-
-                &:focus {
-                    border-color: var(--info);
-                    outline: none;
-                }
-            }
-
-            button {
-                height: 100%;
-                position: absolute;
-                top: 0;
-                right: 0;
-                padding: 0 rem(15);
-                border: none;
-                border-radius: 0 rem(4) rem(4) 0; // Arrondit uniquement les coins droits
-                background-color: var(--tercery);
-                color: white;
-                font-weight: bold;
-                cursor: pointer;
-
-                &:hover {
-                    background-color: var(--tercery-darker);
-                }
-            }
+        &:hover {
+          background-color: var(--tercery-darker);
         }
+      }
     }
+  }
 }

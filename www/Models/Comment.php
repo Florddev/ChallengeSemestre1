@@ -12,7 +12,7 @@ class Comment extends DB
     protected int $id_user;
     protected string $content;
     protected string $created_at;
-    protected bool $valid;
+    protected bool $valid = false;
     protected ?string $validate_at = null;
     protected ?int $id_validator = null;
 

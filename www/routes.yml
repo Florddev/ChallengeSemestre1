@@ -287,6 +287,18 @@
   action: createComment
   restricted: true
   roles: [1]
+
+/dashboard/comments/delete:
+  controller: BackOffice/Comments
+  action: deleteComment
+  restricted: true
+  roles: [1]
+
+/dashboard/comments/validate:
+  controller: BackOffice/Comments
+  action: validateComment
+  restricted: true
+  roles: [1]
   
 /article/:idArticle:
   controller: BackOffice/Articles

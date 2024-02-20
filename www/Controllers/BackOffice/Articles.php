@@ -132,10 +132,14 @@ class Articles
         foreach ($article["Comments"] as $key => $comment) {
             $article["Comments"][$key]["User"] = User::populate($comment["id_user"]);
             $article["Comments"][$key]["datePublication"] = Utils::convertDate($comment["created_at"]);
+            $article["Comments"][$key]["valid"] = $comment["valid"];
+            $article["Comments"][$key]["id"] = $comment["id"];
             $article["Comments"][$key]["Responses"] = Comment::populateAllBy(["id_comment_response" => $comment["id"]]);
             foreach ($article["Comments"][$key]["Responses"] as $key2 => $response) {
                 $article["Comments"][$key]["Responses"][$key2]["User"] = User::populate($response["id_user"]);
                 $article["Comments"][$key]["Responses"][$key2]["datePublication"] = Utils::convertDate($response["created_at"]);
+                $article["Comments"][$key]["Responses"][$key2]["valid"] = $response["valid"];
+                $article["Comments"][$key]["Responses"][$key2]["id"] = $response["id"];
             }
         }
     }
@@ -157,7 +161,7 @@ class Articles
         }
         else Error::page404();
     }
-
+    
     public function articlesPage($article): void
     {
         $editor = new View("BackOffice/Editor/article-page", "front");

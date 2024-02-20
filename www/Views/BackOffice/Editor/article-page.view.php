@@ -3,6 +3,17 @@
     <?= $site_navbar ?>
 
     <div class="container" style="max-width: 1120px; padding-top: 100px; padding-bottom: 50px;">
+        <?php if (isset($_SESSION['SucessComment'])): ?>
+            <div class="alert alert-success" id="success-alert">
+                <?= $_SESSION['SucessComment'] ?>
+            </div>
+            <?php unset($_SESSION['SucessComment']);?>
+            <script>
+                setTimeout(function() {
+                    document.getElementById('success-alert').style.display = 'none';
+                }, 3500);
+            </script>
+        <?php endif; ?>
         <div style="color: rgb(110, 112, 118); text-transform: uppercase; letter-spacing: 2px; font-size: 13px; font-weight: 500;">
             Catégorie: <span id="currentCategory"><?= $currentArticle["Category"]->getLabel() ?></span>
         </div>
@@ -24,7 +35,7 @@
         </div>
     </div>
     <div class="container">
-        <?php $this->partial("commentaires-articles", $currentArticle); ?>
+        <?php $this->partial("commentaires-articles", ['article' => $currentArticle, 'view' => 'page']); ?>
     </div>
 
     <?= $site_footer ?>

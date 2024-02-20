@@ -1,0 +1,44 @@
+.alert {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.alert-success {
+  padding: 10px;
+  border-radius: 6px;
+  background-color: var(--success);
+  color: white;
+}
+
+.alert-danger {
+  padding: 10px;
+  border-radius: 6px;
+  background-color: var(--danger);
+  color: white;
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100%);
+  }
+  60% {
+    transform: translateY(10%);
+  }
+  80% {
+    transform: translateY(-5%);
+  }
+  90% {
+    transform: translateY(10%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+#success-alert {
+  animation: slideDown 1s ease forwards;
+  opacity: 1;
+  transition: opacity 0.5s;
+}
