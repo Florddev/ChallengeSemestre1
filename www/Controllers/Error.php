@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Controllers;
+use App\Core\View;
+
 class Error
 {
 
@@ -8,11 +10,7 @@ class Error
     public static function page404():void
     {
         // Modifier le code http
-        echo "Ma Page 404";
-        if (isset($_SESSION['id'])) {
-            echo "Bonjour " . $_SESSION['id'];
-        } else {
-            echo "Bonjour invité";
-        }
+        $Page404 = new View("BackOffice/Pages/page404");
+
     }
 }
