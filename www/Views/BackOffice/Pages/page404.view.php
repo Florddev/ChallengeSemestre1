@@ -11,7 +11,7 @@
     <!-- Partie gauche avec le texte et le bouton -->
     <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: #f0f0f0; padding: 20px;">
         <p style="text-align: center; font-size: 45px;color:#3498db;font-weight:bold;">Erreur 404</p>
-        <p style="text-align: center; font-size: 18px;">Désolé, la page que vous avez demandée est introuvable.</p>
+        <p style="text-align: center; font-size: 18px;">Désolé, la page que vous avez demandé est introuvable.</p>
         <a href="/" style="text-decoration: none; margin-top: 20px; padding: 15px; background-color: #3498db; color: #ffffff; font-size: 18px;">Accueil</a>
     </div>
 
