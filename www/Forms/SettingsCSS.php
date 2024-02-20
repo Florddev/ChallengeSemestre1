@@ -98,7 +98,7 @@ class SettingsCSS
                     "initOnError" => true
                 ],                
                 "css:main-radius" => [
-                    "label" => "Rayon principal",
+                    "label" => "Radius",
                     "balise" => "input",
                     "attrs" => [
                         "type" => "text", // Utilisation du type number

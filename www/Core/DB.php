@@ -156,6 +156,64 @@ class DB
         return $queryPrepared->fetchColumn();
     }
 
+    public function countAll(): int
+    {
+        $sql = "SELECT COUNT(*) FROM " . DB_PREFIX . $this->table;
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute();
+        return $queryPrepared->fetchColumn();
+    }
+
+    public function countAllValidatedUsers(): int
+    {
+        $sql = "SELECT COUNT(*) FROM " . DB_PREFIX . "user WHERE status = 2";
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute();
+        return $queryPrepared->fetchColumn();
+    }
+
+    public function countAllUnvalidatedUsers(): int
+    {
+        $sql = "SELECT COUNT(*) FROM " . DB_PREFIX . "user WHERE status = 1";
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute();
+        return $queryPrepared->fetchColumn();
+    }
+
+    public function countByLast12Months(): array
+{
+    $currentDate = new \DateTime();
+    $currentMonth = $currentDate->format('n');
+    $currentYear = $currentDate->format('Y');
+
+    $counts = [];
+
+    // Itérer sur les 12 derniers mois
+    for ($i = 0; $i < 12; $i++) {
+        $month = ($currentMonth - $i <= 0) ? 12 + ($currentMonth - $i) : $currentMonth - $i;
+        $year = ($currentMonth - $i <= 0) ? $currentYear - 1 : $currentYear;
+
+        $counts[$i] = $this->countByMonth($month, $year);
+    }
+
+    return $counts;
+}
+
+
+private function countByMonth($month, $year): int
+{
+    $startDate = "$year-$month-01";
+    $endDate = date('Y-m-t', strtotime($startDate));
+
+    $sql = "SELECT COUNT(*) FROM " . DB_PREFIX . $this->table . " WHERE created_at BETWEEN :startDate AND :endDate";
+    $queryPrepared = $this->pdo->prepare($sql);
+    $queryPrepared->bindParam(':startDate', $startDate);
+    $queryPrepared->bindParam(':endDate', $endDate);
+    $queryPrepared->execute();
+
+    return $queryPrepared->fetchColumn();
+}
+
     public function getAllByLike(array $data, string $return = "array"): array
 {
     $sql = "SELECT * FROM " . DB_PREFIX . $this->table;
