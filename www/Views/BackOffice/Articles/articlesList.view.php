@@ -47,7 +47,7 @@
                     <td><?php echo $article['created_at']; ?></td>
                     <!-- <td><?php echo $article['id_updator']; ?></td>
                     <td><?php echo $article['updated_at']; ?></td> -->
-                    <td><?php echo $article['published_at']; ?></td>
+                    <td><?php echo $article['published_at_formated']; ?></td>
                     <td><a href="/article/<?php echo $article['encode_title']; ?>" style="text-decoration: none;"><i class="ri-eye-line"></i></a></td>
                     <td><a href="/dashboard/articles/builder/<?php echo $article['id']; ?>" style="text-decoration: none;"><i class='ri-edit-line edit'></i></a></td>
                     <td><a href="/dashboard/articles/delete/<?php echo $article['id']; ?>" style="text-decoration: none;"><i class='ri-delete-bin-6-line delete'></i></a></td>
@@ -55,12 +55,5 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
-    </div>
-    <div class="pagination">
-        <a href="#" class="page-link">Previous</a>
-        <a href="#" class="page-link active">1</a>
-        <a href="#" class="page-link">2</a>
-        <a href="#" class="page-link">3</a>
-        <a href="#" class="page-link">Next</a>
     </div>
 </section>
