@@ -5,27 +5,27 @@
     </div>
     <div class="header-main-dashboard-right">
         <i class="ri-home-3-line"></i>
-        <p><span>/ Dashboard </span>/ Default</p>
+        <p><span>/ Dashboard </span>/ Accueil </p>
     </div>
 </div>
 
 <div class="stats-container">
-  <div class="stat-card purple">
-    <div class="stat-icon">
-        <i class="ri-line-chart-line"></i>
-    </div>
-    <div class="stat-info">
-      <h3>Nombre de Visites</h3>
-      <p>729 / visites</p>
-    </div>
-  </div>
   <div class="stat-card pink">
     <div class="stat-icon">
-        <i class="ri-folder-user-line"></i>
+        <i class="ri-user-follow-line"></i>
     </div>
     <div class="stat-info">
       <h3>Nombre d'Inscrits</h3>
-      <p>253 / utilisateurs</p>
+      <p><?php echo $countUsersValidated; ?> / utilisateurs</p>
+    </div>
+  </div>
+  <div class="stat-card purple">
+    <div class="stat-icon">
+        <i class="ri-user-add-line"></i>
+    </div>
+    <div class="stat-info">
+      <h3>Utilisateurs en attente</h3>
+      <p><?php echo $countUsersUnvalidated; ?> / utilisateurs</p>
     </div>
   </div>
   <div class="stat-card yellow">
@@ -34,7 +34,7 @@
     </div>
     <div class="stat-info">
       <h3>Nombre d'Articles</h3>
-      <p>27 / articles</p>
+      <p><?php echo $countArticles; ?> / articles</p>
     </div>
   </div>
   <div class="stat-card blue">
@@ -43,39 +43,75 @@
     </div>
     <div class="stat-info">
       <h3>Nb. de Commentaires</h3>
-      <p>1369 / messages</p>
+      <p><?php echo $countComments; ?> / commentaires</p>
     </div>
   </div>
 </div>
 
 <div class="charts-container">
     <div class="chart-days-visite">
-        <h3>Nombre de visites</h3>
-        <div class="chart">
-            <div class="bar bar-pink" style="height: 50%" data-month="J"></div>
-            <div class="bar bar-pink" style="height: 70%" data-month="F"></div>
-            <div class="bar bar-pink" style="height: 30%" data-month="M"></div>
-            <div class="bar bar-pink" style="height: 60%" data-month="A"></div>
-            <div class="bar bar-pink" style="height: 80%" data-month="M"></div>
-            <div class="bar bar-pink" style="height: 90%" data-month="J"></div>
-            <div class="bar bar-blue" style="height: 60%" data-month="J"></div>
-            <div class="bar bar-blue" style="height: 40%" data-month="A"></div>
-            <div class="bar bar-blue" style="height: 50%" data-month="S"></div>
-            <div class="bar bar-blue" style="height: 30%" data-month="O"></div>
-            <div class="bar bar-blue" style="height: 90%" data-month="N"></div>
-            <div class="bar bar-blue" style="height: 40%" data-month="D"></div>
-            <!-- Répétez pour chaque mois, ajustez la hauteur en pourcentage selon vos valeurs -->
-        </div>
+        <h3>Nombre de nouveaux utilisateurs par mois</h3>
+        
+        <canvas id="visitsChart"></canvas>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Récupérer le contexte du canvas
+        var ctx = document.getElementById('visitsChart').getContext('2d');
+
+        // Données pour le graphique
+        var labels = <?php echo json_encode($lastmonths); ?>;
+        var data = <?php echo json_encode($userCountsByMonths); ?>;
+        
+
+        // Configuration du graphique
+        var config = {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Nombre utilisateurs inscrits',
+                    data: data,
+                    backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)',
+                      'rgba(255, 159, 64, 0.2)',
+                      'rgba(255, 205, 86, 0.2)',
+                      'rgba(75, 192, 192, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(153, 102, 255, 0.2)',
+                      'rgba(201, 203, 207, 0.2)'
+                    ],
+                    borderColor: [
+                      'rgb(255, 99, 132)',
+                      'rgb(255, 159, 64)',
+                      'rgb(255, 205, 86)',
+                      'rgb(75, 192, 192)',
+                      'rgb(54, 162, 235)',
+                      'rgb(153, 102, 255)',
+                      'rgb(201, 203, 207)'
+                    ],
+                    borderWidth: 1.5
+                }]
+            }
+        };
+
+        // Création du graphique
+        
+        var myChart = new Chart(ctx, config);
+    });
+</script>
     </div>
-    <div class="chat-number-like-post">
-    <h3>Objectif de likes</h3>
-      <div class="cercle-progression">
-        <svg width="200" height="200">
-          <circle cx="100" cy="100" r="90" class="progress violet" style="stroke-dasharray: 0, 565.48"/>
-          <circle cx="100" cy="100" r="70" class="progress rose" style="stroke-dasharray: 0, 439.82"/>
-          <circle cx="100" cy="100" r="50" class="progress bleu" style="stroke-dasharray: 0, 314.16"/>
-          <text x="100" y="100" class="pourcentage">75%</text>
-        </svg>
-      </div>
+          <div class="stats-container">
+            <div class="stat-card pink">
+              <div class="stat-icon">
+                  <i class="ri-pages-line"></i>
+              </div>
+              <div class="stat-info">
+                <h3>Nombre de pages</h3>
+                <p><?php echo $countPages; ?> / pages</p>
+              </div>
+            </div>
+          </div>
     </div>
 </div>

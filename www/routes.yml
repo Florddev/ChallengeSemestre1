@@ -64,8 +64,8 @@
   template: front
 
 /dashboard:
-  controller: BackOffice/Main
-  action: home
+  controller: BackOffice/Charts
+  action: listCharts
   template: back
   restricted: true
   roles: [1]
