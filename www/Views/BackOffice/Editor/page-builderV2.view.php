@@ -128,7 +128,7 @@
                         </label>
                         <div class="accordion-panel">
                             <div class="components-preview sortable-navigation-models">
-                                <div class="components" data-partial-src="/Views/Partial/Editor/components/navbar1.html">
+                                <div class="components" data-partial-src="/Views/Partial/Editor/Components/navbar1.html">
                                     <label>Navbar</label>
                                     <div class="components-view">
                                         <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Navbar1.svg"></i>
@@ -250,25 +250,25 @@
                         </label>
                         <div class="accordion-panel">
                             <div class="components-preview sortable-models">
-                                <div class="components" data-partial-src="/Views/Partial/Editor/components/container.html">
+                                <div class="components" data-partial-src="/Views/Partial/Editor/Components/container.html">
                                     <label>Container</label>
                                     <div class="components-view">
                                         <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/container.svg"></i>
                                     </div>
                                 </div>
-                                <div class="components" data-partial-src="/Views/Partial/Editor/components/col2.html">
+                                <div class="components" data-partial-src="/Views/Partial/Editor/Components/col2.html">
                                     <label>2 Colonnes</label>
                                     <div class="components-view">
                                         <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/col2.svg"></i>
                                     </div>
                                 </div>
-                                <div class="components" data-partial-src="/Views/Partial/Editor/components/col3.html">
+                                <div class="components" data-partial-src="/Views/Partial/Editor/Components/col3.html">
                                     <label>3 Colonnes</label>
                                     <div class="components-view">
                                         <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/col3.svg"></i>
                                     </div>
                                 </div>
-                                <div class="components" data-partial-src="/Views/Partial/Editor/components/col2_1-3.html">
+                                <div class="components" data-partial-src="/Views/Partial/Editor/Components/col2_1-3.html">
                                     <label>2 Colonnes 1/3</label>
                                     <div class="components-view">
                                         <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/col2_1-3.svg"></i>
