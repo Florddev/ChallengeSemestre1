@@ -219,17 +219,17 @@ class Installation
     {
         $settingsCssPrimary = new Settings(); 
         $settingsCssPrimary->setKey("css:primary");
-        $settingsCssPrimary->setValue("#FF0000");
+        $settingsCssPrimary->setValue("#1c1c2b");
         $settingsCssPrimary->save();
 
         $settingsCssSecondary = new Settings();
         $settingsCssSecondary->setKey("css:secondary");
-        $settingsCssSecondary->setValue("#00FF00");
+        $settingsCssSecondary->setValue("#26263a");
         $settingsCssSecondary->save();
 
         $settingsCssTercery = new Settings();
         $settingsCssTercery->setKey("css:tercery");
-        $settingsCssTercery->setValue("#0000FF");
+        $settingsCssTercery->setValue("#7e37d8");
         $settingsCssTercery->save();
 
         $settingsCssMainFont1 = new Settings();
