@@ -2,8 +2,8 @@
     padding: 2rem;
 
     h1 {
-        font-size: 30px;
-        color: #7e37d8;
+        font-size: rem(30);
+        color: var(--tercery);
         margin-bottom: 1rem;
     }
 
@@ -15,16 +15,16 @@
         .setting-input {
             label {
                 display: block;
-                font-size: 15px;
-                color: #7e37d8;
+                font-size: rem(15);
+                color: var(--tercery);
                 margin-bottom: 0.5rem;
             }
 
             input {
                 width: 100%;
-                padding: 10px;
-                border: 1px solid #ccc;
-                border-radius: 20px;
+                padding: rem(10);
+                border: rem(1) solid var(--white);
+                border-radius: rem(20);
                 margin-bottom: 1rem;
             }
         }
@@ -32,16 +32,16 @@
         .save-button {
             grid-column: span 2;
             width: 100%;
-            padding: 10px;
-            background-color: #673ab7;
-            color: white;
+            padding: rem(10);
+            background-color: var(--tercery);
+            color: var(--white);
             border: none;
-            border-radius: 4px;
+            border-radius: rem(4);
             cursor: pointer;
             font-weight: 500;
 
             &:hover {
-                background-color: #5a2d96;
+                background-color: var(--tercery);
             }
         }
     }

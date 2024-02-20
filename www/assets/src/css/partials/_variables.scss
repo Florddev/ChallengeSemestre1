@@ -5,8 +5,7 @@ $grey: #6C7570;
 $blue: #0D6EFD;
 $red: #dc3545;
 
-
-$dark: #2c323f;
+$dark: #1b254b;
 $primary: #1c1c2b;
 $secondary: #26263a;
 $tercery: #7e37d8;
@@ -16,7 +15,6 @@ $warning: #FFC700;
 $info: #39C0ED;
 $danger: #F1416C;
 $success: #50CD89;
-
 
 $text-black: #1b254b;
 $white: #fff;
@@ -35,34 +33,34 @@ $grey-lighter: #eaebee;
     --red: #{$red};
     --blue-darker: #{darken($blue, 10%)};
     --grey-darker: #{darken($grey, 10%)};
+    --grey-lighter: #{$grey-lighter};
     --red-darker: #{darken($red, 10%)};
-
 
     --dark: #{$dark};
 
     --primary: #{$primary};
-    --primary-darker: #{darken($primary, 10%)};
+    --primary-darker: color-mix(in srgb,var(--primary),#000 20%);
 
     --secondary: #{$secondary};
-    --secondary-darker: #{darken($secondary, 10%)};
+    --secondary-darker: color-mix(in srgb,var(--secondary),#000 20%);
 
     --tercery: #{$tercery};
-    --tercery-darker: #{darken($tercery, 10%)};
+    --tercery-darker: color-mix(in srgb,var(--tercery),#000 20%);
 
     --light: #{$light1};
-    --light-darker: #{darken($light1, 10%)};
+    --light-darker: color-mix(in srgb,var(--light),#000 20%);
 
     --lighter: #{$lighter};
-    --lighter-darker: #{darken($lighter, 10%)};
+    --lighter-darker: color-mix(in srgb,var(--lighter),#000 20%);
 
     --warning: #{$warning};
     --info: #{$info};
     --danger: #{$danger};
     --success: #{$success};
-    --warning-darker: #{darken($warning, 10%)};
-    --info-darker: #{darken($info, 10%)};
-    --danger-darker: #{darken($danger, 10%)};
-    --success-darker: #{darken($success, 10%)};
+    --warning-darker: color-mix(in srgb,var(--warning),#000 20%);
+    --info-darker: color-mix(in srgb,var(--info),#000 20%);
+    --danger-darker: color-mix(in srgb,var(--danger),#000 20%);
+    --success-darker: color-mix(in srgb,var(--success),#000 20%);
 
     // Typos
     --main-font1: #{$font3};

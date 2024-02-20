@@ -10,7 +10,7 @@
     }
     &-container {
         padding: rem(10);
-        border: rem(2) solid $light1;
+        border: rem(2) solid var(--light);
         border-radius: var(--main-radius);
     }
 
@@ -44,7 +44,7 @@
 
     & .edit-form-inputs {
         width: 100%;
-        background-color: $light1;
+        background-color: var(--light);
         border-radius: rem(6);
         padding: rem(10);
         display: flex;
@@ -62,7 +62,7 @@
 
             & i {
                 width: fit-content;
-                color: $grey;
+                color: var(--grey);
                 font-size: rem(20);
                 font-weight: 500;
                 margin: 0 rem(10) rem(3) rem(5);
@@ -72,7 +72,7 @@
                 width: 100%;
 
                 &::placeholder {
-                    color: $grey;
+                    color: var(--grey);
                     font-size: rem(14);
                     font-weight: 500;
                 }
@@ -87,7 +87,7 @@
                 -webkit-appearance: none;
 
                 &.edit-unit {
-                    color: $grey;
+                    color: var(--grey);
                     text-align: right;
                     text-transform: uppercase;
                     max-width: fit-content;
@@ -99,15 +99,15 @@
                 }
 
                 & option {
-                    color: $text-black;
-                    background-color: $white;
+                    color: var(--primary);
+                    background-color: var(--white);
                     margin: 5rem;
                 }
             }
 
             & .edit-form-toggler {
                 width: 100%;
-                border: rem(1) solid $grey-lighter;
+                border: rem(1) solid var(--grey-lighter);
                 border-bottom: 0;
                 border-top: 0;
                 text-align: center;
@@ -129,13 +129,13 @@
                     display: none;
 
                     &:checked~label {
-                        color: $text-black;
+                        color: var(--primary);
 
                         & svg {
-                            fill: $text-black;
+                            fill: var(--primary);
 
                             & path {
-                                stroke: $text-black;
+                                stroke: var(--primary);
                             }
                         }
                     }
@@ -148,7 +148,7 @@
                     padding: 0;
                     font-weight: 900;
                     transition: var(--transition-duration);
-                    color: $grey;
+                    color: var(--grey);
                     text-transform: uppercase;
 
                     & i {
@@ -182,7 +182,7 @@
                         transition: all 0.1s ease;
 
                         & path {
-                            stroke: $grey;
+                            stroke: var(--grey);
                             stroke-width: rem(4);
                             transition: all 0.1s ease;
                         }
@@ -190,11 +190,11 @@
                 }
 
                 &:hover {
-                    color: $text-black;
+                    color: var(--primary);
 
                     & svg {
                         & path {
-                            stroke: $text-black;
+                            stroke: var(--primary);
                         }
                     }
                 }

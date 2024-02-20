@@ -1,43 +1,43 @@
 .pagination {
-  margin-top: 30px;
+  margin-top: rem(30);
   z-index: 11;
   display: flex;
   justify-content: center;
   flex-wrap: nowrap;
 
   button {
-    border: 1.5px solid #eaebee;
+    border: rem(1.5) solid var(--grey-lighter);
     border-right: none;
-    background-color: white;
-    padding: 7px 10px;
+    background-color: var(--white);
+    padding: rem(7) rem(10);
     cursor: pointer;
 
     &:hover {
-      background-color: #f8f5fd;
+      background-color: var(--grey-lighter);
     }
 
     &.active {
-      background-color: #7e37d8;
-      color: white;
+      background-color: var(--tercery);
+      color: var(--white);
       cursor: unset;
     }
 
     &:disabled {
-      background-color: #eaebee;
+      background-color: var(--grey-lighter);
       cursor: unset;
     }
   }
 
   &-left {
     button:first-child {
-      border-radius: 6px 0 0 6px;
+      border-radius: rem(6) 0 0 rem(6);
     }
   }
 
   &-right {
     button:last-child {
-      border-radius: 0 6px 6px 0;
-      border-right: 1px solid #80808060;
+      border-radius: 0 rem(6) rem(6) 0;
+      border-right: rem(1) solid var(--grey);
     }
   }
 }
