@@ -150,7 +150,7 @@ class DB
     
     public function countResponses(int $id): int
     {
-        $sql = "SELECT COUNT(*) FROM " . DB_PREFIX . $this->table . " WHERE id_comment_response = :id";
+        $sql = "SELECT COUNT(*) FROM " . DB_PREFIX . $this->table . " WHERE id_comment_response = :id AND valid = true";
         $queryPrepared = $this->pdo->prepare($sql);
         $queryPrepared->execute(['id' => $id]);
         return $queryPrepared->fetchColumn();
