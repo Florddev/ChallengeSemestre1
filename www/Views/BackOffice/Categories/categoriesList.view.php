@@ -10,7 +10,7 @@
 </div>
 
 <section>
-    <div class="create-user-button-container" style="margin-bottom: 20px; text-align: left;">
+    <div class="create-user-button-container" style="margin-bottom: 20px; text-align: right;">
         <a href="/dashboard/articles/categories/create" class="btn btn-primary">Créer une categorie</a>
     </div>
     <div class="table-container">

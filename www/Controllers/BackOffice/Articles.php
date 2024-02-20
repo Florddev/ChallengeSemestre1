@@ -19,10 +19,26 @@ class Articles
 {
     public function getAllArticles($data): void
     {
+        $categoryModel = new Category();
+        $categories = $categoryModel->getAll();
+        $categoriesNames = [];
+        foreach ($categories as $category) {
+            $categoriesNames[$category["id"]] = $category["label"];
+        }
+
+        $userModel = new User();
+        $users = $userModel->getAll();
+        $usersNames = [];
+        foreach ($users as $user) {
+            $usersNames[$user["id"]] = $user["login"]; // Assurez-vous que "name" est le bon champ
+        }
+
         $articleModel = new Article();
         $articles = $articleModel->getAll();
 
         foreach ($articles as &$article) {
+            $article['category_name'] = $categoriesNames[$article['id_category']] ?? 'Catégorie inconnue';
+            $article['creator_name'] = $usersNames[$article['id_creator']] ?? 'Créateur inconnu';
             $this->setDataToArticle($article);
         }
 
@@ -105,6 +121,8 @@ class Articles
 
     private function setDataToArticle(&$article): void
     {
+        $article['created_at'] = Utils::convertDate($article['created_at']);
+        $article['published_at'] = Utils::convertDate($article['published_at']);
         $article["encode_title"] = Utils::url_encode($article["title"]);
         $article["Category"] = Category::populate($article["id_category"]);
         $article["datePublication"] = Utils::convertDate($article["published_at"]);
@@ -123,7 +141,6 @@ class Articles
 
     public function articlesBuilder($article): void
     {
-        echo "articlesBuilder";
         $article = new Article();
         if($article = $article->getOneBy(["id" => $_REQUEST["route_params"]["idArticle"]])) {
             $this->setDataToArticle($article);
