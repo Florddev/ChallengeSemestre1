@@ -1,7 +1,5 @@
 <?php
 namespace App\Forms;
-use App\Enums\Role;
-use App\Enums\Status;
 
 class CategoryCreate
 {
@@ -12,7 +10,7 @@ class CategoryCreate
             "config"=> [
                 "attrs"=> [
                     "method"=>"POST",
-                    "action"=>"/dashboard/categories/create",
+                    "action"=>"/dashboard/articles/categories/create",
                     "class"=>"form form-lg",
                     "id"=>"form-user-create",
                 ],

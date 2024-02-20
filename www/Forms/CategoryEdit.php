@@ -16,7 +16,7 @@ class CategoryEdit
             "config"=> [
                 "attrs"=> [
                     "method"=>"POST",
-                    "action"=>"/dashboard/categories/edit/" . ($this->categoryData['id'] ?? ''),
+                    "action"=>"/dashboard/articles/categories/edit/" . ($this->categoryData['id'] ?? ''),
                     "class"=>"form form-lg",
                     "id"=>"form-user-edit",
                 ],

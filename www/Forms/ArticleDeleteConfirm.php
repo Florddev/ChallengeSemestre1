@@ -1,29 +1,29 @@
 <?php
 namespace App\Forms;
 
-class CategoryDeleteConfirm
+class ArticleDeleteConfirm
 {
-    protected $categoryId;
+    protected $articleId;
 
-    public function __construct($categoryId = null)
+    public function __construct($articleId = null)
     {
-        $this->categoryId = $categoryId;
+        $this->articleId = $articleId;
     }
 
     public function getConfig(): array
     {
-        $actionPath = "/dashboard/articles/categories/delete" . ($this->categoryId ? "/{$this->categoryId}" : "");
+        $actionPath = "/dashboard/articles/delete" . ($this->articleId ? "/{$this->articleId}" : "");
 
         return [
             "config"=> [
                 "attrs"=> [
                     "method"=>"POST",
                     "action"=>$actionPath,
-                    "class"=>"form-delete-category",
-                    "id"=>"form-delete-category",
+                    "class"=>"form-delete-article",
+                    "id"=>"form-delete-article",
                 ],
                 "submit"=>"Confirmer la suppression",
-                "cancel"=>"/dashboard/categories",
+                "cancel"=>"/dashboard/articles",
             ],
             "inputs"=>[
                 "id"=>[
@@ -32,7 +32,7 @@ class CategoryDeleteConfirm
                     "attrs"=> [
                         "type"=>"hidden",
                         "name"=>"id",
-                        "value"=>$this->categoryId,
+                        "value"=>$this->articleId,
                     ],
                 ],
             ]
