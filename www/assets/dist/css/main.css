@@ -2530,8 +2530,8 @@ img {
   --color-invalid: var(--danger);
   --color-text: var(--grey);
   --border-radius: var(--main-radius);
-  --padding-field-y: rem(10);
-  --padding-field-x: rem(12);
+  --padding-field-y: 0.625rem;
+  --padding-field-x: 0.75rem;
   --spacing: 1.25rem;
   display: flex;
   flex-wrap: wrap;
