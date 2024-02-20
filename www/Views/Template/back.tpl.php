@@ -52,6 +52,7 @@
                             <h2>Pages</h2>
                         </div>
                     </a>
+                    <!--
                     <a href="/dashboard">
                         <div class="item-sidebar">
                             <i class="ri-database-2-line"></i>
@@ -64,6 +65,7 @@
                             <h2>Charts</h2>
                         </div>
                     </a>
+                    -->
                     <a href="/dashboard/users">
                         <div class="item-sidebar">
                             <i class="ri-user-settings-line"></i>
