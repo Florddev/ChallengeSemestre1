@@ -10,7 +10,7 @@
                 font-size: 30px;
 
                 span {
-                    color: #7e37d8;
+                    color: var(--tercery);
                 }
             }
 
@@ -18,7 +18,7 @@
                 margin-top: 10px;
                 font-weight: 700;
                 font-size: 15px;
-                color: #7e37d8;
+                color: var(--tercery);
                 letter-spacing: 3px;
             }
         }
@@ -26,10 +26,10 @@
         .header-main-dashboard-right {
             display: flex;
             align-items: center;
-            color: #7e37d8;
+            color: var(--tercery);
 
             i {
-                background-color: rgba(126, 55, 216, .12);
+                background-color: var(--white);
                 padding: 8px;
                 border-radius: 100%;
                 font-weight: 500;
@@ -55,14 +55,12 @@
         .stat-card {
             height: 245px;
             flex: 1; // Chaque carte prend une part égale de l'espace disponible
-            padding: 20px;
-            border-radius: 20px; // Rayon de bordure pour les coins arrondis
-            color: white;
+            color: var(--white);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: space-around;
-            border-radius: 40px;
+            border-radius: calc(var(--main-radius)*4);
             padding: 2rem;
 
             // Vous pouvez ajouter des dégradés de couleurs ou des images d'arrière-plan selon les besoins
@@ -114,11 +112,11 @@
 
         .chart-days-visite {
             padding: 2rem;
-            background-color: white;
+            background-color: var(--white);
             height: 340px;
             flex: 4;
             box-shadow: 0px 0px 25px 0px rgba(126, 55, 216, .05);
-            border-radius: 40px;
+            border-radius: var(--main-radius);
             transition: all .3s ease;
 
             .chart {
@@ -180,11 +178,11 @@
 
         .chat-number-like-post {
             padding: 2rem;
-            background-color: white;
+            background-color: var(--white);
             height: 340px;
             flex: 2;
             box-shadow: 0px 0px 25px 0px rgba(126, 55, 216, .05);
-            border-radius: 40px;
+            border-radius: var(--main-radius);
             transition: all .3s ease;
             display: flex;
             flex-direction: column;

@@ -1,24 +1,23 @@
 .form {
-  --main-color: #7e37d8;
-  --main-background-color: #fff;
+  --main-color: var(--tercery);
+  --main-background-color: var(--white);
 
+  --color-value: var(--primary);
 
-  --color-value: #000000;
+  --color-border: var(--grey-lighter);
+  --color-label: var(--secondary);
+  --color-label-focus: var(--primary);
+  --color-placeholder: var(--grey);
+  --color-valid: var(--success);
+  --color-invalid: var(--danger);
+  --color-text: var(--grey);
 
-  --color-border: #80808060;
-  --color-label: #212529;
-  --color-label-focus: #21252995;
-  --color-placeholder: #80808090;
-  --color-valid: #50CD89;
-  --color-invalid: #F1416C;
-  --color-text: #6c757d;
+  --border-radius: var(--main-radius);
 
-  --border-radius: 6px;
+  --padding-field-y: rem(10);
+  --padding-field-x: rem(12);
 
-  --padding-field-y: 10px;
-  --padding-field-x: 12px;
-
-  --spacing: 20px;
+  --spacing: #{rem(20)};
 
   display: flex;
   flex-wrap: wrap;

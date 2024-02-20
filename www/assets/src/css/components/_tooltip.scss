@@ -11,14 +11,14 @@
 .tooltip {
   position: absolute;
   width: max-content;
-  max-width: 500px;
-  background-color: #2f3b46;
-  color: white;
+  max-width: rem(500);
+  background-color: var(--secondary);
+  color: var(--white);
   text-align: center;
-  padding: 5px 10px;
-  border-radius: 6px;
-  box-shadow: 0 0 20px #00000020;
-  font-size: 12px;
+  padding: rem(5) rem(10);
+  border-radius: rem(6);
+  box-shadow: 0 0 rem(20) #00000020;
+  font-size: rem(12);
   display: none;
   z-index: 10;
   animation: dropdown-close .3s forwards;
@@ -41,10 +41,10 @@
   &.tooltip-arrow::after {
     top: 50%;
     right: 100%; /* To the left of the tooltip */
-    margin-top: -5px;
-    border-width: 5px;
+    margin-top: rem(-5);
+    border-width: rem(5);
     border-style: solid;
-    border-color: transparent #2f3b46 transparent transparent;
+    border-color: transparent var(--secondary) transparent transparent;
   }
 }
 .tooltip-left {
@@ -55,10 +55,10 @@
   &.tooltip-arrow::after {
     top: 50%;
     left: 100%; /* To the right of the tooltip */
-    margin-top: -5px;
-    border-width: 5px;
+    margin-top: rem(-5);
+    border-width: rem(5);
     border-style: solid;
-    border-color: transparent transparent transparent #2f3b46;
+    border-color: transparent transparent transparent var(--secondary);
   }
 }
 .tooltip-top {
@@ -69,10 +69,10 @@
   &.tooltip-arrow::after {
     top: 100%; /* At the bottom of the tooltip */
     left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
+    margin-left: rem(-5);
+    border-width: rem(5);
     border-style: solid;
-    border-color: #2f3b46 transparent transparent transparent;
+    border-color: var(--secondary) transparent transparent transparent;
   }
 }
 .tooltip-bottom {
@@ -83,10 +83,10 @@
   &.tooltip-arrow::after {
     bottom: 100%;  /* At the top of the tooltip */
     left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
+    margin-left: rem(-5);
+    border-width: rem(5);
     border-style: solid;
-    border-color: transparent transparent #2f3b46 transparent;
+    border-color: transparent transparent var(--secondary) transparent;
   }
 }
 
