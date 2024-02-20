@@ -343,7 +343,7 @@ class Installation
                     CREATE TABLE "'.$prefix.'comment" (
                         "id" SERIAL PRIMARY KEY,
                         "id_article" INT,
-                        "id_comment_response" INT,
+                        "id_comment_response" INT DEFAULT NULL,
                         "id_user" INT,
                         "content" TEXT NOT NULL,
                         "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

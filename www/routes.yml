@@ -76,6 +76,8 @@
   template: back
   params:
     - idPage
+  restricted: true
+  roles: [1]
 
 /dashboard/articles/builder/:idArticle:
   controller: BackOffice/Articles
@@ -83,6 +85,8 @@
   template: back
   params:
     - idArticle
+  restricted: true
+  roles: [1, 2, 3]
 
 /dashboard/articles:
   controller: BackOffice/Articles
@@ -95,31 +99,43 @@
   controller: BackOffice/Pages
   action: getPagesList
   template: back
+  restricted: true
+  roles: [1]
 
 /dashboard/pages/create:
   controller: BackOffice/Pages
   action: createNewPage
+  restricted: true
+  roles: [1]
 
 /dashboard/pages/delete/:id:
   controller: BackOffice/Pages
   action: deletePage
   params:
     - id
+  restricted: true
+  roles: [1]
 
 
 /dashboard/settings:
   controller: BackOffice/Settings
   action: getSettings
   template: back
+  restricted: true
+  roles: [1]
 
 /dashboard/settings/update:
   controller: BackOffice/Settings
   action: getCurrentValuesAction
   template: back
+  restricted: true
+  roles: [1]
 
 /dashboard/builder-save-article:
   controller: BackOffice/Articles
   action: saveArticle
+  restricted: true
+  roles: [1, 2, 3]
 
 /dashboard/builder/last-articles:
   controller: BackOffice/Editor
@@ -128,6 +144,8 @@
 /dashboard/builder-save-page:
   controller: BackOffice/Editor
   action: savePage
+  restricted: true
+  roles: [1]
 
 
 
@@ -136,11 +154,15 @@
   controller: BackOffice/User
   action: listUsers
   template: back
+  restricted: true
+  roles: [1]
 
 /dashboard/users/create:
   controller: BackOffice/User
   action: createUser
   template: back
+  restricted: true
+  roles: [1]
 
 /dashboard/users/edit/:id:
   controller: BackOffice/User
@@ -148,6 +170,8 @@
   template: back
   params:
     - id
+  restricted: true
+  roles: [1]
 
 /dashboard/users/show/:id:
   controller: BackOffice/User
@@ -155,6 +179,8 @@
   template: back
   params:
     - id
+  restricted: true
+  roles: [1]
 
 /dashboard/users/delete/:id:
   controller: BackOffice/User
@@ -162,6 +188,8 @@
   template: back
   params:
     - id
+  restricted: true
+  roles: [1]
 
 /dashboard/users/delete/confirm/:id:
   controller: BackOffice/User
@@ -169,10 +197,14 @@
   template: back
   params:
     - id
+  restricted: true
+  roles: [1]
 
 /dashboard/comments/create:
   controller: BackOffice/Comments
   action: createComment
+  restricted: true
+  roles: [1]
   
 /article/:idArticle:
   controller: BackOffice/Articles

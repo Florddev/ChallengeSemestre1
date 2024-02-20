@@ -5,7 +5,8 @@ namespace App\Core;
 class Verificator {
 
     public function checkForm($config, $data, &$errors = []): bool {
-        if(count($config["inputs"]) != count($data)){
+        if(count($config["inputs"]) != count($data) && (isset($data["route_params"]) && count($config["inputs"]) != (count($data) -1))){
+
             echo "<pre>";
             print_r($config["inputs"]);
             print_r($data);

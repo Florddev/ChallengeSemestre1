@@ -32,6 +32,8 @@ class Pages
             $verification = new Verificator();
             if ($verification->checkForm($config, $_REQUEST, $errors))
             {
+                //print_r($_SESSION);
+
                 $page = new \App\Models\Pages();
                 $page->setTitle($_REQUEST["title"]);
                 $page->setUrl($_REQUEST["url"]);

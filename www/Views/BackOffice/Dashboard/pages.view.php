@@ -46,7 +46,7 @@
                     <td><?= empty($page["updated_at"]) ? $page["updated_at"] : '' ?></td>
                     <td><?= !empty($page["Updator"]) ? $page["Updator"]->getLogin() : '' ?></td>
                     <td><a href="<?= $page["url"] ?>" style="text-decoration: none;"><i class="ri-eye-line"></i></a></td>
-                    <td><a href="/dashboard/builder/<?= $page["title_url"] ?>" style="text-decoration: none;"><i class='ri-edit-line edit'></i></a></td>
+                    <td><a href="/dashboard/pages/builder/<?= $page["id"] ?>" style="text-decoration: none;"><i class='ri-edit-line edit'></i></a></td>
                     <td><a href="/dashboard/pages/delete/<?= $page["id"] ?>" style="text-decoration: none;"><i class='ri-delete-bin-6-line delete'></i></a></td>
                 </tr>
             <?php endforeach; ?>
