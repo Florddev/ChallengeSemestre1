@@ -56,9 +56,11 @@
 
 <body>
     <section>
-        <h1>.navbar</h1>
-        <hr>
+        
 
+<h1>.navbar</h1>
+        <hr>
+   
         <div class="navbar" draggable="false">
             <nav class="nav container">
                 <a class="nav__logo" href="#">Logo</a>
@@ -439,6 +441,27 @@
             <div class="col-xl-6">Colonne 2 avec offset</div>
             <div class="col-xl-6">Colonne 2 avec offset</div>
         </div>
+        <h1>.footer</h1>
+        <hr>
+
+        <footer class="footer">
+            <div class="footer__logo">
+                Wisp's
+            </div>
+
+            <div class="footer__links">
+                <a href="#">Accueil</a>
+                <a href="#">Services</a>
+                <a href="#">Contact</a>
+                <a href="#">À propos</a>
+                <a href="#">FAQ</a>
+                <!-- Ajoutez autant de liens que nécessaire -->
+            </div>
+
+            <div class="footer__copy">
+                <p>&copy; <?php echo date("Y"); ?> Wisp's. Tous droits réservés.</p>
+            </div>
+        </footer>
     </section>
     <script src="src/js/components/tabnav.js"></script>
     <script src="src/js/components/navbar.js"></script>
