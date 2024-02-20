@@ -4714,13 +4714,13 @@ img {
   padding: 0 0.9375rem;
   border: none;
   border-radius: 0 0.25rem 0.25rem 0;
-  background-color: var(--info);
+  background-color: var(--tercery);
   color: white;
   font-weight: bold;
   cursor: pointer;
 }
 .comments-section .new-comment .new-comment-input-group button:hover {
-  background-color: var(--info-darker);
+  background-color: var(--tercery-darker);
 }
 
 /*# sourceMappingURL=main.css.map */

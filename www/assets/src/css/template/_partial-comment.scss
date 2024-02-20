@@ -98,13 +98,13 @@
                 padding: 0 rem(15);
                 border: none;
                 border-radius: 0 rem(4) rem(4) 0; // Arrondit uniquement les coins droits
-                background-color: var(--info);
+                background-color: var(--tercery);
                 color: white;
                 font-weight: bold;
                 cursor: pointer;
 
                 &:hover {
-                    background-color: var(--info-darker);
+                    background-color: var(--tercery-darker);
                 }
             }
         }
