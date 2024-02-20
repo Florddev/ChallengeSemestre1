@@ -200,6 +200,56 @@
   restricted: true
   roles: [1]
 
+/dashboard/articles/categories:
+  controller: BackOffice/Category
+  action: listCategories
+  template: back
+  restricted: true
+  roles: [1]
+
+/dashboard/articles/categories/create:
+  controller: BackOffice/Category
+  action: createCategory
+  template: back
+  restricted: true
+  roles: [1]
+
+/dashboard/articles/categories/edit/:id:
+  controller: BackOffice/Category
+  action: editCategory
+  template: back
+  params:
+    - id
+  restricted: true
+  roles: [1]
+
+/dashboard/articles/categories/show/:id:
+  controller: BackOffice/Category
+  action: showCategory
+  template: back
+  params:
+    - id
+  restricted: true
+  roles: [1]
+
+/dashboard/articles/categories/delete/:id:
+  controller: BackOffice/Category
+  action: deleteCategory
+  template: back
+  params:
+    - id
+  restricted: true
+  roles: [1]
+
+/dashboard/articles/categories/delete/confirm/:id:
+  controller: BackOffice/Category
+  action: deleteCategory
+  template: back
+  params:
+    - id
+  restricted: true
+  roles: [1]
+
 /dashboard/comments/create:
   controller: BackOffice/Comments
   action: createComment
