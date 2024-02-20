@@ -79,18 +79,19 @@
                     -->
 
                     <li onclick="saveArticle()"><button class="btn btn-primary btn-line">Enregistrer</button></li>
-                    <li><button class="btn btn-primary">Visiter l'article</button></li>
+                    <li><a href="/article/<?= $currentArticle["encode_title"] ?>"><button class="btn btn-primary">Visiter l'article</button></li></a>
                 </ul>
             </section>
         </header>
         <main class="page-wrapper-body page-builder-main">
-            <div class="sidebar-toggler sidebar-toggler-left">
-                <input type="checkbox" id="builder-left-toggler" checked onchange="closeShutters(this, 'componentsShutter')">
-                <label for="builder-left-toggler"><i class="ri-arrow-left-line"></i></label>
-            </div>
             <div class="sidebar-toggler sidebar-toggler-right">
                 <input type="checkbox" id="builder-right-toggler" checked onchange="closeShutters(this, 'editorShutter')">
                 <label for="builder-right-toggler"><i class="ri-arrow-right-line"></i></label>
+            </div>
+            <!--
+            <div class="sidebar-toggler sidebar-toggler-left">
+                <input type="checkbox" id="builder-left-toggler" checked onchange="closeShutters(this, 'componentsShutter')">
+                <label for="builder-left-toggler"><i class="ri-arrow-left-line"></i></label>
             </div>
             <section class="sidebar" id="componentsShutter">
                 <div class="btn-multiple">
@@ -254,67 +255,16 @@
                     <hr>
                 </div>
             </section>
+            -->
             <section class="page-wrapper-body-container page-builder-main-editor">
                 <div class="editor-container" editor-mode="pc">
                     <div class="editor-content">
 
 
                         <div class="main" editable-popup="false" id="page-content">
-                            <div class="navbar editable" nav-is-fixed="true" draggable="false">
-                                <nav class="nav container">
-                                    <a class="nav__logo" href="#" draggable="false">Wisp' Blog</a>
-                                    <div class="nav__menu" data-modal="search">
-                                        <ul class="nav__list sortable-element" data-sortable="true">
-                                            <li class="nav__item editable"><a class="nav__link" href="#" draggable="false">Accueil</a></li>
-                                            <li class="nav__item editable"><a class="nav__link" href="#" draggable="false">A&nbsp;propos</a>
-                                            </li>
-                                            <li class="nav__item editable"><a class="nav__link" href="#" draggable="false">Blog</a></li>
-                                            <li class="nav__item editable"><a class="nav__link" href="#" draggable="false">Contact</a>
-                                            </li>
-                                        </ul>
-                                        <div class="nav__close" data-modal-toggle="nav-menu">
-                                            <i class="ri-close-line"></i>
-                                        </div>
-                                    </div>
-                                    <div class="nav__actions">
-                                        <i class="ri-search-line nav__search" data-modal-trigger="search"></i>
-                                        <i class="ri-user-line nav__login" data-modal-trigger="login"></i>
-                                        <div class="nav__toggle" data-modal-toggle="nav-menu">
-                                            <i class="ri-menu-line"></i>
-                                        </div>
-                                    </div>
-                                </nav>
-                                <div class="search" data-modal="search">
-                                    <form class="search__form" action="">
-                                        <i class="ri-search-line search__icon"></i>
-                                        <input class="search__input" type="search" placeholder="Que recherchez vous ?">
-                                    </form>
-                                    <i class="ri-close-line search__close" data-modal-toggle="search"></i>
-                                </div>
-                                <div class="login" data-modal="login">
-                                    <form class="login__form" action="">
-                                        <h2 class="login__title">Connexion</h2>
-                                        <div class="login__group">
-                                            <div class="login__item">
-                                                <label class="login__label" for="email">Email</label>
-                                                <input class="login__input" type="email" placeholder="Entrez votre email" id="email">
-                                            </div>
-                                            <div class="login__item">
-                                                <label class="login__label" for="password">Password</label>
-                                                <input class="login__input" type="password" placeholder="Entrez votre mot de passe" id="password">
-                                            </div>
-                                        </div>
-                                        <div class="login__register">
-                                            <p class="login__signup">
-                                                Avez-vous un compte ? <a href="#" draggable="false">S'enregistrer</a>
-                                            </p>
-                                            <a class="login__forgot" href="#" draggable="false">Mot de passe oublié</a>
-                                            <button class="btn btn-primary btn-lg" type="button">Se connecter</button>
-                                        </div>
-                                    </form>
-                                    <i class="ri-close-line login__close" data-modal-toggle="login"></i>
-                                </div>
-                            </div>
+
+                            <?= $site_navbar ?>
+
                             <div class="container" style="max-width: 1120px; padding-top: 100px; padding-bottom: 50px;">
                                 <div style="color: rgb(110, 112, 118); text-transform: uppercase; letter-spacing: 2px; font-size: 13px; font-weight: 500;">
                                     Catégorie: <span id="currentCategory"><?= $currentArticle["Category"]->getLabel() ?></span>
@@ -339,10 +289,14 @@
                             <div class="container" style="max-width: 1120px;">
                                 <?php $this->partial("commentaires-articles", $currentArticle); ?>
                             </div>
+
+                            <?= $site_footer ?>
+
                         </div>
                     </div>
                 </div>
             </section>
+
             <section class="sidebar page-builder-main-tools" id="editorShutter">
                 <div class="btn-multiple">
                     <div class="btn-multiple-child">
@@ -353,12 +307,6 @@
                         <input type="radio" name="toolbar" id="toolbar-2" data-tabnav-target="tabnav-element-settings">
                         <label for="toolbar-2">Paramètres</label>
                     </div>
-                    <!--
-                    <div class="btn-multiple-child">
-                        <input type="radio" name="toolbar" id="toolbar-3">
-                        <label for="toolbar-3">Global</label>
-                    </div>
-                    -->
                 </div>
                 <br>
                 <div data-plugin="tabnav" id="tabnav-element-style">
@@ -452,6 +400,7 @@
                     </div>
                 </div>
             </section>
+
         </main>
     </div>
 

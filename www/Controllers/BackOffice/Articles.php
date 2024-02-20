@@ -12,6 +12,7 @@ use App\Forms\ArticleDeleteConfirm;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Settings;
 use App\Models\User;
 use Cassandra\Date;
 
@@ -150,6 +151,9 @@ class Articles
 
             $categories = (new Category())->getAllBy([], "object");
             $editor->assign("Categories", $categories);
+
+            $editor->assign("site_navbar", Settings::getBy(["key"=>"site:navbar"])->getValue());
+            $editor->assign("site_footer", Settings::getBy(["key"=>"site:footer"])->getValue());
         }
         else Error::page404();
     }
@@ -159,6 +163,9 @@ class Articles
         $editor = new View("BackOffice/Editor/article-page", "front");
         $this->setDataToArticle($article);
         $editor->assign("currentArticle", $article);
+
+        $editor->assign("site_navbar", Settings::getBy(["key"=>"site:navbar"])->getValue());
+        $editor->assign("site_footer", Settings::getBy(["key"=>"site:footer"])->getValue());
     }
 
     public function saveArticle($data): void
@@ -197,7 +204,7 @@ class Articles
             if (!empty($articleFound["published_at"])) {
                 $articleDate = Utils::convertDate($articleFound["published_at"], "Y-m-d");
                 $currentDate = Utils::convertDate(\date("Y-m-d H:i:s"), "Y-m-d");
-    
+
                 if($articleDate <= $currentDate){
                     $builder = new Articles();
                     $builder->articlesPage($articleFound);
