@@ -16,7 +16,7 @@
         <div class="delete-confirmation-actions">
             <?php $this->includeComponent("form", $configFormCategoryDelete, $errorsForm);?>
             <br>
-            <a href="/dashboard/categories" class="btn btn-danger">Annuler</a>
+            <a href="/dashboard/articles/categories" class="btn btn-danger">Annuler</a>
         </div>
     </div>
 </section>

@@ -10,5 +10,5 @@
 <section>
     <?php $this->includeComponent("form", $configFormCategoryEdit, $errorsForm);?>
     <br>
-    <a class="btn btn-danger" href="/dashboard/categories">Annuler</a>
+    <a class="btn btn-danger" href="/dashboard/articles/categories">Annuler</a>
 </section>
