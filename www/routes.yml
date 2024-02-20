@@ -250,6 +250,38 @@
   restricted: true
   roles: [1]
 
+/dashboard/articles:
+  controller: BackOffice/Articles
+  action: getAllArticles
+  template: back
+  restricted: true
+  roles: [1]
+
+/dashboard/articles/create:
+  controller: BackOffice/Articles
+  action: createArticle
+  template: back
+  restricted: true
+  roles: [1]
+
+/dashboard/articles/delete/:id:
+  controller: BackOffice/Articles
+  action: deleteArticle
+  template: back
+  params:
+    - id
+  restricted: true
+  roles: [1]
+
+/dashboard/articles/delete/confirm/:id:
+  controller: BackOffice/Category
+  action: deleteArticle
+  template: back
+  params:
+    - id
+  restricted: true
+  roles: [1]
+
 /dashboard/comments/create:
   controller: BackOffice/Comments
   action: createComment
@@ -258,7 +290,7 @@
   
 /article/:idArticle:
   controller: BackOffice/Articles
-  action: articlesPage
+  action: handleShowArticleFromURI
   template: front
   params:
     - idArticle

@@ -14,7 +14,7 @@ class Article extends DB
     protected int $id_category;
     protected string $created_at;
     protected int $id_creator;
-    //protected ?string $updated_at;
+    protected ?string $updated_at;
     protected ?int $id_updator;
     protected ?string $published_at;
 
@@ -106,6 +106,16 @@ class Article extends DB
     public function setCreatedAt(string $created_at): void
     {
         $this->created_at = $created_at;
+    }
+
+    public function getUpdatedAt(): string
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(string $updated_at): void
+    {
+        $this->updated_at = $updated_at;
     }
 
     public function getIdUpdator(): ?int
