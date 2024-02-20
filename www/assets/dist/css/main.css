@@ -221,7 +221,11 @@ img {
   opacity: 0.3;
 }
 .btn::after {
+<<<<<<< HEAD
   border-radius: calc(var(--main-radius) / 2);
+=======
+  border-radius: var(--main-radius);
+>>>>>>> e131318 (Add Footer)
   top: 0;
   left: 0;
 }
@@ -301,7 +305,11 @@ img {
   width: 100%;
   padding: 0.375rem;
   display: flex;
+<<<<<<< HEAD
   gap: 0.375rem;
+=======
+  gap: 5px;
+>>>>>>> e131318 (Add Footer)
   border-radius: var(--main-radius);
 }
 .btn-multiple-child {
@@ -3407,6 +3415,34 @@ img {
 .edit-form:has(input[type=color]) .edit-form-inputs input[type=color] {
   width: 1.875rem;
   margin-right: 0.625rem;
+}
+
+.footer {
+  background-color: var(--primary);
+  padding: 20px;
+  text-align: center;
+}
+.footer .footer__logo {
+  margin-bottom: 0.625rem;
+  font-size: 2.1875rem;
+  color: var(--tercery);
+}
+.footer .footer__links {
+  display: flex;
+  justify-content: center;
+}
+.footer .footer__links a {
+  margin: 0 0.625rem;
+  color: var(--white);
+  text-decoration: none;
+}
+.footer .footer__links a:hover {
+  color: var(--tercery);
+}
+.footer .footer__copy {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--tercery);
 }
 
 .page-wrapper {
