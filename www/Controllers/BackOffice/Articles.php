@@ -122,7 +122,7 @@ class Articles
     private function setDataToArticle(&$article): void
     {
         $article['created_at'] = Utils::convertDate($article['created_at']);
-        $article['published_at'] = Utils::convertDate($article['published_at']);
+        $article['published_at_formated'] = Utils::convertDate($article['published_at']);
         $article["encode_title"] = Utils::url_encode($article["title"]);
         $article["Category"] = Category::populate($article["id_category"]);
         $article["datePublication"] = Utils::convertDate($article["published_at"]);

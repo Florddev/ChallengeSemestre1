@@ -12,6 +12,6 @@
         <p>ID: <?= htmlspecialchars($category['id']) ?></p>
         <p>Label: <?= htmlspecialchars($category['label']) ?></p>
         <br>
-        <a class="btn btn-primary" href="/dashboard/categories">Retour à la liste</a>
+        <a class="btn btn-primary" href="/dashboard/articles/categories">Retour à la liste</a>
     </div>
 </section>
