@@ -220,7 +220,7 @@ img {
   opacity: 0.3;
 }
 .btn::after {
-  border-radius: 0.125rem;
+  border-radius: var(--main-radius);
   top: 0;
   left: 0;
 }
@@ -301,7 +301,7 @@ img {
   padding: 6px;
   display: flex;
   gap: 5px;
-  border-radius: 6px;
+  border-radius: var(--main-radius);
 }
 .btn-multiple-child {
   border: 0;
@@ -4588,6 +4588,7 @@ img {
   background-color: #7e37d8;
   box-shadow: none;
 }
+
 .page-settings-container {
   padding: 2rem;
 }
@@ -4628,6 +4629,7 @@ img {
 .page-settings-container .settings-form .save-button:hover {
   background-color: #5a2d96;
 }
+
 .comments-section {
   width: 100%;
   margin: auto;
