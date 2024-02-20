@@ -24,6 +24,7 @@ class Articles
         $article["Category"] = Category::populate($article["id_category"]);
         $article["datePublication"] = Utils::convertDate($article["published_at"]);
         $article["Comments"] = Comment::populateAllBy(["id_article"=>$article["id"], "id_comment_response" => null]);
+        $article["Creator"] = User::populate($article["id_creator"]);
         foreach ($article["Comments"] as $key => $comment) {
             $article["Comments"][$key]["User"] = User::populate($comment["id_user"]);
             $article["Comments"][$key]["datePublication"] = Utils::convertDate($comment["created_at"]);

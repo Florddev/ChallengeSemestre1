@@ -112,7 +112,7 @@ CREATE TRIGGER trigger_update_article_timestamp
 
 
 -- Insérer des données dans la table "category"
-INSERT INTO "category" ("label") VALUES
+INSERT INTO "wisp_category" ("label") VALUES
 ('Musique'),
 ('Sport'),
 ('Art');
@@ -129,7 +129,7 @@ INSERT INTO "pages" ("url", "title", "content", "meta_description", "id_creator"
     1
 );
 
-INSERT INTO "article" (
+INSERT INTO "wisp_article" (
     "title",
     "content",
     "keywords",

@@ -13,6 +13,7 @@ class Pages extends DB
     protected string $meta_description;
     protected string $created_at;
     protected string $id_creator;
+    protected User $creator;
     protected ?string $updated_at;
     protected ?string $id_updator;
 
@@ -86,23 +87,33 @@ class Pages extends DB
         $this->id_creator = $id_creator;
     }
 
-    public function getUpdatedAt(): string
+    public function getUpdatedAt(): ?string
     {
         return $this->updated_at;
     }
 
-    public function setUpdatedAt(string $updated_at): void
+    public function setUpdatedAt(?string $updated_at): void
     {
         $this->updated_at = $updated_at;
     }
 
-    public function getIdUpdator(): string
+    public function getIdUpdator(): ?string
     {
         return $this->id_updator;
     }
 
-    public function setIdUpdator(string $id_updator): void
+    public function setIdUpdator(?string $id_updator): void
     {
         $this->id_updator = $id_updator;
+    }
+
+    public function getCreator(): User
+    {
+        return $this->creator;
+    }
+
+    public function setCreator(User $creator): void
+    {
+        $this->creator = $creator;
     }
 }

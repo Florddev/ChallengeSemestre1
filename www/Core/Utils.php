@@ -6,6 +6,8 @@ class Utils
 {
 
     public static function convertDate($dateOrigine, string $format = "j F Y") {
+        setlocale(LC_ALL, 'fr_FR.UTF8', 'fr_FR','fr','fr','fra','fr_FR@euro');
+
         // Essayez de créer un objet DateTime à partir de la date d'origine
         $dateTime = \DateTime::createFromFormat("Y-m-d H:i:s.u", $dateOrigine);
 

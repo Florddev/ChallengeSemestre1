@@ -28,6 +28,14 @@ class Security
 
     public function login($route): void
     {
+        if(!empty($_SESSION)){
+            $currentUser = User::populate($_SESSION["id"]);
+            if($currentUser->getRole() == Role::Admin->value) {
+                Routing::Redirect("BackOffice/Main", "home");
+            } else {
+                header("/");
+            }
+        }
 
         $formLogin = new UserLogin();
         $config = $formLogin->getConfig();

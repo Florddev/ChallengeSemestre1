@@ -65,7 +65,11 @@ class Routing
         }
     
         if (!$foundRoute) {
-            Error::page404();
+            if ($page = Pages::getBy(["url" => $uri])) {
+                $builder = new Editor();
+                $builder->displayPage($page->getId());
+            }
+            else Error::page404();
         }
     }
 
