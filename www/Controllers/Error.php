@@ -10,7 +10,7 @@ class Error
     public static function page404():void
     {
         // Modifier le code http
-        $Page404 = new View("BackOffice/Pages/page404");
+        $Page404 = new View("BackOffice/Pages/page404", "front");
 
     }
 }

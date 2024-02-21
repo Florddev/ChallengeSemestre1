@@ -3,6 +3,7 @@
 namespace App\Controllers\BackOffice;
 
 use App\Core\View;
+use App\Enums\Role;
 use App\Models\Comment;
 use App\Models\User;
 

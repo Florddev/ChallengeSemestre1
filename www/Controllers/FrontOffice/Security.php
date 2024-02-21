@@ -31,7 +31,7 @@ class Security
         if(!empty($_SESSION)){
             $currentUser = User::populate($_SESSION["id"]);
             if($currentUser->getRole() == Role::Admin->value) {
-                Routing::Redirect("BackOffice/Main", "home");
+                Routing::Redirect("BackOffice/Charts", "listCharts");
             } else {
                 header("/");
             }
