@@ -67,7 +67,7 @@
                             </div>
                         <?php endif; ?>
                         <!-- Formulaire pour répondre à un commentaire ou boutons pour supprimer et valider le commentaire -->
-                        <?php if ($data['view'] == 'page'): ?>
+                        <?php if ($data['view'] == 'page' && isset($_SESSION['id'])): ?>
                             <form action="/dashboard/comments/create" method="POST">
                                 <div class="new-comment">
                                     <div class="new-comment-avatar">
@@ -92,7 +92,7 @@
     <?php endif; ?>
 
     <!-- Formulaire pour ajouter un nouveau commentaire -->
-    <?php if ($data['view'] == 'page'): ?>
+    <?php if ($data['view'] == 'page' && isset($_SESSION['id'])): ?>
         <form action="/dashboard/comments/create" method="POST">
             <div class="new-comment">
                 <div class="new-comment-avatar">
