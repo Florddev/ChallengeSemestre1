@@ -10,8 +10,8 @@
                         <img src="https://media.istockphoto.com/id/1175286242/vector/screaming-mans-face-in-profile-head-of-a-guy-in-stress-on-the-side-aggression-and-irritation.jpg?s=612x612&w=0&k=20&c=xH3SNF8hMM3oxi8B6S4yVBa2djOT0BZVjV9s1KZm56g=" alt="Avatar">
                     </div>
                     <div class="comment-content">
-                        <div class="comment-author"><?= htmlspecialchars($comment["User"]->getLogin()) ?></div>
-                        <p><?= htmlspecialchars($comment["content"]) ?></p>
+                        <div class="comment-author"><?= $comment["User"]->getLogin() ?></div>
+                        <p><?= $comment["content"] ?></p>
                         <div class="comment-info">
                             <span class="comment-hits">22 HITS</span>
                             <?php 
@@ -44,8 +44,8 @@
                                                 <img src="https://us.123rf.com/450wm/fayethequeen/fayethequeen2306/fayethequeen230600067/210514302-femme-noire-ic%C3%B4ne-moderne-avatar-femme-africaine-design-abstrait-contemporain-affiche-murale-art.jpg?ver=6" alt="Avatar">
                                             </div>
                                             <div class="comment-content">
-                                                <div class="comment-author"><?= htmlspecialchars($response["User"]->getLogin()) ?></div>
-                                                <p><?= htmlspecialchars($response["content"]) ?></p>
+                                                <div class="comment-author"><?= $response["User"]->getLogin() ?></div>
+                                                <p><?= $response["content"] ?></p>
                                                 <?php if ($data['view'] == 'builder'): ?>
                                                     <div class="form-group">
                                                         <form class="form-delete" action="/dashboard/comments/delete" method="POST">
