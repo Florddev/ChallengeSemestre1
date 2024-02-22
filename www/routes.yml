@@ -134,6 +134,10 @@
   controller: BackOffice/Articles
   action: ViewLastArticles
 
+/dashboard/builder/all-articles:
+  controller: BackOffice/Articles
+  action: AllArticles
+
 /dashboard/builder-save-page:
   controller: BackOffice/Editor
   action: savePage

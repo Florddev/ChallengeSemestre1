@@ -11,6 +11,9 @@
         <p style="text-align: center">
             Vous n'avez pas encore de compte ? <br> <a href="/register">Créer un compte</a>
         </p>
-
+        <br>
+        <p style="text-align: center">
+            Vous avez oublié votre mot de passe ? <br> <a href="/reset-password-request">Réinitialiser mon mot de passe</a>
+        </p>
     </div>
 </div>

@@ -18,9 +18,10 @@
     <script src="/assets/dist/js/settingsCss.js"></script>
     <script>
         _(document).ready(loadPage);
-
         _(document).ready(evt => {
-            _('[data-plugin="svg"]').forEach(e => _(e).html(loadSVG(_(e).attr("data-svg-src"))));
+            _('[data-plugin="svg"]').forEach(e => {
+                _(e).html(loadSVG(_(e).attr("data-svg-src")))
+            });
         });
     </script>
 </body>
