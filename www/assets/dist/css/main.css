@@ -221,7 +221,11 @@ img {
   opacity: 0.3;
 }
 .btn::after {
+<<<<<<< HEAD
   border-radius: calc(var(--main-radius) / 2);
+=======
+  border-radius: var(--main-radius);
+>>>>>>> e13131829759cbda9eec02ebd6bf5bbb14774c15
   top: 0;
   left: 0;
 }
