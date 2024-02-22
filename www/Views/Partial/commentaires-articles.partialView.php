@@ -13,7 +13,6 @@
                         <div class="comment-author"><?= $comment["User"]->getLogin() ?></div>
                         <p><?= $comment["content"] ?></p>
                         <div class="comment-info">
-                            <span class="comment-hits">22 HITS</span>
                             <?php 
                                 $commentInstance = new \App\Models\Comment();
                                 $numResponses = $commentInstance->countResponses($comment["id"]);
