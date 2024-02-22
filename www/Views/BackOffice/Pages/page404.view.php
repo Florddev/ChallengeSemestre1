@@ -4,7 +4,7 @@
     <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: start; gap: 20px; background-color: var(--grey-lighter); padding: 20px;">
         <p style="text-align: center; font-size: 45px;color:var(--tercery);font-weight:bold;">Erreur 404</p>
         <p style="text-align: center; font-size: 18px;">Désolé, la page que vous avez demandé est introuvable.</p>
-        <a href="/" class="btn btn-primary">Accueil</a>
+        <a href="/dashboard" class="btn btn-primary">Accueil</a>
     </div>
 
     <!-- Partie droite avec l'image plus petite centrée verticalement -->
