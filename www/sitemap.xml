@@ -25,6 +25,12 @@
         <priority>0.7</priority>
     </url>
     <url>
+        <loc>http://wisp.florddev.fr/account</loc>
+        <lastmod>2024-02-20</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1</priority>
+    </url>
+    <url>
         <loc>https://www.wisp.com/dashboard</loc>
         <lastmod>2024-02-20</lastmod>
         <changefreq>daily</changefreq>
@@ -35,6 +41,18 @@
         <lastmod>2024-02-20</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>http://wisp.florddev.fr/dashboard/pages</loc>
+        <lastmod>2024-02-20</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>http://wisp.florddev.fr/dashboard/articles/categories</loc>
+        <lastmod>2024-02-20</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.6</priority>
     </url>
     <url>
         <loc>http://wisp.florddev.fr/dashboard/settings</loc>
