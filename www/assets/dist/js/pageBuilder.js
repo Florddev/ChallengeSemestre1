@@ -876,6 +876,12 @@ function saveImageChanges(elem, imageUrl) {
 
 async function savePage(){
     let origin = window.location.origin;
+    let clone = _("#page-content").cloneNode(true);
+    _(clone).qsa("[data-plugin='partial']").forEach(e => {
+        e.innerHTML = "";
+        console.log(e);
+    });
+
     deselectSelectedItem();
     ajax("POST", {
         url: origin + "/dashboard/builder-save-page",
@@ -883,7 +889,7 @@ async function savePage(){
             id: _("#page-id").val(),
             url: _("#page-url").val(),
             title: _("#page-title").val(),
-            content: minify(_("#page-content").innerHTML),
+            content: minify(clone.innerHTML),
             page_header: minify(_("#page-header").innerHTML),
             page_footer: minify(_("#page-footer").innerHTML),
         },
