@@ -57,17 +57,4 @@ class Editor
         $editor->assign("site_navbar", Settings::getBy(["key"=>"site:navbar"])->getValue());
         $editor->assign("site_footer", Settings::getBy(["key"=>"site:footer"])->getValue());
     }
-
-    public function lastArticles($route): void
-    {
-        if($_SERVER["REQUEST_METHOD"] === "POST")
-        {
-            $myArticles = (new Article())->getAllBy(["id_creator" => 2], "object");
-
-            echo "<pre>";
-            print_r($myArticles);
-            echo "</pre>";
-        }
-        else Error::page404();
-    }
 }

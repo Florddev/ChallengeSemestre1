@@ -121,3 +121,9 @@ let loadPage = () => {
     convertElementsStyleToClass(document, _("#customClass"));
     initNavBar(document);
 }
+
+_(document).ready(evt => {
+    _(`[data-plugin="partial"]`).forEach(e => {
+        _(e).partial(_(e).attr('data-partial-src'));
+    })
+})

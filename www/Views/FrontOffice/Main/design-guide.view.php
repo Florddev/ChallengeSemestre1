@@ -35,22 +35,6 @@
             min-width: 6rem;
             margin-right: 1rem;
         }
-
-        .btn {
-            margin: 0 10px;
-        }
-
-        .btn-lg {
-            margin: 0 2px;
-        }
-
-        .btn-sm {
-            margin: 0 18px;
-        }
-
-        .btn-line {
-            margin: 0 8px;
-        }
     </style>
 </head>
 
@@ -394,6 +378,42 @@
     <section>
         <h1>.card</h1>
         <hr>
+        <div class="row">
+            <div class="col-sm-4">
+                <article class="card">
+                    <img src="assets/images/card.jpg" alt="cardImage">
+                    <div class="card-content">
+                        <div class="badge badge-primary">Mise en avant</div>
+                        <div class="badge">Categorie</div>
+                        <h1>Neque porro quisquam est qui dolorem</h1>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta nobis reprehenderit fugiat, omnis
+                            nesciunt dolorem alias corporis saepe.</p>
+                        <!--<a href="#" class="btn btn-primary btn-sm">Découvrir</a>-->
+                        <small>26 Octobre 2023 - fdefay</small>
+                    </div>
+                </article>
+            </div>
+            <div class="col-sm-4">
+                <article class="card">
+                    <img src="assets/images/card.jpg" alt="cardImage">
+                    <div class="card-content">
+                        <h1>Neque porro quisquam est qui dolorem</h1>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta nobis reprehenderit fugiat, omnis
+                            nesciunt dolorem alias corporis saepe.</p>
+                        <a href="#" class="btn btn-primary btn-sm">Découvrir</a>
+                    </div>
+                </article>
+            </div>
+            <div class="col-sm-4">
+                <article class="card">
+                    <img src="assets/images/card.jpg" alt="cardImage">
+                    <h1>Card title</h1>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta nobis reprehenderit fugiat, omnis
+                        nesciunt dolorem alias corporis saepe.</p>
+                    <a href="#" class="btn btn-primary btn-sm">Button</a>
+                </article>
+            </div>
+        </div>
         <article class="card">
             <img src="assets/images/card.jpg" alt="cardImage">
             <h1>Card title</h1>

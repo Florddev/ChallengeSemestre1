@@ -216,7 +216,24 @@ class Articles
                 }
             }
         }
-
         Error::page404();
+    }
+
+
+
+    public function ViewLastArticles(): void
+    {
+        if($_SERVER["REQUEST_METHOD"] === "POST")
+        {
+            $articles = Article::populateAllBy([], "array", "WHERE published_at::date <= NOW()::date ORDER BY published_at DESC LIMIT 3");
+            foreach ($articles as &$a) $this->setDataToArticle($a);
+
+            $view = new View("FrontOffice/Articles/last-articles");
+            $view->assign("Articles", $articles);
+
+            $routing = new Routing();
+            $view->assign("lastArticleRoute", $routing->getLocation("BackOffice/Articles", "ViewLastArticles"));
+        }
+        else Error::page404();
     }
 }

@@ -112,15 +112,15 @@ class DB
     }
 
 
-    public static function populateAllBy(array $data, string $return = "array"): array
+    public static function populateAllBy(array $data, string $return = "array", string $additional = ""): array
     {
         $class = get_called_class();
         $object = new $class();
-        return $object->getAllBy($data, $return);
+        return $object->getAllBy($data, $return, $additional);
     }
 
     //
-    public function getAllBy(array $data, string $return = "array"): array
+    public function getAllBy(array $data, string $return = "array", string $additional = ""): array
     {
         $sql = "SELECT * FROM " . DB_PREFIX . $this->table;
         $params = [];
@@ -135,8 +135,9 @@ class DB
                     $params[$column] = $value;
                 }
             }
-            $sql = rtrim($sql, ' AND') . ";";
+            $sql = rtrim($sql, ' AND');
         }
+        $sql = $sql . " " . $additional . ";";
 
         $queryPrepared = $this->pdo->prepare($sql);
         $queryPrepared->execute($params);

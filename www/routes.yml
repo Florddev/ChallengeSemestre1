@@ -88,13 +88,6 @@
   restricted: true
   roles: [1, 2, 3]
 
-/dashboard/articles:
-  controller: BackOffice/Articles
-  action: getAllArticles
-  template: back
-
-
-
 /dashboard/pages:
   controller: BackOffice/Pages
   action: getPagesList
@@ -138,8 +131,8 @@
   roles: [1, 2, 3]
 
 /dashboard/builder/last-articles:
-  controller: BackOffice/Editor
-  action: lastArticles
+  controller: BackOffice/Articles
+  action: ViewLastArticles
 
 /dashboard/builder-save-page:
   controller: BackOffice/Editor
@@ -255,7 +248,7 @@
   action: getAllArticles
   template: back
   restricted: true
-  roles: [1]
+  roles: [1, 2, 3]
 
 /dashboard/articles/create:
   controller: BackOffice/Articles

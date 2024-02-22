@@ -196,10 +196,22 @@
                         </label>
                         <div class="accordion-panel">
                             <div class="components-preview sortable-models">
-                                <div class="components" data-partial-src="/Views/Partial/Editor/Components/text.html">
-                                    <label>Text</label>
+                                <div class="components" data-partial-src="/Views/Partial/Editor/Components/header.html">
+                                    <label>Header</label>
                                     <div class="components-view">
-                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/text.svg"></i>
+                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/heading.svg"></i>
+                                    </div>
+                                </div>
+                                <div class="components" data-partial-src="/Views/Partial/Editor/Components/text.html">
+                                    <label>Paragraph</label>
+                                    <div class="components-view">
+                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/paragraph.svg"></i>
+                                    </div>
+                                </div>
+                                <div class="components" data-partial-src="/Views/Partial/Editor/Components/button.html">
+                                    <label>Button</label>
+                                    <div class="components-view">
+                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/button.svg"></i>
                                     </div>
                                 </div>
                                 <div class="components" data-partial-src="/Views/Partial/Editor/Components/dropdown.html">

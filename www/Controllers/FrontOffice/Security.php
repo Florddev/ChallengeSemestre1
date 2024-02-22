@@ -32,6 +32,8 @@ class Security
             $currentUser = User::populate($_SESSION["id"]);
             if($currentUser->getRole() == Role::Admin->value) {
                 Routing::Redirect("BackOffice/Charts", "listCharts");
+            } else if($currentUser->getRole() == Role::Author->value) {
+                Routing::Redirect("BackOffice/Articles", "getAllArticles");
             } else {
                 header("/");
             }
