@@ -134,6 +134,12 @@
                                         <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Navbar1.svg"></i>
                                     </div>
                                 </div>
+                                <div class="components" data-partial-src="/Views/Partial/Editor/Components/footer.html">
+                                    <label>Footer</label>
+                                    <div class="components-view">
+                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Navbar1.svg"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -146,20 +152,8 @@
                         </label>
                         <div class="accordion-panel">
                             <div class="components-preview sortable-models">
-                                <div class="components" data-partial-src="{{origin}}/login">
-                                    <label>Form login</label>
-                                    <div class="components-view">
-                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Header2.svg"></i>
-                                    </div>
-                                </div>
-                                <div class="components">
-                                    <label>Header 1</label>
-                                    <div class="components-view">
-                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Header1.svg"></i>
-                                    </div>
-                                </div>
                                 <div class="components" data-partial-src="/Views/Partial/Editor/Components/header2.html">
-                                    <label>Header 2</label>
+                                    <label>Header</label>
                                     <div class="components-view">
                                         <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Header2.svg"></i>
                                     </div>
@@ -178,6 +172,12 @@
                             <div class="components-preview sortable-models">
                                 <div class="components" data-partial-src="{{origin}}/dashboard/builder/last-articles">
                                     <label>Derniers articles</label>
+                                    <div class="components-view">
+                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Frame2.svg"></i>
+                                    </div>
+                                </div>
+                                <div class="components" data-partial-src="{{origin}}/dashboard/builder/all-articles">
+                                    <label>Articles</label>
                                     <div class="components-view">
                                         <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Frame2.svg"></i>
                                     </div>

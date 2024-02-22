@@ -7,7 +7,7 @@
                     <article class="card">
                         <img src="<?= $a["picture_url"] ?>" alt="<?= $a["title"] ?>">
                         <div class="card-content">
-                            <div class="badge badge-primary">Mise en avant</div>
+                            <?= $lastArticle ? '<div class="badge badge-primary">Mise en avant</div>' : '' ?>
                             <div class="badge"><?= $a["Category"]->getLabel() ?></div>
                             <h1><?= $a["title"] ?></h1>
                             <p class="card-text"><?= strip_tags($a["content"]) ?></p>
