@@ -265,25 +265,25 @@
                                 <div class="components" data-partial-src="/Views/Partial/Editor/Components/container.html">
                                     <label>Container</label>
                                     <div class="components-view">
-                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/container.svg"></i>
+                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Container.svg"></i>
                                     </div>
                                 </div>
                                 <div class="components" data-partial-src="/Views/Partial/Editor/Components/col2.html">
                                     <label>2 Colonnes</label>
                                     <div class="components-view">
-                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/col2.svg"></i>
+                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Col2.svg"></i>
                                     </div>
                                 </div>
                                 <div class="components" data-partial-src="/Views/Partial/Editor/Components/col3.html">
                                     <label>3 Colonnes</label>
                                     <div class="components-view">
-                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/col3.svg"></i>
+                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Col3.svg"></i>
                                     </div>
                                 </div>
                                 <div class="components" data-partial-src="/Views/Partial/Editor/Components/col2_1-3.html">
                                     <label>2 Colonnes 1/3</label>
                                     <div class="components-view">
-                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/col2_1-3.svg"></i>
+                                        <i data-plugin="svg" data-svg-src="/assets/images/svg/editor-layouts/Col2_1-3.svg"></i>
                                     </div>
                                 </div>
                             </div>
