@@ -285,20 +285,19 @@
 /dashboard/comments/create:
   controller: BackOffice/Comments
   action: createComment
-  restricted: true
-  roles: [1]
+  restricted: false
 
 /dashboard/comments/delete:
   controller: BackOffice/Comments
   action: deleteComment
   restricted: true
-  roles: [1]
+  roles: [1, 2]
 
 /dashboard/comments/validate:
   controller: BackOffice/Comments
   action: validateComment
   restricted: true
-  roles: [1]
+  roles: [1, 2]
   
 /article/:idArticle:
   controller: BackOffice/Articles

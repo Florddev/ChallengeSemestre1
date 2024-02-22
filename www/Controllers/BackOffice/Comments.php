@@ -6,25 +6,37 @@ use App\Core\View;
 use App\Enums\Role;
 use App\Models\Comment;
 use App\Models\User;
+use App\Models\Article;
+use App\Core\Utils;
 
 class Comments
 {
     public function createComment($data) {
-        $comment = new Comment();
-        $comment->setIdArticle($_REQUEST["id_article"]);
-        $comment->setIdUser($_SESSION["id"]);
-        $comment->setContent($_REQUEST["comment_content"]);
-        if (isset($_REQUEST["id_comment_response"])) {
-            $comment->setIdCommentResponse($_REQUEST["id_comment_response"]);
+        // Assurez-vous que l'utilisateur est connecté
+        if (isset($_SESSION["id"])) {
+            $a = Article::populate($_REQUEST["id_article"]);
+            $t = Utils::url_encode($a->getTitle());
+            // Créer un nouvel objet Comment à partir des données POST
+            $comment = new Comment();
+            $comment->setIdArticle($a->getId());
+            $comment->setIdUser($_SESSION["id"]);
+            $comment->setContent($_REQUEST["comment_content"]);
+            if (isset($_REQUEST["id_comment_response"])) {
+                $comment->setIdCommentResponse($_REQUEST["id_comment_response"]);
+            }
+            $comment->setValid(false);
+            $comment->save();
+            
+            // Stocker le message dans une variable de session
+            $_SESSION['SucessComment'] = 'Votre commentaire a été envoyé et est en cours de validation.';
+            // Rediriger vers l'article après la soumission du commentaire
+            header('Location: /article/' . $t);
+            exit;
+        } else {
+            // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
+            header('Location: /login');
+            exit;
         }
-        $comment->setValid(false);
-        $comment->save();
-        
-        // Stocker le message dans une variable de session
-        $_SESSION['SucessComment'] = 'Votre commentaire a été envoyé et est en cours de validation.';
-        // Rediriger vers l'article après la soumission du commentaire
-        header('Location: /article/' . $_REQUEST["id_article"]);
-        exit;
     }
 
     public function validateComment($commentId) {
