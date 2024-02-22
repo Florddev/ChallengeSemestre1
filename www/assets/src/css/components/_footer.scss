@@ -1,0 +1,32 @@
+.footer {
+  background-color: var(--primary);
+  padding: 20px;
+  text-align: center;
+  
+  .footer__logo {
+    margin-bottom: rem(10);
+    font-size: rem(35);
+    color: var(--tercery)
+  }
+  
+  .footer__links {
+    display: flex;
+    justify-content: center;
+    
+    a {
+      margin: 0 rem(10);
+      color: var(--white);
+      text-decoration: none;
+      
+      &:hover {
+        color: var(--tercery);
+      }
+    }
+  }
+  
+  .footer__copy {
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--tercery);
+  }
+}
