@@ -240,6 +240,7 @@ function _(selector) {
             return partial(url, data, method)
                 .then((result) => {
                     element.innerHTML = result;
+                    cleanPageBuilderCode(element);
                     return result;
                 });
         };
