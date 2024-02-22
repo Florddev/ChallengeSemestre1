@@ -10,6 +10,7 @@
             <li><a href="/change-password">Modifier mon mot de passe</a></li>
             <li><a href="/deactivate-account">Désactiver mon compte</a></li>
             <li><a href="/delete-account">Supprimer mon compte</a></li>
+            <li><a href="/logout">Se déconnecter</a></li>
         </ul>
     </div>
 </div>
