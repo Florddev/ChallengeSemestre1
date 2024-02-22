@@ -12,7 +12,6 @@ use App\Core\Utils;
 class Comments
 {
     public function createComment($data) {
-<<<<<<< Updated upstream
         // Assurez-vous que l'utilisateur est connecté
         if (isset($_SESSION["id"])) {
             $a = Article::populate($_REQUEST["id_article"]);
@@ -20,10 +19,10 @@ class Comments
             // Créer un nouvel objet Comment à partir des données POST
             $comment = new Comment();
             $comment->setIdArticle($a->getId());
-            $comment->setIdUser($_SESSION["id"]);
-            $comment->setContent($_REQUEST["comment_content"]);
+            $comment->setIdUser(htmlspecialchars($_SESSION["id"]));
+            $comment->setContent(htmlspecialchars($_REQUEST["comment_content"]));
             if (isset($_REQUEST["id_comment_response"])) {
-                $comment->setIdCommentResponse($_REQUEST["id_comment_response"]);
+                $comment->setIdCommentResponse(htmlspecialchars($_REQUEST["id_comment_response"]));
             }
             $comment->setValid(false);
             $comment->save();
@@ -37,14 +36,6 @@ class Comments
             // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
             header('Location: /login');
             exit;
-=======
-        $comment = new Comment();
-        $comment->setIdArticle(htmlspecialchars($_REQUEST["id_article"]));
-        $comment->setIdUser(htmlspecialchars($_SESSION["id"]));
-        $comment->setContent(htmlspecialchars($_REQUEST["comment_content"]));
-        if (isset($_REQUEST["id_comment_response"])) {
-            $comment->setIdCommentResponse(htmlspecialchars($_REQUEST["id_comment_response"]));
->>>>>>> Stashed changes
         }
     }
 
