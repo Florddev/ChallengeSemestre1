@@ -1,0 +1,17 @@
+.badge {
+  display: inline-block;
+  padding: rem(3) rem(7);
+  border-radius: var(--main-radius);
+  background-color: var(--grey-lighter);
+  color: var(--primary);
+  letter-spacing: 2px;
+  font-weight: 400;
+  font-size: rem(14);
+  margin-right: rem(5);
+
+  &-primary {
+    background-color: var(--tercery);
+    color: var(--white);
+    font-weight: 300;
+  }
+}
