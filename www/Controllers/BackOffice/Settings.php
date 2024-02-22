@@ -59,27 +59,27 @@ class Settings
                         $SettingModel = new SettingsModel();
 
                         $primary = $SettingModel->getOneBy(["key" => "css:primary"], "object");
-                        $primary->setValue($_REQUEST["css:primary"]);
+                        $primary->setValue(htmlspecialchars($_REQUEST["css:primary"]));
                         $primary->save();
 
                         $secondary = $SettingModel->getOneBy(["key" => "css:secondary"], "object");
-                        $secondary->setValue($_REQUEST["css:secondary"]);
+                        $secondary->setValue(htmlspecialchars($_REQUEST["css:secondary"]));
                         $secondary->save();
 
                         $primary = $SettingModel->getOneBy(["key" => "css:tercery"], "object");
-                        $primary->setValue($_REQUEST["css:tercery"]);
+                        $primary->setValue(htmlspecialchars($_REQUEST["css:tercery"]));
                         $primary->save();
 
                         $primary = $SettingModel->getOneBy(["key" => "css:main-font1"], "object");
-                        $primary->setValue($_REQUEST["css:main-font1"]);
+                        $primary->setValue(htmlspecialchars($_REQUEST["css:main-font1"]));
                         $primary->save();
 
                         $primary = $SettingModel->getOneBy(["key" => "css:main-radius"], "object");
-                        $primary->setValue($_REQUEST["css:main-radius"]);
+                        $primary->setValue(htmlspecialchars($_REQUEST["css:main-radius"]));
                         $primary->save();
 
                         $primary = $SettingModel->getOneBy(["key" => "css:transition-duration"], "object");
-                        $primary->setValue($_REQUEST["css:transition-duration"]);
+                        $primary->setValue(htmlspecialchars($_REQUEST["css:transition-duration"]));
                         $primary->save();
 
                         $Newconfig = (new SettingsCSS())->getConfig();

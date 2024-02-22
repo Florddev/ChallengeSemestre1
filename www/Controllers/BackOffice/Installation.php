@@ -167,16 +167,16 @@ class Installation
                 if($verification->checkForm($config, $_REQUEST, $errors))
                 {
                     $newUser = new User();
-                    $newUser->setLogin($_REQUEST["login"]);
-                    $newUser->setEmail($_REQUEST["email"]);
-                    $newUser->setPassword($_REQUEST["password"]);
-                    $newUser->setStatus(Status::Validated->value);
-                    $newUser->setRole(Role::Admin->value);
+                    $newUser->setLogin(htmlspecialchars($_REQUEST["login"]));
+                    $newUser->setEmail(htmlspecialchars($_REQUEST["email"]));
+                    $newUser->setPassword(htmlspecialchars($_REQUEST["password"]));
+                    $newUser->setStatus(htmlspecialchars(Status::Validated->value));
+                    $newUser->setRole(htmlspecialchars(Role::Admin->value));
                     $newUser->save();
 
                     $siteNameSetting = new Settings();
                     $siteNameSetting->setKey("site:name");
-                    $siteNameSetting->setValue($_REQUEST["site_name"]);
+                    $siteNameSetting->setValue(htmlspecialchars($_REQUEST["site_name"]));
                     $siteNameSetting->save();
 
                     $siteNavbar = new Settings();

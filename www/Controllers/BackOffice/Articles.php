@@ -60,12 +60,12 @@ class Articles
             {
                 $articleModel = new Article();
                 
-                $articleModel->setTitle($_REQUEST['title']);
-                $articleModel->setContent($_REQUEST['content']);
-                $articleModel->setKeywords($_REQUEST['keywords']);
-                $articleModel->setPictureUrl($_REQUEST['picture_url']);
-                $articleModel->setIdCategory($_REQUEST['id_category']);
-                $articleModel->setIdCreator($_SESSION['id']);
+                $articleModel->setTitle(htmlspecialchars($_REQUEST['title']));
+                $articleModel->setContent(htmlspecialchars($_REQUEST['content']));
+                $articleModel->setKeywords(htmlspecialchars($_REQUEST['keywords']));
+                $articleModel->setPictureUrl(htmlspecialchars($_REQUEST['picture_url']));
+                $articleModel->setIdCategory(htmlspecialchars($_REQUEST['id_category']));
+                $articleModel->setIdCreator(htmlspecialchars($_SESSION['id']));
 
                 $articleModel->save();
 

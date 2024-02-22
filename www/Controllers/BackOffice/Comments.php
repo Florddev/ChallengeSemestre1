@@ -12,6 +12,7 @@ use App\Core\Utils;
 class Comments
 {
     public function createComment($data) {
+<<<<<<< Updated upstream
         // Assurez-vous que l'utilisateur est connecté
         if (isset($_SESSION["id"])) {
             $a = Article::populate($_REQUEST["id_article"]);
@@ -36,6 +37,14 @@ class Comments
             // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
             header('Location: /login');
             exit;
+=======
+        $comment = new Comment();
+        $comment->setIdArticle(htmlspecialchars($_REQUEST["id_article"]));
+        $comment->setIdUser(htmlspecialchars($_SESSION["id"]));
+        $comment->setContent(htmlspecialchars($_REQUEST["comment_content"]));
+        if (isset($_REQUEST["id_comment_response"])) {
+            $comment->setIdCommentResponse(htmlspecialchars($_REQUEST["id_comment_response"]));
+>>>>>>> Stashed changes
         }
     }
 
@@ -55,7 +64,7 @@ class Comments
     public function updateComment($commentId, $newData) {
         // Assurez-vous que l'utilisateur est l'auteur du commentaire ou un administrateur
         $comment = Comment::populate($commentId);
-        $comment->setContent($newData["content"]);
+        $comment->setContent(htmlspecialchars($newData["content"]));
         $comment->save();
     }
 

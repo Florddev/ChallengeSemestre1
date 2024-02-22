@@ -87,9 +87,9 @@ class Security
             if($verification->checkForm($config, $_REQUEST, $errors))
             {
                 $newUser = new User();
-                $newUser->setLogin($_REQUEST["login"]);
-                $newUser->setEmail($_REQUEST["email"]);
-                $newUser->setPassword($_REQUEST["password"]);
+                $newUser->setLogin(htmlspecialchars($_REQUEST["login"]));
+                $newUser->setEmail(htmlspecialchars($_REQUEST["email"]));
+                $newUser->setPassword(htmlspecialchars($_REQUEST["password"]));
 
                 $validationToken = md5(uniqid());
 
@@ -262,8 +262,8 @@ class Security
                 $user = $userModel->getOneBy(['reset_token' => $token]);
 
                 if ($user) {
-                    $userModel->setId($user['id']);
-                    $userModel->setPassword($_REQUEST['password']);
+                    $userModel->setId(htmlspecialchars($user['id']));
+                    $userModel->setPassword(htmlspecialchars($_REQUEST['password']));
                     $userModel->setResetToken('');
                     $userModel->save();
                     echo "Votre mot de passe a été réinitialisé avec succès.";

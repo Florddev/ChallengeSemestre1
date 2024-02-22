@@ -49,7 +49,7 @@ class userAccount
                 
                 if ($user && password_verify($currentPassword, $user['password'])) {
                     $userModel->setId($user['id']);
-                    $userModel->setPassword($newPassword);
+                    $userModel->setPassword(htmlspecialchars($newPassword));
                     $userModel->save();
                     
                     echo "Mot de passe modifié avec succès.";

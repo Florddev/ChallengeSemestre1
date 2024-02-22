@@ -71,11 +71,11 @@ class User
             {
                 $userModel = new UserModel();
                 
-                $userModel->setLogin($_REQUEST['login']);
-                $userModel->setEmail($_REQUEST['email']);
-                $userModel->setPassword($_REQUEST['password']);
-                $userModel->setRole($_REQUEST['role']);
-                $userModel->setStatus($_REQUEST['status']);
+                $userModel->setLogin(htmlspecialchars($_REQUEST['login']));
+                $userModel->setEmail(htmlspecialchars($_REQUEST['email']));
+                $userModel->setPassword(htmlspecialchars($_REQUEST['password']));
+                $userModel->setRole(htmlspecialchars($_REQUEST['role']));
+                $userModel->setStatus(htmlspecialchars($_REQUEST['status']));
 
                 $userModel->save();
 
@@ -118,13 +118,13 @@ class User
             {
                 $userModel = UserModel::populate($userId);
 
-                $userModel->setLogin($_REQUEST['login']);
-                $userModel->setEmail($_REQUEST['email']);
+                $userModel->setLogin(htmlspecialchars($_REQUEST['login']));
+                $userModel->setEmail(htmlspecialchars($_REQUEST['email']));
                 if (!empty($_REQUEST['password'])) { 
-                    $userModel->setPassword($_REQUEST['password']);
+                    $userModel->setPassword(htmlspecialchars($_REQUEST['password']));
                 }
-                $userModel->setRole($_REQUEST['role']);
-                $userModel->setStatus($_REQUEST['status']);
+                $userModel->setRole(htmlspecialchars($_REQUEST['role']));
+                $userModel->setStatus(htmlspecialchars($_REQUEST['status']));
 
                 $userModel->save();
 

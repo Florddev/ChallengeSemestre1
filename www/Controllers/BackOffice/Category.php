@@ -46,7 +46,7 @@ class Category
             {
                 $categoryModel = new CategoryModel();
                 
-                $categoryModel->setLabel($_REQUEST['label']);
+                $categoryModel->setLabel(htmlspecialchars($_REQUEST['label']));
 
                 $categoryModel->save();
 
@@ -80,7 +80,7 @@ class Category
             {
                 $categoryModel = CategoryModel::populate($categoryId);
 
-                $categoryModel->setLabel($_REQUEST['label']);
+                $categoryModel->setLabel(htmlspecialchars($_REQUEST['label']));
 
                 $categoryModel->save();
 

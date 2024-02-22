@@ -36,15 +36,15 @@ class Editor
 
         $page = Pages::populate($id);
         $page->setUrl('/'.$url);
-        $page->setTitle($title);
-        $page->setContent($content);
+        $page->setTitle(htmlspecialchars($title));
+        $page->setContent(htmlspecialchars($content));
 
         $navbar = Settings::getBy(["key"=>"site:navbar"]);
-        $navbar->setValue($_POST["page_header"]);
+        $navbar->setValue(htmlspecialchars($_POST["page_header"]));
         $navbar->save();
 
         $navbar = Settings::getBy(["key"=>"site:footer"]);
-        $navbar->setValue($_POST["page_footer"]);
+        $navbar->setValue(htmlspecialchars($_POST["page_footer"]));
         $navbar->save();
 
         if($page->save()) echo str_replace(" ", "-", strtolower($title));

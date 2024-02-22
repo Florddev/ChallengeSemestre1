@@ -35,10 +35,10 @@ class Pages
                 //print_r($_SESSION);
 
                 $page = new \App\Models\Pages();
-                $page->setTitle($_REQUEST["title"]);
-                $page->setUrl($_REQUEST["url"]);
-                $page->setIdCreator($_SESSION["id"]);
-                $page->setMetaDescription($_REQUEST["description"]);
+                $page->setTitle(htmlspecialchars($_REQUEST["title"]));
+                $page->setUrl(htmlspecialchars($_REQUEST["url"]));
+                $page->setIdCreator(htmlspecialchars($_SESSION["id"]));
+                $page->setMetaDescription(htmlspecialchars($_REQUEST["description"]));
                 $page->setContent("");
                 $page->save();
 
